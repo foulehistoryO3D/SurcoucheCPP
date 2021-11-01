@@ -3,3 +3,8 @@ obj/
 /packages/
 riderModule.iml
 /_ReSharper.Caches/
+*.pdb
+x64
+.vs/**
+.idea/**
+[dD]ebug
