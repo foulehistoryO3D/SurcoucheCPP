@@ -155,6 +155,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="SurcoucheCpp.cpp" />
+    <ClCompile Include="System\Diagnostics\Process\Process.cpp" />
     <ClCompile Include="System\Environment\Environment.cpp" />
     <ClCompile Include="System\Event\Func\Func.cpp" />
     <ClCompile Include="System\Exception\Exception\Exception.cpp" />
@@ -230,6 +231,10 @@
       <SDLCheck>true</SDLCheck>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
+    <ClCompile Include="System\IO\Directory\Directory.cpp" />
+    <ClCompile Include="System\IO\Directory\DirectoryInfo\DirectoryInfo.cpp" />
+    <ClCompile Include="System\IO\File\FileSystemInfo\FileSystemInfo.cpp" />
+    <ClCompile Include="System\IO\Path\Path.cpp" />
     <ClCompile Include="System\Object\Object.cpp" />
     <ClCompile Include="System\PrimaryType\Boolean\Boolean.cpp" />
     <ClCompile Include="System\PrimaryType\Byte\Byte.cpp" />
@@ -250,6 +255,7 @@
     <ClInclude Include="System\Collection\Interface\Enumerator\IEnumerator.h" />
     <ClInclude Include="System\Collection\Interface\List\IList.h" />
     <ClInclude Include="System\Console\Console.h" />
+    <ClInclude Include="System\Diagnostics\Process\Process.h" />
     <ClInclude Include="System\Environment\Environment.h" />
     <ClInclude Include="System\Event\Action\Action.h" />
     <ClInclude Include="System\Event\Delegate\Delegate.h" />
@@ -261,6 +267,10 @@
     <ClInclude Include="System\Interface\Cloneable\ICloneable.h" />
     <ClInclude Include="System\Interface\Comparable\IComparable.h" />
     <ClInclude Include="System\Interface\Equatable\IEquatable.h" />
+    <ClInclude Include="System\IO\Directory\Directory.h" />
+    <ClInclude Include="System\IO\Directory\DirectoryInfo\DirectoryInfo.h" />
+    <ClInclude Include="System\IO\File\FileSystemInfo\FileSystemInfo.h" />
+    <ClInclude Include="System\IO\Path\Path.h" />
     <ClInclude Include="System\Object\Object.h" />
     <ClInclude Include="System\PrimaryType\Boolean\Boolean.h" />
     <ClInclude Include="System\PrimaryType\Byte\Byte.h" />

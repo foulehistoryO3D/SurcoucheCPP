@@ -32,6 +32,7 @@ namespace System
                 List();
                 List(IEnumerable<Item>* _enumerable);
                 List(std::initializer_list<Item> _tab);
+                List(const List<Item>& _copy);
                 ~List() override;
 #pragma endregion constructor/destructor
 #pragma region Linq
@@ -58,6 +59,7 @@ namespace System
 #pragma endregion override
 #pragma region operator
                 List<Item>* operator=(const IEnumerable<Item>* _enumerable);
+                Item& operator[](const int _index);
 #pragma endregion operator
             };
 #pragma region constructor/destructor
@@ -87,12 +89,16 @@ namespace System
             }
 
             template <typename Item>
+            List<Item>::List(const List<Item>& _copy)
+            {
+                for (int i = 0; i < _copy.mCount; ++i)
+                    Add(_copy.mTab[i]);
+            }
+
+            template <typename Item>
             List<Item>::~List()
             {
-                if (mTab) delete[] mTab;
-                mTab = null;
-                mCount = 0;
-                mCurrentIndex = -1;
+                Clear();
             }
 #pragma endregion constructor/destructor
 #pragma region Linq
@@ -171,9 +177,8 @@ namespace System
             void List<Item>::Clear()
             {
                 delete[] mTab;
-                mTab = null;
+                mTab = new Item[0];
                 mCount = 0;
-                mCurrentIndex = -1;
             }
 
             template <typename Item>
@@ -257,7 +262,6 @@ namespace System
 
 #pragma endregion custom methods
 #pragma region operator
-            
             template <typename Item>
             List<Item>* List<Item>::operator=(const IEnumerable<Item>* _enumerable)
             {
@@ -267,6 +271,13 @@ namespace System
                 }
                 _enumerable->GetEnumerator()->Reset();
                 return *this;
+            }
+
+            template <typename Item>
+            Item& List<Item>::operator[](const int _index)
+            {
+                if (_index < 0 || _index > mCount) throw OutOfRange("[List] out of range");
+                return mTab[_index];
             }
 #pragma endregion operator
         }

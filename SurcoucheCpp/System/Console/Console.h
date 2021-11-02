@@ -15,6 +15,7 @@ namespace System
         static void WriteLine(const Float& _float);
         static void WriteLine(const Double& _double);
         static void WriteLine(const Byte& _byte);
+        static void WriteLine(const String& _str);
     };
 
     inline void Console::WriteLine(const object* _object)
@@ -50,5 +51,10 @@ namespace System
     inline void Console::WriteLine(const Byte& _byte)
     {
         std::cout << _byte.ToString() << std::endl;
+    }
+
+    inline void Console::WriteLine(const String& _str)
+    {
+        std::cout << _str.ToString() << std::endl;
     }
 }

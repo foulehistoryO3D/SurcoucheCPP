@@ -4,6 +4,7 @@
 
 #include "../../Collection/Generic/List/List.h"
 #include "../../PrimaryType/Boolean/Boolean.h"
+#include "../../PrimaryType/Integer/Integer.h"
 
 #include <cstring>
 #include <string>
@@ -119,10 +120,51 @@ System::Collections::Generic::List<System::String> System::String::Split(const c
     return _result;
 }
 
+System::String System::String::SubString(const Integer& _begin, const Integer& _end) const
+{
+    String _result = Empty();
+    for (int i = _begin; i < _end; i++)
+        _result.Append(mValue[i]);
+    
+    return _result;
+}
+
+System::String System::String::SubString(const Integer& _begin) const
+{
+    String _result = Empty();
+    const Int _length = mLength;
+    for (int i = _begin; i < _length; i++)
+        _result.Append(mValue[i]);
+    return _result;
+}
+
 const char* System::String::ToCstr() const
 {
     return mValue;
 }
+
+System::String System::String::Replace(const char _oldChar, const char _newChar) const
+{
+    const Int& _length = Length();
+    char* _char = new char[_length];
+    // ReSharper disable once CppDeprecatedEntity
+    strcpy(_char,mValue);
+    for (int i = 0; i < _length; i++)
+    {
+        const char _c = mValue[i];
+        if (_c == _oldChar)
+            _char[i] = _newChar;
+    }
+    return _char;
+}
+
+System::String System::String::operator+(const CHAR* _str) const
+{
+    String _result = *this;
+    _result.Append(_str);
+    return _result;
+}
+
 
 System::String System::String::Empty()
 {
@@ -132,6 +174,27 @@ System::String System::String::Empty()
 bool System::String::IsNullOrEmpty(const String& _str)
 {
     return _str.mValue == null || _str.mValue == "" || _str.mLength == 0;
+}
+
+System::Integer System::String::LastIndexOf(const char _c) const
+{
+    int _result = -1;
+    for (int i = 0; i < mLength; ++i)
+        if (mValue[i] == _c)
+            _result = i;
+    return _result;
+}
+
+System::Integer System::String::Length() const
+{
+    return mLength;
+}
+
+std::wstring* System::String::ToWString() const
+{
+    std::string _str = mValue;
+    std::wstring* _result = new std::wstring(_str.begin(), _str.end());
+    return _result;
 }
 
 #pragma endregion custom methods

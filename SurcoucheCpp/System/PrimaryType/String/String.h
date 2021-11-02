@@ -1,11 +1,16 @@
 ﻿#pragma once
+#include <string>
+#include <windows.h>
+
 #include "../../Collection/Generic/Interface/Enumerable/IEnumerable.h"
+#include "../../Exception/OutOfRange/OutOfRange.h"
 #include "../../Object/Object.h"
 #include "../../Interface/Cloneable/ICloneable.h"
 #include "../../Interface/Equatable/IEquatable.h"
 
 namespace System
 {
+    class Integer;
     namespace Collections
     {
         namespace Generic
@@ -43,9 +48,16 @@ namespace System
         String ToLower() const;
         String ToUpper() const;
         Collections::Generic::List<String> Split(const char& _c) const;
+        String SubString(const Integer& _begin, const Integer& _end)const;
+        String SubString(const Integer& _begin)const;
         const char* ToCstr() const;
+        String Replace(const char _oldChar, const char _newChar) const;
+        System::String operator+(const CHAR* _str) const;
         static String Empty();
         static bool IsNullOrEmpty(const String& _str);
+        Integer LastIndexOf(const char _c) const;
+        Integer Length()const;
+        std::wstring* ToWString()const;
 #pragma endregion custom methods
 #pragma region override
     public:
@@ -61,6 +73,11 @@ namespace System
 #pragma endregion override
 #pragma region operator
         operator const char*()const;
+        char operator[](const int _index) const
+        {
+            if (_index < 0 || _index > mLength) throw OutOfRange("[String] operator [] => index out of range");
+            return mValue[_index];
+        }
         String operator=(const String& _str)
         {
             mValue = _str.mValue;

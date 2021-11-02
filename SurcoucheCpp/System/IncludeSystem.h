@@ -15,6 +15,11 @@
 #include "PrimaryType/Byte/Byte.h"
 #include "Console/Console.h"
 #include "Interface/Equatable/IEquatable.h"
+#include "IO/File/FileSystemInfo/FileSystemInfo.h"
+#include "IO/Directory/Directory.h"
+#include "IO/Directory/DirectoryInfo/DirectoryInfo.h"
+#include "IO/Path/Path.h"
+#include "Diagnostics/Process/Process.h"
 
 using namespace System;
 using namespace Collections::Generic;
