@@ -14,7 +14,9 @@ System::Boolean::Boolean(const Boolean& _copy)
 
 System::Boolean System::Boolean::Parse(const String& _str)
 {
-    if (_str != "true" || _str != "false") return false; //TODO throw exception
+    if (_str != "true" || _str != "false")
+        throw Exception("[Boolean] => error parsing value is invalid !");
+        
     const String _value = _str.ToLower();
     return _value == "true";
 }

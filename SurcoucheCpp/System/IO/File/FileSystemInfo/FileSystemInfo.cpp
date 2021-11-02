@@ -22,6 +22,12 @@ System::String System::IO::FileSystemInfo::FullPath() const
     return mPath;
 }
 
+System::String System::IO::FileSystemInfo::Name() const
+{
+    const String _str = mPath;
+    return _str.SubString(_str.LastIndexOf('\\')+1);
+}
+
 System::String System::IO::FileSystemInfo::Extension() const
 {
     const String _path = FullPath();

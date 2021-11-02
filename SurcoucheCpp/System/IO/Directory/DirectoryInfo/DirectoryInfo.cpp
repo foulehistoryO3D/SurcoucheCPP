@@ -13,6 +13,7 @@ System::String System::IO::DirectoryInfo::FullPath() const
     return FileSystemInfo::FullPath();
 }
 
+
 System::String System::IO::DirectoryInfo::Extension() const
 {
     return "";

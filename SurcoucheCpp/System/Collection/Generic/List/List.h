@@ -194,7 +194,8 @@ namespace System
             void List<Item>::Remove(Item _item)
             {
                 const int _index = IndexOf(_item);
-                if (_index == -1) return; //TODO throw exception.
+                if (_index == -1)
+                    throw Exception("[List] item doesn't exist");
                 RemoveAt(_index);
             }
 
@@ -213,7 +214,8 @@ namespace System
             template <typename Item>
             void List<Item>::Insert(const int32 _index, Item _item)
             {
-                if (_index < 0 || _index > mCount + 1) return; //TODO throw exception.
+                if (_index < 0 || _index > mCount + 1)
+                    throw OutOfRange("[List] => out of range !");
                 Item* _tmpTab = mTab;
                 mTab = new Item[mCount + 1];
                 for (int i = 0; i < _index; ++i)

@@ -22,6 +22,7 @@ namespace System
             static void Delete(const String& _path, bool _sub = false);
             static Collections::Generic::List<String> GetDirectories(const String& _path);
             static void Move(const String& _path, const String& _newLocation);
+            static DirectoryInfo GetParent(const String& _path);
         };
     }
 }

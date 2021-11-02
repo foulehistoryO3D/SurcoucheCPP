@@ -67,3 +67,8 @@ void System::IO::Directory::Move(const String& _path, const String& _newLocation
     if (!MoveFileEx(_path.ToWString()->c_str(), _newLocationFullPath.ToWString()->c_str(), MOVEFILE_WRITE_THROUGH))
         throw Exception("[Directory] error on moving directory");
 }
+
+System::IO::DirectoryInfo System::IO::Directory::GetParent(const String& _path)
+{
+    return DirectoryInfo(_path.SubString(0, _path.LastIndexOf('\\')));
+}

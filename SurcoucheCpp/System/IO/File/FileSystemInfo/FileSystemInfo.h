@@ -21,6 +21,7 @@ namespace System
 #pragma region custom methods
         public:
             virtual String FullPath()const;
+            virtual String Name()const;
             virtual String Extension()const;
             virtual Boolean Exists()const;
             virtual void Delete()const{}
