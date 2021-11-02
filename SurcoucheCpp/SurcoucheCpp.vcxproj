@@ -155,6 +155,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="SurcoucheCpp.cpp" />
+    <ClCompile Include="System\DateTime\DateTime.cpp" />
     <ClCompile Include="System\Diagnostics\Process\Process.cpp" />
     <ClCompile Include="System\Environment\Environment.cpp" />
     <ClCompile Include="System\Event\Func\Func.cpp" />
@@ -255,6 +256,7 @@
     <ClInclude Include="System\Collection\Interface\Enumerator\IEnumerator.h" />
     <ClInclude Include="System\Collection\Interface\List\IList.h" />
     <ClInclude Include="System\Console\Console.h" />
+    <ClInclude Include="System\DateTime\DateTime.h" />
     <ClInclude Include="System\Diagnostics\Process\Process.h" />
     <ClInclude Include="System\Environment\Environment.h" />
     <ClInclude Include="System\Event\Action\Action.h" />
