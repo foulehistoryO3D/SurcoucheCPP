@@ -15,11 +15,10 @@ System::DateTime::DateTime(const DateTime& _copy)
 
 System::DateTime System::DateTime::Now()
 {
-    time_t now = time(nullptr);
-    struct tm tstruct;
+    const time_t now = time(nullptr);
     char buff[80];
-    tstruct = *localtime(&now);
-    return now;
+    *localtime(&now);
+    return DateTime(now);
 }
 
 System::String System::DateTime::ToString(const String& _format) const
@@ -45,7 +44,7 @@ System::DateTime System::DateTime::FileTimeToDateTime(const FILETIME& _fileTime)
     ULARGE_INTEGER ull;
     ull.LowPart = _fileTime.dwLowDateTime;
     ull.HighPart = _fileTime.dwHighDateTime;
-    time_t _time = ull.QuadPart / 10000000ULL - 11644473600ULL;
+    const time_t _time = ull.QuadPart / 10000000ULL - 11644473600ULL;
     return DateTime(_time);
 }
 

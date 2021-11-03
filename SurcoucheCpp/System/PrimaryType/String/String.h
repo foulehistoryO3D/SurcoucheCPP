@@ -2,7 +2,7 @@
 #include <string>
 #include <windows.h>
 
-#include "../../Collection/Generic/Interface/Enumerable/IEnumerable.h"
+#include "../../../System.Collections.Generic/Interface/Enumerable/IEnumerable.h"
 #include "../../Exception/OutOfRange/OutOfRange.h"
 #include "../../Object/Object.h"
 #include "../../Interface/Cloneable/ICloneable.h"

@@ -155,6 +155,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="SurcoucheCpp.cpp" />
+    <ClCompile Include="System.IO\Directory\Directory.cpp" />
+    <ClCompile Include="System.IO\Directory\DirectoryInfo\DirectoryInfo.cpp" />
+    <ClCompile Include="System.IO\File\FileSystemInfo\FileSystemInfo.cpp" />
+    <ClCompile Include="System.IO\File\File\File.cpp" />
+    <ClCompile Include="System.IO\Path\Path.cpp" />
+    <ClCompile Include="System.IO\Stream\StreamWriter\StreamWriter.cpp" />
+    <ClCompile Include="System.IO\Stream\TextWriter\TextWriter.cpp" />
     <ClCompile Include="System\DateTime\DateTime.cpp" />
     <ClCompile Include="System\Diagnostics\Process\Process.cpp" />
     <ClCompile Include="System\Environment\Environment.cpp" />
@@ -232,13 +239,6 @@
       <SDLCheck>true</SDLCheck>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
-    <ClCompile Include="System\IO\Directory\Directory.cpp" />
-    <ClCompile Include="System\IO\Directory\DirectoryInfo\DirectoryInfo.cpp" />
-    <ClCompile Include="System\IO\File\FileSystemInfo\FileSystemInfo.cpp" />
-    <ClCompile Include="System\IO\File\File\File.cpp" />
-    <ClCompile Include="System\IO\Path\Path.cpp" />
-    <ClCompile Include="System\IO\Stream\StreamWriter\StreamWriter.cpp" />
-    <ClCompile Include="System\IO\Stream\TextWriter\TextWriter.cpp" />
     <ClCompile Include="System\Object\Object.cpp" />
     <ClCompile Include="System\PrimaryType\Boolean\Boolean.cpp" />
     <ClCompile Include="System\PrimaryType\Byte\Byte.cpp" />
@@ -249,15 +249,22 @@
     <ClCompile Include="System\Type\Type.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="System\Collection\Generic\Interface\Collection\ICollection.h" />
-    <ClInclude Include="System\Collection\Generic\Interface\Enumerable\IEnumerable.h" />
-    <ClInclude Include="System\Collection\Generic\Interface\Enumerator\IEnumerator.h" />
-    <ClInclude Include="System\Collection\Generic\Interface\List\IList.h" />
-    <ClInclude Include="System\Collection\Generic\List\List.h" />
-    <ClInclude Include="System\Collection\Interface\Collection\ICollection.h" />
-    <ClInclude Include="System\Collection\Interface\Enumerable\Enumerable.h" />
-    <ClInclude Include="System\Collection\Interface\Enumerator\IEnumerator.h" />
-    <ClInclude Include="System\Collection\Interface\List\IList.h" />
+    <ClInclude Include="System.Collections.Generic\Interface\Collection\ICollection.h" />
+    <ClInclude Include="System.Collections.Generic\Interface\Enumerable\IEnumerable.h" />
+    <ClInclude Include="System.Collections.Generic\Interface\Enumerator\IEnumerator.h" />
+    <ClInclude Include="System.Collections.Generic\Interface\List\IList.h" />
+    <ClInclude Include="System.Collections.Generic\List\List.h" />
+    <ClInclude Include="System.Collections\Interface\Collection\ICollection.h" />
+    <ClInclude Include="System.Collections\Interface\Enumerable\Enumerable.h" />
+    <ClInclude Include="System.Collections\Interface\Enumerator\IEnumerator.h" />
+    <ClInclude Include="System.Collections\Interface\List\IList.h" />
+    <ClInclude Include="System.IO\Directory\Directory.h" />
+    <ClInclude Include="System.IO\Directory\DirectoryInfo\DirectoryInfo.h" />
+    <ClInclude Include="System.IO\File\FileSystemInfo\FileSystemInfo.h" />
+    <ClInclude Include="System.IO\File\File\File.h" />
+    <ClInclude Include="System.IO\Path\Path.h" />
+    <ClInclude Include="System.IO\Stream\StreamWriter\StreamWriter.h" />
+    <ClInclude Include="System.IO\Stream\TextWriter\TextWriter.h" />
     <ClInclude Include="System\Console\Console.h" />
     <ClInclude Include="System\DateTime\DateTime.h" />
     <ClInclude Include="System\Diagnostics\Process\Process.h" />
@@ -272,13 +279,6 @@
     <ClInclude Include="System\Interface\Cloneable\ICloneable.h" />
     <ClInclude Include="System\Interface\Comparable\IComparable.h" />
     <ClInclude Include="System\Interface\Equatable\IEquatable.h" />
-    <ClInclude Include="System\IO\Directory\Directory.h" />
-    <ClInclude Include="System\IO\Directory\DirectoryInfo\DirectoryInfo.h" />
-    <ClInclude Include="System\IO\File\FileSystemInfo\FileSystemInfo.h" />
-    <ClInclude Include="System\IO\File\File\File.h" />
-    <ClInclude Include="System\IO\Path\Path.h" />
-    <ClInclude Include="System\IO\Stream\StreamWriter\StreamWriter.h" />
-    <ClInclude Include="System\IO\Stream\TextWriter\TextWriter.h" />
     <ClInclude Include="System\Object\Object.h" />
     <ClInclude Include="System\PrimaryType\Boolean\Boolean.h" />
     <ClInclude Include="System\PrimaryType\Byte\Byte.h" />
@@ -287,6 +287,11 @@
     <ClInclude Include="System\PrimaryType\Integer\Integer.h" />
     <ClInclude Include="System\PrimaryType\String\String.h" />
     <ClInclude Include="System\Type\Type.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="System.Collections" />
+    <Folder Include="System.Collections.Generic" />
+    <Folder Include="System.IO" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
