@@ -1,6 +1,5 @@
 ﻿#include "Process.h"
-#include "../../PrimaryType/String/String.h"
-#include "../../PrimaryType/Boolean/Boolean.h"
+#include "../../System/PrimaryType/Boolean/Boolean.h"
 #include <ShlObj_core.h>
 #include <shobjidl_core.h>
 

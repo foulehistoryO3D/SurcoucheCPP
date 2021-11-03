@@ -52,7 +52,8 @@ namespace System
         String SubString(const Integer& _begin)const;
         const char* ToCstr() const;
         String Replace(const char _oldChar, const char _newChar) const;
-        System::String operator+(const CHAR* _str) const;
+        String Replace(const String& _old, const String& _new) const;
+        String operator+(const CHAR* _str) const;
         static String Empty();
         static bool IsNullOrEmpty(const String& _str);
         Integer LastIndexOf(const char _c) const;
@@ -84,6 +85,7 @@ namespace System
             mLength = _str.mLength;
             return *this;
         }
+        String& operator+=(char _c);
         bool operator==(const String& _other) const;
         bool operator== (const char* _other) const;
         bool operator!=(const String& _other) const;

@@ -158,6 +158,16 @@ System::String System::String::Replace(const char _oldChar, const char _newChar)
     return _char;
 }
 
+System::String System::String::Replace(const String& _old, const String& _new) const
+{
+    std::string my_str = mValue;
+    const std::string subStr = _new.ToCstr();
+    int _index = -1;
+    while ((_index = my_str.find(_old.ToCstr())) != std::string::npos)
+        my_str.replace(_index, subStr.length(), subStr);
+    return my_str.c_str();
+}
+
 System::String System::String::operator+(const CHAR* _str) const
 {
     String _result = *this;
@@ -254,6 +264,19 @@ System::Collections::Generic::IEnumerator<char>* System::String::GetEnumerator()
 System::String::operator const char*() const
 {
     return mValue;
+}
+
+System::String& System::String::operator+=(char _c)
+{
+    const int& _length = mLength;
+    const size_t _newLength = _length + 2;
+    char* _char = new char[_newLength];
+    strcpy(_char, mValue);
+    _char[_length] = _c;
+    _char[_length + 1] = '\0';
+    mValue = _char;
+    mLength = _length + 1;
+    return *this;
 }
 
 bool System::String::operator==(const String& _other) const

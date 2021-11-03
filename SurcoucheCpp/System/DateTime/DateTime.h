@@ -21,7 +21,7 @@ public:
 #pragma region custom methods
 public:
     static DateTime Now();
-    String ToString(const String& _format =  "%d-%m-%Y %H:%M:%S") const;
+    String ToStringFormat(const String& _format =  "%d-%m-%Y %H:%M:%S") const;
     Boolean Equals(const DateTime& _other);
     static DateTime FileTimeToDateTime(const FILETIME& _fileTime); 
 #pragma endregion custom methods

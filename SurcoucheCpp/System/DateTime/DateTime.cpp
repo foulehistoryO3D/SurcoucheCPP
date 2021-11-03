@@ -16,12 +16,11 @@ System::DateTime::DateTime(const DateTime& _copy)
 System::DateTime System::DateTime::Now()
 {
     const time_t now = time(nullptr);
-    char buff[80];
     *localtime(&now);
     return DateTime(now);
 }
 
-System::String System::DateTime::ToString(const String& _format) const
+System::String System::DateTime::ToStringFormat(const String& _format) const
 {
     if (mTime == time_t()) return "time equal to null";
     if (String::IsNullOrEmpty(_format)) return "format error";
@@ -51,7 +50,7 @@ System::DateTime System::DateTime::FileTimeToDateTime(const FILETIME& _fileTime)
 #pragma region override
 System::String System::DateTime::ToString() const
 {
-    return ToString("%d-%m-%Y %H:%M:%S");
+    return ToStringFormat();
 }
 
 System::Boolean System::DateTime::Equals(const object* _object)

@@ -3,9 +3,20 @@
 
 namespace System
 {
+    class DateTime;
+    namespace Collections
+    {
+        namespace Generic
+        {
+            template<typename T>
+            class List;
+        }
+    }
     namespace IO
     {
         class StreamWriter;
+        class StreamReader;
+        class FileStream;
         class File : public Object
         {
 #pragma region f/p
@@ -20,9 +31,16 @@ namespace System
 #pragma endregion constructor
 #pragma region custom methods
         public:
+            static DateTime GetCreationTime(const String& _path);
+            static DateTime GetLastAccessTime(const String& _path);
+            static DateTime GetLastWriteTime(const String& _path);
+            static void Delete(const String& _path);
             static Boolean Exists(const String& _path);
-            static void Create(const String& _path);
+            static FileStream Create(const String& _path);
             static StreamWriter CreateText(const String& _path);
+            static StreamReader OpenText(const String& _path);
+            static String ReadAllText(const String& _path);
+            static Collections::Generic::List<String> ReadAllLines(const String& _path);
 #pragma endregion custom methods
 #pragma region override
         public:

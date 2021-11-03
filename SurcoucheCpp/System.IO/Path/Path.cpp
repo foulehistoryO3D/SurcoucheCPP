@@ -7,27 +7,36 @@
 System::String System::IO::Path::GetPath(const String& _path)
 {
     const String _result = _path;
-    return _result.Replace('/', '\\');
+    return _result.Replace(DirectorySeparatorChar, '\\');
 }
 
 System::String System::IO::Path::Combine(const String& _a, const String& _b)
 {
-    String _res = _a;
-    _res.Append("/");
-    _res.Append(_b);
-    _res = GetPath(_res);
-    return _res;
+    const String _res = _a + "/" + _b;
+    return GetPath(_res);
+}
+
+System::String System::IO::Path::Combine(const String& _a, const String& _b, const String& _c)
+{
+    const String _result = _a + "/" + _b + "/" + _c;
+    return GetPath(_result);
+}
+
+System::String System::IO::Path::Combine(const String& _a, const String& _b, const String& _c, const String& _d)
+{
+    const String _result = _a + "/" + _b + "/" + _c + "/" + _d;
+    return GetPath(_result);
 }
 
 System::String System::IO::Path::Combine(Collections::Generic::List<String> _str)
 {
     String _res = _str[0];
-    _res.Append("/");
+    _res.Append(DirectorySeparatorChar);
     const int _length = _str.Count();
     for (int i = 1; i < _length; i++)
     {
         _res.Append(_str[i]);
-        _res.Append("/");
+        _res.Append(DirectorySeparatorChar);
     }
     _res = GetPath(_res);
     return _res;
