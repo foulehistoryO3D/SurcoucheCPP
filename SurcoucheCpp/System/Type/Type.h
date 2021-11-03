@@ -54,11 +54,11 @@ namespace System
     {
 #pragma region f/p
     private:
-        int mBitMask = -1;
+    int mBitMask = 0;
 #pragma endregion f/p
 #pragma region constructor/destructor
     public:
-        Type();
+        Type()=default;
         virtual ~Type();
 #pragma endregion constructor/destructor
 #pragma region custom methods

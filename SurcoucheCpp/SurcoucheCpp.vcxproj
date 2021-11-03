@@ -23,7 +23,6 @@
     <ProjectGuid>{5CA26573-561F-4C10-93D9-132F23681EF6}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>SurcoucheCpp</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup>
@@ -94,6 +93,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -235,7 +235,10 @@
     <ClCompile Include="System\IO\Directory\Directory.cpp" />
     <ClCompile Include="System\IO\Directory\DirectoryInfo\DirectoryInfo.cpp" />
     <ClCompile Include="System\IO\File\FileSystemInfo\FileSystemInfo.cpp" />
+    <ClCompile Include="System\IO\File\File\File.cpp" />
     <ClCompile Include="System\IO\Path\Path.cpp" />
+    <ClCompile Include="System\IO\Stream\StreamWriter\StreamWriter.cpp" />
+    <ClCompile Include="System\IO\Stream\TextWriter\TextWriter.cpp" />
     <ClCompile Include="System\Object\Object.cpp" />
     <ClCompile Include="System\PrimaryType\Boolean\Boolean.cpp" />
     <ClCompile Include="System\PrimaryType\Byte\Byte.cpp" />
@@ -272,7 +275,10 @@
     <ClInclude Include="System\IO\Directory\Directory.h" />
     <ClInclude Include="System\IO\Directory\DirectoryInfo\DirectoryInfo.h" />
     <ClInclude Include="System\IO\File\FileSystemInfo\FileSystemInfo.h" />
+    <ClInclude Include="System\IO\File\File\File.h" />
     <ClInclude Include="System\IO\Path\Path.h" />
+    <ClInclude Include="System\IO\Stream\StreamWriter\StreamWriter.h" />
+    <ClInclude Include="System\IO\Stream\TextWriter\TextWriter.h" />
     <ClInclude Include="System\Object\Object.h" />
     <ClInclude Include="System\PrimaryType\Boolean\Boolean.h" />
     <ClInclude Include="System\PrimaryType\Byte\Byte.h" />

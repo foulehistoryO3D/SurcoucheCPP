@@ -19,9 +19,12 @@
 #include "IO/Directory/Directory.h"
 #include "IO/Directory/DirectoryInfo/DirectoryInfo.h"
 #include "IO/Path/Path.h"
+#include "IO/File/File/File.h"
+#include "IO/Stream/StreamWriter/StreamWriter.h"
 #include "Diagnostics/Process/Process.h"
 
 using namespace System;
+using namespace System::IO;
 using namespace Collections::Generic;
 
 template<typename T>

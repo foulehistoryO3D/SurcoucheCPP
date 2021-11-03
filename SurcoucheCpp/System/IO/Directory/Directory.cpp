@@ -8,7 +8,7 @@
 
 #include <direct.h>
 #include <iostream>
-#include <windows.h>
+#include <Windows.h>
 
 System::IO::DirectoryInfo System::IO::Directory::MakeDirectory(const String& _path)
 {

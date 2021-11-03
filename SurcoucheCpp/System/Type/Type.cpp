@@ -5,10 +5,6 @@
 #include <vcruntime_typeinfo.h>
 
 #pragma region constructor/destructor
-System::Type::Type()
-{
-    mBitMask = -1;
-}
 
 System::Type::~Type()
 {

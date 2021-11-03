@@ -60,6 +60,7 @@ namespace System
 #pragma region operator
                 List<Item>* operator=(const IEnumerable<Item>* _enumerable);
                 Item& operator[](const int _index);
+                Item& operator[](const int _index)const;
 #pragma endregion operator
             };
 #pragma region constructor/destructor
@@ -277,6 +278,13 @@ namespace System
 
             template <typename Item>
             Item& List<Item>::operator[](const int _index)
+            {
+                if (_index < 0 || _index > mCount) throw OutOfRange("[List] out of range");
+                return mTab[_index];
+            }
+
+            template <typename Item>
+            Item& List<Item>::operator[](const int _index) const
             {
                 if (_index < 0 || _index > mCount) throw OutOfRange("[List] out of range");
                 return mTab[_index];

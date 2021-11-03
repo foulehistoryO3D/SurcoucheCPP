@@ -1,6 +1,7 @@
 ﻿#include "DateTime.h"
-#include "../PrimaryType/String/String.h"
-#include <time.h>
+#include "../PrimaryType/Boolean/Boolean.h"
+#include <ctime>
+
 
 System::DateTime::DateTime(time_t _time)
 {
@@ -33,5 +34,44 @@ System::String System::DateTime::ToString(const String& _format) const
     _result = buff;
     return _result;
 }
+
+System::Boolean System::DateTime::Equals(const DateTime& _other)
+{
+    return mTime == _other.mTime;
+}
+
+System::DateTime System::DateTime::FileTimeToDateTime(const FILETIME& _fileTime)
+{
+    ULARGE_INTEGER ull;
+    ull.LowPart = _fileTime.dwLowDateTime;
+    ull.HighPart = _fileTime.dwHighDateTime;
+    time_t _time = ull.QuadPart / 10000000ULL - 11644473600ULL;
+    return DateTime(_time);
+}
+
+#pragma region override
+System::String System::DateTime::ToString() const
+{
+    return ToString("%d-%m-%Y %H:%M:%S");
+}
+
+System::Boolean System::DateTime::Equals(const object* _object)
+{
+    const DateTime& _dateTime = *dynamic_cast<const DateTime*>(_object);
+    return Equals(_dateTime);
+}
+
+System::Boolean System::DateTime::Equals(const object& _object)
+{
+    const DateTime& _dateTime = *dynamic_cast<const DateTime*>(&_object);
+    return Equals(_dateTime);
+}
+
+size_t System::DateTime::GetHashCode() const
+{
+    DateTime _time = *this;
+    return std::hash<DateTime*>{}(&_time);
+}
+#pragma endregion override
 
 
