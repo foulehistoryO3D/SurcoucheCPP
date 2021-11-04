@@ -6,12 +6,15 @@
 System::IO::TextReader::TextReader(const String& _path)
 {
     mStream = std::ifstream(_path);
+    mPath = _path;
 }
 
 System::IO::TextReader::TextReader(TextReader&& _copy) noexcept
 {
     mStream = std::move(_copy.mStream);
+    mPath = std::move(_copy.mPath);
 }
+
 
 void System::IO::TextReader::Close()
 {
@@ -56,6 +59,11 @@ System::String System::IO::TextReader::ReadToEnd()
     while (mStream.get(_c))
         _result += _c;
     return _result;
+}
+
+System::String System::IO::TextReader::Path() const
+{
+    return mPath;
 }
 
 char System::IO::TextReader::Read()

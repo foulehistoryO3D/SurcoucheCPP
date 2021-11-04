@@ -25,8 +25,11 @@ namespace System
         static Boolean IsLetter(const char _c);
         static Boolean IsLower(const char _c);
         static Boolean IsUpper(const char _c);
+        static Boolean IsWhitSpace(const char _c);
         static Char ToUpper(const char _c);
-        static Char ToLower(char _c);
+        static Char ToLower(const char _c);
+        Char ToUpper();
+        Char ToLower();
 #pragma endregion custom methods
 #pragma region override
     public:

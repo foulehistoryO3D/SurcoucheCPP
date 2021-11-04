@@ -9,17 +9,15 @@
 System::IO::TextWriter::TextWriter(const String& _path)
 {
     mStream = std::ofstream(_path, std::ios_base::app | std::ios_base::out);
+    mPath = _path;
 }
 
 System::IO::TextWriter::TextWriter(TextWriter&& _copy) noexcept
 {
     mStream = std::move(_copy.mStream);
+    mPath = std::move(_copy.mPath);
 }
 
-System::IO::TextWriter::~TextWriter()
-{
-    mStream.close();
-}
 
 #pragma endregion constructor/destructor
 #pragma region custom methods
@@ -29,9 +27,20 @@ System::Boolean System::IO::TextWriter::IsOpen() const
     return mStream.is_open();
 }
 
+System::String System::IO::TextWriter::Path() const
+{
+    return mPath;
+}
+
 System::Boolean System::IO::TextWriter::IsValid() const
 {
     return mStream.good() && IsOpen();
+}
+
+System::Boolean System::IO::TextWriter::Exists() const
+{
+    const std::ifstream _stream(mPath);
+    return _stream.good();
 }
 
 void System::IO::TextWriter::Close()

@@ -79,3 +79,8 @@ bool System::Environment::Is64BitProcess()
     return true;
 #endif
 }
+
+void System::Environment::Exit(const int& _exitStatus)
+{
+    exit(_exitStatus);
+}

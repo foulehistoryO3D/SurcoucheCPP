@@ -34,14 +34,31 @@ System::Boolean System::Char::IsUpper(const char _c)
     return isupper(_c);
 }
 
+System::Boolean System::Char::IsWhitSpace(const char _c)
+{
+    return _c == ' ';
+}
+
 System::Char System::Char::ToUpper(const char _c)
 {
     return std::toupper(_c);
 }
 
-System::Char System::Char::ToLower(char _c)
+System::Char System::Char::ToLower(const char _c)
 {
     return std::tolower(_c);
+}
+
+System::Char System::Char::ToUpper()
+{
+    mValue = std::toupper(mValue);
+    return *this;
+}
+
+System::Char System::Char::ToLower()
+{
+    mValue = std::tolower(mValue);
+    return *this;
 }
 #pragma endregion custom methods
 #pragma region override

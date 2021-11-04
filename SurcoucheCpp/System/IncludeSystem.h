@@ -24,6 +24,7 @@
 #include "../System.IO/File/File/File.h"
 #include "../System.IO/Stream/StreamWriter/StreamWriter.h"
 #include "../System.IO/File/FileStream/FileStream.h"
+#include "System.IO/Stream/TextReader/TextReader.h"
 
 #include "../System.Collections.Generic/Interface/Enumerator/IEnumerator.h"
 #include "../System.IO/File/FileSystemInfo/FileSystemInfo.h"

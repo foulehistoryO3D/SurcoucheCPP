@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include "../../../Object/Object.h"
 #include "../Enumerable/Enumerable.h"
 
 namespace System

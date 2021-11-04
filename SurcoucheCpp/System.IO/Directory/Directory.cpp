@@ -72,3 +72,11 @@ System::IO::DirectoryInfo System::IO::Directory::GetParent(const String& _path)
 {
     return DirectoryInfo(_path.SubString(0, _path.LastIndexOf('\\')));
 }
+
+System::Boolean System::IO::Directory::Exists(const String& _path)
+{
+    struct stat _info;
+    if (stat(_path.ToCstr(), &_info) != 0) return false;
+    if (_info.st_mode & S_IFDIR) return true;
+    return false;
+}

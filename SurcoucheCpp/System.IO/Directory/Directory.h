@@ -23,6 +23,7 @@ namespace System
             static Collections::Generic::List<String> GetDirectories(const String& _path);
             static void Move(const String& _path, const String& _newLocation);
             static DirectoryInfo GetParent(const String& _path);
+            static Boolean Exists(const String& _path);
         };
     }
 }

@@ -12,6 +12,7 @@ namespace System
 #pragma region f/p
         protected:
             std::ifstream mStream = std::ifstream();
+            const char* mPath = null;
 #pragma endregion f/p
 #pragma region constructor
         public:
@@ -27,8 +28,18 @@ namespace System
             Boolean ReadLine(String& _out);
             String ReadLine();
             String ReadToEnd();
+            String Path()const;
             char Read();
 #pragma endregion custom methods
+#pragma region operator
+        public:
+            TextReader& operator=(TextReader&& _reader) noexcept
+            {
+                mPath = std::move(_reader.mPath);
+                mStream = std::move(_reader.mStream);
+                return *this;
+            }
+#pragma endregion operator
         };
     }
 }

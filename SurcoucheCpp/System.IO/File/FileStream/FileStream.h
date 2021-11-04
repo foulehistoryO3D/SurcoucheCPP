@@ -25,6 +25,7 @@ namespace System
 #pragma endregion constructor
 #pragma region custom methods
         public:
+            Boolean Exists()const;
             Boolean IsValid()const;
             void Close() const;
             StreamWriter& Writer() const;

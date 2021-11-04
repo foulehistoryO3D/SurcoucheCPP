@@ -30,11 +30,14 @@ namespace System
     class Environment : public Object
     {
     public:
+        static const constexpr int EXIT_ERROR = -1;
+        static const constexpr int EXIT_VALID = 1;
         static String CurrentDirectory();
         static String SpecialFolder(const SpecialFolder& _specialFolder);
         static Collections::Generic::List<String> GetLogicalDrives();
         static String GetOsVersion();
         static String GetOsName();
         static bool Is64BitProcess();
+        static void Exit(const int& _exitStatus);
     };
 }

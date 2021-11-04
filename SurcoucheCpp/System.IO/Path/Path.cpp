@@ -65,8 +65,7 @@ System::String System::IO::Path::GetDirectoryName(const String& _path)
 {
     const String& _pathValid = GetPath(_path);
     const Int& _index = _path.LastIndexOf('\\');
-    const String& _result = _pathValid.SubString(0, _index);
-    return _result;
+    return _pathValid.SubString(0, _index);;
 }
 
 System::Boolean System::IO::Path::HasExtension(const String& _path)

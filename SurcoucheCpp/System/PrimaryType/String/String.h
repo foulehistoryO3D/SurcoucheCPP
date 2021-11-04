@@ -45,6 +45,7 @@ namespace System
         void Append(const Object* _object);
         void Append(const String& _str);
         void Append(const char& _c);
+        void Append(const Integer& _integer);
         String ToLower() const;
         String ToUpper() const;
         Collections::Generic::List<String> Split(const char& _c) const;
@@ -53,7 +54,6 @@ namespace System
         const char* ToCstr() const;
         String Replace(const char _oldChar, const char _newChar) const;
         String Replace(const String& _old, const String& _new) const;
-        String operator+(const CHAR* _str) const;
         static String Empty();
         static bool IsNullOrEmpty(const String& _str);
         Integer LastIndexOf(const char _c) const;
@@ -74,6 +74,7 @@ namespace System
 #pragma endregion override
 #pragma region operator
         operator const char*()const;
+        String operator+(const CHAR* _str) const;
         char operator[](const int _index) const
         {
             if (_index < 0 || _index > mLength) throw OutOfRange("[String] operator [] => index out of range");

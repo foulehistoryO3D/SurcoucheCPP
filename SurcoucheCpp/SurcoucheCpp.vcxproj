@@ -158,6 +158,8 @@
     <ClCompile Include="System.Diagnostics\Process\Process.cpp" />
     <ClCompile Include="System.IO\Directory\Directory.cpp" />
     <ClCompile Include="System.IO\Directory\DirectoryInfo\DirectoryInfo.cpp" />
+    <ClCompile Include="System.IO\DriveInfo\DriveInfo.cpp" />
+    <ClCompile Include="System.IO\DriveInfo\DriveType\DriveType.cpp" />
     <ClCompile Include="System.IO\Exception\IOException\IOException.cpp" />
     <ClCompile Include="System.IO\File\FileStream\FileStream.cpp" />
     <ClCompile Include="System.IO\File\FileSystemInfo\FileSystemInfo.cpp" />
@@ -167,6 +169,8 @@
     <ClCompile Include="System.IO\Stream\StreamWriter\StreamWriter.cpp" />
     <ClCompile Include="System.IO\Stream\TextReader\TextReader.cpp" />
     <ClCompile Include="System.IO\Stream\TextWriter\TextWriter.cpp" />
+    <ClCompile Include="System\Activator\Activator.cpp" />
+    <ClCompile Include="System\Console\Console.cpp" />
     <ClCompile Include="System\DateTime\DateTime.cpp" />
     <ClCompile Include="System\Environment\Environment.cpp" />
     <ClCompile Include="System\Event\Func\Func.cpp" />
@@ -252,6 +256,7 @@
     <ClCompile Include="System\PrimaryType\Integer\Integer.cpp" />
     <ClCompile Include="System\PrimaryType\String\String.cpp" />
     <ClCompile Include="System\Type\Type.cpp" />
+    <ClCompile Include="Test\Test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="System.Collections.Generic\Interface\Collection\ICollection.h" />
@@ -266,6 +271,8 @@
     <ClInclude Include="System.Diagnostics\Process\Process.h" />
     <ClInclude Include="System.IO\Directory\Directory.h" />
     <ClInclude Include="System.IO\Directory\DirectoryInfo\DirectoryInfo.h" />
+    <ClInclude Include="System.IO\DriveInfo\DriveInfo.h" />
+    <ClInclude Include="System.IO\DriveInfo\DriveType\DriveType.h" />
     <ClInclude Include="System.IO\Exception\IOException\IOException.h" />
     <ClInclude Include="System.IO\File\FileStream\FileStream.h" />
     <ClInclude Include="System.IO\File\FileSystemInfo\FileSystemInfo.h" />
@@ -275,6 +282,7 @@
     <ClInclude Include="System.IO\Stream\StreamWriter\StreamWriter.h" />
     <ClInclude Include="System.IO\Stream\TextReader\TextReader.h" />
     <ClInclude Include="System.IO\Stream\TextWriter\TextWriter.h" />
+    <ClInclude Include="System\Activator\Activator.h" />
     <ClInclude Include="System\Console\Console.h" />
     <ClInclude Include="System\DateTime\DateTime.h" />
     <ClInclude Include="System\Environment\Environment.h" />
@@ -297,6 +305,7 @@
     <ClInclude Include="System\PrimaryType\Integer\Integer.h" />
     <ClInclude Include="System\PrimaryType\String\String.h" />
     <ClInclude Include="System\Type\Type.h" />
+    <ClInclude Include="Test\Test.h" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="System.Collections" />

@@ -27,6 +27,12 @@ System::IO::FileStream::~FileStream()
     mStreamReader = null;
 }
 
+System::Boolean System::IO::FileStream::Exists() const
+{
+    const std::ifstream _stream(mPath);
+    return _stream.good();
+}
+
 System::Boolean System::IO::FileStream::IsValid() const
 {
     return mPath != null && mStreamWriter != null && mStreamReader != null;

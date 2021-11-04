@@ -16,6 +16,7 @@ namespace System
         {
 #pragma region f/p
         protected:
+            const char* mPath = null;
             std::ofstream mStream = {};
 #pragma endregion f/p
 #pragma region constructor/destructor
@@ -23,12 +24,13 @@ namespace System
             TextWriter()=default;
             TextWriter(const String& _path);
             TextWriter(TextWriter&& _copy) noexcept;
-            ~TextWriter()override;
 #pragma endregion constructor/destructor
 #pragma region custom methods
         public:
             virtual Boolean IsOpen()const;
+            String Path()const;
             Boolean IsValid()const;
+            Boolean Exists()const;
             virtual void Close();
             virtual void Write(const Boolean& _value);
             virtual void Write(const char _value);
@@ -44,6 +46,15 @@ namespace System
             Boolean Equals(const object* _obj) override;
             Boolean Equals(const object& _obj) override;
 #pragma endregion override
+#pragma region operator
+        public:
+            TextWriter& operator=(TextWriter&& _writer) noexcept
+            {
+                mPath = std::move(_writer.mPath);
+                mStream = std::move(_writer.mStream);
+                return *this;
+            }
+#pragma endregion operator
         };
     }
 }

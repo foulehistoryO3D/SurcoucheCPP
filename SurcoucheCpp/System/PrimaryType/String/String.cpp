@@ -75,6 +75,11 @@ void System::String::Append(const char& _c)
     mLength = _length + 1;
 }
 
+void System::String::Append(const Integer& _integer)
+{
+    Append(_integer.ToString());
+}
+
 System::String System::String::ToLower() const
 {
     std::string _str = mValue;

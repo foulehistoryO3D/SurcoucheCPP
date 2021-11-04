@@ -1,16 +1,35 @@
 ﻿#pragma once
 #include <iostream>
-
 #include "../Object/Object.h"
 
 namespace System
 {
+    class Float;
+    class Double;
+    class Byte;
+    class Integer;
+    namespace IO
+    {
+        class TextWriter;
+        class TextReader;
+    }
     class Console : public Object
     {
-    public:
+#pragma region f/p
+    private:
+        static IO::TextWriter mOut;
+        static IO::TextReader mIn;
+        static IO::TextWriter mError;
+#pragma endregion f/p
+#pragma region custom methods
+     public:
+        static IO::TextWriter& Error();
+        static IO::TextReader& In();
+        static IO::TextWriter& Out();
+        
         static void WriteLine(const object* _object);
         static void WriteLine(const object& _object);
-        static void WriteLine(const string* _str);
+        static void WriteLine(const String* _str);
         static void WriteLine(const Boolean& _bool);
         static void WriteLine(const Float& _float);
         static void WriteLine(const Double& _double);
@@ -18,55 +37,11 @@ namespace System
         static void WriteLine(const String& _str);
         static void WriteLine(const Integer& _int);
         static void WriteLine(char _char);
+        static void SetIn(IO::TextReader _in);
+        static void SetOut(IO::TextWriter _out);
+        static void SetError(IO::TextWriter _error);
+        static String ReadLine();
+#pragma endregion custom methods
     };
 
-    inline void Console::WriteLine(const object* _object)
-    {
-        std::cout << _object->ToString() << std::endl;
-    }
-
-    inline void Console::WriteLine(const object& _object)
-    {
-        std::cout << _object.ToString() << std::endl;
-    }
-
-    inline void Console::WriteLine(const string* _str)
-    {
-        std::cout << _str->ToString() << std::endl;
-    }
-
-    inline void Console::WriteLine(const Boolean& _bool)
-    {
-        std::cout << _bool.ToString() << std::endl;
-    }
-
-    inline void Console::WriteLine(const Float& _float)
-    {
-        std::cout << _float.ToString() << std::endl;
-    }
-
-    inline void Console::WriteLine(const Double& _double)
-    {
-        std::cout << _double.ToString() << std::endl;
-    }
-
-    inline void Console::WriteLine(const Byte& _byte)
-    {
-        std::cout << _byte.ToString() << std::endl;
-    }
-
-    inline void Console::WriteLine(const String& _str)
-    {
-        std::cout << _str.ToString() << std::endl;
-    }
-
-    inline void Console::WriteLine(const Integer& _int)
-    {
-        std::cout << _int.ToString() << std::endl;
-    }
-
-    inline void Console::WriteLine(char _char)
-    {
-        std::cout << _char << std::endl;
-    }
 }
