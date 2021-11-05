@@ -48,6 +48,7 @@ namespace System
         void Append(const Integer& _integer);
         String ToLower() const;
         String ToUpper() const;
+        Boolean Contains(const String& _str) const;
         Collections::Generic::List<String> Split(const char& _c) const;
         String SubString(const Integer& _begin, const Integer& _end)const;
         String SubString(const Integer& _begin)const;
@@ -57,6 +58,8 @@ namespace System
         static String Empty();
         static bool IsNullOrEmpty(const String& _str);
         Integer LastIndexOf(const char _c) const;
+        Integer FirstIndexOf(const char _c)const;
+        Integer FirstIndexOf(const String& _str)const;
         Integer Length()const;
         std::wstring* ToWString()const;
 #pragma endregion custom methods

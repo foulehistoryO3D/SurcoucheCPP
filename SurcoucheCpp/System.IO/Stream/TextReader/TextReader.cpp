@@ -39,9 +39,9 @@ System::Boolean System::IO::TextReader::ReadLine(String& _out)
 {
     if (!IsValid())return false;
     std::string _str = "";
-    const bool _result = !std::getline(mStream, _str).eof();
+    std::getline(mStream, _str);
     _out = _str.c_str();
-    return _result;
+    return !string::IsNullOrEmpty(_out);
 }
 
 System::String System::IO::TextReader::ReadLine()

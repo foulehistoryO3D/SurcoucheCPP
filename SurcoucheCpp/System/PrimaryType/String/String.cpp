@@ -100,6 +100,12 @@ System::String System::String::ToUpper() const
     return _str.c_str();
 }
 
+System::Boolean System::String::Contains(const String& _str) const
+{
+    std::string _string = mValue;
+    return _string.find(_str) != -1;
+}
+
 
 System::Collections::Generic::List<System::String> System::String::Split(const char& _c) const
 {
@@ -165,12 +171,16 @@ System::String System::String::Replace(const char _oldChar, const char _newChar)
 
 System::String System::String::Replace(const String& _old, const String& _new) const
 {
-    std::string my_str = mValue;
     const std::string subStr = _new.ToCstr();
+    std::string _str = mValue;
+    
     int _index = -1;
-    while ((_index = my_str.find(_old.ToCstr())) != std::string::npos)
-        my_str.replace(_index, subStr.length(), subStr);
-    return my_str.c_str();
+    while ((_index = _str.find(_old.ToCstr())) != std::string::npos)
+    {
+        
+        _str.replace(_index, subStr.length(), subStr);
+    }
+    return _str.c_str();
 }
 
 System::String System::String::operator+(const CHAR* _str) const
@@ -188,7 +198,8 @@ System::String System::String::Empty()
 
 bool System::String::IsNullOrEmpty(const String& _str)
 {
-    return _str.mValue == null || _str.mValue == "" || _str.mLength == 0;
+    bool _result = _str.mValue == null || _str.mValue == "" || _str.mLength == 0;
+    return _result;
 }
 
 System::Integer System::String::LastIndexOf(const char _c) const
@@ -198,6 +209,20 @@ System::Integer System::String::LastIndexOf(const char _c) const
         if (mValue[i] == _c)
             _result = i;
     return _result;
+}
+
+System::Integer System::String::FirstIndexOf(const char _c) const
+{
+    for (int i = 0; i < mLength; ++i)
+        if (mValue[i] == _c)
+            return i;
+    return -1;
+}
+
+System::Integer System::String::FirstIndexOf(const String& _str) const
+{
+    std::string _basicString = mValue;
+    return _basicString.find(_str.ToCstr());
 }
 
 System::Integer System::String::Length() const

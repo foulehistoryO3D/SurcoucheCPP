@@ -93,7 +93,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -109,6 +109,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -155,6 +156,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="SurcoucheCpp.cpp" />
+    <ClCompile Include="System.Collections.Generic\Dictionary\Dictionary.cpp" />
     <ClCompile Include="System.Diagnostics\Process\Process.cpp" />
     <ClCompile Include="System.IO\Directory\Directory.cpp" />
     <ClCompile Include="System.IO\Directory\DirectoryInfo\DirectoryInfo.cpp" />
@@ -256,13 +258,17 @@
     <ClCompile Include="System\PrimaryType\Integer\Integer.cpp" />
     <ClCompile Include="System\PrimaryType\String\String.cpp" />
     <ClCompile Include="System\Type\Type.cpp" />
+    <ClCompile Include="Test\LanguageManager\LanguageManager.cpp" />
     <ClCompile Include="Test\Test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="System.Collections.Generic\Dictionary\Dictionary.h" />
     <ClInclude Include="System.Collections.Generic\Interface\Collection\ICollection.h" />
+    <ClInclude Include="System.Collections.Generic\Interface\Dictionary\IDictionary.h" />
     <ClInclude Include="System.Collections.Generic\Interface\Enumerable\IEnumerable.h" />
     <ClInclude Include="System.Collections.Generic\Interface\Enumerator\IEnumerator.h" />
     <ClInclude Include="System.Collections.Generic\Interface\List\IList.h" />
+    <ClInclude Include="System.Collections.Generic\KeyValuePair\KeyValuePair.h" />
     <ClInclude Include="System.Collections.Generic\List\List.h" />
     <ClInclude Include="System.Collections\Interface\Collection\ICollection.h" />
     <ClInclude Include="System.Collections\Interface\Enumerable\Enumerable.h" />
@@ -282,6 +288,7 @@
     <ClInclude Include="System.IO\Stream\StreamWriter\StreamWriter.h" />
     <ClInclude Include="System.IO\Stream\TextReader\TextReader.h" />
     <ClInclude Include="System.IO\Stream\TextWriter\TextWriter.h" />
+    <ClInclude Include="System.Utils\Singleton\Singleton.h" />
     <ClInclude Include="System\Activator\Activator.h" />
     <ClInclude Include="System\Console\Console.h" />
     <ClInclude Include="System\DateTime\DateTime.h" />
@@ -304,12 +311,13 @@
     <ClInclude Include="System\PrimaryType\Float\Float.h" />
     <ClInclude Include="System\PrimaryType\Integer\Integer.h" />
     <ClInclude Include="System\PrimaryType\String\String.h" />
+    <ClInclude Include="System\TemplateUtils\TemplateUtils.h" />
     <ClInclude Include="System\Type\Type.h" />
+    <ClInclude Include="Test\LanguageManager\LanguageManager.h" />
     <ClInclude Include="Test\Test.h" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="System.Collections" />
-    <Folder Include="System.Collections.Generic" />
     <Folder Include="System.Diagnostics" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

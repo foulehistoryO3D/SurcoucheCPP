@@ -11,6 +11,11 @@
 #include <fstream>
 #include <iostream>
 
+#include "../../Directory/Directory.h"
+#include "../../Directory/DirectoryInfo/DirectoryInfo.h"
+#include "../../Exception/IOException/IOException.h"
+#include "../../Path/Path.h"
+
 #pragma region constructor
 System::IO::File::File(const String& _path)
 {
@@ -57,6 +62,10 @@ System::Boolean System::IO::File::Exists(const String& _path)
 
 System::IO::FileStream System::IO::File::Create(const String& _path)
 {
+    const String& _directoryPath =Path::GetDirectoryName(_path);
+    if (!Directory::Exists(_directoryPath))
+        Directory::MakeDirectory(_directoryPath);
+    
     if (Exists(_path))return FileStream(_path); //TODO return object of file
     std::ofstream _file = std::ofstream(_path);
     WIN32_FIND_DATAA _wfd;

@@ -1,26 +1,23 @@
 #include <windows.h>
+#include <format>
 #include "System/IncludeSystem.h"
-#include "System/Activator/Activator.h"
-#include "Test/Test.h"
+#include "Test/LanguageManager/LanguageManager.h"
+
+
+template<typename First, typename... Args>
+auto Get(size_t _index, First& _arg, Args&&... _args)
+{
+    if (_index == 0) return _arg;
+    return Get(_index--, std::forward<Args>(_args)...);
+}
 
 int main(int argc, char* argv[])
 {
     SetConsoleOutputCP(65001);
-    const String& _pathLog = Path::Combine(Environment::CurrentDirectory(), "Debug","Log.txt");
-    const String& _pathError = Path::Combine(Environment::CurrentDirectory(), "Debug","LogError.txt");
-    Console::SetIn(TextReader(_pathLog));
-    Console::SetOut(TextWriter(_pathLog));
-    Console::SetError(TextWriter(_pathError));
-
-    object* _o = Activator::CreateInstance<Test>(22, "Thomas");
-    const Test* _test = static_cast<Test*>(_o);
-    if (!_test)
-    {
-        Console::Error().Write(string("[Main] => Error on cast object to Test"));
-        return -1;
-    }
-    Console::WriteLine(_test->Name());
-    Console::WriteLine(_test->Age());
-
+    LanguageManager::Instance().AddLanguage(Language("fr", "french.txt"));
+    LanguageManager::Instance().AddLanguage(Language("en", "english.txt"));
+    const String& _message = LanguageManager::Instance().GetLanguage("en").GetMessages("hello");
+    const String& _result = LanguageManager::Instance().Translate(_message, "Thomas", "Jerome", "David");
+    Console::WriteLine(_result);
     return 0;
 }

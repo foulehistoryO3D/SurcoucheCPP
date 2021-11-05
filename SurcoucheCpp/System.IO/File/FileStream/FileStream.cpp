@@ -21,8 +21,6 @@ System::IO::FileStream::FileStream(const FileStream& _copy)
 
 System::IO::FileStream::~FileStream()
 {
-    delete mStreamWriter;
-    delete mStreamReader;
     mStreamWriter = null;
     mStreamReader = null;
 }
@@ -35,7 +33,7 @@ System::Boolean System::IO::FileStream::Exists() const
 
 System::Boolean System::IO::FileStream::IsValid() const
 {
-    return mPath != null && mStreamWriter != null && mStreamReader != null;
+    return mPath != null && mStreamWriter != null && mStreamReader != null && Exists();
 }
 
 void System::IO::FileStream::Close() const
