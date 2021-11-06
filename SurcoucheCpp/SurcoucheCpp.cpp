@@ -1,14 +1,5 @@
 #include <windows.h>
 #include "System/IncludeSystem.h"
-#include "System/LanguageManager/LanguageManager.h"
-
-
-template<typename First, typename... Args>
-auto Get(size_t _index, First& _arg, Args&&... _args)
-{
-    if (_index == 0) return _arg;
-    return Get(_index--, std::forward<Args>(_args)...);
-}
 
 int main(int argc, char* argv[])
 {
