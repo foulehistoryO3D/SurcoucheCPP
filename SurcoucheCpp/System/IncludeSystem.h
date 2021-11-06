@@ -14,6 +14,7 @@
 #include "PrimaryType/Double/Double.h"
 #include "PrimaryType/Byte/Byte.h"
 #include "System/LanguageManager/LanguageManager.h"
+#include "System/LanguageManager/Language/Language.h"
 #include "Console/Console.h"
 #include "Interface/Equatable/IEquatable.h"
 #include "DateTime/DateTime.h"

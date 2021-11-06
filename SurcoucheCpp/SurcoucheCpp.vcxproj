@@ -250,6 +250,7 @@
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
     <ClCompile Include="System\LanguageManager\LanguageManager.cpp" />
+    <ClCompile Include="System\LanguageManager\Language\Language.cpp" />
     <ClCompile Include="System\Object\Object.cpp" />
     <ClCompile Include="System\PrimaryType\Boolean\Boolean.cpp" />
     <ClCompile Include="System\PrimaryType\Byte\Byte.cpp" />
@@ -303,6 +304,7 @@
     <ClInclude Include="System\Interface\Comparable\IComparable.h" />
     <ClInclude Include="System\Interface\Equatable\IEquatable.h" />
     <ClInclude Include="System\LanguageManager\LanguageManager.h" />
+    <ClInclude Include="System\LanguageManager\Language\Language.h" />
     <ClInclude Include="System\Object\Object.h" />
     <ClInclude Include="System\PrimaryType\Boolean\Boolean.h" />
     <ClInclude Include="System\PrimaryType\Byte\Byte.h" />
