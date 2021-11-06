@@ -93,7 +93,7 @@ System::String System::String::ToLower() const
 System::String System::String::ToUpper() const
 {
     std::string _str = mValue;
-    std::transform(_str.begin(), _str.end(), _str.begin(), [](unsigned char _c)
+    std::ranges::transform(_str, _str.begin(), [](unsigned char _c)
     {
         return std::toupper(_c);
     });
@@ -121,6 +121,43 @@ System::Collections::Generic::List<System::String> System::String::Split(const c
                 _str.Append(mValue[x]);
             _result.Add(_str);
             _start = i + 1;
+        }
+    }
+    string _str = string("");
+
+    for (int i = _start; i < _length; ++i)
+        _str.Append(mValue[i]);
+    _result.Add(_str);
+    return _result;
+}
+
+System::Collections::Generic::List<System::String> System::String::Split(const String& _value) const
+{
+    Collections::Generic::List<String> _result = Collections::Generic::List<String>();
+    int _start = 0;
+    const int& _length = mLength;
+    const int& _otherLength = _value.mLength;
+    for (int i = 0; i < _length; ++i)
+    {
+        bool _split = true;
+        int _index = 0;
+        for (int j = i; j < i + _otherLength; j++)
+        {
+            if (mValue[j] != _value.mValue[_index])
+                _split = false;
+            _index++;
+        }
+        if (_split)
+        {
+            string _str = "";
+            for (int x = _start; x < i; ++x)
+                _str.Append(mValue[x]);
+            _result.Add(_str);
+            string _other = "";
+            for (int x = i; x < i + _value.mLength; x++)
+                _other += mValue[x];
+            _result.Add(_other);
+            _start = i + _value.mLength;
         }
     }
     string _str = string("");
@@ -172,14 +209,22 @@ System::String System::String::Replace(const char _oldChar, const char _newChar)
 System::String System::String::Replace(const String& _old, const String& _new) const
 {
     const std::string subStr = _new.ToCstr();
-    std::string _str = mValue;
+    std::string _str = "";
+    Collections::Generic::List<String> _splitedString = Split(_old);
+    const int _length = _splitedString.Count();
+    for (int i = 0; i < _length; ++i)
+        if (_splitedString[i] == _old)
+            _splitedString[i] = _new;
+    for (int i = 0; i < _length; ++i)
+        _str += _splitedString[i];
+    //
+    // int _index = -1;
+    // while ((_index = _str.find(_old.ToCstr())) != std::string::npos)
+    // {
+    //     _str.replace(_index, subStr.length(), subStr);
+    // }
+    // return _str.c_str();
     
-    int _index = -1;
-    while ((_index = _str.find(_old.ToCstr())) != std::string::npos)
-    {
-        
-        _str.replace(_index, subStr.length(), subStr);
-    }
     return _str.c_str();
 }
 
@@ -188,6 +233,12 @@ System::String System::String::operator+(const CHAR* _str) const
     String _result = *this;
     _result.Append(_str);
     return _result;
+}
+
+System::String System::String::operator+(const Integer& _integer)
+{
+    Append(_integer.ToString());
+    return *this;
 }
 
 

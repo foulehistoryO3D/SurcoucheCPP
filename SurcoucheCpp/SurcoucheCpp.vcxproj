@@ -249,6 +249,7 @@
       <SDLCheck>true</SDLCheck>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
+    <ClCompile Include="System\LanguageManager\LanguageManager.cpp" />
     <ClCompile Include="System\Object\Object.cpp" />
     <ClCompile Include="System\PrimaryType\Boolean\Boolean.cpp" />
     <ClCompile Include="System\PrimaryType\Byte\Byte.cpp" />
@@ -258,8 +259,6 @@
     <ClCompile Include="System\PrimaryType\Integer\Integer.cpp" />
     <ClCompile Include="System\PrimaryType\String\String.cpp" />
     <ClCompile Include="System\Type\Type.cpp" />
-    <ClCompile Include="Test\LanguageManager\LanguageManager.cpp" />
-    <ClCompile Include="Test\Test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="System.Collections.Generic\Dictionary\Dictionary.h" />
@@ -303,6 +302,7 @@
     <ClInclude Include="System\Interface\Cloneable\ICloneable.h" />
     <ClInclude Include="System\Interface\Comparable\IComparable.h" />
     <ClInclude Include="System\Interface\Equatable\IEquatable.h" />
+    <ClInclude Include="System\LanguageManager\LanguageManager.h" />
     <ClInclude Include="System\Object\Object.h" />
     <ClInclude Include="System\PrimaryType\Boolean\Boolean.h" />
     <ClInclude Include="System\PrimaryType\Byte\Byte.h" />
@@ -313,8 +313,6 @@
     <ClInclude Include="System\PrimaryType\String\String.h" />
     <ClInclude Include="System\TemplateUtils\TemplateUtils.h" />
     <ClInclude Include="System\Type\Type.h" />
-    <ClInclude Include="Test\LanguageManager\LanguageManager.h" />
-    <ClInclude Include="Test\Test.h" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="System.Collections" />

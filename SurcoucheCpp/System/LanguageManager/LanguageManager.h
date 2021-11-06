@@ -52,11 +52,11 @@ System::String LanguageManager::Translate(const System::String& _messageToTransl
 {
     string _result = _messageToTranslate;
     const size_t _length = sizeof...(_args);
+    System::Collections::Generic::List<System::String> _package = System::TemplateUtils::CreateVectorWithParameterPack<System::String>(_args...);
     for (int i = 0; i <_length; ++i)
     {
-        const System::String& _str = System::TemplateUtils::GetPackageParameterValue<System::String>(i, _args...);
-        string _replace = "@";
-        _replace.Append(System::Integer(i));
+        const System::String& _str = _package[i];
+        string _replace = string("@") + System::Integer(i);
         _result = _result.Replace(_replace, _str);
     }
     return _result;

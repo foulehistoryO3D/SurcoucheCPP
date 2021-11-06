@@ -50,6 +50,7 @@ namespace System
         String ToUpper() const;
         Boolean Contains(const String& _str) const;
         Collections::Generic::List<String> Split(const char& _c) const;
+        Collections::Generic::List<String> Split(const String& _value) const;
         String SubString(const Integer& _begin, const Integer& _end)const;
         String SubString(const Integer& _begin)const;
         const char* ToCstr() const;
@@ -78,6 +79,7 @@ namespace System
 #pragma region operator
         operator const char*()const;
         String operator+(const CHAR* _str) const;
+        String operator+(const Integer& _integer);
         char operator[](const int _index) const
         {
             if (_index < 0 || _index > mLength) throw OutOfRange("[String] operator [] => index out of range");
