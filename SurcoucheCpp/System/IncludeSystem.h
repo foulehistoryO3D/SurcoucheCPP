@@ -13,6 +13,7 @@
 #include "PrimaryType/Float/Float.h"
 #include "PrimaryType/Double/Double.h"
 #include "PrimaryType/Byte/Byte.h"
+#include "System/LanguageManager/LanguageManager.h"
 #include "Console/Console.h"
 #include "Interface/Equatable/IEquatable.h"
 #include "DateTime/DateTime.h"
