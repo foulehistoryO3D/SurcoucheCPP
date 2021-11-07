@@ -5,6 +5,7 @@
 #include "../../../System.IO/File/File/File.h"
 #include "../../../System.IO/Path/Path.h"
 #include "../LanguageManager.h"
+#include "../../../System.IO/Stream/StreamWriter/StreamWriter.h"
 
 Language::Language(const System::String& _name, const System::String& _fileName)
 {
@@ -33,6 +34,14 @@ System::String Language::GetMessages(const System::String& _key) const
             return _str.SubString(_str.FirstIndexOf(':')+2, _str.Length());
     
     return "";
+}
+
+void Language::AddMessageToFile(const System::String& _key, const System::String& _message) const
+{
+    if (!mFile.IsValid())
+        throw System::IO::IOException("file doesn't exist !");
+    const System::String _result = _key + ": " + _message;
+    mFile.Writer().Write(_result);
 }
 
 System::String Language::GetFileName() const

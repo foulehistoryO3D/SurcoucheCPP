@@ -53,36 +53,42 @@ void System::IO::TextWriter::Write(const Boolean& _value)
 {
     if (!IsOpen())return;
     mStream <<_value.ToString();
+    mStream << std::endl;
 }
 
 void System::IO::TextWriter::Write(const char _value)
 {
     if (!IsOpen())return;
     mStream <<_value;
+    mStream << std::endl;
 }
 
 void System::IO::TextWriter::Write(const Float& _value)
 {
     if (!IsOpen())return;
     mStream <<_value.ToString();
+    mStream << std::endl;
 }
 
 void System::IO::TextWriter::Write(const Double& _value)
 {
     if (!IsOpen())return;
     mStream <<_value.ToString();
+    mStream << std::endl;
 }
 
 void System::IO::TextWriter::Write(const Integer& _value)
 {
     if (!IsOpen())return;
     mStream <<_value.ToString();
+    mStream << std::endl;
 }
 
 void System::IO::TextWriter::Write(const object& _value)
 {
     if (!IsOpen())return;
     mStream <<_value.ToString();
+    mStream << std::endl;
 }
 
 void System::IO::TextWriter::Write(const String& _value)

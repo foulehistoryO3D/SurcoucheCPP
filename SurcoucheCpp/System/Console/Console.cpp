@@ -7,14 +7,10 @@
 #include "../../System.IO/File/FileStream/FileStream.h"
 #include "../../System/PrimaryType/String/String.h"
 #include "../../System/PrimaryType/Boolean/Boolean.h"
-#include "../../System/PrimaryType/Char/Char.h"
 #include "../../System/PrimaryType/Double/Double.h"
 #include "../../System/PrimaryType/Byte/Byte.h"
 #include "../../System/PrimaryType/Float/Float.h"
 #include "../../System/PrimaryType/Integer/Integer.h"
-#include "../../System.IO/Directory/Directory.h"
-#include "../../System.IO/Directory/DirectoryInfo/DirectoryInfo.h"
-#include "../../System.IO/Path/Path.h"
 
 System::IO::TextWriter System::Console::mOut = IO::TextWriter();
 System::IO::TextReader System::Console::mIn = IO::TextReader();
@@ -97,11 +93,6 @@ void System::Console::WriteLine(char _char)
 
 void System::Console::SetIn(IO::TextReader _in)
 {
-    const String& _directoryPath = IO::Path::GetDirectoryName(_in.Path());
-    if (!IO::Directory::Exists(_directoryPath))
-    {
-        IO::Directory::MakeDirectory(_directoryPath);
-    }
     if (!IO::File::Exists(_in.Path()))
     {
         if (!IO::File::Create(_in.Path()).Exists())
@@ -112,11 +103,6 @@ void System::Console::SetIn(IO::TextReader _in)
 
 void System::Console::SetOut(IO::TextWriter _out)
 {
-    const String& _directoryPath = IO::Path::GetDirectoryName(_out.Path());
-    if (!IO::Directory::Exists(_directoryPath))
-    {
-        IO::Directory::MakeDirectory(_directoryPath);
-    }
     if (!IO::File::Exists(_out.Path()))
     {
         if (!IO::File::Create(_out.Path()).Exists())
@@ -127,11 +113,6 @@ void System::Console::SetOut(IO::TextWriter _out)
 
 void System::Console::SetError(IO::TextWriter _error)
 {
-    const String& _directoryPath = IO::Path::GetDirectoryName(_error.Path());
-    if (!IO::Directory::Exists(_directoryPath))
-    {
-        IO::Directory::MakeDirectory(_directoryPath);
-    }
     if (!IO::File::Exists(_error.Path()))
     {
         if (!IO::File::Create(_error.Path()).Exists())

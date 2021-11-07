@@ -20,7 +20,7 @@ namespace System
 #pragma region custom methods
         public:
             static T& Instance();
-            void Destroy();
+            void Destroy() const;
 #pragma endregion custom methods
         };
         template<typename T>
@@ -45,9 +45,9 @@ namespace System
         }
 
         template <typename T>
-        void Singleton<T>::Destroy()
+        void Singleton<T>::Destroy() const
         {
-            this->~Singleton();
+            delete this;
         }
     }
 }

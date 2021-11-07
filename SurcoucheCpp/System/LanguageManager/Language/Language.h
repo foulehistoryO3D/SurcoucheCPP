@@ -15,7 +15,7 @@ public:
     Language(const System::String& _name, const System::String& _fileName);
     Language(const Language& _copy);
     System::String GetMessages(const System::String& _key) const;
-
+    void AddMessageToFile(const System::String& _key, const System::String& _message) const;
     System::String GetFileName() const;
     System::String GetName() const;
     System::IO::FileStream GetFile() const;

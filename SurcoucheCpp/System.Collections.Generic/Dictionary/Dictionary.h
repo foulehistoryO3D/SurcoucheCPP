@@ -127,7 +127,7 @@ namespace System
             template <typename TKey, typename TValue>
             void Dictionary<TKey, TValue>::Clear()
             {
-                delete mTab;
+                delete[] mTab;
                 mTab = new KeyValuePair<TKey, TValue>[0];
                 mCount = 0;
             }
