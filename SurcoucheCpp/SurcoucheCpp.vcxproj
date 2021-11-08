@@ -175,6 +175,7 @@
     <ClCompile Include="System\Console\Console.cpp" />
     <ClCompile Include="System\DateTime\DateTime.cpp" />
     <ClCompile Include="System\Environment\Environment.cpp" />
+    <ClCompile Include="System\Event\EventArgs\EventArgs.cpp" />
     <ClCompile Include="System\Event\Func\Func.cpp" />
     <ClCompile Include="System\Exception\Exception\Exception.cpp" />
     <ClCompile Include="System\Exception\OutOfRange\OutOfRange.cpp">
@@ -295,6 +296,9 @@
     <ClInclude Include="System\Environment\Environment.h" />
     <ClInclude Include="System\Event\Action\Action.h" />
     <ClInclude Include="System\Event\Delegate\Delegate.h" />
+    <ClInclude Include="System\Event\EventArgs\EventArgs.h" />
+    <ClInclude Include="System\Event\EventHandler\EventHandler.h" />
+    <ClInclude Include="System\Event\Event\Event.h" />
     <ClInclude Include="System\Event\Func\Func.h" />
     <ClInclude Include="System\Event\Predicate\Predicate.h" />
     <ClInclude Include="System\Exception\Exception\Exception.h" />
