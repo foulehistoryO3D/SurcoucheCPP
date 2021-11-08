@@ -29,6 +29,7 @@ namespace System
 #pragma endregion enum    
     class Environment : public Object
     {
+        DECLARE_CLASS_INFO(Object)
     public:
         static const constexpr int EXIT_ERROR = -1;
         static const constexpr int EXIT_VALID = 1;

@@ -7,6 +7,7 @@
 #include "Event/Action/Action.h"
 #include "Event/Func/Func.h"
 #include "Event/Predicate/Predicate.h"
+#include "Activator/Activator.h"
 
 #include "PrimaryType/Char/Char.h"
 #include "PrimaryType/String/String.h"

@@ -27,6 +27,16 @@ namespace System
 
 #define REGISTER_ATTRIBUTE(bitmask)\
     int _bitMask = RegisterAttributes(bitmask);
+
+#define DECLARE_CLASS_INFO(parentClass) \
+private:\
+typedef parentClass ParentClassType; \
+ParentClassType* mParentClass = new parentClass();\
+public:\
+virtual ParentClassType* GetParentClass()\
+{ return mParentClass;}\
+typedef parentClass super;\
+const int mSubClassCount = RegisterSubClass(this);
     
 #pragma endregion define
 #pragma region static methods
@@ -54,17 +64,21 @@ namespace System
     {
 #pragma region f/p
     private:
-    int mBitMask = 0;
+        std::vector<Type*> mSubClass = std::vector<Type*>();
+        int mBitMask = 0;
 #pragma endregion f/p
 #pragma region constructor/destructor
     public:
         Type()=default;
+        Type(const Type& _type);
         virtual ~Type();
 #pragma endregion constructor/destructor
 #pragma region custom methods
     protected:
         int RegisterAttributes(const int _bitMask);
+        int RegisterSubClass(const Type* _class);
     public:
+        std::vector<Type*> Assembly()const;
         virtual Boolean Equals(const Type* _type);
         virtual Type* GetType();
         virtual size_t GetHashCode() const;

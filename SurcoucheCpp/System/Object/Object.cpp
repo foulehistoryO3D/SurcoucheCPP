@@ -1,9 +1,9 @@
 ﻿#include "Object.h"
 #include "../PrimaryType/Boolean/Boolean.h"
 
+#pragma region constructor
+#pragma endregion constructor
 #pragma region custom methods
-
-
 System::Boolean System::Object::Equals(const object* _obj)
 {
     return this == _obj;

@@ -1,6 +1,6 @@
 ﻿#pragma once
-#include "../Interface/Equatable/IEquatable.h"
 #include "../Object/Object.h"
+#include "../Interface/Equatable/IEquatable.h"
 
 namespace System
 {

@@ -6,6 +6,7 @@ namespace System
     template<typename T>
     class ICloneable : public Object
     {
+        DECLARE_CLASS_INFO(Object)
         REGISTER_ATTRIBUTE(Interface)
     public:
         virtual T Clone()PURE_VIRTUAL()

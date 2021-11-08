@@ -7,6 +7,7 @@ namespace System
     class Float;
     class Random : public Object
     {
+        DECLARE_CLASS_INFO(Object)
     public:
         Integer Next()const;
         Integer Next(const Integer& _min, const Integer& _max)const;

@@ -6,37 +6,38 @@
 namespace System
 {
     class DateTime;
+
     enum class ETimeZoneName
     {
         Afghanistan,
         Alaskan,
         Aleutian,
         Altai,
-        Arab ,
-        Arabian ,
-        Arabic ,
-        Argentina ,
-        Astrakhan ,
-        Atlantic ,
+        Arab,
+        Arabian,
+        Arabic,
+        Argentina,
+        Astrakhan,
+        Atlantic,
         AUS_Central,
         AUS_Central_W,
         AUS_Eastern,
         Azerbaijan,
         Azores,
-        Bahia ,
-        Bangladesh ,
-        Belarus ,
-        Bougainville ,
+        Bahia,
+        Bangladesh,
+        Belarus,
+        Bougainville,
         Canada,
         Cape_Verde,
         Caucasus,
         Australia,
         America,
-        Asia ,
-        Brazilian ,
-        Europe ,
-        European ,
-        Pacific ,
+        Asia,
+        Brazilian,
+        Europe,
+        European,
+        Pacific,
         Central_Standard_Time,
         Central_Standard_Time_Mexico,
         Chatham_Islands,
@@ -50,8 +51,8 @@ namespace System
         Easter_Island,
         Eastern_Standard,
         Easter_Standard_Mexico,
-        Egypt ,
-        Ekaterinburg ,
+        Egypt,
+        Ekaterinburg,
         Fiji,
         FLE_Standard,
         Georgian,
@@ -127,7 +128,7 @@ namespace System
         Transbaikal,
         Turkey,
         Turks,
-        Ulaanbaatar ,
+        Ulaanbaatar,
         US_Eastern,
         US_Mountain,
         UTC,
@@ -149,10 +150,11 @@ namespace System
         West_Pacific,
         Yakutsk,
         Yukon
-        
     };
+
     class TimeZone : public Object
     {
+        DECLARE_CLASS_INFO(Object)
 #pragma region f/p
     private:
         ETimeZoneName mTimeZone = ETimeZoneName::Afghanistan;
@@ -162,7 +164,7 @@ namespace System
 #pragma endregion f/p
 #pragma region constructor
     public:
-        TimeZone()=default;
+        TimeZone() = default;
         TimeZone(const ETimeZoneName& _timeZone);
         TimeZone(const TimeZone& _copy);
 #pragma endregion constructor
@@ -171,8 +173,8 @@ namespace System
         void Init();
         time_t ConvertSystemTime(SYSTEMTIME _time);
     public:
-        DateTime Time()const;
-        String TimeZoneName()const;
+        DateTime Time() const;
+        String TimeZoneName() const;
 #pragma endregion custom methods
 #pragma region override
     public:

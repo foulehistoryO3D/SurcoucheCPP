@@ -5,6 +5,11 @@
 #include <vcruntime_typeinfo.h>
 
 #pragma region constructor/destructor
+System::Type::Type(const Type& _type)
+{
+    mBitMask = std::move(_type.mBitMask);
+    mSubClass = std::move(_type.mSubClass);
+}
 
 System::Type::~Type()
 {
@@ -15,6 +20,19 @@ System::Type::~Type()
 int System::Type::RegisterAttributes(const int _bitMask)
 {
     return mBitMask = _bitMask;
+}
+
+int System::Type::RegisterSubClass(const Type* _class)
+{
+    Type* _classToAdd = new Type();
+    memcpy(_classToAdd, _class, sizeof(Type));
+    mSubClass.push_back(_classToAdd);
+    return mSubClass.size();
+}
+
+std::vector<System::Type*> System::Type::Assembly() const
+{
+    return mSubClass;
 }
 
 System::Boolean System::Type::Equals(const Type* _type)

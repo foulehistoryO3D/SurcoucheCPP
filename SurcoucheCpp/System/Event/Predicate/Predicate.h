@@ -7,6 +7,7 @@ namespace System
     template<typename Item>
     class Predicate sealed : public Object
     {
+        DECLARE_CLASS_INFO(Object)
         REGISTER_ATTRIBUTE(Sealed)
 #pragma region f/p
     private:

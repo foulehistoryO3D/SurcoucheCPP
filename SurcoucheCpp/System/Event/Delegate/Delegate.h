@@ -8,6 +8,7 @@ namespace System
     template<typename Res, typename... Args>
     class Delegate : public Object
     {
+        DECLARE_CLASS_INFO(Object)
 #pragma region f/p
     private:
         std::function<Res(Args...)> mFunction = null;

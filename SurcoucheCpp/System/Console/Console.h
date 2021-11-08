@@ -15,6 +15,7 @@ namespace System
     }
     class Console : public Object
     {
+        DECLARE_CLASS_INFO(Object)
 #pragma region f/p
     private:
         static IO::TextWriter mOut;

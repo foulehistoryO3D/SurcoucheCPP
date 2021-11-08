@@ -9,6 +9,7 @@ namespace System
     template <typename Out, typename... Args>
     class Func sealed : public Object
     {
+        DECLARE_CLASS_INFO(Object)
         REGISTER_ATTRIBUTE(Sealed)
 #pragma region f/p
         Delegate<Out, Args...> mFunctions = Delegate<Out, Args...>();

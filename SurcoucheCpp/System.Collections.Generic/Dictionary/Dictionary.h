@@ -52,7 +52,8 @@ namespace System
 #pragma region operator
             public:
                 TValue& operator[](const TKey& _key);
-                TValue& operator[](const TKey& _key)const;
+                TValue& operator[](const TKey& _key) const;
+                Dictionary operator=(const Dictionary& _other);
 #pragma endregion operator
             };
 
@@ -172,7 +173,6 @@ namespace System
                 if (_index == -1)
                     throw Exception("key doesn't exist");
                 RemoveAt(_index);
-                
             }
 
             template <typename TKey, typename TValue>
@@ -195,6 +195,9 @@ namespace System
                 mCurrentIndex = -1;
             }
 
+
+#pragma endregion override
+#pragma region operator
             template <typename TKey, typename TValue>
             TValue& Dictionary<TKey, TValue>::operator[](const TKey& _key)
             {
@@ -212,7 +215,17 @@ namespace System
                     throw Exception("key doesn't exist");
                 return mTab[_index].Value;
             }
-#pragma endregion override
+
+            template <typename TKey, typename TValue>
+            Dictionary<TKey, TValue> Dictionary<TKey, TValue>::operator=(const Dictionary& _other)
+            {
+                mCount = std::move(_other.mCount);
+                mTab = std::move(_other.mTab);
+                mCurrentIndex = std::move(_other.mCurrentIndex);
+                mCurrentItem = std::move(_other.mCurrentItem);
+                return *this;
+            }
+#pragma endregion operator
         }
     }
 }

@@ -10,33 +10,40 @@
 #include "../../System/PrimaryType/Integer/Integer.h"
 #include "../../System/TemplateUtils/TemplateUtils.h"
 
-class Language;
 
-class LanguageManager : public System::Utils::Singleton<LanguageManager>
+namespace System
 {
-private:
-    System::Collections::Generic::Dictionary<System::String, Language*> mLanguages = System::Collections::Generic::Dictionary<System::String, Language*>();
-public:
-    LanguageManager();
-    ~LanguageManager() override;
+    class Language;
 
-    Language GetLanguage(const System::String& _name);
-    void AddLanguage(Language* _language);
-    template<typename... Args>
-    System::String Translate(const System::String& _messageToTranslate, Args&&... _args);
-    System::String GetPathToSave()const;
-};
-
-template <typename ... Args>
-System::String LanguageManager::Translate(const System::String& _messageToTranslate, Args&&... _args)
-{
-    string _result = _messageToTranslate;
-    const size_t _length = System::TemplateUtils::SizeOfPackageParameters(_args...);
-    System::Collections::Generic::List<System::String> _package = System::TemplateUtils::CreateVectorWithParameterPack<System::String>(_args...);
-    for (int i = 0; i <_length; ++i)
+    class LanguageManager : public Utils::Singleton<LanguageManager>
     {
-        const System::String& _str = _package[i];
-        _result = _result.Replace(string("@") + System::Integer(i), _str);
+        DECLARE_CLASS_INFO(Singleton<LanguageManager>)
+    private:
+        Collections::Generic::Dictionary<String, Language*> mLanguages =
+            System::Collections::Generic::Dictionary<String, Language*>();
+    public:
+        LanguageManager();
+        ~LanguageManager() override;
+
+        Language GetLanguage(const String& _name);
+        void AddLanguage(Language* _language);
+        template <typename... Args>
+        String Translate(const System::String& _messageToTranslate, Args&&... _args);
+        String GetPathToSave() const;
+    };
+
+    template <typename ... Args>
+    System::String LanguageManager::Translate(const System::String& _messageToTranslate, Args&&... _args)
+    {
+        string _result = _messageToTranslate;
+        const size_t _length = System::TemplateUtils::SizeOfPackageParameters(_args...);
+        System::Collections::Generic::List<System::String> _package =
+            System::TemplateUtils::CreateVectorWithParameterPack<System::String>(_args...);
+        for (int i = 0; i < _length; ++i)
+        {
+            const System::String& _str = _package[i];
+            _result = _result.Replace(string("@") + System::Integer(i), _str);
+        }
+        return _result;
     }
-    return _result;
 }

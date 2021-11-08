@@ -10,6 +10,7 @@ namespace System
     template <typename... Args>
     class Action sealed : public Object
     {
+        DECLARE_CLASS_INFO(Object)
         REGISTER_ATTRIBUTE(Sealed)
 #pragma region f/p
         std::vector<Delegate<void, Args...>> mFunctions = std::vector<Delegate<void, Args...>>();

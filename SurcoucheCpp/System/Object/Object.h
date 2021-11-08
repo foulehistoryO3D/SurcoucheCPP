@@ -14,14 +14,14 @@ namespace System
 #pragma endregion typedef
     class Object : public Type
     {
-#pragma region f/p
-#pragma endregion f/p
+        DECLARE_CLASS_INFO(Type)
 #pragma region constructor/destructor
     public:
         Object()=default;
         virtual ~Object() override =default;
 #pragma endregion constructor/destructor
 #pragma region custom methods
+    public:
         virtual class Boolean Equals(const object* _obj);
         virtual Boolean Equals(const object& _obj);
         virtual Boolean Equals(const object* _obj, const object* _other);

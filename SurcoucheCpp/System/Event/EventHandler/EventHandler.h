@@ -8,6 +8,7 @@ namespace System
     template<typename Event>
     class EventHandler : public Object
     {
+        DECLARE_CLASS_INFO(Object)
     private:
         std::vector<Delegate<void, object*, Event*>> mFunctions = std::vector<Delegate<void, object*, Event*>>();
     public:

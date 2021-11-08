@@ -7,6 +7,7 @@ namespace System
 {
     class TemplateUtils : public Object
     {
+        DECLARE_CLASS_INFO(Object)
     public:
         template <size_t Index, typename... Args>
         static auto GetPackageParameterValueWithIndex(Args&&... _args);

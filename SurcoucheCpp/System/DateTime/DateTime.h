@@ -8,6 +8,7 @@ namespace System
     
 class DateTime : public Object
 {
+    DECLARE_CLASS_INFO(Object)
 #pragma region f/p
 private:
     time_t mTime = time_t();

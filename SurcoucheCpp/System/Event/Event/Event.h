@@ -7,6 +7,7 @@ namespace System
     template<typename... Args>
     class Event : public Object
     {
+        DECLARE_CLASS_INFO(Object)
 #pragma region f/p
         private:
             std::vector<Delegate<void, Args...>> mFunctions = std::vector<Delegate<void,Args...>>();

@@ -5,6 +5,7 @@ namespace System
 {
     class EventArgs : public Object
     {
+        DECLARE_CLASS_INFO(Object)
 #pragma region constructor
     public:
         EventArgs()=default;

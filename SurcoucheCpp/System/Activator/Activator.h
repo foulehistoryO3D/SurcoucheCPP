@@ -5,6 +5,7 @@ namespace System
 {
     class Activator : public Object
     {
+        DECLARE_CLASS_INFO(Object)
     public:
         template<typename T, typename... Args>
         static object* CreateInstance(Args... _args);

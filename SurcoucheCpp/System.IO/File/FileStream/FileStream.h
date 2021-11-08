@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "../../../System/Object/Object.h"
+#include "../File/File.h"
 
 namespace System
 {
@@ -10,6 +11,7 @@ namespace System
 
         class FileStream : public Object
         {
+            DECLARE_CLASS_INFO(Object)
 #pragma region f/p
         private:
             const char* mPath = null;
@@ -39,6 +41,10 @@ namespace System
             Boolean Equals(const object& _obj) override;
             size_t GetHashCode() const override;
 #pragma endregion override
+#pragma region operator
+        public:
+            FileStream operator=(const FileStream&_other);
+#pragma endregion operator
         };
     }
 }

@@ -5,6 +5,7 @@ namespace System
 {
     class Exception : public Object, public std::exception
     {
+        DECLARE_CLASS_INFO(Object)
 #pragma region constructor/destructor
     public:
         Exception() noexcept : std::exception() {}

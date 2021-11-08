@@ -81,4 +81,12 @@ size_t System::IO::FileStream::GetHashCode() const
     FileStream _fileStream = *this;
     return std::hash<FileStream*>{}(&_fileStream);
 }
+
+System::IO::FileStream System::IO::FileStream::operator=(const FileStream& _other)
+{
+    mPath = std::move(_other.mPath);
+    mStreamWriter = std::move(_other.mStreamWriter);
+    mStreamReader = std::move(_other.mStreamReader);
+    return *this;
+}
 #pragma endregion override

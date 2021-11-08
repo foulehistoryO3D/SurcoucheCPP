@@ -5,6 +5,7 @@ namespace System
 {
     class OutOfRange : public Exception
     {
+        DECLARE_CLASS_INFO(Exception)
 #pragma region constructor/destructor
     public:
         OutOfRange() : Exception() {  }

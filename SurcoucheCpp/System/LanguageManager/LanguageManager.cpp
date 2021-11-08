@@ -4,27 +4,27 @@
 #include "Language/Language.h"
 
 
-System::String LanguageManager::GetPathToSave() const
+System::String System::LanguageManager::GetPathToSave() const
 {
     return System::IO::Path::Combine(System::Environment::CurrentDirectory(), "Language");
 }
 
-LanguageManager::LanguageManager()
+System::LanguageManager::LanguageManager()
 {
     mLanguages = System::Collections::Generic::Dictionary<System::String, Language*>();
 }
 
-LanguageManager::~LanguageManager()
+System::LanguageManager::~LanguageManager()
 {
     mLanguages.Clear();
 }
 
-Language LanguageManager::GetLanguage(const System::String& _name)
+System::Language System::LanguageManager::GetLanguage(const System::String& _name)
 {
     return *mLanguages[_name];
 }
 
-void LanguageManager::AddLanguage(Language* _language)
+void System::LanguageManager::AddLanguage(Language* _language)
 {
     mLanguages.Add(_language->GetName(), _language);
 }

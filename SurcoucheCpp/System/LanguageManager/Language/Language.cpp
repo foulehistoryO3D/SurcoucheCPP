@@ -7,7 +7,7 @@
 #include "../LanguageManager.h"
 #include "../../../System.IO/Stream/StreamWriter/StreamWriter.h"
 
-Language::Language(const System::String& _name, const System::String& _fileName)
+System::Language::Language(const System::String& _name, const System::String& _fileName)
 {
     mName = _name;
     mFileName = _fileName;
@@ -17,14 +17,14 @@ Language::Language(const System::String& _name, const System::String& _fileName)
         mFile = System::IO::File::Create(_path);
 }
 
-Language::Language(const Language& _copy)
+System::Language::Language(const Language& _copy)
 {
     mFile = std::move(_copy.mFile);
     mFileName = std::move(_copy.mFileName);
     mName = std::move(_copy.mName);
 }
 
-System::String Language::GetMessages(const System::String& _key) const
+System::String System::Language::GetMessages(const System::String& _key) const
 {
     if (!mFile.IsValid())
         throw System::IO::IOException("file doesn't exist !");
@@ -36,7 +36,7 @@ System::String Language::GetMessages(const System::String& _key) const
     return "";
 }
 
-void Language::AddMessageToFile(const System::String& _key, const System::String& _message) const
+void System::Language::AddMessageToFile(const System::String& _key, const System::String& _message) const
 {
     if (!mFile.IsValid())
         throw System::IO::IOException("file doesn't exist !");
@@ -44,22 +44,22 @@ void Language::AddMessageToFile(const System::String& _key, const System::String
     mFile.Writer().Write(_result);
 }
 
-System::String Language::GetFileName() const
+System::String System::Language::GetFileName() const
 {
     return mFileName;
 }
 
-System::String Language::GetName() const
+System::String System::Language::GetName() const
 {
     return mName;
 }
 
-System::IO::FileStream Language::GetFile() const
+System::IO::FileStream System::Language::GetFile() const
 {
     return mFile;
 }
 
-Language Language::operator=(const Language& _copy)
+System::Language System::Language::operator=(const Language& _copy)
 {
     mFile = std::move(_copy.mFile);
     mFileName = std::move(_copy.mFileName);
