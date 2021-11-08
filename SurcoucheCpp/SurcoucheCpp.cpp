@@ -1,6 +1,6 @@
 #include <windows.h>
 #include "System/IncludeSystem.h"
-#include "System/TimeZone/TimeZone.h"
+#include "System/Random/Random.h"
 
 int main(int argc, char* argv[])
 {
@@ -11,10 +11,10 @@ int main(int argc, char* argv[])
     // const String& _message = LanguageManager::Instance().GetLanguage("fr").GetMessages("salut");
     // const String& _result = LanguageManager::Instance().Translate(_message, "Romain");
     // Console::WriteLine(_result);
-    
-    TimeZone _timeZone = TimeZone(ETimeZoneName::America);
-    Console::WriteLine(_timeZone);
-
-    
+    Random _random = Random();
+    for (Type* _type : _random.Assembly())
+    {
+        Console::WriteLine(_type->ToString());
+    }
     return 0;
 }
