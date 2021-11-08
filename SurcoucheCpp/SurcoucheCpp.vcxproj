@@ -260,7 +260,10 @@
     <ClCompile Include="System\PrimaryType\Float\Float.cpp" />
     <ClCompile Include="System\PrimaryType\Integer\Integer.cpp" />
     <ClCompile Include="System\PrimaryType\String\String.cpp" />
+    <ClCompile Include="System\Random\Random.cpp" />
+    <ClCompile Include="System\TimeZone\TimeZone.cpp" />
     <ClCompile Include="System\Type\Type.cpp" />
+    <ClCompile Include="System\Version\Version.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="System.Collections.Generic\Dictionary\Dictionary.h" />
@@ -317,8 +320,11 @@
     <ClInclude Include="System\PrimaryType\Float\Float.h" />
     <ClInclude Include="System\PrimaryType\Integer\Integer.h" />
     <ClInclude Include="System\PrimaryType\String\String.h" />
+    <ClInclude Include="System\Random\Random.h" />
     <ClInclude Include="System\TemplateUtils\TemplateUtils.h" />
+    <ClInclude Include="System\TimeZone\TimeZone.h" />
     <ClInclude Include="System\Type\Type.h" />
+    <ClInclude Include="System\Version\Version.h" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="System.Collections" />

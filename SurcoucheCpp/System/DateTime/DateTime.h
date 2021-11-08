@@ -21,6 +21,7 @@ public:
 #pragma region custom methods
 public:
     static DateTime Now();
+    static DateTime Convert(SYSTEMTIME _systemTime);
     String ToStringFormat(const String& _format =  "%d-%m-%Y %H:%M:%S") const;
     Boolean Equals(const DateTime& _other);
     static DateTime FileTimeToDateTime(const FILETIME& _fileTime); 

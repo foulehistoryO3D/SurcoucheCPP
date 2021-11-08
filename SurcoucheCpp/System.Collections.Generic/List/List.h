@@ -2,6 +2,7 @@
 #include "../Interface/Enumerator/IEnumerator.h"
 #include "../Interface/Enumerable/IEnumerable.h"
 #include "../Interface/List/IList.h"
+#include "../../System/Exception/OutOfRange/OutOfRange.h"
 
 namespace System
 {

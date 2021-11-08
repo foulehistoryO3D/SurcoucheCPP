@@ -7,6 +7,7 @@
 #include "../../PrimaryType/Integer/Integer.h"
 
 #include <cstring>
+#include <sstream>
 #include <string>
 #include <windows.h>
 
@@ -73,6 +74,14 @@ void System::String::Append(const char& _c)
     _char[_length + 1] = '\0';
     mValue = _char;
     mLength = _length + 1;
+}
+
+void System::String::Append(const int _i)
+{
+    std::ostringstream ss;
+    ss << _i;
+    const String _result = ss.str().c_str();
+    Append(_result);
 }
 
 void System::String::Append(const Integer& _integer)
@@ -217,14 +226,6 @@ System::String System::String::Replace(const String& _old, const String& _new) c
             _splitedString[i] = _new;
     for (int i = 0; i < _length; ++i)
         _str += _splitedString[i];
-    //
-    // int _index = -1;
-    // while ((_index = _str.find(_old.ToCstr())) != std::string::npos)
-    // {
-    //     _str.replace(_index, subStr.length(), subStr);
-    // }
-    // return _str.c_str();
-    
     return _str.c_str();
 }
 
@@ -238,6 +239,12 @@ System::String System::String::operator+(const CHAR* _str) const
 System::String System::String::operator+(const Integer& _integer)
 {
     Append(_integer.ToString());
+    return *this;
+}
+
+System::String System::String::operator+(const int _i)
+{
+    Append(_i);
     return *this;
 }
 
@@ -286,6 +293,12 @@ std::wstring* System::String::ToWString() const
     std::string _str = mValue;
     std::wstring* _result = new std::wstring(_str.begin(), _str.end());
     return _result;
+}
+
+System::String System::String::WStringToString(const std::wstring& _wstring)
+{
+    std::string _str = std::string(_wstring.begin(), _wstring.end());
+    return _str.c_str();
 }
 
 #pragma endregion custom methods
@@ -349,14 +362,13 @@ System::String::operator const char*() const
 
 System::String& System::String::operator+=(char _c)
 {
-    const int& _length = mLength;
-    const size_t _newLength = _length + 2;
-    char* _char = new char[_newLength];
-    strcpy(_char, mValue);
-    _char[_length] = _c;
-    _char[_length + 1] = '\0';
-    mValue = _char;
-    mLength = _length + 1;
+    Append(_c);
+    return *this;
+}
+
+System::String& System::String::operator+=(const String& _str)
+{
+    Append(_str);
     return *this;
 }
 

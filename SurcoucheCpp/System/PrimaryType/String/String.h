@@ -37,7 +37,6 @@ namespace System
         String()=default;
         String(const char* _value);
         String(const String& _copy);
-        // String(String&& _copy) noexcept;
 #pragma endregion constructor/destructor
 #pragma region custom methods
     public:
@@ -45,6 +44,7 @@ namespace System
         void Append(const Object* _object);
         void Append(const String& _str);
         void Append(const char& _c);
+        void Append(const int _i);
         void Append(const Integer& _integer);
         String ToLower() const;
         String ToUpper() const;
@@ -63,6 +63,7 @@ namespace System
         Integer FirstIndexOf(const String& _str)const;
         Integer Length()const;
         std::wstring* ToWString()const;
+        static String WStringToString(const std::wstring& _wstring);
 #pragma endregion custom methods
 #pragma region override
     public:
@@ -80,6 +81,7 @@ namespace System
         operator const char*()const;
         String operator+(const CHAR* _str) const;
         String operator+(const Integer& _integer);
+        String operator+(const int _i);
         char operator[](const int _index) const
         {
             if (_index < 0 || _index > mLength) throw OutOfRange("[String] operator [] => index out of range");
@@ -92,6 +94,7 @@ namespace System
             return *this;
         }
         String& operator+=(char _c);
+        String& operator+=(const String& _str);
         bool operator==(const String& _other) const;
         bool operator== (const char* _other) const;
         bool operator!=(const String& _other) const;

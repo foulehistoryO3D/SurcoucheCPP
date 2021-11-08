@@ -20,6 +20,19 @@ System::DateTime System::DateTime::Now()
     return DateTime(now);
 }
 
+System::DateTime System::DateTime::Convert(SYSTEMTIME _systemTime)
+{
+    std::tm _tm = std::tm();
+    _tm.tm_sec = _systemTime.wSecond;
+    _tm.tm_min = _systemTime.wMinute;
+    _tm.tm_hour = _systemTime.wHour;
+    _tm.tm_mday = _systemTime.wDay;
+    _tm.tm_mon = _systemTime.wMonth - 1;
+    _tm.tm_year = _systemTime.wYear - 1900;
+    _tm.tm_isdst = -1;
+    return std::mktime(&_tm);;
+}
+
 System::String System::DateTime::ToStringFormat(const String& _format) const
 {
     if (mTime == time_t()) return "time equal to null";

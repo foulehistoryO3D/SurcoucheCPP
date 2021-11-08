@@ -1,6 +1,5 @@
 #pragma once
-#include "Exception/Exception/Exception.h"
-#include "Exception/OutOfRange/OutOfRange.h"
+
 
 #include "Event/Event/Event.h"
 #include "Event/EventArgs/EventArgs.h"
@@ -22,6 +21,7 @@
 #include "Interface/Equatable/IEquatable.h"
 #include "DateTime/DateTime.h"
 #include "Environment/Environment.h"
+#include "Version/Version.h"
 
 #include "../System.Collections.Generic/List/List.h"
 #include "../System.IO/Directory/Directory.h"
@@ -29,15 +29,17 @@
 #include "../System.IO/Path/Path.h"
 #include "../System.IO/File/File/File.h"
 #include "../System.IO/Stream/StreamWriter/StreamWriter.h"
-
 #include "../System.IO/File/FileStream/FileStream.h"
+#include "../System.IO/File/FileSystemInfo/FileSystemInfo.h"
 #include "System.IO/Stream/TextReader/TextReader.h"
 
 #include "../System.Collections.Generic/Interface/Enumerator/IEnumerator.h"
-#include "../System.IO/File/FileSystemInfo/FileSystemInfo.h"
+
 
 #include "../System.Diagnostics/Process/Process.h"
 
+#include "Exception/Exception/Exception.h"
+#include "Exception/OutOfRange/OutOfRange.h"
 
 using namespace System;
 using namespace IO;
