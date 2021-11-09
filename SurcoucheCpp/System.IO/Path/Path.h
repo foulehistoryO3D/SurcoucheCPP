@@ -15,6 +15,7 @@ namespace System
     {
         class Path : public Object
         {
+            DECLARE_CLASS_INFO(Object)
 #pragma region f/p
         public:
             static const constexpr char DirectorySeparatorChar = '/';

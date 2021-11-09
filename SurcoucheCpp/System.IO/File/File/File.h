@@ -19,6 +19,7 @@ namespace System
         class FileStream;
         class File : public Object
         {
+            DECLARE_CLASS_INFO(Object)
 #pragma region f/p
         private:
             const char* mPath = null;

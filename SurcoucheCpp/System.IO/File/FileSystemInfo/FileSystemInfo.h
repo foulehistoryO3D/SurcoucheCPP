@@ -8,6 +8,7 @@ namespace System
     {
         class FileSystemInfo : public Object
         {
+            DECLARE_CLASS_INFO(Object)
 #pragma region f/p
         protected:
             const char* mPath = null;

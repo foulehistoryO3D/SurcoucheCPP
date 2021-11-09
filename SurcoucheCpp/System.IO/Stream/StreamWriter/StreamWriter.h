@@ -15,6 +15,8 @@ namespace System
     {
         class StreamWriter sealed : public TextWriter
         {
+            
+            DECLARE_CLASS_INFO(TextWriter)
             REGISTER_ATTRIBUTE(Sealed)
 #pragma region constructor/destructor
         public:

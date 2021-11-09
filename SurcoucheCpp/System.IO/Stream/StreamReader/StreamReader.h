@@ -7,6 +7,7 @@ namespace System
     {
         class StreamReader : public TextReader
         {
+            DECLARE_CLASS_INFO(TextReader)
 #pragma region constructor
         public:
             StreamReader();

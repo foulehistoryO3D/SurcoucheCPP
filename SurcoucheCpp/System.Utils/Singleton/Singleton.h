@@ -8,6 +8,7 @@ namespace System
         template<typename T>
         class Singleton : public Object
         {
+            DECLARE_CLASS_INFO(Object)
 #pragma region f/p
         private:
             static T* instance;

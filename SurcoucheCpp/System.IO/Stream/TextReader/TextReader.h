@@ -9,6 +9,7 @@ namespace System
     {
         class TextReader : public Object
         {
+            DECLARE_CLASS_INFO(Object)
 #pragma region f/p
         protected:
             std::ifstream mStream = std::ifstream();

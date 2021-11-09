@@ -7,6 +7,7 @@ namespace System
     {
         class IOException : public Exception
         {
+            DECLARE_CLASS_INFO(Exception)
         public:
             IOException() : Exception() {  }
 

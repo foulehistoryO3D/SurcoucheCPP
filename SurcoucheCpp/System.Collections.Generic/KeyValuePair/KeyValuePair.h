@@ -12,6 +12,7 @@ namespace System
             template<typename TKey, typename TValue>
             class KeyValuePair : public Object
             {
+                DECLARE_CLASS_INFO(Object)
 #pragma region f/p
             public:
                 TKey Key = TKey();

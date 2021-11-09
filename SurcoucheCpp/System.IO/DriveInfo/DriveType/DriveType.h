@@ -7,6 +7,7 @@ namespace System
     {
         class DriveType : public Object
         {
+            DECLARE_CLASS_INFO(Object)
 #pragma region enum
         private:
             enum EDriveType { Unknown, NoRootDir, Removable, Fixed, Remote, CdRom, RamDisk };

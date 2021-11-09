@@ -92,7 +92,7 @@ void System::String::Append(const Integer& _integer)
 System::String System::String::ToLower() const
 {
     std::string _str = mValue;
-    std::transform(_str.begin(), _str.end(), _str.begin(), [](unsigned char _c)
+    std::ranges::transform(_str, _str.begin(), [](unsigned char _c)
     {
         return std::tolower(_c);
     });

@@ -14,6 +14,7 @@ namespace System
     {
         class TextWriter : public Object
         {
+            DECLARE_CLASS_INFO(Object)
 #pragma region f/p
         protected:
             const char* mPath = null;

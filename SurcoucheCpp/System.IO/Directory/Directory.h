@@ -17,6 +17,7 @@ namespace System
         
         class Directory : public Object
         {
+            DECLARE_CLASS_INFO(Object)
         public:
             static DirectoryInfo MakeDirectory(const String& _path);
             static void Delete(const String& _path, bool _sub = false);
