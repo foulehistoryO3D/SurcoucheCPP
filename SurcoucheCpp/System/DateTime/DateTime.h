@@ -34,5 +34,12 @@ public:
     Boolean Equals(const object& _obj) override;
     size_t GetHashCode() const override;
 #pragma endregion override
+#pragma region operator
+    DateTime& operator=(const DateTime& _other)
+    {
+        mTime = std::move(_other.mTime);
+        return *this;
+    }
+#pragma endregion operator
 };
 }

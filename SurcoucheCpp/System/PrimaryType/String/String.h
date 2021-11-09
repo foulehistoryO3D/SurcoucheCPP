@@ -63,7 +63,9 @@ namespace System
         Integer FirstIndexOf(const String& _str)const;
         Integer Length()const;
         std::wstring* ToWString()const;
+        static std::wstring* ToWString(const String& _str);
         static String WStringToString(const std::wstring& _wstring);
+
 #pragma endregion custom methods
 #pragma region override
     public:
@@ -82,6 +84,7 @@ namespace System
         String operator+(const CHAR* _str) const;
         String operator+(const Integer& _integer);
         String operator+(const int _i);
+        String operator+(const char& _c);
         char operator[](const int _index) const
         {
             if (_index < 0 || _index > mLength) throw OutOfRange("[String] operator [] => index out of range");

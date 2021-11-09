@@ -64,7 +64,7 @@ System::Char System::Char::ToLower()
 #pragma region override
 System::String System::Char::ToString() const
 {
-    return string("") + mValue;
+    return string("") + Char(mValue);
 }
 
 System::Boolean System::Char::Equals(const char& _object)

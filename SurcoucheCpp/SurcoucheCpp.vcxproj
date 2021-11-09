@@ -171,7 +171,13 @@
     <ClCompile Include="System.IO\Stream\StreamWriter\StreamWriter.cpp" />
     <ClCompile Include="System.IO\Stream\TextReader\TextReader.cpp" />
     <ClCompile Include="System.IO\Stream\TextWriter\TextWriter.cpp" />
+    <ClCompile Include="System.Text.RegularExpressions\Regex\Regex.cpp" />
+    <ClCompile Include="System.Text\StringBuilder\StringBuilder.cpp" />
+    <ClCompile Include="System.Timers\ElapsedEventArgs\ElapsedEventArgs.cpp" />
+    <ClCompile Include="System.Timers\Timer\Timer.cpp" />
     <ClCompile Include="System\Activator\Activator.cpp" />
+    <ClCompile Include="System\Box\BoxFile\BoxFile.cpp" />
+    <ClCompile Include="System\Box\ConfirmationBox\ConfirmationBox.cpp" />
     <ClCompile Include="System\Console\Console.cpp" />
     <ClCompile Include="System\DateTime\DateTime.cpp" />
     <ClCompile Include="System\Environment\Environment.cpp" />
@@ -252,6 +258,7 @@
     </ClCompile>
     <ClCompile Include="System\LanguageManager\LanguageManager.cpp" />
     <ClCompile Include="System\LanguageManager\Language\Language.cpp" />
+    <ClCompile Include="System\Mathf\Mathf.cpp" />
     <ClCompile Include="System\Object\Object.cpp" />
     <ClCompile Include="System\PrimaryType\Boolean\Boolean.cpp" />
     <ClCompile Include="System\PrimaryType\Byte\Byte.cpp" />
@@ -292,8 +299,14 @@
     <ClInclude Include="System.IO\Stream\StreamWriter\StreamWriter.h" />
     <ClInclude Include="System.IO\Stream\TextReader\TextReader.h" />
     <ClInclude Include="System.IO\Stream\TextWriter\TextWriter.h" />
+    <ClInclude Include="System.Text.RegularExpressions\Regex\Regex.h" />
+    <ClInclude Include="System.Text\StringBuilder\StringBuilder.h" />
+    <ClInclude Include="System.Timers\ElapsedEventArgs\ElapsedEventArgs.h" />
+    <ClInclude Include="System.Timers\Timer\Timer.h" />
     <ClInclude Include="System.Utils\Singleton\Singleton.h" />
     <ClInclude Include="System\Activator\Activator.h" />
+    <ClInclude Include="System\Box\BoxFile\BoxFile.h" />
+    <ClInclude Include="System\Box\ConfirmationBox\ConfirmationBox.h" />
     <ClInclude Include="System\Console\Console.h" />
     <ClInclude Include="System\DateTime\DateTime.h" />
     <ClInclude Include="System\Environment\Environment.h" />
@@ -312,6 +325,7 @@
     <ClInclude Include="System\Interface\Equatable\IEquatable.h" />
     <ClInclude Include="System\LanguageManager\LanguageManager.h" />
     <ClInclude Include="System\LanguageManager\Language\Language.h" />
+    <ClInclude Include="System\Mathf\Mathf.h" />
     <ClInclude Include="System\Object\Object.h" />
     <ClInclude Include="System\PrimaryType\Boolean\Boolean.h" />
     <ClInclude Include="System\PrimaryType\Byte\Byte.h" />

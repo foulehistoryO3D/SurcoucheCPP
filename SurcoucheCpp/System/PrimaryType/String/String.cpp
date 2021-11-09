@@ -248,6 +248,12 @@ System::String System::String::operator+(const int _i)
     return *this;
 }
 
+System::String System::String::operator+(const char& _c)
+{
+    Append(_c);
+    return *this;
+}
+
 
 System::String System::String::Empty()
 {
@@ -292,6 +298,13 @@ std::wstring* System::String::ToWString() const
 {
     std::string _str = mValue;
     std::wstring* _result = new std::wstring(_str.begin(), _str.end());
+    return _result;
+}
+
+std::wstring* System::String::ToWString(const String& _str)
+{
+    std::string _value = _str.ToCstr();
+    std::wstring* _result = new std::wstring(_value.begin(), _value.end());
     return _result;
 }
 

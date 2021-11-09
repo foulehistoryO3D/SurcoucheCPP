@@ -9,6 +9,9 @@
 #include "Event/Predicate/Predicate.h"
 #include "Activator/Activator.h"
 
+#include "Box/ConfirmationBox/ConfirmationBox.h"
+#include "Box/BoxFile/BoxFile.h"
+#include "Random/Random.h"
 #include "PrimaryType/Char/Char.h"
 #include "PrimaryType/String/String.h"
 #include "PrimaryType/Boolean/Boolean.h"

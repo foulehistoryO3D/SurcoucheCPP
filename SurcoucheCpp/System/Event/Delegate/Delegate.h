@@ -28,11 +28,16 @@ namespace System
         Res operator()(Args... _args) { return mFunction(_args...);}
         bool operator==(const Delegate<Res, Args...> _other)
         {
-            return mFunction.target<Res(Args...)>() == _other.mFunction.target<Res(Args...)>();
+            return mFunction.template target<Res(Args...)>() == _other.mFunction.template target<Res(Args...)>();
         }
         bool operator !=(const Delegate<Res, Args...> _other)
         {
             return !(this->operator==(_other));
+        }
+        Delegate& operator=(const Delegate& _other)
+        {
+            mFunction = std::move(_other.mFunction);
+            return *this;
         }
 #pragma endregion operator
     };

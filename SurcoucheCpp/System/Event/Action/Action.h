@@ -32,6 +32,7 @@ namespace System
         template <typename Function>
         void operator-=(Function&& _function);
         void operator()(Args ... _args);
+        Action<Args...>& operator=(const Action& _other);
 #pragma endregion operator
     };
 #pragma region constructor/destructor
@@ -81,5 +82,14 @@ namespace System
         for (int i = 0; i < _length; ++i)
             mFunctions[i].Invoke(_args...);
     }
+
+    template <typename ... Args>
+    Action<Args...>& Action<Args...>::operator=(const Action& _other)
+    {
+        mFunctions = std::move(_other.mFunctions);
+        return *this;
+    }
+
+
 #pragma endregion operator
 }
