@@ -172,6 +172,7 @@
     <ClCompile Include="System.IO\Stream\TextReader\TextReader.cpp" />
     <ClCompile Include="System.IO\Stream\TextWriter\TextWriter.cpp" />
     <ClCompile Include="System.Net\AsyncEventArgs\AsyncCompletedEventArgs.cpp" />
+    <ClCompile Include="System.Net\DownloadNetException\DownloadNetException.cpp" />
     <ClCompile Include="System.Net\StringEventArgs\DownloadStringCompletedEventArgs.cpp" />
     <ClCompile Include="System.Net\WebCallback\WebCallback.cpp" />
     <ClCompile Include="System.Net\WebClient\WebClient.cpp" />
@@ -305,6 +306,7 @@
     <ClInclude Include="System.IO\Stream\TextReader\TextReader.h" />
     <ClInclude Include="System.IO\Stream\TextWriter\TextWriter.h" />
     <ClInclude Include="System.Net\AsyncEventArgs\AsyncCompletedEventArgs.h" />
+    <ClInclude Include="System.Net\DownloadNetException\DownloadNetException.h" />
     <ClInclude Include="System.Net\StringEventArgs\DownloadStringCompletedEventArgs.h" />
     <ClInclude Include="System.Net\WebCallback\WebCallback.h" />
     <ClInclude Include="System.Net\WebClient\WebClient.h" />

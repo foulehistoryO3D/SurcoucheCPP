@@ -2,7 +2,7 @@
 #include "../../System/PrimaryType/Boolean/Boolean.h"
 
 #pragma region f/p
-System::Exception System::Net::AsyncCompletedEventArgs::Error() const
+System::Net::DownloadNetException System::Net::AsyncCompletedEventArgs::Error() const
 {
     return mException;
 }
@@ -18,7 +18,7 @@ System::object* System::Net::AsyncCompletedEventArgs::UserState() const
 }
 #pragma endregion f/p
 #pragma region constructor
-System::Net::AsyncCompletedEventArgs::AsyncCompletedEventArgs(const Exception& _exception, const Boolean& _cancelled,
+System::Net::AsyncCompletedEventArgs::AsyncCompletedEventArgs(const DownloadNetException& _exception, const Boolean& _cancelled,
     object* _userState)
 {
     mException = _exception;
@@ -44,8 +44,8 @@ void System::Net::AsyncCompletedEventArgs::SetUserState(object* _userState)
     mUserState = _userState;
 }
 
-void System::Net::AsyncCompletedEventArgs::SetError(const Exception& _exception)
+void System::Net::AsyncCompletedEventArgs::SetError(const DownloadNetException& _exception)
 {
-    mException = _exception;
+    mException = std::move(_exception);
 }
 #pragma endregion custom methods

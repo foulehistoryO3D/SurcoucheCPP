@@ -27,7 +27,7 @@ void System::Net::WebClient::DownloadStringAsyncInternal(const Uri& _address)
     {
         DownloadStringCompletedEventArgs* _event = new DownloadStringCompletedEventArgs();
         _event->SetResult("");
-        _event->SetError(Exception("[WebClient] error => uri doesn't found"));
+        _event->SetError(DownloadNetException("[WebClient] error => uri doesn't found"));
         DownloadStringCompleted(this, _event);
         return;
     }
@@ -61,8 +61,12 @@ void System::Net::WebClient::DownloadFileAsyncInternal(const Uri& _address, cons
       OnDownloadProgress.Invoke(_f);  
     };
     const HRESULT _result = URLDownloadToFile(null, _uri, _path, 0, _webCallback);
-    _webCallback->Release();
     AsyncCompletedEventArgs* _event = new AsyncCompletedEventArgs();
+    if (!_result)
+    {
+        _event->SetError(DownloadNetException("[WebClient] error => uri doesn't valid"));
+    }
+    _webCallback->Release();
     _event->SetCancelled(_result);
     DownloadFileCompleted(this, _event, _pathFile);
 }
