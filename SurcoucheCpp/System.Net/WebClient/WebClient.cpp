@@ -61,6 +61,7 @@ void System::Net::WebClient::DownloadFileAsyncInternal(const Uri& _address, cons
       OnDownloadProgress.Invoke(_f);  
     };
     const HRESULT _result = URLDownloadToFile(null, _uri, _path, 0, _webCallback);
+    _webCallback->Release();
     AsyncCompletedEventArgs* _event = new AsyncCompletedEventArgs();
     _event->SetCancelled(_result);
     DownloadFileCompleted(this, _event, _pathFile);
