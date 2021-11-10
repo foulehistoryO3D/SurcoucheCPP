@@ -30,7 +30,6 @@ void System::Timers::Timer::Start()
     if (mIsRunning) return;
     mIsRunning = true;
     mThread = std::thread(&Timer::Update, this);
-    mThread.join();
 }
 
 void System::Timers::Timer::Update()
