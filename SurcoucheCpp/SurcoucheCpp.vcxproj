@@ -171,6 +171,9 @@
     <ClCompile Include="System.IO\Stream\StreamWriter\StreamWriter.cpp" />
     <ClCompile Include="System.IO\Stream\TextReader\TextReader.cpp" />
     <ClCompile Include="System.IO\Stream\TextWriter\TextWriter.cpp" />
+    <ClCompile Include="System.Net\AsyncEventArgs\AsyncCompletedEventArgs.cpp" />
+    <ClCompile Include="System.Net\StringEventArgs\DownloadStringCompletedEventArgs.cpp" />
+    <ClCompile Include="System.Net\WebClient\WebClient.cpp" />
     <ClCompile Include="System.Text.RegularExpressions\Regex\Regex.cpp" />
     <ClCompile Include="System.Text\StringBuilder\StringBuilder.cpp" />
     <ClCompile Include="System.Timers\ElapsedEventArgs\ElapsedEventArgs.cpp" />
@@ -270,6 +273,7 @@
     <ClCompile Include="System\Random\Random.cpp" />
     <ClCompile Include="System\TimeZone\TimeZone.cpp" />
     <ClCompile Include="System\Type\Type.cpp" />
+    <ClCompile Include="System\Uri\Uri.cpp" />
     <ClCompile Include="System\Version\Version.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -299,6 +303,9 @@
     <ClInclude Include="System.IO\Stream\StreamWriter\StreamWriter.h" />
     <ClInclude Include="System.IO\Stream\TextReader\TextReader.h" />
     <ClInclude Include="System.IO\Stream\TextWriter\TextWriter.h" />
+    <ClInclude Include="System.Net\AsyncEventArgs\AsyncCompletedEventArgs.h" />
+    <ClInclude Include="System.Net\StringEventArgs\DownloadStringCompletedEventArgs.h" />
+    <ClInclude Include="System.Net\WebClient\WebClient.h" />
     <ClInclude Include="System.Text.RegularExpressions\Regex\Regex.h" />
     <ClInclude Include="System.Text\StringBuilder\StringBuilder.h" />
     <ClInclude Include="System.Timers\ElapsedEventArgs\ElapsedEventArgs.h" />
@@ -338,6 +345,7 @@
     <ClInclude Include="System\TemplateUtils\TemplateUtils.h" />
     <ClInclude Include="System\TimeZone\TimeZone.h" />
     <ClInclude Include="System\Type\Type.h" />
+    <ClInclude Include="System\Uri\Uri.h" />
     <ClInclude Include="System\Version\Version.h" />
   </ItemGroup>
   <ItemGroup>

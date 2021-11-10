@@ -21,5 +21,12 @@ namespace System
     public:
         String ToString() const override;
 #pragma endregion Override
+#pragma region operator
+    public:
+        Exception& operator=(const Exception& _other)
+        {
+            return *this;
+        }
+#pragma endregion operator
     };
 }

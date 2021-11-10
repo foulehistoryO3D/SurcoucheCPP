@@ -1,18 +1,17 @@
 #include <windows.h>
 
 #include "System/IncludeSystem.h"
-#include "System.Text/StringBuilder/StringBuilder.h"
+#include "System.Net/StringEventArgs/DownloadStringCompletedEventArgs.h"
+#include "System.Net/WebClient/WebClient.h"
 #include "System.Timers/ElapsedEventArgs/ElapsedEventArgs.h"
-#include "System.Timers/Timer/Timer.h"
+#include "System/Uri/Uri.h"
 
-#pragma comment(lib, "urlmon.lib")
-
-#include <urlmon.h>
-#include <sstream>
-
-void OnTimedEvent(object* _sender, Timers::ElapsedEventArgs* _event)
+void OnDownloadCompleted(object* _sender, Net::DownloadStringCompletedEventArgs* _result)
 {
-    Console::WriteLine(_sender->ToString() + " event was raised at " + _event->SignalTime().ToString());
+    const string& _path = Path::Combine(Environment::CurrentDirectory(), "Sacramento.txt");
+    FileStream _stream = File::Create(_path);
+    _stream.Writer().Write(_result->Result());
+    Diagnostics::Process::Start(_path);
 }
 
 int main(int argc, char* argv[])
@@ -26,33 +25,10 @@ int main(int argc, char* argv[])
     // Timers::Timer _timer = Timers::Timer(1000);
     // _timer.Elapsed += OnTimedEvent;
     // _timer.Start();
-    
-    IStream* stream = null;
+    // LPCWSTR _uri = L"https://raw.githubusercontent.com/foulehistory/SurcoucheCPP/master/DateTime/Time.txt";
 
-    LPCWSTR _uri = L"https://raw.githubusercontent.com/foulehistory/SurcoucheCPP/master/DateTime/Time.txt";
-#pragma region hide
-    HRESULT result = URLOpenBlockingStream(0, _uri, &stream, 0, 0);
-    
-    if (result != 0)
-    {
-        return 1;
-    }
-    char buffer[100];
-    unsigned long bytesRead;
-    std::stringstream ss;
-    stream->Read(buffer, 100, &bytesRead);
-    while (bytesRead > 0U)
-    {
-        ss.write(buffer, (long long)bytesRead);
-        stream->Read(buffer, 100, &bytesRead);
-    }
-    stream->Release();
-#pragma endregion hide
-    string resultString = ss.str().c_str();
-
-    const string& _path = Path::Combine(Environment::CurrentDirectory(), "Sacramento.txt");
-    FileStream _stream = File::Create(_path);
-    _stream.Writer().Write(resultString);
-    Diagnostics::Process::Start(_path);
+    Net::WebClient _req = Net::WebClient();
+    _req.DownloadStringCompleted = OnDownloadCompleted;
+    _req.DownloadStringAsync(Uri("https://cdn.discordapp.com/attachments/227541817963446272/763337270324756490/test.txt"));
     return 0;
 }

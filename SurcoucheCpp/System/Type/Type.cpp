@@ -1,6 +1,7 @@
 ﻿#include "Type.h"
 #include "../PrimaryType/Boolean/Boolean.h"
 #include "../PrimaryType/String/String.h"
+#include "../PrimaryType/Integer/Integer.h"
 #include <memory>
 #include <vcruntime_typeinfo.h>
 
@@ -54,7 +55,11 @@ size_t System::Type::GetHashCode() const
 
 System::String System::Type::ToString() const
 {
-    return FullName();
+    String _fullName = FullName();
+    const Integer& _index = _fullName.LastIndexOf(':');
+    if (_index > -1)
+        _fullName = _fullName.SubString(_index+1, _fullName.Length());
+    return _fullName;
 }
 
 System::String System::Type::FullName() const
@@ -79,7 +84,7 @@ System::Boolean System::Type::IsAbstract() const
 
 System::Boolean System::Type::IsClass() const
 {
-    return !(mBitMask & Interface || mBitMask & PrimaryType); 
+    return !(mBitMask & Interface || mBitMask & PrimaryType);
 }
 
 System::Boolean System::Type::IsType() const
@@ -88,12 +93,12 @@ System::Boolean System::Type::IsType() const
 }
 #pragma endregion custom methods
 #pragma region operator
-System::Boolean  System::Type::operator==(const Type* _type)
+System::Boolean System::Type::operator==(const Type* _type)
 {
     return Equals(_type);
 }
 
-System::Boolean  System::Type::operator!=(const Type* _type)
+System::Boolean System::Type::operator!=(const Type* _type)
 {
     return !Equals(_type);
 }
