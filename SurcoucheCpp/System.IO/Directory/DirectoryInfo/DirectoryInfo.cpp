@@ -1,6 +1,7 @@
 ﻿#include "DirectoryInfo.h"
 #include "../../../System/PrimaryType/String/String.h"
 #include "../../../System/PrimaryType/Boolean/Boolean.h"
+#include "../../../System/DateTime/DateTime.h"
 #include <direct.h>
 #include <iostream>
 #include <ctime>
@@ -41,5 +42,26 @@ size_t System::IO::DirectoryInfo::GetHashCode() const
 {
     DirectoryInfo _directoryInfo = *this;
     return std::hash<DirectoryInfo*>{}(&_directoryInfo);
+}
+
+System::DateTime System::IO::DirectoryInfo::GetCreationTime() const
+{
+    struct stat _tStat;
+    stat(mPath, &_tStat);
+    return DateTime(_tStat.st_ctime);
+}
+
+System::DateTime System::IO::DirectoryInfo::GetLastAccessTime() const
+{
+    struct stat _tStat;
+    stat(mPath, &_tStat);
+    return DateTime(_tStat.st_atime);
+}
+
+System::DateTime System::IO::DirectoryInfo::GetLastWriteTime() const
+{
+    struct stat _tStat;
+    stat(mPath, &_tStat);
+    return DateTime(_tStat.st_mtime);
 }
 #pragma endregion override

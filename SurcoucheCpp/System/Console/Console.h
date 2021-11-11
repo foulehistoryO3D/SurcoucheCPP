@@ -31,6 +31,7 @@ namespace System
         static void WriteLine(const object* _object);
         static void WriteLine(const object& _object);
         static void WriteLine(const String* _str);
+        static void WriteLine(const char* _str);
         static void WriteLine(const Boolean& _bool);
         static void WriteLine(const Float& _float);
         static void WriteLine(const Double& _double);

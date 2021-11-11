@@ -1,3 +1,7 @@
 hello: Bonjour @0 comment vas tu ? @1
 come: @0 est venu sans rien dire, et en plus il parle pas
 salut: Salut comment vas-tu ? @0
+HelloWorld: Hello comment vas-tu ? @0 @1
+HelloWorld: Hello comment vas-tu ? @0 @1
+HelloWorld: Hello comment vas-tu ? @0 @1
+HelloWorld: Hello comment vas-tu ? @0 @1

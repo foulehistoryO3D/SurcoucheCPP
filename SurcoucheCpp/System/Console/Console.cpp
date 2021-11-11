@@ -49,6 +49,12 @@ void System::Console::WriteLine(const string* _str)
     Out().Write(_str);
 }
 
+void System::Console::WriteLine(const char* _str)
+{
+    std::cout << _str << std::endl;
+    Out().Write(string(_str));
+}
+
 void System::Console::WriteLine(const Boolean& _bool)
 {
     std::cout << _bool.ToString() << std::endl;

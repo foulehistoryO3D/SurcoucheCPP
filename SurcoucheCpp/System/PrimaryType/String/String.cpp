@@ -11,6 +11,8 @@
 #include <string>
 #include <windows.h>
 
+#include "../Float/Float.h"
+
 
 #pragma region constructor/destructor
 System::String::String(const char* _value)
@@ -239,6 +241,12 @@ System::String System::String::operator+(const CHAR* _str) const
 System::String System::String::operator+(const Integer& _integer)
 {
     Append(_integer.ToString());
+    return *this;
+}
+
+System::String System::String::operator+(const Float& _float)
+{
+    Append(_float.ToString());
     return *this;
 }
 

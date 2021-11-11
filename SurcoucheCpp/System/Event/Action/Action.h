@@ -25,6 +25,7 @@ namespace System
 #pragma region custom methods
     public:
         void Invoke(Args ... _args) { this->operator()(_args...); }
+        void Clear(){ mFunctions.empty(); }
 #pragma endregion custom methods
 #pragma region operator
         template <typename Function>

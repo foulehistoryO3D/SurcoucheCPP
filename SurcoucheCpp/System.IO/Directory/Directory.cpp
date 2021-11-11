@@ -10,6 +10,8 @@
 #include <iostream>
 #include <Windows.h>
 
+#include "../Exception/IOException/IOException.h"
+
 System::IO::DirectoryInfo System::IO::Directory::MakeDirectory(const String& _path)
 {
     DirectoryInfo _directoryInfo = DirectoryInfo(_path);
@@ -19,11 +21,19 @@ System::IO::DirectoryInfo System::IO::Directory::MakeDirectory(const String& _pa
     return _directoryInfo;
 }
 
+System::IO::DirectoryInfo System::IO::Directory::GetDirectory(const String& _path)
+{
+    const DirectoryInfo _directoryInfo = DirectoryInfo(_path);
+    if (!_directoryInfo.Exists())
+        throw IOException("[Directory] => doesn't exist");
+    return _directoryInfo;
+}
+
 void System::IO::Directory::Delete(const String& _path, bool _sub)
 {
     const DirectoryInfo _directoryInfo = DirectoryInfo(_path);
     if (!_directoryInfo.Exists())
-        throw Exception("[Directory] => doesn't exist can't delete this");
+        throw IOException(string("[Directory]") + _path + " => doesn't exist can't delete this");
     if (_sub)
     {
         Collections::Generic::List<String> _directories = GetDirectories(_path);
@@ -34,7 +44,7 @@ void System::IO::Directory::Delete(const String& _path, bool _sub)
                 _subDirectoryInfo.Delete();
         }
     }
-    _rmdir(_path);
+    _directoryInfo.Delete();
 }
 
 System::Collections::Generic::List<System::String> System::IO::Directory::GetDirectories(const String& _path)

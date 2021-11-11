@@ -20,6 +20,7 @@ namespace System
             DECLARE_CLASS_INFO(Object)
         public:
             static DirectoryInfo MakeDirectory(const String& _path);
+            static DirectoryInfo GetDirectory(const String& _path);
             static void Delete(const String& _path, bool _sub = false);
             static Collections::Generic::List<String> GetDirectories(const String& _path);
             static void Move(const String& _path, const String& _newLocation);

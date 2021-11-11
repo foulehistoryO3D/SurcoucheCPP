@@ -4,6 +4,7 @@
 
 namespace System
 {
+    class DateTime;
     namespace IO
     {
         class DirectoryInfo : public Object, public FileSystemInfo
@@ -22,6 +23,10 @@ namespace System
             void Delete()const override;
             String ToString() const override;
             size_t GetHashCode() const override;
+            DateTime GetCreationTime() const;
+            DateTime GetLastAccessTime() const;
+            DateTime GetLastWriteTime() const;
+            
 #pragma endregion override
         };
     }

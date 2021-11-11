@@ -11,6 +11,7 @@
 namespace System
 {
     class Integer;
+    class Float;
     namespace Collections
     {
         namespace Generic
@@ -83,6 +84,7 @@ namespace System
         operator const char*()const;
         String operator+(const CHAR* _str) const;
         String operator+(const Integer& _integer);
+        String operator+(const Float& _float);
         String operator+(const int _i);
         String operator+(const char& _c);
         char operator[](const int _index) const
