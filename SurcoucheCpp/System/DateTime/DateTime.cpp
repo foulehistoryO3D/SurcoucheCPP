@@ -1,23 +1,43 @@
 ﻿#include "DateTime.h"
 #include "../PrimaryType/Boolean/Boolean.h"
+#include "../PrimaryType/Integer/Integer.h"
 #include <ctime>
 
-
-System::DateTime::DateTime(time_t _time)
+System::DateTime::DateTime(const Integer& _day, const Integer& _month, const Integer& _years, const Integer& _hour,
+    const Integer& _minute, const Integer& _seconds)
 {
-    mTime = _time;
+    mDay = _day;
+    mMonth = _month;
+    mYears = _years;
+    mHour = _hour;
+    mMinute = _minute;
+    mSecond = _seconds;
 }
+
+System::DateTime::DateTime(const Integer& _day, const Integer& _month, const Integer& _years, const Integer& _hour,
+    const Integer& _minute) : DateTime(_day, _month, _years, _hour, _minute, 0) {}
+
+System::DateTime::DateTime(const Integer& _day, const Integer& _month, const Integer& _years, const Integer& _hour)
+    : DateTime(_day, _month, _years, _hour, 0, 0){}
+
+System::DateTime::DateTime(const Integer& _day, const Integer& _month, const Integer& _years)
+    : DateTime(_day, _month, _years, 0, 0, 0){}
 
 System::DateTime::DateTime(const DateTime& _copy)
 {
-    mTime = _copy.mTime;
+    mDay = std::move(_copy.mDay);
+    mMonth = std::move(_copy.mMonth);
+    mYears = std::move(_copy.mYears);
+    mHour = std::move(_copy.mHour);
+    mMinute = std::move(_copy.mMinute);
+    mSecond = std::move(_copy.mSecond);
 }
 
 System::DateTime System::DateTime::Now()
 {
     const time_t now = time(nullptr);
-    *localtime(&now);
-    return DateTime(now);
+    const std::tm _tm = *localtime(&now);
+    return DateTime(_tm.tm_mday, _tm.tm_mon, _tm.tm_year, _tm.tm_hour, _tm.tm_min, _tm.tm_sec);
 }
 
 System::DateTime System::DateTime::Convert(SYSTEMTIME _systemTime)
@@ -30,34 +50,33 @@ System::DateTime System::DateTime::Convert(SYSTEMTIME _systemTime)
     _tm.tm_mon = _systemTime.wMonth - 1;
     _tm.tm_year = _systemTime.wYear - 1900;
     _tm.tm_isdst = -1;
-    return std::mktime(&_tm);;
+    return DateTime(_tm.tm_mday, _tm.tm_mon, _tm.tm_year, _tm.tm_hour, _tm.tm_min, _tm.tm_sec);
 }
 
 System::String System::DateTime::ToStringFormat(const String& _format) const
 {
-    if (mTime == time_t()) return "time equal to null";
     if (String::IsNullOrEmpty(_format)) return "format error";
     String _result = "";
-    struct tm tstruct;
-    char buff[80];
-    tstruct = *localtime(&mTime);
-    strftime(buff, sizeof buff, _format, &tstruct);
-    _result = buff;
+    // struct tm tstruct;
+    // char buff[80];
+    // tstruct = *localtime(&mTime);
+    // strftime(buff, sizeof buff, _format, &tstruct);
+    // _result = buff;
+    
     return _result;
 }
 
 System::Boolean System::DateTime::Equals(const DateTime& _other)
 {
-    return mTime == _other.mTime;
+    return mDay == _other.mDay && mMonth == _other.mMonth && mYears == _other.mYears
+    && mHour == _other.mHour && mMinute == _other.mMinute && mSecond == _other.mSecond;
 }
 
 System::DateTime System::DateTime::FileTimeToDateTime(const FILETIME& _fileTime)
 {
-    ULARGE_INTEGER ull;
-    ull.LowPart = _fileTime.dwLowDateTime;
-    ull.HighPart = _fileTime.dwHighDateTime;
-    const time_t _time = ull.QuadPart / 10000000ULL - 11644473600ULL;
-    return DateTime(_time);
+    SYSTEMTIME _time;
+    FileTimeToSystemTime(&_fileTime, &_time);
+    return Convert(_time);
 }
 
 #pragma region override

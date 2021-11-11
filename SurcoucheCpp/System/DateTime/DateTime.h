@@ -11,12 +11,20 @@ class DateTime : public Object
     DECLARE_CLASS_INFO(Object)
 #pragma region f/p
 private:
-    time_t mTime = time_t();
+    int mDay = 0;
+    int mMonth = 0;
+    int mYears = 0;
+    int mHour = 0;
+    int mMinute = 0;
+    int mSecond = 0;
 #pragma endregion f/p
 #pragma region constructor
 public:
     DateTime() = default;
-    DateTime(time_t _time);
+    DateTime(const Integer& _day, const Integer& _month, const Integer& _years, const Integer& _hour, const Integer& _minute, const Integer& _seconds);
+    DateTime(const Integer& _day, const Integer& _month, const Integer& _years, const Integer& _hour, const Integer& _minute);
+    DateTime(const Integer& _day, const Integer& _month, const Integer& _years, const Integer& _hour);
+    DateTime(const Integer& _day, const Integer& _month, const Integer& _years);
     DateTime(const DateTime& _copy);
 #pragma endregion constructor
 #pragma region custom methods
