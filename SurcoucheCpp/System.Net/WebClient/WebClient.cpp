@@ -12,15 +12,17 @@
 
 System::Net::WebClient::~WebClient()
 {
-    mThread.detach();
+    if (mThread.joinable())
+        mThread.detach();
 }
 
 void System::Net::WebClient::DownloadStringAsyncInternal(const Uri& _address)
 {
+    mIsRunning = true;
     LPCWSTR _uri = _address.GetUriWSTR();
     IStream* _stream;
     HRESULT result = URLOpenBlockingStream(0, _uri, &_stream, 0, 0);
-    STATSTG stat; 
+    STATSTG stat;
     _stream->Stat(&stat, result);
 
     if (result != 0)
@@ -53,12 +55,13 @@ void System::Net::WebClient::DownloadStringAsyncInternal(const Uri& _address)
 
 void System::Net::WebClient::DownloadFileAsyncInternal(const Uri& _address, const String& _pathFile)
 {
+    mIsRunning = true;
     const LPCWSTR _uri = _address.GetUriWSTR();
     const LPCWSTR _path = _pathFile.ToWString()->c_str();
     WebCallback* _webCallback = new WebCallback();
     _webCallback->OnDownloadProgress += [&](float _f)
     {
-      OnDownloadProgress.Invoke(_f);  
+        OnDownloadProgress.Invoke(_f);
     };
     const HRESULT _result = URLDownloadToFile(null, _uri, _path, 0, _webCallback);
     AsyncCompletedEventArgs* _event = new AsyncCompletedEventArgs();
@@ -73,11 +76,12 @@ void System::Net::WebClient::DownloadFileAsyncInternal(const Uri& _address, cons
 
 void System::Net::WebClient::DownloadStringAsync(const Uri& _address)
 {
+    if (mIsRunning) return;
     mThread = std::thread(&WebClient::DownloadStringAsyncInternal, this, _address);
 }
 
 void System::Net::WebClient::DownloadFileAsync(const Uri& _address, const String& _pathFile)
 {
+    if (mIsRunning) return;
     mThread = std::thread(&WebClient::DownloadFileAsyncInternal, this, _address, _pathFile);
 }
-

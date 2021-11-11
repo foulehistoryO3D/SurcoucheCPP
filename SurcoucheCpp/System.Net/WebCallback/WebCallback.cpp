@@ -71,7 +71,7 @@ HRESULT System::Net::WebCallback::OnProgress(ULONG ulProgress, ULONG ulProgressM
     case BINDSTATUS_DOWNLOADINGDATA:
     case BINDSTATUS_ENDDOWNLOADDATA:
         {
-            float _percent = (100.0 * static_cast<float>(ulProgress) / static_cast<float>(ulProgressMax));
+            const float _percent = (100.0 * static_cast<float>(ulProgress) / static_cast<float>(ulProgressMax));
             if (mPercentLast < _percent)
                 OnDownloadProgress.Invoke(mPercentLast = _percent);
             if (ulStatusCode == BINDSTATUS_ENDDOWNLOADDATA)

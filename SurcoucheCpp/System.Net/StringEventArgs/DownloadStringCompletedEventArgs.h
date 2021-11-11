@@ -7,6 +7,7 @@ namespace System
     {
         class DownloadStringCompletedEventArgs : public AsyncCompletedEventArgs
         {
+            DECLARE_CLASS_INFO(AsyncCompletedEventArgs)
 #pragma region f/p
         private:
             const char* mResult = "";

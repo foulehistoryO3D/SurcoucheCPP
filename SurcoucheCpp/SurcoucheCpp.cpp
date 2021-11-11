@@ -7,15 +7,15 @@
 #include "System.Timers/Timer/Timer.h"
 #include "System/Uri/Uri.h"
 
-void OnDownloadCompleted(object* _sender, Net::DownloadStringCompletedEventArgs* _result)
+void OnDownloadCompleted(object* _sender, const Net::DownloadStringCompletedEventArgs* _result)
 {
     const string& _path = Path::Combine(Environment::CurrentDirectory(), "Sacramento.txt");
-    FileStream _stream = File::Create(_path);
+    const FileStream _stream = File::Create(_path);
     _stream.Writer().Write(_result->Result());
     Diagnostics::Process::Start(_path);
 }
 
-void OnDownloadFileCompleted(object* _sender, Net::AsyncCompletedEventArgs* _event, const String& _path)
+void OnDownloadFileCompleted(object* _sender, const Net::AsyncCompletedEventArgs* _event, const String& _path)
 {
     if (_event->Cancelled())
         Console::WriteLine(_event->Error());
@@ -23,7 +23,7 @@ void OnDownloadFileCompleted(object* _sender, Net::AsyncCompletedEventArgs* _eve
         Diagnostics::Process::Start(_path);
 }
 
-void OnTimerCalled(object* _object, Timers::ElapsedEventArgs* _event)
+void OnTimerCalled(const object* _object, const Timers::ElapsedEventArgs* _event)
 {
     Console::WriteLine(_object->ToString() + " was call at " + _event->SignalTime().ToString());
 }
@@ -33,26 +33,25 @@ int main(int argc, char* argv[])
     SetConsoleOutputCP(65001);
     // LanguageManager::Instance().AddLanguage(new Language("fr", "french.txt"));
     // LanguageManager::Instance().AddLanguage(new Language("en", "english.txt"));
-    // LanguageManager::Instance().GetLanguage("fr").AddMessageToFile("salut", "Salut comment vas-tu ? @0");
-    // const String& _message = LanguageManager::Instance().GetLanguage("fr").GetMessages("salut");
+    // LanguageManager::Instance().GetLanguage("fr").AddMessageToFile("HelloWorld", "Hello comment vas-tu ? @0");
+    // const String& _message = LanguageManager::Instance().GetLanguage("fr").GetMessages("HelloWorld");
     // const String& _result = LanguageManager::Instance().Translate(_message, "Romain");
     // Timers::Timer _timer = Timers::Timer(1000);
     // _timer.Elapsed += OnTimedEvent;
     // _timer.Start();
     //
     Net::WebClient _req = Net::WebClient();
-    const Uri& _uri = Uri("https://vp183.cdnweb.xyz/dl/Nkwhj96kVyU/1636556771/ddb57a47d119ca4506bb2a5e1ad642f8fb98660c2cf4e879d9a6b7d56949db21?file=aHR0cHM6Ly9yMS0tLXNuLTRnNWU2bnpsLmdvb2dsZXZpZGVvLmNvbS92aWRlb3BsYXliYWNrP2V4cGlyZT0xNjM2NTc0NzUyJmVpPXdOR0xZYnJfQm9LOTFnTFNtb0RBQlEmaXA9OTQuMTMwLjY5LjMyJmlkPW8tQUxYQThsRmtGR09waTg4VFhYTk1wbEtKaUU0LUNHaFpJY2syTExYOFRyTXgmaXRhZz0xOCZzb3VyY2U9eW91dHViZSZyZXF1aXJlc3NsPXllcyZtaD1WMyZtbT0zMSUyQzI5Jm1uPXNuLTRnNWU2bnpsJTJDc24tNGc1ZWRuc2UmbXM9YXUlMkNyZHUmbXY9bSZtdmk9MSZwbD0yMyZpbml0Y3duZGJwcz01NjAwMDAmdnBydj0xJm1pbWU9dmlkZW8lMkZtcDQmZ2lyPXllcyZjbGVuPTE4ODUyNzQ0JnJhdGVieXBhc3M9eWVzJmR1cj0yMzguOTMzJmxtdD0xNTkzODkxMjM0NjgwNDkwJm10PTE2MzY1NTI2MjgmZnZpcD0xJmZleHA9MjQwMDEzNzMlMkMyNDAwNzI0NiZjPUFORFJPSUQmdHhwPTU1MzE0MjImc3BhcmFtcz1leHBpcmUlMkNlaSUyQ2lwJTJDaWQlMkNpdGFnJTJDc291cmNlJTJDcmVxdWlyZXNzbCUyQ3ZwcnYlMkNtaW1lJTJDZ2lyJTJDY2xlbiUyQ3JhdGVieXBhc3MlMkNkdXIlMkNsbXQmc2lnPUFPcTBRSjh3UmdJaEFJTk5WRGZvVS1YU3lNNnhOX2ZxVnAxazVNQm5jeDJGRVRfM2Q1bDE0b2hiQWlFQW5YQ1c4NXBldW02eFd5SnpIV0lELWlLaU1HUlA5NVNZQnNxVXAtN2F6NmslM0QmbHNwYXJhbXM9bWglMkNtbSUyQ21uJTJDbXMlMkNtdiUyQ212aSUyQ3BsJTJDaW5pdGN3bmRicHMmbHNpZz1BRzNDX3hBd1JBSWdhX3RwUUFXeS1GbWxTYkdVR3NaZ09kdTFtYjdIOGRRWld1VFZmUEpJMDlNQ0lEaDZvemxKNmc4WV9qX3owSnRBYWdYWnpsS1BWSUQ2RGlOS1pNTzBrbW5CJmhvc3Q9cjEtLS1zbi00ZzVlNm56bC5nb29nbGV2aWRlby5jb20mbmFtZT15dDVzLmNvbS1QT1dFUldPTEYrLStSZXN1cnJlY3Rpb24rYnkrRXJlY3Rpb24rKE5ldytWZXJzaW9uKzIwMjApKyhPZmZpY2lhbCtMeXJpYytWaWRlbykrJTdjK05hcGFsbStSZWNvcmRzKDM2MHApLm1wNA");
+    const Uri& _uri = Uri("https://r2---sn-n4v7snee.googlevideo.com/videoplayback?expire=1636608728&ei=eFaMYdfVD5yRsfIP64GR8Ac&ip=66.115.165.202&id=o-AIEU0kvj6GA79fMrYM2Ri0L1EkrOunRUm9_mJURPP5VT&itag=18&source=youtube&requiressl=yes&mh=NX&mm=31%2C26&mn=sn-n4v7snee%2Csn-a5mekn6s&ms=au%2Conr&mv=m&mvi=2&pl=25&initcwndbps=525000&vprv=1&mime=video%2Fmp4&ns=TDfCqiWo4MPYpS4jHFZrXpIG&gir=yes&clen=329399001&ratebypass=yes&dur=4606.815&lmt=1550909418747220&mt=1636586958&fvip=2&fexp=24001373%2C24007246&c=WEB&txp=5531432&n=sR6CPPUNMEGj9A&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cratebypass%2Cdur%2Clmt&sig=AOq0QJ8wRgIhAM9OqE74AZtt7xn1cBbu0VwXhGzYIRdUMBqU_qk6gaTUAiEA8lGvhmfODpxL4PX4PrweY5NDmak7Cl9t6XmqS10phgA%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&lsig=AG3C_xAwRgIhANah0hb_FLiMzgHmiqP9tHO-jdY80gqpAOu4fbownnoJAiEAkoTm_cl5P1qFLubJt74uPCZIJGuypRYCWFDM_4qJl8o%3D");
     _req.OnDownloadProgress += [](float _f)
     {
-        const char* _pbstr = "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||";
-        const int _pbwidth = 60;
-    
+        const char* pbstr = "====================================================================";
+        constexpr int _pbwidth = 60;
         const int _pad = (_f/100) * _pbwidth;
         const int _rpad = _pbwidth - _pad;
-        printf("\r%.0f%% [%.*s%*s]", _f, _pad, _pbstr, _rpad, "");
+        printf("\r%.0f%% [%.*s%s%*s]", _f, _pad, pbstr, ">", _rpad, "");
     };
     _req.DownloadFileCompleted += OnDownloadFileCompleted;
-    _req.DownloadFileAsync(_uri, Path::Combine(Environment::CurrentDirectory(), "powerwolf.mp4"));
+    _req.DownloadFileAsync(_uri, Path::Combine(Environment::CurrentDirectory(), "movie.mp4"));
     std::this_thread::sleep_for(std::chrono::seconds(60 * 2));
 
     return 0;

@@ -13,9 +13,11 @@ namespace System
         class DownloadStringCompletedEventArgs;
         class WebClient : public Object
         {
+            DECLARE_CLASS_INFO(Object)
 #pragma region f/p
         private:
             std::thread mThread = std::thread();
+            bool mIsRunning = false;
 #pragma endregion f/p
 #pragma region event
         public:
