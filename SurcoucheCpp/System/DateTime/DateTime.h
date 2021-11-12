@@ -32,7 +32,7 @@ public:
     static DateTime Now();
     static DateTime Convert(SYSTEMTIME _systemTime);
     static DateTime Convert(time_t _systemTime);
-    String ToStringFormat(const String& _format =  "d-m-y h:m:s") const;
+    String ToStringFormat(const String& _format =  "y-m-d h:m:s") const;
     Boolean Equals(const DateTime& _other);
     static DateTime FileTimeToDateTime(const FILETIME& _fileTime); 
 #pragma endregion custom methods
