@@ -31,7 +31,8 @@ public:
 public:
     static DateTime Now();
     static DateTime Convert(SYSTEMTIME _systemTime);
-    String ToStringFormat(const String& _format =  "%d-%m-%Y %H:%M:%S") const;
+    static DateTime Convert(time_t _systemTime);
+    String ToStringFormat(const String& _format =  "d-m-y h:m:s") const;
     Boolean Equals(const DateTime& _other);
     static DateTime FileTimeToDateTime(const FILETIME& _fileTime); 
 #pragma endregion custom methods
@@ -45,7 +46,12 @@ public:
 #pragma region operator
     DateTime& operator=(const DateTime& _other)
     {
-        mTime = std::move(_other.mTime);
+        mDay = std::move(_other.mDay);
+        mMonth = std::move(_other.mMonth);
+        mYears = std::move(_other.mYears);
+        mHour = std::move(_other.mHour);
+        mMinute = std::move(_other.mMinute);
+        mSecond = std::move(_other.mSecond);
         return *this;
     }
 #pragma endregion operator

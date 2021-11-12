@@ -31,21 +31,21 @@ System::DateTime System::IO::File::GetCreationTime(const String& _path)
 {
     struct stat _tStat;
     stat(_path, &_tStat);
-    return DateTime(_tStat.st_ctime);
+    return DateTime::Convert(_tStat.st_ctime);
 }
 
 System::DateTime System::IO::File::GetLastAccessTime(const String& _path)
 {
     struct stat _tStat;
     stat(_path, &_tStat);
-    return DateTime(_tStat.st_atime);
+    return DateTime::Convert(_tStat.st_atime);
 }
 
 System::DateTime System::IO::File::GetLastWriteTime(const String& _path)
 {
     struct stat _tStat;
     stat(_path, &_tStat);
-    return DateTime(_tStat.st_mtime);
+    return DateTime::Convert(_tStat.st_mtime);
 }
 
 void System::IO::File::Delete(const String& _path)

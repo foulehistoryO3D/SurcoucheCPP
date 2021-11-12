@@ -48,20 +48,20 @@ System::DateTime System::IO::DirectoryInfo::GetCreationTime() const
 {
     struct stat _tStat;
     stat(mPath, &_tStat);
-    return DateTime(_tStat.st_ctime);
+    return DateTime::Convert(_tStat.st_ctime);
 }
 
 System::DateTime System::IO::DirectoryInfo::GetLastAccessTime() const
 {
     struct stat _tStat;
     stat(mPath, &_tStat);
-    return DateTime(_tStat.st_atime);
+    return DateTime::Convert(_tStat.st_atime);
 }
 
 System::DateTime System::IO::DirectoryInfo::GetLastWriteTime() const
 {
     struct stat _tStat;
     stat(mPath, &_tStat);
-    return DateTime(_tStat.st_mtime);
+    return DateTime::Convert(_tStat.st_mtime);
 }
 #pragma endregion override

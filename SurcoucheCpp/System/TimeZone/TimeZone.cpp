@@ -52,7 +52,7 @@ time_t System::TimeZone::ConvertSystemTime(SYSTEMTIME _time)
 
 System::DateTime System::TimeZone::Time() const
 {
-    return mTime;
+    return DateTime::Convert(mTime);
 }
 
 System::String System::TimeZone::TimeZoneName() const
