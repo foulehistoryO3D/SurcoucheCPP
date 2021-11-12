@@ -1,7 +1,4 @@
 #pragma once
-
-
-#include "Event/Event/Event.h"
 #include "Event/EventArgs/EventArgs.h"
 #include "Event/EventHandler/EventHandler.h"
 #include "Event/Action/Action.h"

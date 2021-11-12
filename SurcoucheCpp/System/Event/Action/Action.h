@@ -3,7 +3,7 @@
 #include <vector>
 
 #include "../../Object/Object.h"
-#include "../Delegate/Delegate.h"
+#include "../Delegate/delegates.h"
 
 namespace System
 {
@@ -19,7 +19,7 @@ namespace System
     public:
         Action() = default;
         template <typename Function>
-        Action(Function _function);
+        Action(Function&& _function);
         ~Action() override;
 #pragma endregion constructor/destructor
 #pragma region custom methods
@@ -39,7 +39,7 @@ namespace System
 #pragma region constructor/destructor
     template <typename ... Args>
     template <typename Function>
-    Action<Args...>::Action(Function _function)
+    Action<Args...>::Action(Function&& _function)
     {
         Delegate<void, Args...> _delegate = Delegate<void, Args...>(_function);
         mFunctions.push_back(_delegate);

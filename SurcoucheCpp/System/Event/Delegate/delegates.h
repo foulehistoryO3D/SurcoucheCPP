@@ -42,3 +42,4 @@ namespace System
 #pragma endregion operator
     };
 }
+

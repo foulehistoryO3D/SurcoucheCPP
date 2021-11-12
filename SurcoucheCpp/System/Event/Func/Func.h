@@ -2,7 +2,7 @@
 #include <vector>
 
 #include "../../Object/Object.h"
-#include "../Delegate/Delegate.h"
+#include "../Delegate/delegates.h"
 
 namespace System
 {
