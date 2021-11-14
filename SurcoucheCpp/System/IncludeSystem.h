@@ -29,6 +29,7 @@
 #include "../System.IO/Directory/DirectoryInfo/DirectoryInfo.h"
 #include "../System.IO/Path/Path.h"
 #include "../System.IO/File/File/File.h"
+#include "System.IO/Stream/StreamReader/StreamReader.h"
 #include "../System.IO/Stream/StreamWriter/StreamWriter.h"
 #include "../System.IO/File/FileStream/FileStream.h"
 #include "../System.IO/File/FileSystemInfo/FileSystemInfo.h"

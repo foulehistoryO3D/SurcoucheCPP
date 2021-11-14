@@ -30,7 +30,7 @@ namespace System
         bool InitializeBox();
     public:
         void Open();
-        void DisplayMessageBox(const String& _message, const bool& _noDisplayIsNull = true) const;
+        void DisplayMessageBox(const String& _title, const bool& _noDisplayIsNull = true) const;
         String PathResult()const;
 #pragma endregion custom methods
 #pragma region override

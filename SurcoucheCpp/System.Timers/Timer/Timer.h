@@ -21,8 +21,6 @@ namespace System
             std::thread mThread = std::thread();
             Interval mInterval = Interval(0);
             ElapsedEventArgs* mElapsedEvent = null;
-            bool mAutoReset = false;
-            bool mEnabled = false;
             bool mIsRunning = false;
         public:
             Action<object*, ElapsedEventArgs*> Elapsed = Action<object*, ElapsedEventArgs*>();

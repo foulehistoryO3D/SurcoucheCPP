@@ -73,10 +73,10 @@ void System::BoxFile::Open()
     SaveResult(_fileOpen, _item, _filePath);
 }
 
-void System::BoxFile::DisplayMessageBox(const String& _message, const bool& _noDisplayIsNull) const
+void System::BoxFile::DisplayMessageBox(const String& _title, const bool& _noDisplayIsNull) const
 {
     if (_noDisplayIsNull && string::IsNullOrEmpty(mPathResult))return;
-    MessageBox(nullptr, String::ToWString(mPathResult)->c_str(), _message.ToWString()->c_str(), MB_OK);
+    MessageBox(nullptr, String::ToWString(mPathResult)->c_str(), _title.ToWString()->c_str(), MB_OK);
 }
 
 System::String System::BoxFile::PathResult() const

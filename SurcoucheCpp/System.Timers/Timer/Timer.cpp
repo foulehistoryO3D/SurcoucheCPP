@@ -12,8 +12,6 @@ System::Timers::Timer::Timer(const Timer& _timer)
 {
     mElapsedEvent = std::move(_timer.mElapsedEvent);
     Elapsed = std::move(_timer.Elapsed);
-    mEnabled = std::move(_timer.mEnabled);
-    mAutoReset = std::move(_timer.mAutoReset);
     mInterval = std::move(_timer.mInterval);
 }
 

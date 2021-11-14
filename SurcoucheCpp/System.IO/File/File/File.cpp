@@ -62,18 +62,17 @@ System::Boolean System::IO::File::Exists(const String& _path)
 
 System::IO::FileStream System::IO::File::Create(const String& _path)
 {
-    const String& _directoryPath =Path::GetDirectoryName(_path);
+    const String& _directoryPath = Path::GetDirectoryName(_path);
     if (!Directory::Exists(_directoryPath))
         Directory::MakeDirectory(_directoryPath);
-    
-    if (Exists(_path))return FileStream(_path); //TODO return object of file
+
+    if (Exists(_path))return FileStream(_path);
     std::ofstream _file = std::ofstream(_path);
     WIN32_FIND_DATAA _wfd;
     const HANDLE _hFind = FindFirstFileA(_path, &_wfd);
     if (_hFind != INVALID_HANDLE_VALUE)
         FindClose(_hFind);
     return FileStream(_path);
-    
 }
 
 System::IO::StreamWriter System::IO::File::CreateText(const String& _path)
