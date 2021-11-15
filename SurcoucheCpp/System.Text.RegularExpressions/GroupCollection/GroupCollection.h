@@ -1,5 +1,7 @@
 ﻿#pragma once
 #include "../../System.Collections.Generic/Interface/Dictionary/IDictionary.h"
+#include "../../System/PrimaryType/String/String.h"
+#include "../../System/PrimaryType/Boolean/Boolean.h"
 #include "../Group/Group.h"
 
 namespace System
@@ -24,6 +26,11 @@ namespace System
                 GroupCollection(IEnumerator<Collections::Generic::KeyValuePair<String, Group>>* _enumerator);
                 GroupCollection(const GroupCollection& _copy);
 #pragma endregion constructor
+#pragma region custom methods
+            private:
+                int IndexOf(const String& _key) const;
+                void RemoveAt(const int& _index);
+#pragma endregion custom methods
 #pragma region override
             public:
                 int Count() const override;
@@ -39,6 +46,11 @@ namespace System
                 Boolean ContainsKey(String _key) override;
                 void RemoveItem(String _key) override;
 #pragma endregion override
+#pragma region operator
+                Collections::Generic::KeyValuePair<String, Group>& operator[](const int32& _index) const;
+                GroupCollection& operator=(const GroupCollection& _other);
+                Boolean operator==(const GroupCollection& _other) const;
+#pragma endregion operator
             };
         }
     }

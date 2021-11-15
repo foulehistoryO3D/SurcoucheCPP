@@ -52,4 +52,12 @@ size_t System::Text::RegularExpressions::Group::GetHashCode() const
     Group _group = *this;
     return std::hash<Group*>{}(&_group);
 }
+
+System::Text::RegularExpressions::Group& System::Text::RegularExpressions::Group::operator=(const Group& _other)
+{
+    mCaptureCollection = std::move(_other.mCaptureCollection);
+    mName = std::move(_other.mName);
+    mSuccess = std::move(_other.mSuccess);
+    return *this;
+}
 #pragma endregion constructor

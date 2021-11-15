@@ -27,12 +27,16 @@ namespace System
                 Group(const int& _index, const String& _value, const CaptureCollection& _collection);
                 Group(const Group& _copy);
 #pragma endregion constructor
-#pragma region operator
+#pragma region override
             public:
                 String ToString() const override;
                 Boolean Equals(const object* _obj) override;
                 Boolean Equals(const object& _obj) override;
                 size_t GetHashCode() const override;
+#pragma endregion override
+#pragma region operator
+            public:
+                Group& operator=(const Group& _other);
 #pragma endregion operator
             };
         }
