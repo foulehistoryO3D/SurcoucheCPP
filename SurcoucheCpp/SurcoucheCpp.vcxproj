@@ -180,6 +180,11 @@
     <ClCompile Include="System.Net\StringEventArgs\DownloadStringCompletedEventArgs.cpp" />
     <ClCompile Include="System.Net\WebCallback\WebCallback.cpp" />
     <ClCompile Include="System.Net\WebClient\WebClient.cpp" />
+    <ClCompile Include="System.Text.RegularExpressions\CaptureCollection\CaptureCollection.cpp" />
+    <ClCompile Include="System.Text.RegularExpressions\Capture\Capture.cpp" />
+    <ClCompile Include="System.Text.RegularExpressions\GroupCollection\GroupCollection.cpp" />
+    <ClCompile Include="System.Text.RegularExpressions\Group\Group.cpp" />
+    <ClCompile Include="System.Text.RegularExpressions\Match\Match.cpp" />
     <ClCompile Include="System.Text.RegularExpressions\Regex\Regex.cpp" />
     <ClCompile Include="System.Text\StringBuilder\StringBuilder.cpp" />
     <ClCompile Include="System.Timers\ElapsedEventArgs\ElapsedEventArgs.cpp" />
@@ -314,6 +319,11 @@
     <ClInclude Include="System.Net\StringEventArgs\DownloadStringCompletedEventArgs.h" />
     <ClInclude Include="System.Net\WebCallback\WebCallback.h" />
     <ClInclude Include="System.Net\WebClient\WebClient.h" />
+    <ClInclude Include="System.Text.RegularExpressions\CaptureCollection\CaptureCollection.h" />
+    <ClInclude Include="System.Text.RegularExpressions\Capture\Capture.h" />
+    <ClInclude Include="System.Text.RegularExpressions\GroupCollection\GroupCollection.h" />
+    <ClInclude Include="System.Text.RegularExpressions\Group\Group.h" />
+    <ClInclude Include="System.Text.RegularExpressions\Match\Match.h" />
     <ClInclude Include="System.Text.RegularExpressions\Regex\Regex.h" />
     <ClInclude Include="System.Text\StringBuilder\StringBuilder.h" />
     <ClInclude Include="System.Timers\ElapsedEventArgs\ElapsedEventArgs.h" />
@@ -334,8 +344,10 @@
     <ClInclude Include="System\Exception\Exception\Exception.h" />
     <ClInclude Include="System\Exception\OutOfRange\OutOfRange.h" />
     <ClInclude Include="System\IncludeSystem.h" />
+    <ClInclude Include="System\Interface\AsyncResult\IAsyncResult.h" />
     <ClInclude Include="System\Interface\Cloneable\ICloneable.h" />
     <ClInclude Include="System\Interface\Comparable\IComparable.h" />
+    <ClInclude Include="System\Interface\Disposable\IDisposable.h" />
     <ClInclude Include="System\Interface\Equatable\IEquatable.h" />
     <ClInclude Include="System\LanguageManager\LanguageManager.h" />
     <ClInclude Include="System\LanguageManager\Language\Language.h" />

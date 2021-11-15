@@ -72,6 +72,7 @@ void System::Net::WebClient::DownloadFileAsyncInternal(const Uri& _address, cons
     _webCallback->Release();
     _event->SetCancelled(_result);
     DownloadFileCompleted(this, _event, _pathFile);
+    delete _webCallback;
 }
 
 void System::Net::WebClient::DownloadStringAsync(const Uri& _address)
