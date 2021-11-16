@@ -17,6 +17,7 @@ namespace System
 #pragma endregion f/p
 #pragma region constructor
     public:
+        Integer()=default;
         Integer(const int _value);
         Integer(const Integer& _copy);
 #pragma endregion constructor
@@ -36,6 +37,7 @@ namespace System
 #pragma endregion override
 #pragma region operator
         operator int()const { return mValue;}
+        Integer& operator=(const Integer& _other);
         Integer operator+(const Integer& _other) const;
         Integer operator+(const int& _other) const;
         Integer operator+=(const Integer& _other);
@@ -54,6 +56,8 @@ namespace System
         Integer operator/=(const int& _other);
         Integer operator++(int);
         Integer operator--(int);
+        Integer operator++();
+        Integer operator--();
 #pragma endregion operator
     };
     typedef Integer Int;

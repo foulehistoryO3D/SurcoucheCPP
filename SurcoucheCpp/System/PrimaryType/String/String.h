@@ -94,8 +94,8 @@ namespace System
         }
         String operator=(const String& _str)
         {
-            mValue = _str.mValue;
-            mLength = _str.mLength;
+            mValue = std::move(_str.mValue);
+            mLength = std::move(_str.mLength);
             return *this;
         }
         String& operator+=(char _c);

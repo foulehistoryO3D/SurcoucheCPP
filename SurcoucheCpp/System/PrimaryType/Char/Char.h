@@ -41,6 +41,7 @@ namespace System
 #pragma endregion override
 #pragma region operator
     public:
+        Char& operator=(const Char& _other);
         operator char()const { return mValue; }
 #pragma endregion operator
     };

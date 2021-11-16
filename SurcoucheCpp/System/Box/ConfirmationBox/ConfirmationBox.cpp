@@ -20,7 +20,7 @@ System::Boolean System::ConfirmationBox::Open() const
 {
     const LPCWSTR& _title = string::ToWString(mTitle)->c_str();
     const LPCWSTR& _message = string::ToWString(mMessage)->c_str();
-    const int& _result = MessageBox(nullptr, _message, _title, MB_ICONQUESTION|MB_DEFBUTTON4|MB_YESNO);
+    const int& _result = MessageBox(nullptr, _message, _title, MB_ICONQUESTION | MB_DEFBUTTON4 | MB_YESNO);
     return _result == 6;
 }
 #pragma endregion custom methods
@@ -44,5 +44,12 @@ size_t System::ConfirmationBox::GetHashCode() const
 {
     ConfirmationBox _confirmationBox = *this;
     return std::hash<ConfirmationBox*>{}(&_confirmationBox);
+}
+
+System::ConfirmationBox& System::ConfirmationBox::operator=(const ConfirmationBox& _other)
+{
+    mTitle = std::move(_other.mTitle);
+    mMessage = std::move(_other.mMessage);
+    return *this;
 }
 #pragma endregion override

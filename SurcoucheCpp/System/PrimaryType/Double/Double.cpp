@@ -79,6 +79,12 @@ size_t System::Double::GetHashCode() const
     Double _value = *this;
     return std::hash<Double*>{}(&_value);
 }
+
+System::Double& System::Double::operator=(const Double& _other)
+{
+    mValue = std::move(_other.mValue);
+    return *this;
+}
 #pragma endregion override
 #pragma region operator
 System::Boolean System::Double::operator==(const Double& _other) const

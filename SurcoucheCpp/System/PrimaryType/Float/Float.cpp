@@ -58,6 +58,12 @@ System::Boolean System::Float::Equals(const float& _object)
     return mValue == _object;
 }
 
+System::Float& System::Float::operator=(const Float& _other)
+{
+    mValue = std::move(_other.mValue);
+    return *this;
+}
+
 System::Boolean System::Float::operator==(const Float& _other) const
 {
     return mValue == _other.mValue;

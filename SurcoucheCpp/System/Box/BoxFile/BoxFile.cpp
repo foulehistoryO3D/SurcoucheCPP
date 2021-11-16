@@ -20,7 +20,7 @@ System::BoxFile::BoxFile(const BoxFile& _copy)
 #pragma region private
 bool System::BoxFile::CreateInstanceDialog(IFileOpenDialog*& _fileOpen)
 {
-    _fileOpen = { 0 };
+    _fileOpen = {0};
     mHResult = CoCreateInstance(CLSID_FileOpenDialog, nullptr, CLSCTX_ALL, IID_IFileOpenDialog,
                                 reinterpret_cast<void**>(&_fileOpen));
     if (!SUCCEEDED(mHResult))return false;
@@ -53,6 +53,7 @@ void System::BoxFile::SaveResult(IFileOpenDialog* _fileOpen, IShellItem* _item, 
     _fileOpen->Release();
     CoUninitialize();
 }
+
 bool System::BoxFile::InitializeBox()
 {
     mHResult = CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
@@ -106,4 +107,15 @@ size_t System::BoxFile::GetHashCode() const
     BoxFile _boxFile = *this;
     return std::hash<BoxFile*>{}(&_boxFile);
 }
+
 #pragma endregion override
+#pragma region operator
+
+System::BoxFile& System::BoxFile::operator=(const BoxFile& _other)
+{
+    mTitle = std::move(_other.mTitle);
+    mHResult = std::move(_other.mHResult);
+    mPathResult = std::move(_other.mPathResult);
+    return *this;
+}
+#pragma endregion operator

@@ -15,6 +15,7 @@ namespace System
 #pragma endregion f/p
 #pragma region constructor
     public:
+        Byte()=default;
         Byte(const byte& _byte);
         Byte(const Byte& _copy);
 #pragma endregion constructor
@@ -33,6 +34,7 @@ namespace System
 #pragma endregion override
 #pragma region operator
     public:
+        Byte& operator=(const Byte& _other);
         operator byte()const { return mValue;}
         Boolean operator==(const Byte& _other) const;
         Boolean operator!=(const Byte& _other) const;

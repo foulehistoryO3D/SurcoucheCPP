@@ -14,6 +14,7 @@ namespace System
 #pragma endregion f/p
 #pragma region constructor
     public:
+        Boolean()=default;
         Boolean(const bool& _value);
         Boolean(const Boolean& _copy);
 #pragma endregion constructor
@@ -32,6 +33,7 @@ namespace System
 #pragma endregion override
 #pragma region operator
     public:
+        Boolean& operator=(const Boolean& _other);
         operator bool()const{ return mValue; }
         Boolean operator==(const Boolean& _other) const;
         Boolean operator==(const bool& _other)const;

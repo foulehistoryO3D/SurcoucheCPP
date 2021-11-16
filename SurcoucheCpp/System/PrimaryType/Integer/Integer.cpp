@@ -71,6 +71,12 @@ System::Bool  System::Integer::Equals(const int& _object)
 }
 #pragma endregion override
 #pragma region operator
+System::Integer& System::Integer::operator=(const Integer& _other)
+{
+    mValue = std::move(_other.mValue);
+    return *this;
+}
+
 System::Integer System::Integer::operator+(const Integer& _other) const
 {
     Integer _result = mValue + _other;
@@ -176,6 +182,18 @@ System::Integer System::Integer::operator++(int)
 System::Integer System::Integer::operator--(int)
 {
     mValue--;
+    return *this;
+}
+
+System::Integer System::Integer::operator++()
+{
+    ++mValue;
+    return *this;
+}
+
+System::Integer System::Integer::operator--()
+{
+    --mValue;
     return *this;
 }
 #pragma endregion operator

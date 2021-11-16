@@ -59,6 +59,12 @@ System::Boolean System::Boolean::Equals(const bool& _object)
     return mValue == _object;
 }
 
+System::Boolean& System::Boolean::operator=(const Boolean& _other)
+{
+    mValue = std::move(_other.mValue);
+    return *this;
+}
+
 System::Boolean System::Boolean::operator==(const Boolean& _other) const
 {
     return mValue == _other.mValue;

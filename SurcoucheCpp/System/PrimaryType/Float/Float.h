@@ -17,6 +17,7 @@ namespace System
 #pragma endregion f/p
 #pragma region constructor
     public:
+        Float()=default;
         Float(const float& _value);
         Float(const Float&_other);
 #pragma endregion constructor
@@ -35,6 +36,7 @@ namespace System
 #pragma endregion override
 #pragma region operator
     public:
+        Float& operator=(const Float& _other);
         operator float()const { return mValue;}
         Boolean operator==(const Float& _other) const;
         Boolean operator!=(const Float& _other) const;

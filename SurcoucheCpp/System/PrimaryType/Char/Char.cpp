@@ -89,4 +89,10 @@ size_t System::Char::GetHashCode() const
     Char _char = *this;
     return std::hash<Char*>{}(&_char);
 }
+
+System::Char& System::Char::operator=(const Char& _other)
+{
+    mValue = std::move(_other.mValue);
+    return *this;
+}
 #pragma endregion override

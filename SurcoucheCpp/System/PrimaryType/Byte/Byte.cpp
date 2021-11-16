@@ -64,8 +64,16 @@ size_t System::Byte::GetHashCode() const
     Byte _byte = *this;
     return std::hash<Byte*>{}(&_byte);
 }
+
 #pragma endregion override
 #pragma region operator
+
+System::Byte& System::Byte::operator=(const Byte& _other)
+{
+    mValue = std::move(_other.mValue);
+    return *this;
+}
+
 System::Boolean System::Byte::operator==(const Byte& _other) const
 {
     return mValue == _other.mValue;

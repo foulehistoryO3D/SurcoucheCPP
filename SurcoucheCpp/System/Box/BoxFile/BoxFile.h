@@ -40,5 +40,8 @@ namespace System
         Boolean Equals(const object& _obj) override;
         size_t GetHashCode() const override;
 #pragma endregion override
+#pragma region operator
+        BoxFile& operator=(const BoxFile& _other);
+#pragma endregion operator
     };
 }

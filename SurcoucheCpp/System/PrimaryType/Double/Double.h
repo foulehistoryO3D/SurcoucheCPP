@@ -19,6 +19,7 @@ namespace System
 #pragma endregion f/p
 #pragma region constructor
     public:
+        Double()=default;
         Double(const double& _value);
         Double(const Double& _copy);
 #pragma endregion constructor
@@ -41,6 +42,7 @@ namespace System
 #pragma endregion override
 #pragma region operator
     public:
+        Double& operator=(const Double& _other);
         operator double() const { return mValue; }
         Boolean operator==(const Double& _other) const;
         Boolean operator==(const double& _other) const;
