@@ -17,8 +17,8 @@ namespace System
         DECLARE_CLASS_INFO(Type)
 #pragma region constructor/destructor
     public:
-        Object()=default;
-        virtual ~Object() override =default;
+        Object() = default;
+        virtual ~Object() override = default;
 #pragma endregion constructor/destructor
 #pragma region custom methods
     public:
@@ -26,13 +26,17 @@ namespace System
         virtual Boolean Equals(const object& _obj);
         virtual Boolean Equals(const object* _obj, const object* _other);
         virtual Boolean Equals(const object& _obj, const object& _other);
-        virtual size_t GetHashCode()const override;
+        virtual size_t GetHashCode() const override;
 #pragma endregion custom methods
 #pragma region operator
         virtual Boolean operator==(const object* _obj);
         virtual Boolean operator!=(const object* _obj);
         virtual Boolean operator==(const object& _obj);
         virtual Boolean operator!=(const object& _obj);
+        Object& operator=(const Object& _object)
+        {
+            return *this;
+        }
 #pragma endregion operator
     };
 }

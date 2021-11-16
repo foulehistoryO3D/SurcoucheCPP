@@ -6,14 +6,25 @@ System::Text::RegularExpressions::GroupCollection System::Text::RegularExpressio
     return mGroups;
 }
 #pragma endregion f/p
-System::Text::RegularExpressions::Match::Match(const int& _index, const String& _value, const bool _success) : Group(_index, _value, CaptureCollection())
+System::Text::RegularExpressions::Match::Match(const bool _success)
 {
     mSuccess = _success;
 }
 
-System::Text::RegularExpressions::Match::Match(const Match& _copy) : Group(_copy)
+System::Text::RegularExpressions::Match::Match(const Match& _copy)
 {
+    mCaptureCollection = std::move(_copy.mCaptureCollection);
+    mName = std::move(_copy.mName);
+    mSuccess = std::move(_copy.mSuccess);
+    mValue = std::move(_copy.mValue);
+    mIndex = std::move(_copy.mIndex);
+    mLength = std::move(_copy.mLength);
     mGroups = std::move(_copy.mGroups);
+}
+
+void System::Text::RegularExpressions::Match::AddGroup(const String& _key, const Group& _group)
+{
+    mGroups.Add(_key, _group);
 }
 
 System::String System::Text::RegularExpressions::Match::ToString() const
@@ -38,7 +49,14 @@ size_t System::Text::RegularExpressions::Match::GetHashCode() const
     return Group::GetHashCode();
 }
 
-System::Text::RegularExpressions::Match& System::Text::RegularExpressions::Match::operator=(const Match& _other)
+System::Text::RegularExpressions::Match System::Text::RegularExpressions::Match::operator=(const Match& _other)
 {
+    mCaptureCollection = std::move(_other.mCaptureCollection);
+    mName = std::move(_other.mName);
+    mSuccess = std::move(_other.mSuccess);
+    mValue = std::move(_other.mValue);
+    mIndex = std::move(_other.mIndex);
+    mLength = std::move(_other.mLength);
+    mGroups = std::move(_other.mGroups);
     return *this;
 }

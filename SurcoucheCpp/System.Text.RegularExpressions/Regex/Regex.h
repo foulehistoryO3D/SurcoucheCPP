@@ -10,6 +10,7 @@ namespace System
     {
         namespace RegularExpressions
         {
+            class Match;
             class Regex : public Object, public IEquatable<Regex>
             {
 #pragma region f/p
@@ -24,9 +25,13 @@ namespace System
                 Regex(const Regex& _copy);
 #pragma endregion constructor
 #pragma region custom methods
+            private:
+                void InitMatchRegex(std::string& _str, int _index, Match& _match, std::smatch m) const;
+                void InitMatchRegexInternal(std::string& _str, int _index, Match& _match, std::smatch m) const;
             public:
                 Boolean IsMatch(const String& _input)const;
                 String Replace(const String& _input, const String& _replacement)const;
+                Match Match(const String& _input) const;
 #pragma endregion custom methods
 #pragma region override
             public:

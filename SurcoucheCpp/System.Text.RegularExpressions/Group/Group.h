@@ -24,9 +24,14 @@ namespace System
 #pragma region constructor
             public:
                 Group()=default;
-                Group(const int& _index, const String& _value, const CaptureCollection& _collection);
                 Group(const Group& _copy);
 #pragma endregion constructor
+#pragma region custom methods
+            public:
+                void SetName(const String& _name);
+                void SetSuccess(const bool _success);
+                void AddCapture(const Capture& _capture);
+#pragma endregion custom methods
 #pragma region override
             public:
                 String ToString() const override;
@@ -36,7 +41,7 @@ namespace System
 #pragma endregion override
 #pragma region operator
             public:
-                Group& operator=(const Group& _other);
+                Group operator=(const Group& _other);
 #pragma endregion operator
             };
         }

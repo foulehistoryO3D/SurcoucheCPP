@@ -166,4 +166,16 @@ System::Integer System::Integer::operator/=(const int& _other)
     mValue /= _other;
     return *this;
 }
+
+System::Integer System::Integer::operator++(int)
+{
+    mValue++;
+    return *this;
+}
+
+System::Integer System::Integer::operator--(int)
+{
+    mValue--;
+    return *this;
+}
 #pragma endregion operator

@@ -3,6 +3,8 @@
 #include "../../System/PrimaryType/String/String.h"
 #include "../../System/PrimaryType/Boolean/Boolean.h"
 #include "../Group/Group.h"
+#include "../../System/PrimaryType/String/String.h"
+#include "../../System/PrimaryType/Boolean/Boolean.h"
 
 namespace System
 {

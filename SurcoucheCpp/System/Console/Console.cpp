@@ -5,7 +5,6 @@
 #include "../../System.IO/Stream/TextReader/TextReader.h"
 #include "../../System.IO/Stream/TextWriter/TextWriter.h"
 #include "../../System.IO/File/FileStream/FileStream.h"
-#include "../../System/PrimaryType/String/String.h"
 #include "../../System/PrimaryType/Boolean/Boolean.h"
 #include "../../System/PrimaryType/Double/Double.h"
 #include "../../System/PrimaryType/Byte/Byte.h"

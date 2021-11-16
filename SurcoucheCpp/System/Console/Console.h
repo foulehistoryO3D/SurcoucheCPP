@@ -1,6 +1,10 @@
 ﻿#pragma once
 #include <iostream>
+
+#include "../../System.Collections.Generic/List/List.h"
+#include "../../System/PrimaryType/String/String.h"
 #include "../Object/Object.h"
+#include "../TemplateUtils/TemplateUtils.h"
 
 namespace System
 {
@@ -38,6 +42,8 @@ namespace System
         static void WriteLine(const Byte& _byte);
         static void WriteLine(const String& _str);
         static void WriteLine(const Integer& _int);
+        template<typename... Args>
+        static void WriteLine(const String& _str, Args... _args);
         static void WriteLine(char _char);
         static void SetIn(IO::TextReader _in);
         static void SetOut(IO::TextWriter _out);
@@ -46,4 +52,14 @@ namespace System
 #pragma endregion custom methods
     };
 
+    template <typename ... Args>
+    void Console::WriteLine(const String& _str, Args... _args)
+    {
+        Collections::Generic::List<object*> _package = TemplateUtils::CreateVectorWithParameterPack<object*>(&_args...);
+        const int _count = _package.Count();
+        String _result = _str;
+        for (int i = 0; i < _count; ++i)
+            _result = _result.Replace(string("{") + i + "}", _package[i]->ToString());
+        std::cout << _result << std::endl;
+    }
 }

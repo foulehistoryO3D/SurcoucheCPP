@@ -52,6 +52,8 @@ namespace System
         Integer operator/(const int& _other) const;
         Integer operator/=(const Integer& _other);
         Integer operator/=(const int& _other);
+        Integer operator++(int);
+        Integer operator--(int);
 #pragma endregion operator
     };
     typedef Integer Int;

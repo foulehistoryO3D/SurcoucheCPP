@@ -20,9 +20,13 @@ namespace System
 #pragma region constructor
             public:
                 Match()=default;
-                Match(const int& _index, const String& _value, const bool _success);
+                Match(const bool _success);
                 Match(const Match& _copy);
 #pragma endregion constructor
+#pragma region custom methods
+            public:
+                void AddGroup(const String& _key, const Group& _group);
+#pragma endregion custom methods
 #pragma region override
             public:
                 String ToString() const override;
@@ -32,7 +36,7 @@ namespace System
 #pragma endregion override
 #pragma region operator
             public:
-                Match& operator=(const Match& _other);
+                Match operator=(const Match& _other);
 #pragma endregion operator
             };
         }

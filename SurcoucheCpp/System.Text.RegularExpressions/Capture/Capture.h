@@ -24,9 +24,13 @@ namespace System
 #pragma region constructor
             public:
                 Capture() = default;
-                Capture(const int& _index, const String& _value);
                 Capture(const Capture& _copy);
 #pragma endregion constructor
+#pragma region custom methods
+            public:
+                void SetIndex(const int _index);
+                void SetValue(const String& _value);
+#pragma endregion custom methods
 #pragma region override
             public:
                 String ToString() const override;
@@ -35,7 +39,7 @@ namespace System
                 size_t GetHashCode() const override;
 #pragma endregion override
 #pragma region operator
-                Capture& operator=(const Capture& _other)
+                Capture operator=(const Capture& _other)
                 {
                     mIndex = std::move(_other.mIndex);
                     mValue = std::move(_other.mValue);

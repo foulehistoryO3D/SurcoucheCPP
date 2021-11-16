@@ -406,6 +406,7 @@ bool System::String::operator==(const String& _other) const
 
 bool System::String::operator==(const char* _other) const
 {
+    if (_other == null) return mValue == "";
     const int _length = strlen(_other);
     if (_length != mLength) return false;
     for (int i = 0; i < mLength; ++i)
