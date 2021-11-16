@@ -32,31 +32,40 @@ System::String System::Text::RegularExpressions::Regex::Replace(const String& _i
 
 void System::Text::RegularExpressions::Regex::InitMatchRegex(std::string& _str, int _index, RegularExpressions::Match& _match, std::smatch m) const
 {
-    _match.SetValue(m[0].str().c_str());
+    const char* _value = m[0].str().c_str();
+    const char* _key = m[1].str().c_str();
+    _match.SetValue(_value);
     _str = m.suffix();
     _match.SetIndex(_index = _index == -1 ? m.position() : _index);
     Group _group = Group();
-    _group.SetName(Int(0).ToString());
+    _group.SetName(Int(1).ToString());
     _group.SetValue(_match.Value());
     _group.SetIndex(_index);
     Capture _capture = Capture();
     _capture.SetIndex(_index);
     _capture.SetValue(_match.Value());
     _group.AddCapture(_capture);
-    _match.AddGroup(Int(0).ToString(), _group);
+    _match.AddGroup(Int(1).ToString(), _group);
+    InitMatchRegexInternal(_match, _key, _value);
 }
 
-void System::Text::RegularExpressions::Regex::InitMatchRegexInternal(std::string& _str, int _index, RegularExpressions::Match& _match, std::smatch m) const
+void System::Text::RegularExpressions::Regex::InitMatchRegexInternal(RegularExpressions::Match& _match,
+    const String& _key, const String& _str) const
 {
     Group _group = Group();
-    _group.SetName(Int(1).ToString());
-    _group.SetValue(m[1].str().c_str());
-    std::smatch _m = std::smatch();
-    const bool _isSuccess = std::regex_search(_str, m, mExpression);
-    _group.SetSuccess(_isSuccess);
-    int index = m.position();
-    
+    _group.SetName(Int(2).ToString());
+    _group.SetValue(_key);
+    Collections::Generic::List<String> _splitedString = _str.Split(' ');
+    const int _count = _splitedString.Count();
+    for (int i = 1; i < _count; ++i)
+    {
+        Capture _capture = Capture();
+        _capture.SetValue(_splitedString[i]);
+        _group.AddCapture(_capture);
+    }
+    _match.AddGroup(_group.Value(), _group);
 }
+
 
 System::Text::RegularExpressions::Match System::Text::RegularExpressions::Regex::Match(const String& _input) const
 {
@@ -66,9 +75,7 @@ System::Text::RegularExpressions::Match System::Text::RegularExpressions::Regex:
     RegularExpressions::Match _match = RegularExpressions::Match(_isSuccess);
     std::smatch m = std::smatch();
     std::regex_search(_str, m, mExpression);
-    
     InitMatchRegex(_str, _index, _match, m);
-    InitMatchRegexInternal(_str, _index, _match, m);
     
     for (; std::regex_search(_str, m, mExpression); _str = m.suffix())
     {
