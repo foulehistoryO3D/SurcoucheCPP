@@ -41,6 +41,7 @@ namespace System
                 void ForEach(Action<Item> _action);
                 List<Item> OrderBy(Func<bool, Item, Item> _selector);
                 List<Item> Where(Func<bool, Item> _selector);
+                bool Any(Func<bool, Item> _selector);
                 Item Find(Predicate<Item> _pred);
 #pragma endregion Linq
 #pragma region override
@@ -62,6 +63,7 @@ namespace System
                 List<Item>* operator=(const IEnumerable<Item>* _enumerable);
                 Item& operator[](const int _index);
                 Item& operator[](const int _index)const;
+                bool operator==(const List& list) const;
 #pragma endregion operator
             };
 #pragma region constructor/destructor
@@ -142,6 +144,21 @@ namespace System
                 }
                 Reset();
                 return _result;
+            }
+
+            template <typename Item>
+            bool List<Item>::Any(Func<bool, Item> _selector)
+            {
+                while(MoveNext())
+                {
+                    if (_selector(Current()))
+                    {
+                        Reset();
+                        return true;
+                    }
+                }
+                Reset();
+                return false;
             }
 
             template <typename Item>
@@ -289,6 +306,17 @@ namespace System
             {
                 if (_index < 0 || _index > mCount) throw OutOfRange("[List] out of range");
                 return mTab[_index];
+            }
+
+            template <typename Item>
+            bool List<Item>::operator==(const List& list) const
+            {
+                const int count = list.Count();
+                if (mCount != count) return false;
+                for (int i = 0; i < mCount; ++i)
+                    if (mTab[i] != list[i])
+                        return false;
+                return true;
             }
 #pragma endregion operator
         }

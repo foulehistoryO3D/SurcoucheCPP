@@ -32,9 +32,9 @@ System::String System::Text::RegularExpressions::Regex::Replace(const String& _i
 
 void System::Text::RegularExpressions::Regex::InitMatchRegex(std::string& _str, int _index, RegularExpressions::Match& _match, std::smatch m) const
 {
-    const char* _value = m[0].str().c_str();
-    const char* _key = m[1].str().c_str();
-    _match.SetValue(_value);
+    std::string _value = std::string(m[0].str());
+    std::string _key = m[1].str();
+    _match.SetValue(_value.c_str());
     _str = m.suffix();
     _match.SetIndex(_index = _index == -1 ? m.position() : _index);
     Group _group = Group();
@@ -45,8 +45,8 @@ void System::Text::RegularExpressions::Regex::InitMatchRegex(std::string& _str, 
     _capture.SetIndex(_index);
     _capture.SetValue(_match.Value());
     _group.AddCapture(_capture);
-    _match.AddGroup(Int(1).ToString(), _group);
-    InitMatchRegexInternal(_match, _key, _value);
+    _match.AddGroup(_group.Name(), _group);
+    InitMatchRegexInternal(_match, _key.c_str(), _value.c_str());
 }
 
 void System::Text::RegularExpressions::Regex::InitMatchRegexInternal(RegularExpressions::Match& _match,
@@ -57,13 +57,14 @@ void System::Text::RegularExpressions::Regex::InitMatchRegexInternal(RegularExpr
     _group.SetValue(_key);
     Collections::Generic::List<String> _splitedString = _str.Split(' ');
     const int _count = _splitedString.Count();
-    for (int i = 1; i < _count; ++i)
+    for (int i = 0; i < _count; ++i)
     {
         Capture _capture = Capture();
-        _capture.SetValue(_splitedString[i]);
+        String _string =_splitedString[i];
+        _capture.SetValue(_string);
         _group.AddCapture(_capture);
     }
-    _match.AddGroup(_group.Value(), _group);
+    _match.AddGroup(_group.Name(), _group);
 }
 
 

@@ -38,7 +38,7 @@ std::vector<System::Type*> System::Type::Assembly() const
 
 System::Boolean System::Type::Equals(const Type* _type)
 {
-    return this == _type;
+    return ClassName() == _type->ClassName();
 }
 
 System::Type* System::Type::GetType()
@@ -55,16 +55,21 @@ size_t System::Type::GetHashCode() const
 
 System::String System::Type::ToString() const
 {
-    String _fullName = FullName();
-    const Integer& _index = _fullName.LastIndexOf(':');
-    if (_index > -1)
-        _fullName = _fullName.SubString(_index+1, _fullName.Length());
-    return _fullName;
+    return ClassName();
 }
 
 System::String System::Type::FullName() const
 {
     return typeid(*this).name();
+}
+
+System::String System::Type::ClassName() const
+{
+    String _fullName = FullName();
+    const Integer& _index = _fullName.LastIndexOf(':');
+    if (_index > -1)
+        _fullName = _fullName.SubString(_index+1, _fullName.Length());
+    return _fullName;
 }
 
 System::Boolean System::Type::IsInterface() const

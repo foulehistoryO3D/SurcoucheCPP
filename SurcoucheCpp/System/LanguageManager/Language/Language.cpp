@@ -59,6 +59,31 @@ System::IO::FileStream System::Language::GetFile() const
     return mFile;
 }
 
+#pragma region override
+System::String System::Language::ToString() const
+{
+    return mName;
+}
+
+System::Boolean System::Language::Equals(const object* object)
+{
+    const Language& _other = *dynamic_cast<const Language*>(object);
+    return mName == _other.mName && mFile == _other.mFile && mFileName == _other.mFileName;
+}
+
+System::Boolean System::Language::Equals(const object& object)
+{
+    const Language& _other = *dynamic_cast<const Language*>(&object);
+    return mName == _other.mName && mFile == _other.mFile && mFileName == _other.mFileName;
+}
+
+size_t System::Language::GetHashCode() const
+{
+    Language _this = *this;
+    return std::hash<Language*>{}(&_this);
+}
+#pragma endregion override
+
 System::Language System::Language::operator=(const Language& _copy)
 {
     mFile = std::move(_copy.mFile);

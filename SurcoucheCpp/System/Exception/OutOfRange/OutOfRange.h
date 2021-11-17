@@ -16,5 +16,10 @@ namespace System
 
         OutOfRange(OutOfRange const& _other) : Exception(_other)  { }
 #pragma endregion constructor/destructor
+#pragma region operator
+        OutOfRange& operator=(const OutOfRange& _other)
+        {
+            return *this;
+        }
     };
 }

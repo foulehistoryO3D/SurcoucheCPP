@@ -7,6 +7,7 @@
 #include "../../Object/Object.h"
 #include "../../Interface/Cloneable/ICloneable.h"
 #include "../../Interface/Equatable/IEquatable.h"
+#include "../../TemplateUtils/TemplateUtils.h"
 
 namespace System
 {
@@ -66,6 +67,8 @@ namespace System
         std::wstring* ToWString()const;
         static std::wstring* ToWString(const String& _str);
         static String WStringToString(const std::wstring& _wstring);
+        template<typename... Args>
+        static String Format(const String& _str, Args... _args);
 
 #pragma endregion custom methods
 #pragma region override
@@ -106,6 +109,17 @@ namespace System
         bool operator!= (const char* _other) const;
 #pragma endregion operator
     };
+
+    template <typename ... Args>
+    String String::Format(const String& _str, Args... _args)
+    {
+        String _result = _str;
+        Collections::Generic::List<object*> _package = TemplateUtils::CreateVectorWithParameterPack<object*>(&_args...);
+        const int _count = _package.Count();
+        for (int i = 0; i < _count; ++i)
+            _result = _result.Replace(String("{") + i + "}", _package[i]->ToString());
+        return _result;
+    }
 }
 
 typedef System::String string;

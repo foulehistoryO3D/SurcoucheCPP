@@ -84,6 +84,7 @@ const int mSubClassCount = RegisterSubClass(this);
         virtual size_t GetHashCode() const;
         virtual String ToString()const;
         String FullName()const;
+        String ClassName()const;
         Boolean IsInterface()const;
         Boolean IsSealed()const;
         Boolean IsAbstract()const;

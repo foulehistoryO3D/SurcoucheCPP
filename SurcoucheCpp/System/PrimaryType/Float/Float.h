@@ -14,6 +14,9 @@ namespace System
         static const constexpr float Epsilon = 1.401298E-45f;
         static const constexpr float MaxValue = 3.40282347E+38f;
         static const constexpr float MinValue = -3.40282347E+38f;
+        static const constexpr double PositiveInfinity = 1e+300 * 1e+300;
+        static const constexpr double NegativeInfinity = -PositiveInfinity;
+        static const constexpr double NaN = PositiveInfinity * 0.0F;
 #pragma endregion f/p
 #pragma region constructor
     public:
