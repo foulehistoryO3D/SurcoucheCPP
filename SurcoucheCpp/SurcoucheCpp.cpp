@@ -1,20 +1,26 @@
 #include "System/IncludeSystem.h"
 
-struct Void : Object
-{
-  operator void();  
-};
 
-class Test
+template<typename... Args>
+void Test(void(*func)(Args... _args))
 {
-    Void Salut()
-    {
-        
-    }
-};
+    List<object*> _tab = TemplateUtils::CreateVectorWithParameterPack<Args...>(_args);
+    
+    // _tab.ForEach([](object* o)
+    // {
+    //    Console::WriteLine(o->ToString()); 
+    // });
+}
 
-int main() 
+void Hello(Int _a, Float _f, String _str)
+{
+    
+}
+
+int main()
 {
     SetConsoleOutputCP(65001);
+    Test(Hello);
+    
     return 0;
 }

@@ -1,14 +1,13 @@
 ﻿#pragma once
 #include "../../System.Collections.Generic/List/List.h"
-#include "../CustomAttributeData/CustomAttributeData.h"
 #include "../Enum/MemberTypes/MemberTypes.h"
-#include "../Interface/CustomAttributeProvider/ICustomAttributeProvider.h"
+#include "../ReturnType/ReturnType.h"
 
 namespace System
 {
     namespace Reflection
     {
-        class MemberInfo : public ICustomAttributeProvider
+        class MemberInfo : public Object
         {
             DECLARE_CLASS_INFO(Object)
 #pragma region f/p
@@ -21,20 +20,21 @@ namespace System
 #pragma endregion constructor
 #pragma region custom methods
         public:
-            virtual Collections::Generic::IEnumerable<CustomAttributeData*> CustomAttributes()const;
+            virtual Collections::Generic::IEnumerable<object*> CustomAttributes()const;
             virtual Type* DeclaringType()const PURE_VIRTUAL()
             virtual MemberTypes MemberType()const PURE_VIRTUAL()
             virtual String Name() PURE_VIRTUAL()
             virtual Type* ReflectedType()const PURE_VIRTUAL()
+            virtual Type* ReturnType()const { return null; }
 #pragma endregion custom methods
 #pragma region override
         public:
             String ToString() const override;
             Boolean Equals(const object* _obj) override;
             Boolean Equals(const object& _obj) override;
-            Collections::Generic::List<object*> GetCustomAttributes() override;
-            Collections::Generic::List<object*> GetCustomAttributes(const Type* _type) override;
-            Boolean IsDefined(const Type* _type) override;
+            Collections::Generic::List<object*> GetCustomAttributes() const;
+            Collections::Generic::List<object*> GetCustomAttributes(const Type* _type);
+            Boolean IsDefined(const Type* _type);
 #pragma endregion override
 #pragma region operator
         public:

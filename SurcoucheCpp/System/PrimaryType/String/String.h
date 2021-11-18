@@ -8,6 +8,7 @@
 #include "../../Interface/Cloneable/ICloneable.h"
 #include "../../Interface/Equatable/IEquatable.h"
 #include "../../TemplateUtils/TemplateUtils.h"
+#include "../Boolean/Boolean.h"
 
 namespace System
 {
@@ -42,6 +43,11 @@ namespace System
 #pragma endregion constructor/destructor
 #pragma region custom methods
     public:
+        Boolean StartWith(const char& _c) const;
+        Boolean StartWith(const String& _str) const;
+        Boolean EndWith(const char& _c)const;
+        Boolean EndWith(const String& _str)const;
+        Boolean EqualsIgnoreCase(const String& _str) const;
         void Append(const Object& _object);
         void Append(const Object* _object);
         void Append(const String& _str);
@@ -103,10 +109,10 @@ namespace System
         }
         String& operator+=(char _c);
         String& operator+=(const String& _str);
-        bool operator==(const String& _other) const;
-        bool operator== (const char* _other) const;
-        bool operator!=(const String& _other) const;
-        bool operator!= (const char* _other) const;
+        Boolean operator==(const String& _other) const;
+        Boolean operator== (const char* _other) const;
+        Boolean operator!=(const String& _other) const;
+        Boolean operator!= (const char* _other) const;
 #pragma endregion operator
     };
 

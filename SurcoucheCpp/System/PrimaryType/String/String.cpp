@@ -39,6 +39,46 @@ System::String::String(const String& _copy)
     mLength = _copy.mLength;
 }
 
+System::Boolean System::String::StartWith(const char& _c) const
+{
+    return mValue[0] == _c;
+}
+
+System::Boolean System::String::StartWith(const String& _str) const
+{
+    for (int i = 0; i < _str.mLength; ++i)
+        if (mValue[i] != _str[i])
+            return false;
+    return true;
+}
+
+System::Boolean System::String::EndWith(const char& _c) const
+{
+    return mValue[mLength-1] == _c;
+}
+
+System::Boolean System::String::EndWith(const String& _str) const
+{
+    const int _length = _str.mLength;
+    const int _count = mLength;
+    for (int i = _length; i > 0; i--)
+    {
+        const char _a = mValue[_count - i];
+        const char _b = _str[_length - i];
+        if (_a != _b)
+            return false;
+    }
+    return true;
+}
+
+System::Boolean System::String::EqualsIgnoreCase(const String& _str) const
+{
+    if (mLength != _str.mLength) return false;
+    const String& _this = this->ToLower();
+    const String& _other = _str.ToLower();
+    return _this == _other;
+}
+
 #pragma endregion constructor/destructor
 #pragma region custom methods
 
@@ -393,7 +433,7 @@ System::String& System::String::operator+=(const String& _str)
     return *this;
 }
 
-bool System::String::operator==(const String& _other) const
+System::Boolean System::String::operator==(const String& _other) const
 {
     const int _length = _other.mLength;
     if (_length != mLength) return false;
@@ -404,7 +444,7 @@ bool System::String::operator==(const String& _other) const
 }
 
 
-bool System::String::operator==(const char* _other) const
+System::Boolean System::String::operator==(const char* _other) const
 {
     if (_other == null) return mValue == "";
     const int _length = strlen(_other);
@@ -415,12 +455,12 @@ bool System::String::operator==(const char* _other) const
     return true;
 }
 
-bool System::String::operator!=(const String& _other) const
+System::Boolean System::String::operator!=(const String& _other) const
 {
     return !this->operator==(_other);
 }
 
-bool System::String::operator!=(const char* _other) const
+System::Boolean System::String::operator!=(const char* _other) const
 {
     return !this->operator==(_other);
 }

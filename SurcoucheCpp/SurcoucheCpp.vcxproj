@@ -180,7 +180,6 @@
     <ClCompile Include="System.Net\StringEventArgs\DownloadStringCompletedEventArgs.cpp" />
     <ClCompile Include="System.Net\WebCallback\WebCallback.cpp" />
     <ClCompile Include="System.Net\WebClient\WebClient.cpp" />
-    <ClCompile Include="System.Reflection\CustomAttributeData\CustomAttributeData.cpp" />
     <ClCompile Include="System.Reflection\MemberInfo\MemberInfo.cpp" />
     <ClCompile Include="System.Text.RegularExpressions\CaptureCollection\CaptureCollection.cpp" />
     <ClCompile Include="System.Text.RegularExpressions\Capture\Capture.cpp" />
@@ -321,10 +320,9 @@
     <ClInclude Include="System.Net\StringEventArgs\DownloadStringCompletedEventArgs.h" />
     <ClInclude Include="System.Net\WebCallback\WebCallback.h" />
     <ClInclude Include="System.Net\WebClient\WebClient.h" />
-    <ClInclude Include="System.Reflection\CustomAttributeData\CustomAttributeData.h" />
     <ClInclude Include="System.Reflection\Enum\MemberTypes\MemberTypes.h" />
-    <ClInclude Include="System.Reflection\Interface\CustomAttributeProvider\ICustomAttributeProvider.h" />
     <ClInclude Include="System.Reflection\MemberInfo\MemberInfo.h" />
+    <ClInclude Include="System.Reflection\ReturnType\ReturnType.h" />
     <ClInclude Include="System.Text.RegularExpressions\CaptureCollection\CaptureCollection.h" />
     <ClInclude Include="System.Text.RegularExpressions\Capture\Capture.h" />
     <ClInclude Include="System.Text.RegularExpressions\GroupCollection\GroupCollection.h" />

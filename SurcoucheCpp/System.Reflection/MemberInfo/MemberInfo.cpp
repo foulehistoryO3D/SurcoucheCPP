@@ -4,14 +4,14 @@
 #include "../../System.Collections.Generic/List/List.h"
 #include "../../System/Event/Func/Func.h"
 
-System::Collections::Generic::IEnumerable<System::Reflection::CustomAttributeData*> System::Reflection::MemberInfo::CustomAttributes() const
+System::Collections::Generic::IEnumerable<System::Object*> System::Reflection::MemberInfo::CustomAttributes() const
 {
-    return Collections::Generic::IEnumerable<CustomAttributeData*>();
+    return Collections::Generic::IEnumerable<object*>();
 }
 
 System::String System::Reflection::MemberInfo::ToString() const
 {
-    return ICustomAttributeProvider::ToString();
+    return "";
 }
 
 System::Boolean System::Reflection::MemberInfo::Equals(const object* object)
@@ -26,27 +26,13 @@ System::Boolean System::Reflection::MemberInfo::Equals(const object& object)
     return mCustomAttributes == _other.mCustomAttributes;
 }
 
-System::Collections::Generic::List<System::Object*> System::Reflection::MemberInfo::GetCustomAttributes()
+System::Collections::Generic::List<System::Object*> System::Reflection::MemberInfo::GetCustomAttributes() const
 {
-    if (mCustomAttributes.Count() == 0)
-    {
-        Collections::Generic::IEnumerator<CustomAttributeData*>* _enumerator = CustomAttributes().GetEnumerator();
-        while(_enumerator->MoveNext())
-            mCustomAttributes.Add(_enumerator->Current());
-        _enumerator->Reset();
-    }
     return mCustomAttributes;
 }
 
 System::Collections::Generic::List<System::Object*> System::Reflection::MemberInfo::GetCustomAttributes(const Type* _type)
 {
-    if (mCustomAttributes.Count() == 0)
-    {
-        Collections::Generic::IEnumerator<CustomAttributeData*>* _enumerator =  CustomAttributes().GetEnumerator();
-        while (_enumerator->MoveNext())
-            mCustomAttributes.Add(_enumerator->Current());
-        _enumerator->Reset();
-    }
     return mCustomAttributes.Where([&](object* _obj)
     {
         return _obj->GetType()->Equals(_type);
