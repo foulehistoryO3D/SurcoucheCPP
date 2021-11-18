@@ -34,7 +34,6 @@ namespace System
                 List(IEnumerable<Item>* _enumerable);
                 List(std::initializer_list<Item> _tab);
                 List(const List<Item>& _copy);
-                ~List() override;
 #pragma endregion constructor/destructor
 #pragma region Linq
             public:
@@ -60,7 +59,9 @@ namespace System
                 void Reset() override;
 #pragma endregion override
 #pragma region operator
-                List<Item>* operator=(const IEnumerable<Item>* _enumerable);
+            public:
+                List<Item> operator=(const IEnumerable<Item>* _enumerable);
+                List<Item>& operator=(const List<Item>& _other);
                 Item& operator[](const int _index);
                 Item& operator[](const int _index)const;
                 bool operator==(const List& list) const;
@@ -89,7 +90,7 @@ namespace System
             List<Item>::List(std::initializer_list<Item> _tab)
             {
                 for (const Item& _item : _tab)
-                    Add(_item);
+                    List<Item>::Add(_item);
             }
 
             template <typename Item>
@@ -97,12 +98,6 @@ namespace System
             {
                 for (int i = 0; i < _copy.mCount; ++i)
                     Add(_copy.mTab[i]);
-            }
-
-            template <typename Item>
-            List<Item>::~List()
-            {
-                Clear();
             }
 #pragma endregion constructor/destructor
 #pragma region Linq
@@ -284,13 +279,21 @@ namespace System
 #pragma endregion custom methods
 #pragma region operator
             template <typename Item>
-            List<Item>* List<Item>::operator=(const IEnumerable<Item>* _enumerable)
+            List<Item> List<Item>::operator=(const IEnumerable<Item>* _enumerable)
             {
                 while (_enumerable->GetEnumerator()->MoveNext())
                 {
-                    Add(_enumerable->GetEnumerator()->Current());
+                    List<Item>::Add(_enumerable->GetEnumerator()->Current());
                 }
                 _enumerable->GetEnumerator()->Reset();
+                return *this;
+            }
+
+            template <typename Item>
+            List<Item>& List<Item>::operator=(const List<Item>& _other)
+            {
+                for (int i = 0; i < _other.mCount; ++i)
+                    List<Item>::Add(_other[i]);
                 return *this;
             }
 

@@ -15,6 +15,8 @@ namespace System
         static Collections::Generic::List<T> CreateVectorWithParameterPack(Args... _args);
         template<typename... Args>
         static size_t SizeOfPackageParameters(Args&&... _args);
+        template <typename C, typename... Args>
+        static Collections::Generic::List<object*> GetParametersFunction(void (C::*func)(Args ... _args));
     };
 
     template <size_t Index, typename ... Args>
@@ -35,5 +37,18 @@ namespace System
     size_t TemplateUtils::SizeOfPackageParameters(Args&&... _args)
     {
         return sizeof...(_args);
+    }
+
+    template <typename C, typename ... Args>
+    Collections::Generic::List<object*> TemplateUtils::GetParametersFunction(void(C::*)(Args... _args))
+    {
+        std::tuple<Args...> _tuple = std::tuple<Args...>();
+    
+        Collections::Generic::List<object*> _tab = Collections::Generic::List<object*>();
+        std::apply([&](auto&&... _args)
+        {
+            (_tab.Add(&_args), ...);
+        }, _tuple);
+        return _tab;
     }
 }
