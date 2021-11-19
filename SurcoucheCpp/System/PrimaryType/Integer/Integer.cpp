@@ -69,6 +69,7 @@ System::Bool  System::Integer::Equals(const int& _object)
 {
     return mValue == _object;
 }
+
 #pragma endregion override
 #pragma region operator
 System::Integer& System::Integer::operator=(const Integer& _other)

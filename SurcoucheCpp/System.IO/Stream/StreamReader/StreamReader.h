@@ -12,7 +12,7 @@ namespace System
         public:
             StreamReader();
             StreamReader(const String& _path);
-            StreamReader(StreamReader&& _copy);
+            StreamReader(StreamReader&& _copy) noexcept;
 #pragma endregion constructor
         };
     }

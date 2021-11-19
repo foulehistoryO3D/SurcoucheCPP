@@ -5,7 +5,6 @@
 #include "../../../System.Collections.Generic/Interface/Enumerable/IEnumerable.h"
 #include "../../Exception/OutOfRange/OutOfRange.h"
 #include "../../Object/Object.h"
-#include "../../Interface/Cloneable/ICloneable.h"
 #include "../../Interface/Equatable/IEquatable.h"
 #include "../../TemplateUtils/TemplateUtils.h"
 #include "../Boolean/Boolean.h"
@@ -26,7 +25,7 @@ namespace System
 
 namespace System
 {
-    class String sealed : public Object, public IEquatable<String>, public ICloneable<String>, public Collections::Generic::IEnumerable<char>, public Collections::Generic::IEnumerator<char>
+    class String sealed : public Object, public virtual IEquatable<String>, public virtual Collections::Generic::IEnumerable<char>, public virtual Collections::Generic::IEnumerator<char>
     {
 #pragma region f/p
     private:
@@ -83,7 +82,6 @@ namespace System
         class Boolean Equals(const object* _obj) override;
         Boolean Equals(const String& _object) override;
         size_t GetHashCode() const override;
-        String Clone() override;
         char Current() override;
         bool MoveNext() override;
         void Reset() override;
@@ -91,9 +89,12 @@ namespace System
 #pragma endregion override
 #pragma region operator
         operator const char*()const;
+        String operator+(const char* _str);
+        String operator+(const String* _str);
         String operator+(const CHAR* _str) const;
         String operator+(const Integer& _integer);
         String operator+(const Float& _float);
+        String operator+(const Bool& _bool);
         String operator+(const int _i);
         String operator+(const char& _c);
         char operator[](const int _index) const
@@ -120,7 +121,7 @@ namespace System
     String String::Format(const String& _str, Args... _args)
     {
         String _result = _str;
-        Collections::Generic::List<object*> _package = TemplateUtils::CreateVectorWithParameterPack<object*>(&_args...);
+        Collections::Generic::List<object*> _package = TemplateUtils::CreateListWithParameterPack<object*>(&_args...);
         const int _count = _package.Count();
         for (int i = 0; i < _count; ++i)
         {

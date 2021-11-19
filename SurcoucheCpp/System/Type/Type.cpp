@@ -96,6 +96,19 @@ System::Boolean System::Type::IsType() const
 {
     return mBitMask & PrimaryType;
 }
+
+System::Type* System::Type::Clone(const void* _type)
+{
+    Type* _result = new Type();
+    std::memcpy(_result, _type, sizeof(Type));
+    return _result;
+}
+
+System::Type* System::Type::operator=(const Type* _type)
+{
+    mBitMask = _type->mBitMask;
+    return this;
+}
 #pragma endregion custom methods
 #pragma region operator
 System::Boolean System::Type::operator==(const Type* _type)

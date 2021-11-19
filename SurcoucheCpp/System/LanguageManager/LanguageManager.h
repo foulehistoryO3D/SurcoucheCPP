@@ -33,7 +33,7 @@ namespace System
     {
         string _result = _messageToTranslate;
         const size_t _length = TemplateUtils::SizeOfPackageParameters(_args...);
-        Collections::Generic::List<String> _package = TemplateUtils::CreateVectorWithParameterPack<String>(_args...);
+        Collections::Generic::List<String> _package = TemplateUtils::CreateListWithParameterPack<String>(_args...);
         for (int i = 0; i < _length; ++i)
         {
             const String& _str = _package[i];

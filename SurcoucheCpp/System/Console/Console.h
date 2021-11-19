@@ -55,7 +55,7 @@ namespace System
     template <typename ... Args>
     void Console::WriteLine(const String& _str, Args... _args)
     {
-        Collections::Generic::List<object*> _package = TemplateUtils::CreateVectorWithParameterPack<object*>(&_args...);
+        Collections::Generic::List<object*> _package = TemplateUtils::CreateListWithParameterPack<object*>(&_args...);
         const int _count = _package.Count();
         String _result = _str;
         for (int i = 0; i < _count; ++i)

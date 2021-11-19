@@ -290,6 +290,12 @@ System::String System::String::operator+(const Float& _float)
     return *this;
 }
 
+System::String System::String::operator+(const Bool& _bool)
+{
+    Append(_bool.ToString());
+    return *this;
+}
+
 System::String System::String::operator+(const int _i)
 {
     Append(_i);
@@ -388,11 +394,6 @@ size_t System::String::GetHashCode() const
     return std::hash<string*>{}(&_object);
 }
 
-System::String System::String::Clone()
-{
-    return *this;
-}
-
 char System::String::Current()
 {
     return mCurrentValue;
@@ -419,6 +420,18 @@ System::Collections::Generic::IEnumerator<char>* System::String::GetEnumerator()
 System::String::operator const char*() const
 {
     return mValue;
+}
+
+System::String System::String::operator+(const char* _str)
+{
+    Append(_str);
+    return *this;
+}
+
+System::String System::String::operator+(const String* _str)
+{
+    Append(_str->ToString());
+    return *this;
 }
 
 System::String& System::String::operator+=(char _c)

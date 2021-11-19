@@ -69,7 +69,7 @@ namespace System
         template <typename T, typename ... Args>
         StringBuilder& StringBuilder::AppendFormat(const String& _str, Args ... _args)
         {
-            Collections::Generic::List<T> _splitedArgs = TemplateUtils::CreateVectorWithParameterPack<T>(_args...);
+            Collections::Generic::List<T> _splitedArgs = TemplateUtils::CreateListWithParameterPack<T>(_args...);
             const int _length = _splitedArgs.Count();
             String _result = _str;
             for (int i = 0; i < _length; ++i)

@@ -90,9 +90,11 @@ const int mSubClassCount = RegisterSubClass(this);
         Boolean IsAbstract()const;
         Boolean IsClass()const;
         Boolean IsType()const;
+        static Type* Clone(const void* _type);
 #pragma endregion custom methods
 #pragma region operator
     public:
+        Type* operator=(const Type* _type);
         virtual Boolean operator==(const Type* _type);
         virtual Boolean operator!=(const Type* _type);
 #pragma endregion operator

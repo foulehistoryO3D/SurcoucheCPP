@@ -1,7 +1,9 @@
 ﻿#pragma once
+#include <iostream>
 #include <tuple>
 #include <type_traits>
 #include "../../System.Collections.Generic/List/List.h"
+#include "../../System.Reflection/ParameterInfo/ParameterInfo.h"
 
 namespace System
 {
@@ -12,11 +14,11 @@ namespace System
         template <size_t Index, typename... Args>
         static auto GetPackageParameterValueWithIndex(Args&&... _args);
         template<typename T, typename... Args>
-        static Collections::Generic::List<T> CreateVectorWithParameterPack(Args... _args);
+        static Collections::Generic::List<T> CreateListWithParameterPack(Args... _args);
         template<typename... Args>
         static size_t SizeOfPackageParameters(Args&&... _args);
         template <typename C, typename... Args>
-        static Collections::Generic::List<object*> GetParametersFunction(void (C::*func)(Args ... _args));
+        static Collections::Generic::List<Reflection::ParameterInfo> GetParametersFunction(void (C::*func)(Args ... _args));
     };
 
     template <size_t Index, typename ... Args>
@@ -26,7 +28,7 @@ namespace System
     }
 
     template <typename T, typename ... Args>
-    Collections::Generic::List<T> TemplateUtils::CreateVectorWithParameterPack(Args... _args)
+    Collections::Generic::List<T> TemplateUtils::CreateListWithParameterPack(Args... _args)
     {
         Collections::Generic::List<T> _result = Collections::Generic::List<T>();
         (_result.Add(_args), ...);
@@ -40,14 +42,15 @@ namespace System
     }
 
     template <typename C, typename ... Args>
-    Collections::Generic::List<object*> TemplateUtils::GetParametersFunction(void(C::*)(Args... _args))
+    Collections::Generic::List<Reflection::ParameterInfo> TemplateUtils::GetParametersFunction(void(C::*ptr)(Args... _args))
     {
         std::tuple<Args...> _tuple = std::tuple<Args...>();
     
-        Collections::Generic::List<object*> _tab = Collections::Generic::List<object*>();
+        Collections::Generic::List<Reflection::ParameterInfo> _tab = Collections::Generic::List<Reflection::ParameterInfo>();
+        int _index = 0;
         std::apply([&](auto&&... _args)
         {
-            (_tab.Add(&_args), ...);
+            (_tab.Add(Reflection::ParameterInfo(_args.Clone((void*)&_args), _index++)), ...);
         }, _tuple);
         return _tab;
     }
