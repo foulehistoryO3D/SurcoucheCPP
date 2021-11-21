@@ -10,6 +10,11 @@ System::Collections::Generic::List<System::Reflection::ParameterInfo> System::Re
 {
     return mParameters;
 }
+
+System::Object* System::Reflection::MethodInfo::Owner() const
+{
+    return mOwner;
+}
 #pragma endregion f/p
 #pragma region constructor
 System::Reflection::MethodInfo::MethodInfo(const MethodInfo& _method)

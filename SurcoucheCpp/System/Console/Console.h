@@ -59,7 +59,10 @@ namespace System
         const int _count = _package.Count();
         String _result = _str;
         for (int i = 0; i < _count; ++i)
-            _result = _result.Replace(string("{") + i + "}", _package[i]->ToString());
+        {
+            int _index = i+1;
+            _result = _result.Replace(string("{") + _index + "}", _package[i]->ToString());
+        }
         std::cout << _result << std::endl;
     }
 }

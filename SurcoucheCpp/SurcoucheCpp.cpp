@@ -9,21 +9,25 @@ class A : public Object
 public:
     A() = default;
 
-    virtual void Test(String _str, Boolean _b, Int _i){}
+    virtual void Test(String _str, Boolean _b, Int _i)
+    {
+    }
 };
 
 int main()
 {
     SetConsoleOutputCP(65001);
-    Reflection::MethodInfo _methodInfo = Reflection::MethodInfo(&A::Test, FUNCTION_NAME(&A::Test));
+    A a;
+    Reflection::MethodInfo _methodInfo = Reflection::MethodInfo(&A::Test, &a, FUNCTION_NAME(&A::Test));
+    Console::WriteLine(string::Format("Owner: {1}, Function Name: {2}"), _methodInfo.Owner()->ToString(), _methodInfo.Name());
     const int _count = _methodInfo.Parameters().Count();
-    Console::WriteLine(string("Function Name: ")+ _methodInfo.Name());
     for (int i = 0; i < _count; ++i)
     {
         const Reflection::ParameterInfo _info = _methodInfo.Parameters()[i];
         const string _str = string::Format("Type: {1}, Position: {2}", _info.ParameterType()->ClassName(), _info.Position());
         Console::WriteLine(_str);
     }
-    
+
+    // std::cout << typeid(List).name(); // faire le namespace dans Type en string
     return 0;
 }
