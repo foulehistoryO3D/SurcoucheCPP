@@ -72,6 +72,12 @@ System::String System::Type::ClassName() const
     return _fullName;
 }
 
+System::String System::Type::Namespace() const
+{
+    String _str = FullName();
+    return _str.SubString(_str.FirstIndexOf(' ')+1, _str.LastIndexOf(':')-1);
+}
+
 System::Boolean System::Type::IsInterface() const
 {
     return mBitMask & Interface;

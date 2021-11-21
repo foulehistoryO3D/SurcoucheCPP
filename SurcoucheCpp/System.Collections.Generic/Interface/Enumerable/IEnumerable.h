@@ -9,9 +9,9 @@ namespace System
         namespace Generic
         {
             template <typename T>
-            class IEnumerable : public Object
+            class IEnumerable
             {
-                REGISTER_ATTRIBUTE(Interface)
+                // REGISTER_ATTRIBUTE(Interface)
             public:
                 virtual IEnumerator<T>* GetEnumerator() { return null; }
             };

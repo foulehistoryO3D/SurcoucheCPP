@@ -9,9 +9,8 @@ namespace System
         namespace Generic
         {
             template<typename Item>
-            class IList : public Object, public ICollection<Item>, public IEnumerable<Item>
+            class IList :public ICollection<Item>, public IEnumerable<Item>
             {
-                REGISTER_ATTRIBUTE(Interface)
             public:
                 virtual int IndexOf(Item _item) PURE_VIRTUAL()
                 virtual void Insert(const int32 _index, Item _item) PURE_VIRTUAL()

@@ -7,9 +7,8 @@ namespace System
         namespace Generic
         {
             template<typename Item>
-            class ICollection : public Object
+            class ICollection
             {
-                REGISTER_ATTRIBUTE(Interface)
             public:
                 virtual int Count()const PURE_VIRTUAL()
                 virtual void Add(Item _item) PURE_VIRTUAL()

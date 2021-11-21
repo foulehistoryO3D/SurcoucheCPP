@@ -316,8 +316,7 @@ System::String System::String::Empty()
 
 bool System::String::IsNullOrEmpty(const String& _str)
 {
-    bool _result = _str.mValue == null || _str.mValue == "" || _str.mLength == 0;
-    return _result;
+    return _str.mValue == null || _str.mValue == "" || _str.mLength == 0;
 }
 
 System::Integer System::String::LastIndexOf(const char _c) const

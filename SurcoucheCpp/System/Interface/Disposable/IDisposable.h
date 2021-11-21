@@ -3,10 +3,8 @@
 
 namespace System
 {
-    class IDisposable : public Object
+    class IDisposable
     {
-        DECLARE_CLASS_INFO(Object)
-        REGISTER_ATTRIBUTE(Interface)
     public:
         virtual void Dispose() PURE_VIRTUAL()
     };

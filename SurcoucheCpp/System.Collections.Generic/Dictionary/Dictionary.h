@@ -12,9 +12,10 @@ namespace System
         namespace Generic
         {
             template <typename TKey, typename TValue>
-            class Dictionary : public Object, public IDictionary<TKey, TValue>,
-                               public IEnumerator<KeyValuePair<TKey, TValue>>
+            class Dictionary sealed : public Object, public IDictionary<TKey, TValue>, public IEnumerator<KeyValuePair<TKey, TValue>>
             {
+                DECLARE_CLASS_INFO(Object)
+                REGISTER_ATTRIBUTE(Sealed)
 #pragma region f/p
             private:
                 KeyValuePair<TKey, TValue>* mTab = new KeyValuePair<TKey, TValue>[0];

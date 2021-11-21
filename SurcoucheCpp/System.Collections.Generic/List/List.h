@@ -21,6 +21,7 @@ namespace System
             class List sealed : public Object, public IList<Item>, public IEnumerator<Item>
             {
                 REGISTER_ATTRIBUTE(Sealed)
+                DECLARE_CLASS_INFO(Object)
 #pragma region f/p
             private:
                 Item* mTab = new Item[0];

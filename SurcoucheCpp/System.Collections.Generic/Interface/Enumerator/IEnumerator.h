@@ -8,9 +8,9 @@ namespace System
         namespace Generic
         {
             template<typename T>
-            class IEnumerator : public Object
+            class IEnumerator
             {
-                REGISTER_ATTRIBUTE(Interface)
+                // REGISTER_ATTRIBUTE(Interface)
             public:
                 virtual T Current() PURE_VIRTUAL()
                 virtual bool MoveNext() PURE_VIRTUAL()

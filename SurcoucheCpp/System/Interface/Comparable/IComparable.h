@@ -4,10 +4,8 @@
 namespace System
 {
     template<typename T>
-    class IComparable : public Object
+    class IComparable
     {
-        DECLARE_CLASS_INFO(Object)
-        REGISTER_ATTRIBUTE(Interface)
     public:
         virtual int CompareTo(const T& _other) PURE_VIRTUAL()
     };

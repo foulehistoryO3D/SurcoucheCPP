@@ -11,9 +11,8 @@ namespace System
         namespace Generic
         {
             template<typename TKey, typename TValue>
-            class IDictionary : public Object, public ICollection<KeyValuePair<TKey, TValue>>, public IEnumerable<KeyValuePair<TKey, TValue>>
+            class IDictionary : public ICollection<KeyValuePair<TKey, TValue>>, public IEnumerable<KeyValuePair<TKey, TValue>>
             {
-                REGISTER_ATTRIBUTE(Interface)
             public:
                 virtual void Add(TKey _key, TValue _value) PURE_VIRTUAL()
                 virtual Boolean ContainsKey(TKey _key) PURE_VIRTUAL()
