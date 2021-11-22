@@ -29,5 +29,7 @@ int main()
     //     const string _str = string::Format("Type: {1}, Position: {2}", _info.ParameterType()->ClassName(), _info.Position());
     //     Console::WriteLine(_str);
     // }
+    DateTime _tab = DateTime();
+    Console::WriteLine(_tab.Namespace());
     return 0;
 }

@@ -74,8 +74,12 @@ System::String System::Type::ClassName() const
 
 System::String System::Type::Namespace() const
 {
-    String _str = FullName();
-    return _str.SubString(_str.FirstIndexOf(' ')+1, _str.LastIndexOf(':')-1);
+    // String _str = FullName();
+    // return _str.SubString(_str.FirstIndexOf(' ')+1, _str.LastIndexOf(':')-1);
+    std::string _s = FullName().ToCstr();
+    String _str = ClassName();
+    int _index = _s.find(ClassName());
+    return FullName().SubString(_s.find(' ') + 1,_index-2);
 }
 
 System::Boolean System::Type::IsInterface() const
