@@ -6,9 +6,10 @@ namespace System
     class Boolean;
     template <typename T>
 
-    class IEquatable 
+    class IEquatable
     {
     public:
+        virtual ~IEquatable() = default;
         virtual Boolean Equals(const T& _object) PURE_VIRTUAL()
     };
 }

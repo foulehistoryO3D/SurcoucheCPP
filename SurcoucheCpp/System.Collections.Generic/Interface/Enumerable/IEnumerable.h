@@ -11,9 +11,9 @@ namespace System
             template <typename T>
             class IEnumerable
             {
-                // REGISTER_ATTRIBUTE(Interface)
             public:
-                virtual IEnumerator<T>* GetEnumerator() { return null; }
+                virtual ~IEnumerable() = default;
+                virtual IEnumerator<T>* GetEnumerator() PURE_VIRTUAL()
             };
         }
     }

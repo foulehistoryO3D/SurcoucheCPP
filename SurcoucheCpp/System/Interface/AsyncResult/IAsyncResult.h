@@ -10,6 +10,7 @@ namespace System
     class IAsyncResult
     {
     public:
+        virtual ~IAsyncResult() = default;
         virtual Boolean IsCompleted()const PURE_VIRTUAL()
         virtual Boolean CompletedSynchronously()const PURE_VIRTUAL()
         virtual Threading::WaitHandle AsyncWaitHandle()const PURE_VIRTUAL()

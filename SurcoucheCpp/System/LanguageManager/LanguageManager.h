@@ -15,8 +15,7 @@ namespace System
     {
         DECLARE_CLASS_INFO(Singleton<LanguageManager>)
     private:
-        Collections::Generic::Dictionary<String, Language*> mLanguages =
-            System::Collections::Generic::Dictionary<String, Language*>();
+        Collections::Generic::Dictionary<String, Language*> mLanguages = System::Collections::Generic::Dictionary<String, Language*>();
     public:
         LanguageManager();
         ~LanguageManager() override;
@@ -35,10 +34,8 @@ namespace System
         const size_t _length = TemplateUtils::SizeOfPackageParameters(_args...);
         Collections::Generic::List<String> _package = TemplateUtils::CreateListWithParameterPack<String>(_args...);
         for (int i = 0; i < _length; ++i)
-        {
-            const String& _str = _package[i];
-            _result = _result.Replace(string("@") + Integer(i), _str);
-        }
+            _result = _result.Replace(string("@") + i, _package[i]);
+        
         return _result;
     }
 }

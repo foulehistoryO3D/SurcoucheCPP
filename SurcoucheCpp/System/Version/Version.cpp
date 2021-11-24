@@ -25,16 +25,19 @@ System::Version::Version(int32 _args0, int32 _args1, int32 _args2, int32 _args3)
     m3 = _args3;
     mMajor = m0;
     mMinor = m3 != -1 ? m3 : m2 != -1 ? m2 : m1;
-    
 }
 
 System::Version::Version(const String& _str)
 {
     const Collections::Generic::List<String> _splitedString = _str.Split('.');
+    const int& _count = _splitedString.Count();
+    if (_count == 1) throw Exception("error format for version");
     m0 = Integer::Parse(_splitedString[0]);
     m1 = Integer::Parse(_splitedString[1]);
-    m2 = Integer::Parse(_splitedString[2]);
-    m3 = Integer::Parse(_splitedString[3]);
+    if (_count > 2)
+        m2 = Integer::Parse(_splitedString[2]);
+    if (_count > 3)
+        m3 = Integer::Parse(_splitedString[3]);
     mMajor = m0;
     mMinor = m3 != -1 ? m3 : m2 != -1 ? m2 : m1;
 }
@@ -86,3 +89,32 @@ System::Boolean System::Version::Equals(const Version& _object)
     return m0 == _object.m0 && m1 == _object.m1 && m2 == _object.m2 && m3 == _object.m3;
 }
 #pragma endregion override
+#pragma region operator
+System::Version& System::Version::operator=(const Version& _other)
+{
+    m0 = std::move(_other.m0);
+    m1 = std::move(_other.m1);
+    m2 = std::move(_other.m2);
+    m3 = std::move(_other.m3);
+    mMinor = std::move(_other.mMinor);
+    mMajor = std::move(_other.mMajor);
+    return *this;
+}
+
+System::Version& System::Version::operator=(const String& _str)
+{
+    const Collections::Generic::List<String> _splitedString = _str.Split('.');
+    const int& _count = _splitedString.Count();
+    if (_count == 1) throw Exception("error format for version");
+
+    m0 = Integer::Parse(_splitedString[0]);
+    m1 = Integer::Parse(_splitedString[1]);
+    if (_count > 2)
+        m2 = Integer::Parse(_splitedString[2]);
+    if (_count > 3)
+        m3 = Integer::Parse(_splitedString[3]);
+    mMajor = m0;
+    mMinor = m3 != -1 ? m3 : m2 != -1 ? m2 : m1;
+    return *this;
+}
+#pragma endregion operator

@@ -36,7 +36,8 @@ namespace System
         void operator()(Args ... _args);
         Action<Args...>& operator=(const Action& _other);
         template<typename Function>
-        Action<Args...>& operator=(Function&& _function);
+        void operator=(Function&& _function);
+        void operator=(nullptr_t);
 #pragma endregion operator
     };
 #pragma region constructor/destructor
@@ -96,16 +97,17 @@ namespace System
 
     template <typename ... Args>
     template <typename Function>
-    Action<Args...>& Action<Args...>::operator=(Function&& _function)
+    void Action<Args...>::operator=(Function&& _function)
     {
         mFunctions.clear();
-        if (TemplateUtils::IsNull<Function>())
-        {
-            return *this;
-        }
         Delegate<void, Args...> _delegate = _function;
         mFunctions.push_back(_delegate);
-        return *this;
+    }
+
+    template <typename ... Args>
+    void Action<Args...>::operator=(nullptr_t)
+    {
+        mFunctions.clear();
     }
 
 

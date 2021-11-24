@@ -9,9 +9,9 @@ System::IO::TextReader::TextReader(const String& _path)
     mPath = _path;
 }
 
-System::IO::TextReader::TextReader(TextReader&& _copy) noexcept
+System::IO::TextReader::TextReader(const TextReader& _copy) noexcept
 {
-    mStream = std::move(_copy.mStream);
+    mStream = std::ifstream(_copy.mPath);
     mPath = std::move(_copy.mPath);
 }
 
@@ -77,3 +77,32 @@ char System::IO::TextReader::Read()
     return _result;
 }
 #pragma endregion custom methods
+#pragma region override
+System::String System::IO::TextReader::ToString() const
+{
+    return mPath;
+}
+
+System::Boolean System::IO::TextReader::Equals(const object* object)
+{
+    const TextReader& _reader = *dynamic_cast<const TextReader*>(object);
+    return mPath == _reader.mPath; 
+}
+
+System::Boolean System::IO::TextReader::Equals(const object& object)
+{
+    const TextReader& _reader = *dynamic_cast<const TextReader*>(&object);
+    return mPath == _reader.mPath; 
+}
+
+size_t System::IO::TextReader::GetHashCode() const
+{
+    TextReader _reader = *this;
+    return std::hash<TextReader*>{}(&_reader);
+}
+
+void System::IO::TextReader::Dispose()
+{
+    mStream.close();
+}
+#pragma endregion override

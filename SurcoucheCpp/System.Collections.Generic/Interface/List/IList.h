@@ -9,7 +9,7 @@ namespace System
         namespace Generic
         {
             template<typename Item>
-            class IList :public ICollection<Item>, public IEnumerable<Item>
+            class IList : ICollection<Item>, IEnumerable<Item>
             {
             public:
                 virtual int IndexOf(Item _item) PURE_VIRTUAL()

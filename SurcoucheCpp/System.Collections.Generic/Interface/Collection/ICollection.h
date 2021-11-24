@@ -10,6 +10,7 @@ namespace System
             class ICollection
             {
             public:
+                virtual ~ICollection() = default;
                 virtual int Count()const PURE_VIRTUAL()
                 virtual void Add(Item _item) PURE_VIRTUAL()
                 virtual void Clear() PURE_VIRTUAL()

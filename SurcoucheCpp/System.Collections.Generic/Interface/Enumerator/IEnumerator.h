@@ -10,8 +10,8 @@ namespace System
             template<typename T>
             class IEnumerator
             {
-                // REGISTER_ATTRIBUTE(Interface)
             public:
+                virtual ~IEnumerator() = default;
                 virtual T Current() PURE_VIRTUAL()
                 virtual bool MoveNext() PURE_VIRTUAL()
                 virtual void Reset() PURE_VIRTUAL()

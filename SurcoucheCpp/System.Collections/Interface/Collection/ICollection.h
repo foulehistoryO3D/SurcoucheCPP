@@ -7,7 +7,6 @@ namespace System
     {
         class ICollection : public IEnumerable
         {
-            REGISTER_ATTRIBUTE(Interface)
         public:
             virtual int Count()const PURE_VIRTUAL()
         };

@@ -27,10 +27,7 @@ System::Integer System::Integer::Parse(const String& _str)
 #pragma region override
 System::String System::Integer::ToString() const
 {
-    std::ostringstream ss;
-    ss << mValue;
-    String _result = ss.str().c_str();
-    return _result;
+    return std::to_string(mValue).c_str();
 }
 
 System::Bool System::Integer::Equals(const object* _obj)

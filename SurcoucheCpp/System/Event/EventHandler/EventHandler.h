@@ -19,6 +19,9 @@ namespace System
         void operator+=(Delegate<void, object*, Event*>&& _function);
         void operator-=(Delegate<void, object*, Event*>&& _function);
         void operator()(object* _sender, Event* _event);
+        EventHandler& operator=(const EventHandler& _other);
+        void operator=(Delegate<void, object*, Event*>&& _function);
+        void operator=(nullptr_t);
     };
 #pragma region constructor/destructor
     template<typename Event>
@@ -52,6 +55,26 @@ namespace System
         const int _length = mFunctions.size();
         for (int i = 0; i < _length; ++i)
             mFunctions[i].Invoke(_sender, _event);
+    }
+
+    template <typename Event>
+    EventHandler<Event>& EventHandler<Event>::operator=(const EventHandler& _other)
+    {
+        mFunctions = std::move(_other.mFunctions);
+        return *this;
+    }
+
+    template <typename Event>
+    void EventHandler<Event>::operator=(Delegate<void, object*, Event*>&& _function)
+    {
+        mFunctions.clear();
+        mFunctions.push_back(_function);
+    }
+
+    template <typename Event>
+    void EventHandler<Event>::operator=(nullptr_t)
+    {
+        mFunctions.clear();
     }
 #pragma endregion operator
 }

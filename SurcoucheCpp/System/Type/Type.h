@@ -2,6 +2,8 @@
 #include <type_traits>
 #include <vector>
 
+#pragma warning(disable: 4005)
+
 namespace System
 {
     class Boolean;
@@ -21,7 +23,7 @@ namespace System
 #pragma region define
 #define FORCEINLINE __forceinline
 #define VARARGS __cdecl
-// #define interface __interface
+#define interface __interface
 #define null nullptr
 #define PURE_VIRTUAL() = 0;
 

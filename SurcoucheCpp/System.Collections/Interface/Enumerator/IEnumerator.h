@@ -5,10 +5,10 @@ namespace System
 {
     namespace Collections
     {
-        class IEnumerator : public Object
+        class IEnumerator
         {
-            REGISTER_ATTRIBUTE(Interface)
         public:
+            virtual ~IEnumerator() = default;
             virtual object* Current() PURE_VIRTUAL()
             virtual bool MoveNext() PURE_VIRTUAL()
             virtual void Reset() PURE_VIRTUAL()

@@ -35,7 +35,7 @@ namespace System
         Boolean Equals(const object& _obj) override;
         Boolean Equals(const object* _obj, const object* _other) override;
         Boolean Equals(const object& _obj, const object& _other) override;
-        Boolean Equals(const float& _object) override;
+        Boolean Equals(const float& _object)override;
 #pragma endregion override
 #pragma region operator
     public:

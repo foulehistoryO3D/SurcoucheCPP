@@ -25,7 +25,7 @@ namespace System
 #pragma endregion custom methods
 #pragma region override
     public:
-        Boolean Equals(const unsigned char& _object) override;
+        Boolean Equals(const unsigned char& _object)override;
         String ToString() const override;
         Boolean Equals(const object* _obj) override;
         Boolean Equals(const object* _obj, const object* _other) override;

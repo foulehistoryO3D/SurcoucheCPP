@@ -12,6 +12,7 @@ namespace System
     class Double;
     class Byte;
     class Integer;
+    class Char;
     namespace IO
     {
         class TextWriter;
@@ -44,7 +45,7 @@ namespace System
         // static void WriteLine(const Integer& _int);
         template<typename... Args>
         static void WriteLine(const String& _str, Args... _args);
-        static void WriteLine(char _char);
+        // static void WriteLine(Char _char);
         static void SetIn(IO::TextReader _in);
         static void SetOut(IO::TextWriter _out);
         static void SetError(IO::TextWriter _error);

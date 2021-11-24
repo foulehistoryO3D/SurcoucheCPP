@@ -33,7 +33,7 @@ namespace System
         Boolean Equals(const object* _obj, const object* _other) override;
         Boolean Equals(const object& _obj, const object& _other) override;
         size_t GetHashCode() const override;
-        Boolean Equals(const int& _object) override;
+        Boolean Equals(const int& _object)override;
 #pragma endregion override
 #pragma region operator
         operator int()const { return mValue;}

@@ -7,7 +7,6 @@ namespace System
     {
         class IList : public ICollection
         {
-            REGISTER_ATTRIBUTE(Interface)
         public:
             virtual int Add(object* _object) PURE_VIRTUAL()
             virtual void Clear() PURE_VIRTUAL()

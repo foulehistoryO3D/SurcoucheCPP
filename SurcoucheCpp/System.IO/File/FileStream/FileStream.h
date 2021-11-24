@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "../../../System/Interface/Disposable/IDisposable.h"
 #include "../../../System/Object/Object.h"
 #include "../File/File.h"
 
@@ -9,7 +10,7 @@ namespace System
         class StreamWriter;
         class StreamReader;
 
-        class FileStream : public Object
+        class FileStream : public Object, public IDisposable
         {
             DECLARE_CLASS_INFO(Object)
 #pragma region f/p
@@ -40,6 +41,7 @@ namespace System
             Boolean Equals(const object* _obj) override;
             Boolean Equals(const object& _obj) override;
             size_t GetHashCode() const override;
+            void Dispose();
 #pragma endregion override
 #pragma region operator
         public:

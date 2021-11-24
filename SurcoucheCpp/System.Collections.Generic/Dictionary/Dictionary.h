@@ -12,7 +12,8 @@ namespace System
         namespace Generic
         {
             template <typename TKey, typename TValue>
-            class Dictionary sealed : public Object, public IDictionary<TKey, TValue>, public IEnumerator<KeyValuePair<TKey, TValue>>
+            class Dictionary sealed : public Object, public IDictionary<TKey, TValue>,
+                                      public IEnumerator<KeyValuePair<TKey, TValue>>
             {
                 DECLARE_CLASS_INFO(Object)
                 REGISTER_ATTRIBUTE(Sealed)
@@ -222,8 +223,6 @@ namespace System
             {
                 mCount = std::move(_other.mCount);
                 mTab = std::move(_other.mTab);
-                mCurrentIndex = std::move(_other.mCurrentIndex);
-                mCurrentItem = std::move(_other.mCurrentItem);
                 return *this;
             }
 #pragma endregion operator

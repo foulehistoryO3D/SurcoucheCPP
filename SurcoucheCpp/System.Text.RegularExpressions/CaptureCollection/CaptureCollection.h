@@ -29,7 +29,7 @@ namespace System
             public:
                 Capture Current() override;
                 bool MoveNext() override;
-                void Reset() override;
+                void Reset();
                 IEnumerator<Capture>* GetEnumerator() override;
                 int Count() const override;
                 void Add(Capture _item) override;

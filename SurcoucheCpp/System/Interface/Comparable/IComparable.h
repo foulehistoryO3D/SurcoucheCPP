@@ -7,6 +7,7 @@ namespace System
     class IComparable
     {
     public:
+        virtual ~IComparable() = default;
         virtual int CompareTo(const T& _other) PURE_VIRTUAL()
     };
 }

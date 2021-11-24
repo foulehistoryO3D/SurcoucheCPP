@@ -10,6 +10,7 @@
 #include "../../System/PrimaryType/Byte/Byte.h"
 #include "../../System/PrimaryType/Float/Float.h"
 #include "../../System/PrimaryType/Integer/Integer.h"
+#include "../../System/PrimaryType/Char/Char.h"
 
 System::IO::TextWriter System::Console::mOut = IO::TextWriter();
 System::IO::TextReader System::Console::mIn = IO::TextReader();
@@ -90,11 +91,6 @@ void System::Console::WriteLine(const string* _str)
 //     Out().Write(_int);
 // }
 
-void System::Console::WriteLine(char _char)
-{
-    std::cout << _char << std::endl;
-    Out().Write(_char);
-}
 
 void System::Console::SetIn(IO::TextReader _in)
 {

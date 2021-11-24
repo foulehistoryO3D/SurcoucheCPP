@@ -34,7 +34,7 @@ namespace System
 #pragma region override
     public:
         String ToString() const override;
-        Boolean Equals(const char& _object) override;
+        Boolean Equals(const char& _object)override;
         Boolean Equals(const object* _obj) override;
         Boolean Equals(const object& _obj) override;
         size_t GetHashCode() const override;

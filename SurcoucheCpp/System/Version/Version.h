@@ -34,5 +34,10 @@ namespace System
         size_t GetHashCode() const override;
         Boolean Equals(const Version& _object) override;
 #pragma endregion override
+#pragma region operator
+    public:
+        Version& operator=(const Version& _other);
+        Version& operator=(const String& _str);
+#pragma endregion operator
     };
 }

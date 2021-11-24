@@ -8,6 +8,10 @@
 #include "../../System/PrimaryType/String/String.h"
 #include "../../System/PrimaryType/Integer/Integer.h"
 
+#pragma region define
+#define FUNCTION_NAME(function) #function
+#pragma endregion define
+
 namespace System
 {
     namespace Reflection

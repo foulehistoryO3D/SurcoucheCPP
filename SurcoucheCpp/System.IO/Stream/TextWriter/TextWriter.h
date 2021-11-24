@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include <fstream>
 
+#include "../../../System/Interface/Disposable/IDisposable.h"
 #include "../../../System/Object/Object.h"
 
 
@@ -12,7 +13,7 @@ namespace System
     
     namespace IO
     {
-        class TextWriter : public Object
+        class TextWriter : public Object, public IDisposable
         {
             DECLARE_CLASS_INFO(Object)
 #pragma region f/p
@@ -33,19 +34,14 @@ namespace System
             Boolean IsValid()const;
             Boolean Exists()const;
             virtual void Close();
-            virtual void Write(const Boolean& _value);
-            virtual void Write(const char _value);
-            virtual void Write(const Float& _value);
-            virtual void Write(const Double& _value);
-            virtual void Write(const Integer& _value);
             virtual void Write(const object& _value);
-            // virtual void Write(const StringBuilder& _value);
-            virtual void Write(const String& _value);
+            virtual void Write(const object* _value);
 #pragma endregion custom methods
 #pragma region override
             public:
             Boolean Equals(const object* _obj) override;
             Boolean Equals(const object& _obj) override;
+            void Dispose();
 #pragma endregion override
 #pragma region operator
         public:

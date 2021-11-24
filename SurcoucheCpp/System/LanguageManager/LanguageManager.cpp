@@ -1,4 +1,6 @@
 ﻿#include "LanguageManager.h"
+
+#include "../../System.IO/Directory/Directory.h"
 #include "../../System.IO/Path/Path.h"
 #include "../../System/Environment/Environment.h"
 #include "Language/Language.h"
@@ -11,7 +13,7 @@ System::String System::LanguageManager::GetPathToSave() const
 
 System::LanguageManager::LanguageManager()
 {
-    mLanguages = System::Collections::Generic::Dictionary<System::String, Language*>();
+    mLanguages = System::Collections::Generic::Dictionary<String, Language*>();
 }
 
 System::LanguageManager::~LanguageManager()

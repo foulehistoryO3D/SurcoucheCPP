@@ -7,9 +7,11 @@ namespace System
 {
     namespace Collections
     {
-        class IEnumerable : public Object
+        class IEnumerable
         {
-            REGISTER_ATTRIBUTE(Interface)
+        public:
+            virtual ~IEnumerable() = default;
+        private:
             virtual IEnumerator* GetEnumerator() PURE_VIRTUAL()
         };
     }

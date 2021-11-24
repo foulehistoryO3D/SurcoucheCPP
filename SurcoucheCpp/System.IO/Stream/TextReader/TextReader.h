@@ -1,13 +1,14 @@
 ﻿#pragma once
 #include <fstream>
 
+#include "../../../System/Interface/Disposable/IDisposable.h"
 #include "../../../System/Object/Object.h"
 
 namespace System
 {
     namespace IO
     {
-        class TextReader : public Object
+        class TextReader : public Object, public IDisposable
         {
             DECLARE_CLASS_INFO(Object)
 #pragma region f/p
@@ -19,7 +20,7 @@ namespace System
         public:
             TextReader() = default;
             TextReader(const String& _path);
-            TextReader(TextReader&& _copy) noexcept;
+            TextReader(const TextReader& _copy) noexcept;
 #pragma endregion constructor
 #pragma region custom methods
         public:
@@ -32,6 +33,14 @@ namespace System
             String Path()const;
             char Read();
 #pragma endregion custom methods
+#pragma region override
+        public:
+            String ToString() const override;
+            Boolean Equals(const object* _obj) override;
+            Boolean Equals(const object& _obj) override;
+            size_t GetHashCode() const override;
+            void Dispose();
+#pragma endregion override
 #pragma region operator
         public:
             TextReader& operator=(TextReader&& _reader) noexcept

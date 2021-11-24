@@ -11,7 +11,7 @@ namespace System
         namespace Generic
         {
             template<typename TKey, typename TValue>
-            class IDictionary : public ICollection<KeyValuePair<TKey, TValue>>, public IEnumerable<KeyValuePair<TKey, TValue>>
+            class IDictionary : ICollection<KeyValuePair<TKey, TValue>>, IEnumerable<KeyValuePair<TKey, TValue>>
             {
             public:
                 virtual void Add(TKey _key, TValue _value) PURE_VIRTUAL()

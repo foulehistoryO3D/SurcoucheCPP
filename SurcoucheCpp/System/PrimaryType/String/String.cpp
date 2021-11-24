@@ -32,6 +32,7 @@ System::String::String(const char* _value)
 
 System::String::String(const String& _copy)
 {
+    if (_copy.mValue == null) return ;
     const size_t _length = _copy.mLength;
     char* _new = new char[_length + 1];
     memcpy(_new, _copy.mValue, _length + 1);
@@ -384,7 +385,7 @@ System::Boolean System::String::Equals(const object* _obj)
 
 System::Boolean System::String::Equals(const String& _object)
 {
-    return mValue == _object.mValue && mLength == _object.mLength;
+    return mValue == _object.mValue;
 }
 
 size_t System::String::GetHashCode() const

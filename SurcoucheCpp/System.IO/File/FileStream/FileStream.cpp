@@ -66,20 +66,26 @@ System::String System::IO::FileStream::ToString() const
 
 System::Boolean System::IO::FileStream::Equals(const object* object)
 {
-    const FileStream* _fileStream = dynamic_cast<const FileStream*>(object);
-    return _fileStream == this;
+    const FileStream& _fileStream = *dynamic_cast<const FileStream*>(object);
+    return mPath == _fileStream.mPath && mStreamReader == _fileStream.mStreamReader && mStreamWriter == _fileStream.mStreamWriter;
 }
 
 System::Boolean System::IO::FileStream::Equals(const object& object)
 {
-    const FileStream* _fileStream = dynamic_cast<const FileStream*>(&object);
-    return _fileStream == this;
+    const FileStream& _fileStream = *dynamic_cast<const FileStream*>(&object);
+    return mPath == _fileStream.mPath && mStreamReader == _fileStream.mStreamReader && mStreamWriter == _fileStream.mStreamWriter;
 }
 
 size_t System::IO::FileStream::GetHashCode() const
 {
     FileStream _fileStream = *this;
     return std::hash<FileStream*>{}(&_fileStream);
+}
+
+void System::IO::FileStream::Dispose()
+{
+    mStreamReader->Dispose();
+    mStreamWriter->Dispose();
 }
 
 System::IO::FileStream System::IO::FileStream::operator=(const FileStream& _other)

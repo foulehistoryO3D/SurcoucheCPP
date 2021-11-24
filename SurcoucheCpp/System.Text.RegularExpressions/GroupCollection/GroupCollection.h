@@ -12,18 +12,22 @@ namespace System
     {
         namespace RegularExpressions
         {
-            class GroupCollection : public Collections::Generic::IDictionary<String, Group>, public Collections::Generic::IEnumerator<Collections::Generic::KeyValuePair<String, Group>>
+            class GroupCollection : public Collections::Generic::IDictionary<String, Group>,
+                                    public Collections::Generic::IEnumerator<Collections::Generic::KeyValuePair<
+                                        String, Group>>
             {
 #pragma region f/p
             private:
                 int mCount = 0;
                 int mCurrentIndex = -1;
-                Collections::Generic::KeyValuePair<String, Group>* mTab = new Collections::Generic::KeyValuePair<String, Group>[0];
-                Collections::Generic::KeyValuePair<String, Group> mCurrentItem = Collections::Generic::KeyValuePair<String, Group>();
+                Collections::Generic::KeyValuePair<String, Group>* mTab = new Collections::Generic::KeyValuePair<
+                    String, Group>[0];
+                Collections::Generic::KeyValuePair<String, Group> mCurrentItem = Collections::Generic::KeyValuePair<
+                    String, Group>();
 #pragma endregion f/p
 #pragma region constructor
             public:
-                GroupCollection()=default;
+                GroupCollection() = default;
                 GroupCollection(std::initializer_list<Collections::Generic::KeyValuePair<String, Group>> _tab);
                 GroupCollection(IEnumerator<Collections::Generic::KeyValuePair<String, Group>>* _enumerator);
                 GroupCollection(const GroupCollection& _copy);
