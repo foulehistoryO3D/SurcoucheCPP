@@ -22,10 +22,14 @@ namespace System
         Delegate(Function&& _function) { mFunction = std::move(_function);}
 #pragma endregion constructor/destructor
 #pragma region custom methods
-        Res Invoke(Args... _args) { return mFunction(_args...); }
+        Res Invoke(Args... _args) { return this->operator()(_args...); }
 #pragma endregion custom methods
 #pragma region operator
-        Res operator()(Args... _args) { return mFunction(_args...);}
+        Res operator()(Args... _args)
+        {
+            if (mFunction == null) return Res();
+            return mFunction(_args...);
+        }
         bool operator==(const Delegate<Res, Args...> _other)
         {
             return mFunction.template target<Res(Args...)>() == _other.mFunction.template target<Res(Args...)>();
@@ -37,6 +41,12 @@ namespace System
         Delegate& operator=(const Delegate& _other)
         {
             mFunction = std::move(_other.mFunction);
+            return *this;
+        }
+        template<typename Function>
+        Delegate& operator=(Function&& _func)
+        {
+            mFunction = _func;
             return *this;
         }
 #pragma endregion operator

@@ -56,7 +56,7 @@ System::DateTime System::DateTime::Convert(SYSTEMTIME _systemTime)
 System::DateTime System::DateTime::Convert(time_t _systemTime)
 {
     const std::tm _tm = *localtime(&_systemTime);
-    return DateTime(_tm.tm_mday, _tm.tm_mon, _tm.tm_year, _tm.tm_hour, _tm.tm_min, _tm.tm_sec);
+    return DateTime(_tm.tm_mday, _tm.tm_mon + 1, _tm.tm_year + 1900, _tm.tm_hour, _tm.tm_min, _tm.tm_sec);
 }
 
 System::String System::DateTime::ToStringFormat(const String& _format) const

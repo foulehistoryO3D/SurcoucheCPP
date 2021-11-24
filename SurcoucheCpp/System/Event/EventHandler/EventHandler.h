@@ -22,7 +22,7 @@ namespace System
     };
 #pragma region constructor/destructor
     template<typename Event>
-    inline void EventHandler<Event>::Invoke(object* _sender, Event* _args)
+    FORCEINLINE void EventHandler<Event>::Invoke(object* _sender, Event* _args)
     {
         this->operator()(_sender, _args);
     }

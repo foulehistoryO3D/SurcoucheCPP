@@ -4,6 +4,7 @@
 #include <type_traits>
 #include "../../System.Collections.Generic/List/List.h"
 #include "../../System.Reflection/ParameterInfo/ParameterInfo.h"
+#include "../PrimaryType/Boolean/Boolean.h"
 
 namespace System
 {
@@ -19,6 +20,8 @@ namespace System
         static size_t SizeOfPackageParameters(Args&&... _args);
         template <typename C, typename... Args>
         static Collections::Generic::List<Reflection::ParameterInfo> GetParametersFunction(void (C::*func)(Args ... _args));
+        template<typename T>
+        static Boolean IsNull();
     };
 
     template <size_t Index, typename ... Args>
@@ -54,4 +57,7 @@ namespace System
         }, _tuple);
         return _tab;
     }
+
+    template <typename T>
+    Boolean TemplateUtils::IsNull() { return std::is_null_pointer_v<T>; }
 }

@@ -48,47 +48,47 @@ void System::Console::WriteLine(const string* _str)
     Out().Write(_str);
 }
 
-void System::Console::WriteLine(const char* _str)
-{
-    std::cout << _str << std::endl;
-    Out().Write(string(_str));
-}
+// void System::Console::WriteLine(const char* _str)
+// {
+//     std::cout << _str << std::endl;
+//     Out().Write(string(_str));
+// }
 
-void System::Console::WriteLine(const Boolean& _bool)
-{
-    std::cout << _bool.ToString() << std::endl;
-    Out().Write(_bool);
-}
+// void System::Console::WriteLine(const Boolean& _bool)
+// {
+//     std::cout << _bool.ToString() << std::endl;
+//     Out().Write(_bool);
+// }
+//
+// void System::Console::WriteLine(const Float& _float)
+// {
+//     std::cout << _float.ToString() << std::endl;
+//     Out().Write(_float);
+// }
+//
+// void System::Console::WriteLine(const Double& _double)
+// {
+//     std::cout << _double.ToString() << std::endl;
+//     Out().Write(_double);
+// }
+//
+// void System::Console::WriteLine(const Byte& _byte)
+// {
+//     std::cout << _byte.ToString() << std::endl;
+//     Out().Write(_byte);
+// }
 
-void System::Console::WriteLine(const Float& _float)
-{
-    std::cout << _float.ToString() << std::endl;
-    Out().Write(_float);
-}
+// void System::Console::WriteLine(const String& _str)
+// {
+//     std::cout << _str.ToString() << std::endl;
+//     Out().Write(_str);
+// }
 
-void System::Console::WriteLine(const Double& _double)
-{
-    std::cout << _double.ToString() << std::endl;
-    Out().Write(_double);
-}
-
-void System::Console::WriteLine(const Byte& _byte)
-{
-    std::cout << _byte.ToString() << std::endl;
-    Out().Write(_byte);
-}
-
-void System::Console::WriteLine(const String& _str)
-{
-    std::cout << _str.ToString() << std::endl;
-    Out().Write(_str);
-}
-
-void System::Console::WriteLine(const Integer& _int)
-{
-    std::cout << _int.ToString() << std::endl;
-    Out().Write(_int);
-}
+// void System::Console::WriteLine(const Integer& _int)
+// {
+//     std::cout << _int.ToString() << std::endl;
+//     Out().Write(_int);
+// }
 
 void System::Console::WriteLine(char _char)
 {

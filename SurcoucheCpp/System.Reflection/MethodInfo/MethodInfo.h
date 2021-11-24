@@ -7,7 +7,6 @@
 #include "../../System/TemplateUtils/TemplateUtils.h"
 #include "../../System/PrimaryType/String/String.h"
 #include "../../System/PrimaryType/Integer/Integer.h"
-#include "../../System/PrimaryType/Boolean/Boolean.h"
 
 namespace System
 {

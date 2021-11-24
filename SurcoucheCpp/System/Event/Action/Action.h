@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "../../Object/Object.h"
+#include "../../TemplateUtils/TemplateUtils.h"
 #include "../Delegate/delegates.h"
 
 namespace System
@@ -34,6 +35,8 @@ namespace System
         void operator-=(Function&& _function);
         void operator()(Args ... _args);
         Action<Args...>& operator=(const Action& _other);
+        template<typename Function>
+        Action<Args...>& operator=(Function&& _function);
 #pragma endregion operator
     };
 #pragma region constructor/destructor
@@ -88,6 +91,20 @@ namespace System
     Action<Args...>& Action<Args...>::operator=(const Action& _other)
     {
         mFunctions = std::move(_other.mFunctions);
+        return *this;
+    }
+
+    template <typename ... Args>
+    template <typename Function>
+    Action<Args...>& Action<Args...>::operator=(Function&& _function)
+    {
+        mFunctions.clear();
+        if (TemplateUtils::IsNull<Function>())
+        {
+            return *this;
+        }
+        Delegate<void, Args...> _delegate = _function;
+        mFunctions.push_back(_delegate);
         return *this;
     }
 

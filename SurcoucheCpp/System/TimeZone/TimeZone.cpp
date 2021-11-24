@@ -47,7 +47,7 @@ time_t System::TimeZone::ConvertSystemTime(SYSTEMTIME _time)
     _tm.tm_mon = _time.wMonth - 1;
     _tm.tm_year = _time.wYear - 1900;
     _tm.tm_isdst = -1;
-    return std::mktime(&_tm);;
+    return std::mktime(&_tm);
 }
 
 System::DateTime System::TimeZone::Time() const

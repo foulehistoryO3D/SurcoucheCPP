@@ -125,8 +125,7 @@ namespace System
         const int _count = _package.Count();
         for (int i = 0; i < _count; ++i)
         {
-            int _index = i+1;
-            _result = _result.Replace(String("{") + _index + "}", _package[i]->ToString());
+            _result = _result.Replace(String("{") + i + "}", _package[i]->ToString());
         }
         return _result;
     }

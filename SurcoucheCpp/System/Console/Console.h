@@ -35,13 +35,13 @@ namespace System
         static void WriteLine(const object* _object);
         static void WriteLine(const object& _object);
         static void WriteLine(const String* _str);
-        static void WriteLine(const char* _str);
-        static void WriteLine(const Boolean& _bool);
-        static void WriteLine(const Float& _float);
-        static void WriteLine(const Double& _double);
-        static void WriteLine(const Byte& _byte);
-        static void WriteLine(const String& _str);
-        static void WriteLine(const Integer& _int);
+        // static void WriteLine(const char* _str);
+        // static void WriteLine(const Boolean& _bool);
+        // static void WriteLine(const Float& _float);
+        // static void WriteLine(const Double& _double);
+        // static void WriteLine(const Byte& _byte);
+        // // static void WriteLine(const String& _str);
+        // static void WriteLine(const Integer& _int);
         template<typename... Args>
         static void WriteLine(const String& _str, Args... _args);
         static void WriteLine(char _char);
