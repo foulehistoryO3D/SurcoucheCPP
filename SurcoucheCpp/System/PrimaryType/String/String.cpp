@@ -32,7 +32,7 @@ System::String::String(const char* _value)
 
 System::String::String(const String& _copy)
 {
-    if (_copy.mValue == null) return ;
+    if (_copy.mValue == null) return;
     const size_t _length = _copy.mLength;
     char* _new = new char[_length + 1];
     memcpy(_new, _copy.mValue, _length + 1);
@@ -55,7 +55,7 @@ System::Boolean System::String::StartWith(const String& _str) const
 
 System::Boolean System::String::EndWith(const char& _c) const
 {
-    return mValue[mLength-1] == _c;
+    return mValue[mLength - 1] == _c;
 }
 
 System::Boolean System::String::EndWith(const String& _str) const
@@ -225,7 +225,7 @@ System::String System::String::SubString(const Integer& _begin, const Integer& _
     String _result = Empty();
     for (int i = _begin; i < _end; i++)
         _result.Append(mValue[i]);
-    
+
     return _result;
 }
 
@@ -248,7 +248,7 @@ System::String System::String::Replace(const char _oldChar, const char _newChar)
     const Int& _length = Length();
     char* _char = new char[_length];
     // ReSharper disable once CppDeprecatedEntity
-    strcpy(_char,mValue);
+    strcpy(_char, mValue);
     for (int i = 0; i < _length; i++)
     {
         const char _c = mValue[i];
@@ -370,6 +370,19 @@ System::String System::String::WStringToString(const std::wstring& _wstring)
 
 #pragma endregion custom methods
 #pragma region override
+
+System::String System::String::Join(const Collections::Generic::List<String>& _values)
+{
+    const int32 _count = _values.Count();
+    for (int32 i = 0; i < _count; ++i)
+    {
+        String _add = _values[i];
+        if (i < _count - 1)
+            _add += " ";
+        Append(_add);
+    }
+    return *this;
+}
 
 System::String System::String::ToString() const
 {

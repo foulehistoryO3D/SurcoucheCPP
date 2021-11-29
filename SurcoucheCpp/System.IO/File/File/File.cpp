@@ -51,18 +51,25 @@ System::DateTime System::IO::File::GetLastWriteTime(const String& _path)
 void System::IO::File::Delete(const String& _path)
 {
     if (!Exists(_path))return;
-    DeleteFileA(_path);
+    try
+    {
+        DeleteFileA(_path);
+    }
+    catch (...)
+    {
+        throw IOException("[File] error on delete file");
+    }
 }
 
 System::Boolean System::IO::File::Exists(const String& _path)
 {
-    const std::ifstream _stream(_path);
+    const std::ifstream _stream = std::ifstream(_path);
     return _stream.good();
 }
 
 System::IO::FileStream System::IO::File::Create(const String& _path)
 {
-    const String& _directoryPath = Path::GetDirectoryName(_path);
+    const String& _directoryPath = Path::GetDirectoryPath(_path);
     if (!Directory::Exists(_directoryPath))
         Directory::MakeDirectory(_directoryPath);
 
@@ -79,16 +86,14 @@ System::IO::StreamWriter System::IO::File::CreateText(const String& _path)
 {
     if (Exists(_path)) return StreamWriter(_path);
     Create(_path);
-    if (Exists(_path)) return StreamWriter(_path);
-    return StreamWriter();
+    return StreamWriter(_path);
 }
 
 System::IO::StreamReader System::IO::File::OpenText(const String& _path)
 {
     if (Exists(_path)) return StreamReader(_path);
     Create(_path);
-    if (Exists(_path)) return StreamReader(_path);
-    return StreamReader();
+    return StreamReader(_path);
 }
 
 System::String System::IO::File::ReadAllText(const String& _path)
@@ -101,7 +106,8 @@ System::String System::IO::File::ReadAllText(const String& _path)
 System::Collections::Generic::List<System::String> System::IO::File::ReadAllLines(const String& _path)
 {
     StreamReader _reader = OpenText(_path);
-    if (!_reader.IsValid()) return System::Collections::Generic::List<String>();
+    if (!_reader.IsValid())
+        throw IOException("[File] error => path is not valid !");
     Collections::Generic::List<String> _result = Collections::Generic::List<String>();
     String _str = String::Empty();
     while (_reader.ReadLine(_str))
@@ -112,12 +118,14 @@ System::Collections::Generic::List<System::String> System::IO::File::ReadAllLine
 #pragma region override
 System::Boolean System::IO::File::Equals(const object* object)
 {
-    return this == object;
+    const File& _file = *dynamic_cast<const File*>(object);
+    return mPath == _file.mPath;
 }
 
 System::Boolean System::IO::File::Equals(const object& object)
 {
-    return this == &object;
+    const File& _file = *dynamic_cast<const File*>(&object);
+    return mPath == _file.mPath;
 }
 
 size_t System::IO::File::GetHashCode() const

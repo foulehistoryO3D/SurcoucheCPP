@@ -25,9 +25,6 @@ namespace System
                 Regex(const Regex& _copy);
 #pragma endregion constructor
 #pragma region custom methods
-            private:
-                void InitMatchRegex(std::string& _str, int _index, Match& _match, std::smatch m) const;
-                void InitMatchRegexInternal(Match& _match, const String& _key, const String& _str) const;
             public:
                 Boolean IsMatch(const String& _input)const;
                 String Replace(const String& _input, const String& _replacement)const;

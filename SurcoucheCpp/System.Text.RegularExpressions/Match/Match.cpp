@@ -1,7 +1,7 @@
 ﻿#include "Match.h"
 
 #pragma region f/p
-System::Text::RegularExpressions::GroupCollection System::Text::RegularExpressions::Match::Groups() const
+System::Collections::Generic::List<System::Text::RegularExpressions::Group> System::Text::RegularExpressions::Match::Groups() const
 {
     return mGroups;
 }
@@ -22,9 +22,14 @@ System::Text::RegularExpressions::Match::Match(const Match& _copy)
     mGroups = std::move(_copy.mGroups);
 }
 
-void System::Text::RegularExpressions::Match::AddGroup(const String& _key, const Group& _group)
+void System::Text::RegularExpressions::Match::AddGroup(const String& _key, const Collections::Generic::List<String>& _value, const Integer& _index)
 {
-    mGroups.Add(_key, _group);
+    mGroups.Add(Group(_key, _value, _index));
+}
+
+void System::Text::RegularExpressions::Match::AddGroup(const String& _key, const String& _value, const Integer& _index)
+{
+    mGroups.Add(Group(_key, _value, _index));
 }
 
 System::String System::Text::RegularExpressions::Match::ToString() const

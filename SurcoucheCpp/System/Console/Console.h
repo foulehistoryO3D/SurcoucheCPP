@@ -61,8 +61,7 @@ namespace System
         String _result = _str;
         for (int i = 0; i < _count; ++i)
         {
-            int _index = i+1;
-            _result = _result.Replace(string("{") + _index + "}", _package[i]->ToString());
+            _result = _result.Replace(string("{") + i + "}", _package[i]->ToString());
         }
         std::cout << _result << std::endl;
     }

@@ -29,7 +29,7 @@ namespace System
             static String Combine(Collections::Generic::List<String> _str);
             static String GetExtension(const String& _path);
             static String GetFileNameWithoutExtension(const String& _path);
-            static String GetDirectoryName(const String& _path);
+            static String GetDirectoryPath(const String& _path);
             static Boolean HasExtension(const String& _path);
 #pragma endregion custom methods
         };

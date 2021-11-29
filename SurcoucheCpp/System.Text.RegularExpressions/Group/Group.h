@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "../../System.Collections.Generic/List/List.h"
 #include "../Capture/Capture.h"
 #include "../CaptureCollection/CaptureCollection.h"
 
@@ -24,13 +25,14 @@ namespace System
 #pragma region constructor
             public:
                 Group()=default;
+                Group(const String& _key, const Collections::Generic::List<String>& _values, const Integer& _index);
+                Group(const String& _key, const String& _value, const Integer& _index);
                 Group(const Group& _copy);
 #pragma endregion constructor
 #pragma region custom methods
             public:
                 void SetName(const String& _name);
                 void SetSuccess(const bool _success);
-                void AddCapture(const Capture& _capture);
 #pragma endregion custom methods
 #pragma region override
             public:

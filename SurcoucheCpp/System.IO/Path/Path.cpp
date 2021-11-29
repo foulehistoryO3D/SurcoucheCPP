@@ -61,7 +61,7 @@ System::String System::IO::Path::GetFileNameWithoutExtension(const String& _path
     return "";
 }
 
-System::String System::IO::Path::GetDirectoryName(const String& _path)
+System::String System::IO::Path::GetDirectoryPath(const String& _path)
 {
     const String& _pathValid = GetPath(_path);
     const Int& _index = _path.LastIndexOf('\\');

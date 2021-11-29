@@ -74,7 +74,7 @@ namespace System
 		static String WStringToString(const std::wstring& _wstring);
 		template<typename... Args>
 		static String Format(const String& _str, Args... _args);
-
+		String Join(const Collections::Generic::List<String>& _values);
 #pragma endregion custom methods
 #pragma region override
 	public:

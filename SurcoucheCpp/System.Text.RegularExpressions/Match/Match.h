@@ -13,9 +13,9 @@ namespace System
                 DECLARE_CLASS_INFO(Group)
 #pragma region f/p
             private:
-                GroupCollection mGroups = GroupCollection();
+                Collections::Generic::List<Group> mGroups = Collections::Generic::List<Group>();
             public:
-                GroupCollection Groups()const;
+                Collections::Generic::List<Group> Groups()const;
 #pragma endregion f/p
 #pragma region constructor
             public:
@@ -25,7 +25,8 @@ namespace System
 #pragma endregion constructor
 #pragma region custom methods
             public:
-                void AddGroup(const String& _key, const Group& _group);
+                void AddGroup(const String& _key, const Collections::Generic::List<String>& _value, const Integer& _index);
+                void AddGroup(const String& _key, const String& _value, const Integer& _index);
 #pragma endregion custom methods
 #pragma region override
             public:

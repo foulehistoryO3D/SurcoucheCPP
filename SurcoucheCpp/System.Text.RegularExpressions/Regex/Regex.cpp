@@ -30,59 +30,26 @@ System::String System::Text::RegularExpressions::Regex::Replace(const String& _i
     return std::regex_replace(_input.ToCstr(), mExpression, _replacement.ToCstr()).c_str();
 }
 
-void System::Text::RegularExpressions::Regex::InitMatchRegex(std::string& _str, int _index, RegularExpressions::Match& _match, std::smatch m) const
-{
-    std::string _value = std::string(m[0].str());
-    std::string _key = m[1].str();
-    _match.SetValue(_value.c_str());
-    _str = m.suffix();
-    _match.SetIndex(_index = _index == -1 ? m.position() : _index);
-    Group _group = Group();
-    _group.SetName(Int(1).ToString());
-    _group.SetValue(_match.Value());
-    _group.SetIndex(_index);
-    Capture _capture = Capture();
-    _capture.SetIndex(_index);
-    _capture.SetValue(_match.Value());
-    _group.AddCapture(_capture);
-    _match.AddGroup(_group.Name(), _group);
-    InitMatchRegexInternal(_match, _key.c_str(), _value.c_str());
-}
-
-void System::Text::RegularExpressions::Regex::InitMatchRegexInternal(RegularExpressions::Match& _match,
-    const String& _key, const String& _str) const
-{
-    Group _group = Group();
-    _group.SetName(Int(2).ToString());
-    _group.SetValue(_key);
-    Collections::Generic::List<String> _splitedString = _str.Split(' ');
-    const int _count = _splitedString.Count();
-    for (int i = 0; i < _count; ++i)
-    {
-        Capture _capture = Capture();
-        String _string =_splitedString[i];
-        _capture.SetValue(_string);
-        _group.AddCapture(_capture);
-    }
-    _match.AddGroup(_group.Name(), _group);
-}
-
-
 System::Text::RegularExpressions::Match System::Text::RegularExpressions::Regex::Match(const String& _input) const
 {
     std::string _str = _input.ToCstr();
-    const bool _isSuccess = IsMatch(_input);
-    int _index = -1;
-    RegularExpressions::Match _match = RegularExpressions::Match(_isSuccess);
-    std::smatch m = std::smatch();
-    std::regex_search(_str, m, mExpression);
-    InitMatchRegex(_str, _index, _match, m);
+    std::smatch _match = std::smatch();
+    RegularExpressions::Match _result = RegularExpressions::Match();
+    const bool _success = std::regex_search(_str, _match, mExpression);
+    _result.SetSuccess(_success);
+    if (!_success)return _result;
+    const int _count = _match.size();
+    const String& _resultStr = _match.str(0).c_str();
+    _result.SetValue(_resultStr);
+    _result.SetIndex(_match.position(0));
+    _result.AddGroup(_resultStr, _resultStr, _match.position(0));
     
-    for (; std::regex_search(_str, m, mExpression); _str = m.suffix())
+    for (int32 i = 1; i < _count; ++i)
     {
-        Console::WriteLine(m[1].str().c_str());
+        Collections::Generic::List<String> _splitedString = _resultStr.Split(' ');
+        _result.AddGroup(_match.str(i).c_str(), _splitedString, _match.position(i));
     }
-    return _match;
+    return _result;
 }
 #pragma endregion custom methods
 #pragma region override

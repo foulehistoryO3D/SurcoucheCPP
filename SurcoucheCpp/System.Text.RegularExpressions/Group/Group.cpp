@@ -1,6 +1,10 @@
 ﻿#include "Group.h"
+
+#include <regex>
+
 #include "../../System/PrimaryType/String/String.h"
 #include "../../System/PrimaryType/Boolean/Boolean.h"
+#include "../../System/PrimaryType/Integer/Integer.h"
 
 #pragma region f/p
 System::Text::RegularExpressions::CaptureCollection System::Text::RegularExpressions::Group::Captures() const
@@ -19,6 +23,42 @@ System::Boolean System::Text::RegularExpressions::Group::Success() const
 }
 #pragma endregion f/p
 #pragma region constructor
+
+System::Text::RegularExpressions::Group::Group(const String& _key,  const Collections::Generic::List<String>& _values, const Integer& _index)
+{
+    mValue = std::move(_key);
+    mIndex = std::move(_index);
+    string _str = string::Empty();
+    _str.Join(_values);
+    const int& _count = _values.Count();
+    int _length = 0;
+    for (int i = 0; i < _count; ++i)
+    {
+        std::smatch _match = std::smatch();
+        std::regex _regex = std::regex(_values[i].ToCstr());
+        std::string _s = std::string(_str.ToCstr());
+        if (std::regex_search(_s, _match, _regex))
+        {
+            Capture _capture = Capture();
+            _str = _str.SubString(_values[i].Length(), _str.Length());
+            _capture.SetValue(_match.str(0).c_str());
+            _capture.SetIndex(Int(_match.position()) + _length);
+            _length += _values[i].Length();
+            mCaptureCollection.Add(_capture);
+        }
+        
+    }
+}
+
+System::Text::RegularExpressions::Group::Group(const String& _key, const String& _value, const Integer& _index)
+{
+    mValue = std::move(_key);
+    mIndex = std::move(_index);
+    Capture _capture = Capture();
+    _capture.SetIndex(_index);
+    _capture.SetValue(_value);
+    mCaptureCollection.Add(_capture);
+}
 
 System::Text::RegularExpressions::Group::Group(const Group& _copy)
 {
@@ -41,10 +81,10 @@ void System::Text::RegularExpressions::Group::SetSuccess(const bool _success)
     mSuccess = _success;
 }
 
-void System::Text::RegularExpressions::Group::AddCapture(const Capture& _capture)
-{
-    mCaptureCollection.Add(_capture);
-}
+// void System::Text::RegularExpressions::Group::AddCapture(const Capture& _capture)
+// {
+//     mCaptureCollection.Add(_capture);
+// }
 #pragma endregion custom methods
 #pragma region override
 System::String System::Text::RegularExpressions::Group::ToString() const
