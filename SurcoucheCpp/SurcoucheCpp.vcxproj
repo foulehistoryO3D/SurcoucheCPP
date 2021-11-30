@@ -280,6 +280,7 @@
     <ClCompile Include="System\PrimaryType\Byte\Byte.cpp" />
     <ClCompile Include="System\PrimaryType\Char\Char.cpp" />
     <ClCompile Include="System\PrimaryType\Double\Double.cpp" />
+    <ClCompile Include="System\PrimaryType\Enum\Enum.cpp" />
     <ClCompile Include="System\PrimaryType\Float\Float.cpp" />
     <ClCompile Include="System\PrimaryType\Integer\Integer.cpp" />
     <ClCompile Include="System\PrimaryType\String\String.cpp" />
@@ -362,6 +363,7 @@
     <ClInclude Include="System\PrimaryType\Byte\Byte.h" />
     <ClInclude Include="System\PrimaryType\Char\Char.h" />
     <ClInclude Include="System\PrimaryType\Double\Double.h" />
+    <ClInclude Include="System\PrimaryType\Enum\Enum.h" />
     <ClInclude Include="System\PrimaryType\Float\Float.h" />
     <ClInclude Include="System\PrimaryType\Integer\Integer.h" />
     <ClInclude Include="System\PrimaryType\String\String.h" />

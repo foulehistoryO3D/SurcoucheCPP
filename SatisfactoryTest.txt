@@ -1,0 +1,9 @@
+-> tapis roulant
+-> ligne éléctrique
+-> pilonne éléctrique
+-> caisse de stockage
+
+
+/* automatisation */
+-> extracteur
+

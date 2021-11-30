@@ -32,12 +32,14 @@ System::String System::ConfirmationBox::ToString() const
 
 System::Boolean System::ConfirmationBox::Equals(const object* object)
 {
-    return this == object;
+    const ConfirmationBox& _box = *dynamic_cast<const ConfirmationBox*>(object);
+    return mMessage == _box.mMessage && mTitle == _box.mTitle;
 }
 
 System::Boolean System::ConfirmationBox::Equals(const object& object)
 {
-    return this == &object;
+    const ConfirmationBox& _box = *dynamic_cast<const ConfirmationBox*>(&object);
+    return mMessage == _box.mMessage && mTitle == _box.mTitle;
 }
 
 size_t System::ConfirmationBox::GetHashCode() const

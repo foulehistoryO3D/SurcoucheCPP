@@ -19,9 +19,9 @@ System::Net::WebClient::~WebClient()
 void System::Net::WebClient::DownloadStringAsyncInternal(const Uri& _address)
 {
     mIsRunning = true;
-    LPCWSTR _uri = _address.GetUriWSTR();
+    const LPCWSTR _uri = _address.GetUriWSTR();
     IStream* _stream;
-    HRESULT result = URLOpenBlockingStream(0, _uri, &_stream, 0, 0);
+    const HRESULT result = URLOpenBlockingStream(0, _uri, &_stream, 0, 0);
     STATSTG stat;
     _stream->Stat(&stat, result);
 

@@ -42,3 +42,12 @@ void System::Timers::Timer::Stop()
     mThread.join();
 }
 #pragma endregion constructor
+#pragma region operator
+System::Timers::Timer& System::Timers::Timer::operator=(const Timer& _other)
+{
+    mElapsedEvent = std::move(_other.mElapsedEvent);
+    Elapsed = std::move(_other.Elapsed);
+    mInterval = std::move(_other.mInterval);
+    return *this;
+}
+#pragma endregion operator

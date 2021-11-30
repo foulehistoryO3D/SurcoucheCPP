@@ -39,6 +39,9 @@ namespace System
             void Update();
             void Stop();
 #pragma endregion custom methods
+#pragma region operator
+            Timer& operator=(const Timer& _other);
+#pragma endregion operator
         };
     }
 }

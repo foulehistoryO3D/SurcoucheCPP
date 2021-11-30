@@ -1,7 +1,9 @@
 ﻿#pragma once
 #include <functional>
+#include <iostream>
 
 #include "../../Object/Object.h"
+#include "../../PrimaryType/Boolean/Boolean.h"
 
 namespace System
 {
@@ -17,39 +19,74 @@ namespace System
 #pragma endregion f/p
 #pragma region constructor/destructor
     public:
-        Delegate() { mFunction = null; }
+        Delegate()=default;
         template<typename Function>
-        Delegate(Function&& _function) { mFunction = std::move(_function);}
+        Delegate(Function _function) { mFunction = std::move(_function);}
+        Delegate(nullptr_t);
 #pragma endregion constructor/destructor
 #pragma region custom methods
         Res Invoke(Args... _args) { return this->operator()(_args...); }
 #pragma endregion custom methods
+#pragma region override
+    public:
+        Boolean Equals(const object* _obj) override;
+        Boolean Equals(const object& _obj) override;
+        size_t GetHashCode() const override;
+#pragma endregion override
 #pragma region operator
         Res operator()(Args... _args)
         {
             if (mFunction == null) return Res();
             return mFunction(_args...);
         }
-        bool operator==(const Delegate<Res, Args...> _other)
-        {
-            return mFunction.template target<Res(Args...)>() == _other.mFunction.template target<Res(Args...)>();
-        }
-        bool operator !=(const Delegate<Res, Args...> _other)
-        {
-            return !(this->operator==(_other));
-        }
+
         Delegate& operator=(const Delegate& _other)
         {
             mFunction = std::move(_other.mFunction);
             return *this;
         }
         template<typename Function>
-        Delegate& operator=(Function&& _func)
+        Delegate& operator=(Function _func)
         {
             mFunction = _func;
             return *this;
         }
+        Delegate& operator=(nullptr_t)
+        {
+            mFunction = null;
+            return *this;
+        }
+        
 #pragma endregion operator
     };
+#pragma region constructor
+    template <typename Res, typename ... Args>
+    Delegate<Res, Args...>::Delegate(nullptr_t)
+    {
+        mFunction = null;
+    }
+#pragma endregion constructor
+#pragma region override
+    template <typename Res, typename ... Args>
+    Boolean Delegate<Res, Args...>::Equals(const object* object)
+    {
+        const Delegate& _del = *dynamic_cast<const Delegate*>(object);
+        return mFunction.template target<Res(Args...)>() == _del.mFunction.template target<Res(Args...)>();
+    }
+
+    template <typename Res, typename ... Args>
+    Boolean Delegate<Res, Args...>::Equals(const object& object)
+    {
+        const Delegate& _del = *dynamic_cast<const Delegate*>(&object);
+        return mFunction.template target<Res(Args...)>() == _del.mFunction.template target<Res(Args...)>(); 
+    }
+
+    template <typename Res, typename ... Args>
+    size_t Delegate<Res, Args...>::GetHashCode() const
+    {
+        Delegate _del = *this;
+        return std::hash<Delegate*>{}(&_del);
+    }
+#pragma endregion override
 }
 

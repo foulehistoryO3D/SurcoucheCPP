@@ -94,12 +94,14 @@ System::String System::BoxFile::ToString() const
 
 System::Boolean System::BoxFile::Equals(const object* object)
 {
-    return this == object;
+    const BoxFile& _box = *dynamic_cast<const BoxFile*>(object);
+    return mTitle == _box.mTitle && mPathResult == _box.mPathResult;
 }
 
 System::Boolean System::BoxFile::Equals(const object& object)
 {
-    return this == &object;
+    const BoxFile& _box = *dynamic_cast<const BoxFile*>(&object);
+    return mTitle == _box.mTitle && mPathResult == _box.mPathResult;
 }
 
 size_t System::BoxFile::GetHashCode() const

@@ -20,7 +20,7 @@ namespace System
     public:
         Action() = default;
         template <typename Function>
-        Action(Function&& _function);
+        Action(Function _function);
         ~Action() override;
 #pragma endregion constructor/destructor
 #pragma region custom methods
@@ -28,6 +28,10 @@ namespace System
         void Invoke(Args ... _args) { this->operator()(_args...); }
         void Clear(){ mFunctions.empty(); }
 #pragma endregion custom methods
+#pragma region override
+    public:
+        size_t GetHashCode() const override;
+#pragma endregion override
 #pragma region operator
         template <typename Function>
         void operator+=(Function&& _function);
@@ -43,7 +47,7 @@ namespace System
 #pragma region constructor/destructor
     template <typename ... Args>
     template <typename Function>
-    Action<Args...>::Action(Function&& _function)
+    Action<Args...>::Action(Function _function)
     {
         Delegate<void, Args...> _delegate = Delegate<void, Args...>(_function);
         mFunctions.push_back(_delegate);
@@ -53,6 +57,13 @@ namespace System
     Action<Args...>::~Action()
     {
         mFunctions.clear();
+    }
+
+    template <typename ... Args>
+    size_t Action<Args...>::GetHashCode() const
+    {
+        Action _action = *this;
+        return std::hash<Action*>{}(&_action);
     }
 #pragma endregion constructor/destructor
 #pragma region operator

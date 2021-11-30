@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "../../../System/Object/Object.h"
+#include "../../../System/PrimaryType/Enum/Enum.h"
 
 namespace System
 {
@@ -9,7 +10,7 @@ namespace System
         {
             DECLARE_CLASS_INFO(Object)
 #pragma region enum
-        private:
+        public:
             enum EDriveType { Unknown, NoRootDir, Removable, Fixed, Remote, CdRom, RamDisk };
 #pragma endregion enum
 #pragma region f/p
