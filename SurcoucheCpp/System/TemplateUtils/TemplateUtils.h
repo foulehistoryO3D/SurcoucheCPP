@@ -53,7 +53,7 @@ namespace System
         int _index = 0;
         std::apply([&](auto&&... _args)
         {
-            (_tab.Add(Reflection::ParameterInfo(_args.Clone((void*)&_args), _index++)), ...);
+            (_tab.Add(Reflection::ParameterInfo(_args.Clone(static_cast<void*>(&_args)), _index++)), ...);
         }, _tuple);
         return _tab;
     }

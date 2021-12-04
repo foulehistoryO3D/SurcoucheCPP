@@ -160,7 +160,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="SurcoucheCpp.cpp" />
-    <ClCompile Include="System.Collections.Generic\Dictionary\Dictionary.cpp" />
     <ClCompile Include="System.Diagnostics\Process\Process.cpp" />
     <ClCompile Include="System.IO\Directory\Directory.cpp" />
     <ClCompile Include="System.IO\Directory\DirectoryInfo\DirectoryInfo.cpp" />
