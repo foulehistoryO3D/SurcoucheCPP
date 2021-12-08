@@ -36,6 +36,12 @@ namespace System
     public:
         Boolean& operator=(const Boolean& _other);
         operator bool()const{ return mValue; }
+        Boolean operator!() const
+        {
+            return !mValue;
+        }
+        Boolean operator!=(const Boolean& _other)const;
+        Boolean operator!=(const bool& _other)const;
         Boolean operator==(const Boolean& _other) const;
         Boolean operator==(const bool& _other)const;
 #pragma endregion operator

@@ -41,7 +41,9 @@ namespace System
             public:
             Boolean Equals(const object* _obj) override;
             Boolean Equals(const object& _obj) override;
-            void Dispose();
+            void Dispose() override;
+            void operator << (const object& _obj);
+            void operator << (const object* _obj);
 #pragma endregion override
 #pragma region operator
         public:

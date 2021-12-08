@@ -9,6 +9,8 @@
 #include "Box/ConfirmationBox/ConfirmationBox.h"
 #include "Box/BoxFile/BoxFile.h"
 #include "Random/Random.h"
+
+#include "PrimaryType/Array/Array.h"
 #include "PrimaryType/Char/Char.h"
 #include "PrimaryType/String/String.h"
 #include "PrimaryType/Boolean/Boolean.h"
@@ -46,6 +48,12 @@
 using namespace System;
 using namespace IO;
 using namespace Collections::Generic;
+
+
+#define newArray(type, count) Array<type>(count)
+
+#define newArrayWithValues(type, ...)\
+    Array<type>(TemplateUtils::CreateListWithParameterPack<type>(__VA_ARGS__))
 
 template<typename T>
 void foreach(IEnumerator<T>* _enumerator, Action<T> _callback)

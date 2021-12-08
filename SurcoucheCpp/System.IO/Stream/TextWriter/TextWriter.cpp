@@ -80,4 +80,17 @@ void System::IO::TextWriter::Dispose()
 {
     mStream.close();
 }
+
+void System::IO::TextWriter::operator<<(const object& _obj)
+{
+    mStream << _obj.ToString();
+    mStream << std::endl;
+}
+
+void System::IO::TextWriter::operator<<(const object* _obj)
+{
+    mStream << _obj->ToString();
+    mStream << std::endl;
+}
 #pragma endregion custom methods
+

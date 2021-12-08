@@ -16,9 +16,7 @@ System::Boolean System::Boolean::Parse(const String& _str)
 {
     if (_str != "true" || _str != "false")
         throw Exception("[Boolean] => error parsing value is invalid !");
-        
-    const String _value = _str.ToLower();
-    return _value == "true";
+    return _str.ToLower() == "true";
 }
 #pragma endregion constructor
 #pragma region override
@@ -63,6 +61,16 @@ System::Boolean& System::Boolean::operator=(const Boolean& _other)
 {
     mValue = std::move(_other.mValue);
     return *this;
+}
+
+System::Boolean System::Boolean::operator!=(const Boolean& _other) const
+{
+    return !this->operator==(_other);
+}
+
+System::Boolean System::Boolean::operator!=(const bool& _other) const
+{
+    return !this->operator==(_other);
 }
 
 System::Boolean System::Boolean::operator==(const Boolean& _other) const

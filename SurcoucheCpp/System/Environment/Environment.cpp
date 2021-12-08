@@ -12,7 +12,7 @@ System::String System::Environment::CurrentDirectory()
     TCHAR buffer[MAX_PATH];
     GetCurrentDirectory(  MAX_PATH , buffer);
     std::wstring _arrW = buffer;
-    std::wstring::size_type _pos = std::wstring(buffer).find_last_of(L"\\/");
+    const std::wstring::size_type _pos = std::wstring(buffer).find_last_of(L"\\/");
     _arrW = _arrW.substr(0, _pos);
     const std::string _result(_arrW.begin(), _arrW.end());
     return _result.c_str();

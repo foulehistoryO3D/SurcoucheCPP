@@ -43,55 +43,6 @@ void System::Console::WriteLine(const object& _object)
     Out().Write(_object);
 }
 
-void System::Console::WriteLine(const string* _str)
-{
-    std::cout << _str->ToString() << std::endl;
-    Out().Write(_str);
-}
-
-// void System::Console::WriteLine(const char* _str)
-// {
-//     std::cout << _str << std::endl;
-//     Out().Write(string(_str));
-// }
-
-// void System::Console::WriteLine(const Boolean& _bool)
-// {
-//     std::cout << _bool.ToString() << std::endl;
-//     Out().Write(_bool);
-// }
-//
-// void System::Console::WriteLine(const Float& _float)
-// {
-//     std::cout << _float.ToString() << std::endl;
-//     Out().Write(_float);
-// }
-//
-// void System::Console::WriteLine(const Double& _double)
-// {
-//     std::cout << _double.ToString() << std::endl;
-//     Out().Write(_double);
-// }
-//
-// void System::Console::WriteLine(const Byte& _byte)
-// {
-//     std::cout << _byte.ToString() << std::endl;
-//     Out().Write(_byte);
-// }
-
-// void System::Console::WriteLine(const String& _str)
-// {
-//     std::cout << _str.ToString() << std::endl;
-//     Out().Write(_str);
-// }
-
-// void System::Console::WriteLine(const Integer& _int)
-// {
-//     std::cout << _int.ToString() << std::endl;
-//     Out().Write(_int);
-// }
-
-
 void System::Console::SetIn(IO::TextReader _in)
 {
     if (!IO::File::Exists(_in.Path()))
@@ -128,4 +79,10 @@ System::String System::Console::ReadLine()
     // std::string _str = "";
     // std::getline(std::cin, _str);
     return string::Empty();
+}
+
+void System::Console::Dispose()
+{
+    Out().Dispose();
+    In().Dispose();
 }

@@ -351,6 +351,7 @@
     <ClInclude Include="System\Exception\OutOfRange\OutOfRange.h" />
     <ClInclude Include="System\IncludeSystem.h" />
     <ClInclude Include="System\Interface\AsyncResult\IAsyncResult.h" />
+    <ClInclude Include="System\Interface\Cloneable\ICloneable.h" />
     <ClInclude Include="System\Interface\Comparable\IComparable.h" />
     <ClInclude Include="System\Interface\Disposable\IDisposable.h" />
     <ClInclude Include="System\Interface\Equatable\IEquatable.h" />
@@ -358,6 +359,7 @@
     <ClInclude Include="System\LanguageManager\Language\Language.h" />
     <ClInclude Include="System\Mathf\Mathf.h" />
     <ClInclude Include="System\Object\Object.h" />
+    <ClInclude Include="System\PrimaryType\Array\Array.h" />
     <ClInclude Include="System\PrimaryType\Boolean\Boolean.h" />
     <ClInclude Include="System\PrimaryType\Byte\Byte.h" />
     <ClInclude Include="System\PrimaryType\Char\Char.h" />
