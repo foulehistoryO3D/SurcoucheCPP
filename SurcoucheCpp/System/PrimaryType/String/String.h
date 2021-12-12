@@ -117,6 +117,8 @@ namespace System
 #pragma endregion operator
 	};
 
+
+
 	template <typename ... Args>
 	String String::Format(const String& _str, Args... _args)
 	{

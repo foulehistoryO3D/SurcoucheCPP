@@ -18,9 +18,6 @@
     <ClCompile Include="SurcoucheCpp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="System.Collections.Generic\Dictionary\Dictionary.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="System.Diagnostics\Process\Process.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -168,29 +165,32 @@
     <ClCompile Include="System\Version\Version.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="System.Reflection\MethodInfo\MethodInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="System.Reflection\ParameterInfo\ParameterInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="System.Text.RegularExpressions\CaptureCollection\CaptureCollection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="System.Text.RegularExpressions\Capture\Capture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="System.Text.RegularExpressions\GroupCollection\GroupCollection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="System.Text.RegularExpressions\Group\Group.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="System.Text.RegularExpressions\Match\Match.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="System\PrimaryType\Enum\Enum.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Sql\mysql.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sql\mysql_com.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sql\mysql_time.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sql\mysql_version.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sql\my_alloc.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sql\my_list.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sql\typelib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="System.Collections.Generic\Dictionary\Dictionary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -402,6 +402,51 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="System\Version\Version.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="System.Reflection\Enum\MemberTypes\MemberTypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="System.Reflection\MethodInfo\MethodInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="System.Reflection\ParameterInfo\ParameterInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="System.Reflection\ReturnType\ReturnType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="System.Text.RegularExpressions\CaptureCollection\CaptureCollection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="System.Text.RegularExpressions\Capture\Capture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="System.Text.RegularExpressions\GroupCollection\GroupCollection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="System.Text.RegularExpressions\Group\Group.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="System.Text.RegularExpressions\Match\Match.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Interface\AsyncResult\IAsyncResult.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Interface\Disposable\IDisposable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="System\PrimaryType\Array\Array.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="System\PrimaryType\Enum\Enum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SurcoucheCpp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

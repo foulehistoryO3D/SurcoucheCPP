@@ -36,6 +36,7 @@ System::Text::RegularExpressions::Match System::Text::RegularExpressions::Regex:
     std::smatch _match = std::smatch();
     RegularExpressions::Match _result = RegularExpressions::Match();
     const bool _success = std::regex_search(_str, _match, mExpression);
+    
     _result.SetSuccess(_success);
     if (!_success)return _result;
     const int _count = _match.size();

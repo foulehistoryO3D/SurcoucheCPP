@@ -66,6 +66,7 @@ namespace System
                 Item& operator[](const int _index);
                 Item& operator[](const int _index)const;
                 bool operator==(const List& list) const;
+                
 #pragma endregion operator
             };
 #pragma region constructor/destructor

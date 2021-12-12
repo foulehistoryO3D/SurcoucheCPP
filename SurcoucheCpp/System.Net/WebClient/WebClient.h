@@ -36,7 +36,10 @@ namespace System
             void DownloadFileAsyncInternal(const Uri& _address, const String& _pathFile);
         public:
             void DownloadStringAsync(const Uri& _address);
+            void DownloadString(const Uri& _address);
             void DownloadFileAsync(const Uri& _address, const String& _pathFile);
+            void DownloadFile(const Uri& _address, const String& _pathFile);
+            
 
 #pragma endregion custom methods
         };

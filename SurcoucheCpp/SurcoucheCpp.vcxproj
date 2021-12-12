@@ -288,6 +288,8 @@
     <ClCompile Include="System\Type\Type.cpp" />
     <ClCompile Include="System\Uri\Uri.cpp" />
     <ClCompile Include="System\Version\Version.cpp" />
+    <ClCompile Include="System\Window\Menu\WindowMenu.cpp" />
+    <ClCompile Include="System\Window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="System.Collections.Generic\Dictionary\Dictionary.h" />
@@ -374,10 +376,13 @@
     <ClInclude Include="System\Type\Type.h" />
     <ClInclude Include="System\Uri\Uri.h" />
     <ClInclude Include="System\Version\Version.h" />
+    <ClInclude Include="System\Window\Menu\WindowMenu.h" />
+    <ClInclude Include="System\Window\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="System.Collections" />
     <Folder Include="System.Diagnostics" />
+    <Folder Include="Test" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

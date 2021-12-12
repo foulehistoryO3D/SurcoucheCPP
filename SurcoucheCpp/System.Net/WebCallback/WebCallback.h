@@ -28,18 +28,18 @@ namespace System
 #pragma region override
 #pragma region IBindStatusCallback
         public:
-            HRESULT QueryInterface(const IID& riid, void** ppvObject) override;
-            ULONG AddRef() override;
-            ULONG Release() override;
-            HRESULT OnStartBinding(DWORD dwReserved, IBinding* pib) override;
-            HRESULT GetPriority(LONG* pnPriority) override;
-            HRESULT OnLowResource(DWORD reserved) override;
-            HRESULT OnProgress(ULONG ulProgress, ULONG ulProgressMax, ULONG ulStatusCode,
+            HRESULT STDMETHODCALLTYPE QueryInterface(const IID& riid, void** ppvObject) override;
+            ULONG STDMETHODCALLTYPE  AddRef() override;
+            ULONG STDMETHODCALLTYPE  Release() override;
+            HRESULT STDMETHODCALLTYPE  OnStartBinding(DWORD dwReserved, IBinding* pib) override;
+            HRESULT STDMETHODCALLTYPE  GetPriority(LONG* pnPriority) override;
+            HRESULT STDMETHODCALLTYPE  OnLowResource(DWORD reserved) override;
+            HRESULT STDMETHODCALLTYPE  OnProgress(ULONG ulProgress, ULONG ulProgressMax, ULONG ulStatusCode,
                 LPCWSTR szStatusText) override;
-            HRESULT OnStopBinding(HRESULT hresult, LPCWSTR szError) override;
-            HRESULT GetBindInfo(DWORD* grfBINDF, BINDINFO* pbindinfo) override;
-            HRESULT OnDataAvailable(DWORD grfBSCF, DWORD dwSize, FORMATETC* pformatetc, STGMEDIUM* pstgmed) override;
-            HRESULT OnObjectAvailable(const IID& riid, IUnknown* punk) override;
+            HRESULT STDMETHODCALLTYPE  OnStopBinding(HRESULT hresult, LPCWSTR szError) override;
+            HRESULT STDMETHODCALLTYPE  GetBindInfo(DWORD* grfBINDF, BINDINFO* pbindinfo) override;
+            HRESULT STDMETHODCALLTYPE  OnDataAvailable(DWORD grfBSCF, DWORD dwSize, FORMATETC* pformatetc, STGMEDIUM* pstgmed) override;
+            HRESULT STDMETHODCALLTYPE  OnObjectAvailable(const IID& riid, IUnknown* punk) override;
 #pragma endregion IBindStatusCallback
 #pragma region object
         public:

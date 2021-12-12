@@ -81,8 +81,18 @@ void System::Net::WebClient::DownloadStringAsync(const Uri& _address)
     mThread = std::thread(&WebClient::DownloadStringAsyncInternal, this, _address);
 }
 
+void System::Net::WebClient::DownloadString(const Uri& _address)
+{
+    DownloadStringAsyncInternal(_address);
+}
+
 void System::Net::WebClient::DownloadFileAsync(const Uri& _address, const String& _pathFile)
 {
     if (mIsRunning) return;
     mThread = std::thread(&WebClient::DownloadFileAsyncInternal, this, _address, _pathFile);
+}
+
+void System::Net::WebClient::DownloadFile(const Uri& _address, const String& _pathFile)
+{
+    DownloadFileAsyncInternal(_address, _pathFile);
 }

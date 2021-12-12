@@ -51,14 +51,10 @@ System::DateTime System::IO::File::GetLastWriteTime(const String& _path)
 void System::IO::File::Delete(const String& _path)
 {
     if (!Exists(_path))return;
-    try
-    {
-        DeleteFileA(_path);
-    }
-    catch (...)
-    {
-        throw IOException("[File] error on delete file");
-    }
+
+    const bool _value = DeleteFileA(_path);
+    if (!_value)
+        throw IOException("[File] error on delete file or the file instance is open !");
 }
 
 System::Boolean System::IO::File::Exists(const String& _path)
