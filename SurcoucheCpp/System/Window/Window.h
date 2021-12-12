@@ -15,21 +15,30 @@ namespace System
         DECLARE_CLASS_INFO(Object)
 #pragma region f/p
     private:
+        HWND mWindowInstance = nullptr;
         String mWindowName = "";
         Integer mWidth = 0;
         Integer mHeight = 0;
-        Collections::Generic::List<Action<>> mMenuAction = Collections::Generic::List<Action<>>();
-        Collections::Generic::Dictionary<String, WindowMenu> mMenus = Collections::Generic::Dictionary<String, WindowMenu>();
+        Collections::Generic::Dictionary<String, WindowMenu*> mMenus = Collections::Generic::Dictionary<String, WindowMenu*>();
 #pragma endregion f/p
 #pragma region constructor
     public:
         Window()=default;
-        Window(const String& _windowName, const Integer& _width, const Integer& _height);
+        Window(const String& _windowName, const Integer& _width, const Integer& _height, bool _isAsync = true);
         Window(const Window& _copy);
 #pragma endregion constructor
 #pragma region custom methods
-        WindowMenu CreateMenu(const String& _name);
-        void Close();
+    private:
+        void Update();
+        LRESULT __stdcall WindowProc(HWND hWindow, UINT msg, WPARAM wp, LPARAM lp);
+        static LRESULT __stdcall WindowProcInternal(HWND hWindow, UINT msg, WPARAM wp, LPARAM lp);
+        
+    public:
+        void Close() const;
+    protected:
+        WindowMenu* CreateMenu(const String& _name = "");
+        virtual void AddMenus(HWND _hwnd);
+        virtual void OnWindowUpdate();
 #pragma endregion custom methods
 #pragma region operator
     public:
