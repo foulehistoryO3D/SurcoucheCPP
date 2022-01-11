@@ -28,7 +28,7 @@ System::String System::Language::GetMessages(const System::String& _key) const
 {
     if (!mFile.IsValid())
         throw System::IO::IOException("file doesn't exist !");
-    string _str = string::Empty();
+    string _str = string::Empty;
     while(mFile.Reader().ReadLine(_str))
         if (_str.Contains(_key))
             return _str.SubString(_str.FirstIndexOf(':')+2, _str.Length());

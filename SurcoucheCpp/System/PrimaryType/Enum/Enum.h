@@ -6,6 +6,7 @@
 #include "../../Exception/OutOfRange/OutOfRange.h"
 #include "../../Object/Object.h"
 #include "../Boolean/Boolean.h"
+#include "../Integer/Integer.h"
 
 namespace System
 {
@@ -14,18 +15,23 @@ namespace System
     template<typename T>
     struct EnumPair : Object
     {
-        int mValue;
+        Integer mValue;
         T mItem;
 
-        EnumPair(int _value, T _item)
+        EnumPair(T _item)
         {
-            mValue = _value;
             mItem = _item;
+            mValue = 0;
         }
 
         int Value()const { return mValue; }
         T Item()const { return mItem; }
-        
+
+        EnumPair& operator=(const Integer& _value)
+        {
+            mValue = _value;
+            return *this;
+        }
     };
 
     template<typename T>
@@ -33,8 +39,10 @@ namespace System
     {
         DECLARE_CLASS_INFO(Object)
 #pragma region f/p
+    protected:
+        Int value = 0;
     private:
-        std::map<const char*, EnumPair<T>> mContainers = std::map<const char*, EnumPair<T>>();
+        std::map<int, EnumPair<T>> mContainers = std::map<int, EnumPair<T>>();
 #pragma endregion f/p
 #pragma region constructor
     public:
@@ -44,14 +52,29 @@ namespace System
 #pragma region operator
     public:
         T operator[](const int32 _index);
+        virtual operator Int() const
+        {
+            return value;
+        }
+
+        virtual void operator=(const Int& _value)
+        {
+            value = _value;
+        }
 #pragma endregion operator
     };
 
     template <typename T>
     Enum<T>::Enum(std::initializer_list<EnumPair<T>> _pair)
     {
-        for (EnumPair<T>& _item : _pair)
-            mContainers.insert(std::pair<int, EnumPair<T>>(_item.Value(), _item.Item()));
+        int32 index = 0;
+        for (const EnumPair<T>& _item : _pair)
+        {
+            EnumPair<T> _enumValue = _item;
+            _enumValue = index;
+            mContainers.insert(std::pair<int, EnumPair<T>>(index, _enumValue));
+            index++;
+        }
     }
 
     template <typename T>

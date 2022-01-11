@@ -32,7 +32,7 @@ System::String System::IO::FileSystemInfo::Extension() const
 {
     const String _path = FullPath();
     const int _index = _path.LastIndexOf('.');
-    if (_index == -1) return string::Empty();
+    if (_index == -1) return string::Empty;
     return _path.SubString(_index, _path.Length());    
 }
 

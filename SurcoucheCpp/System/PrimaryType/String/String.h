@@ -33,6 +33,8 @@ namespace System
 		int mLength = 0;
 		char mCurrentValue = 0;
 		int mCurrentIndex = -1;
+	public:
+		static const String Empty;
 #pragma endregion f/p
 #pragma region constructor/destructor
 	public:
@@ -63,7 +65,6 @@ namespace System
 		const char* ToCstr() const;
 		String Replace(const char _oldChar, const char _newChar) const;
 		String Replace(const String& _old, const String& _new) const;
-		static String Empty();
 		static bool IsNullOrEmpty(const String& _str);
 		Integer LastIndexOf(const char _c) const;
 		Integer FirstIndexOf(const char _c)const;

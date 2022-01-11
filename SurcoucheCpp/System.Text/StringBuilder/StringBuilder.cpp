@@ -10,6 +10,9 @@
 #include "../../System/PrimaryType/Char/Char.h"
 #include "../../System.Collections.Generic/List/List.h"
 
+#pragma region f/p
+System::Text::StringBuilder const System::Text::StringBuilder::Empty = "";
+#pragma endregion f/p
 #pragma region constructor
 System::Text::StringBuilder::StringBuilder(const Integer& _capacity)
 {
@@ -125,11 +128,6 @@ System::Text::StringBuilder& System::Text::StringBuilder::Replace(const char& _o
     _str = _str.Replace(_old, _new);
     mValue = _str.ToCstr();
     return *this;
-}
-
-System::Text::StringBuilder System::Text::StringBuilder::Empty()
-{
-    return StringBuilder();
 }
 
 System::Boolean System::Text::StringBuilder::Equals(const StringBuilder& _builder)

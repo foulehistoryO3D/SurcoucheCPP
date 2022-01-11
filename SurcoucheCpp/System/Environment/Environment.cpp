@@ -7,10 +7,15 @@
 
 #pragma warning(disable: 4996)
 
-System::String System::Environment::CurrentDirectory()
+System::String const System::Environment::CurrentDirectory  = CurrentDirectory_Internal();
+System::String const System::Environment::OsVersion         = GetOsVersionInternal();
+System::String const System::Environment::OsName            = GetOsNameInternal();
+System::Boolean const System::Environment::Is64BitProcess   = Is64BitProcessInternal();
+
+System::String System::Environment::CurrentDirectory_Internal()
 {
     TCHAR buffer[MAX_PATH];
-    GetCurrentDirectory(  MAX_PATH , buffer);
+    GetCurrentDirectory(MAX_PATH, buffer);
     std::wstring _arrW = buffer;
     const std::wstring::size_type _pos = std::wstring(buffer).find_last_of(L"\\/");
     _arrW = _arrW.substr(0, _pos);
@@ -21,7 +26,7 @@ System::String System::Environment::CurrentDirectory()
 System::String System::Environment::SpecialFolder(const System::SpecialFolder& _specialFolder)
 {
     TCHAR buffer[MAX_PATH];
-    SHGetSpecialFolderPath(0,buffer, (int)_specialFolder, FALSE);
+    SHGetSpecialFolderPath(0, buffer, (int)_specialFolder, FALSE);
     std::wstring _arrW = buffer;
     const std::string _result(_arrW.begin(), _arrW.end());
     return _result.c_str();
@@ -32,27 +37,27 @@ System::Collections::Generic::List<System::String> System::Environment::GetLogic
     System::Collections::Generic::List<String> _result = System::Collections::Generic::List<String>();
     char* _szDrives = new char[MAX_PATH]();
     if (GetLogicalDriveStringsA(MAX_PATH, _szDrives))
-        for (int i = 0; i < 100; i+=4)
+        for (int i = 0; i < 100; i += 4)
             if (_szDrives[i] != (char)0)
-                _result.Add(std::string{_szDrives[i],_szDrives[i+1],_szDrives[i+2]}.c_str());
+                _result.Add(std::string{_szDrives[i], _szDrives[i + 1], _szDrives[i + 2]}.c_str());
     return _result;
 }
 
-System::String System::Environment::GetOsVersion()
+System::String System::Environment::GetOsVersionInternal()
 {
     OSVERSIONINFOEX info;
     ZeroMemory(&info, sizeof(OSVERSIONINFOEX));
     info.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
     GetVersionEx((LPOSVERSIONINFO)&info);
-    String _result = GetOsName();
+    String _result = GetOsNameInternal();
     char procID[10];
     sprintf(procID, "%d.%d", info.dwMajorVersion, info.dwMinorVersion);
-    _result.Append(" v" );
+    _result.Append(" v");
     _result.Append(procID);
     return _result;
 }
 
-System::String System::Environment::GetOsName()
+System::String System::Environment::GetOsNameInternal()
 {
 #ifdef _WIN32
     return "Windows 32-bit";
@@ -71,7 +76,7 @@ System::String System::Environment::GetOsName()
 #endif
 }
 
-bool System::Environment::Is64BitProcess()
+bool System::Environment::Is64BitProcessInternal()
 {
 #ifdef _WIN32
     return false;

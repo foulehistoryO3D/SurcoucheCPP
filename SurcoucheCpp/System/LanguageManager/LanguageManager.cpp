@@ -8,7 +8,7 @@
 
 System::String System::LanguageManager::GetPathToSave() const
 {
-    return System::IO::Path::Combine(System::Environment::CurrentDirectory(), "Language");
+    return IO::Path::Combine(Environment::CurrentDirectory, "Language");
 }
 
 System::LanguageManager::LanguageManager()
@@ -21,7 +21,7 @@ System::LanguageManager::~LanguageManager()
     mLanguages.Clear();
 }
 
-System::Language System::LanguageManager::GetLanguage(const System::String& _name)
+System::Language System::LanguageManager::GetLanguage(const String& _name)
 {
     return *mLanguages[_name];
 }

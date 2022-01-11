@@ -30,6 +30,8 @@ namespace System
             int mLength = 0;
             int mCapacity = 0;
             int mCapacityMax = 255;
+        public:
+            static const StringBuilder Empty;
 #pragma endregion f/p
 #pragma region constructor
         public:
@@ -54,7 +56,6 @@ namespace System
             StringBuilder& Replace(const char& _old, const char& _new);
             template <typename T, typename ... Args>
             StringBuilder& AppendFormat(const String& _str, Args ... _args);
-            static StringBuilder Empty();
             Boolean Equals(const StringBuilder& _builder);
 #pragma endregion custom methods
 #pragma region override

@@ -38,12 +38,12 @@ System::String System::IO::DriveInfo::GetVolumeLabel() const
     DWORD _dword = DWORD();
     if (GetVolumeInformation(string(mPath).ToWString()->c_str(), _label, sizeof(_label), null, &_dword, &_dword, null, 0))
     {
-        if (_label == null) return string::Empty();
+        if (_label == null) return string::Empty;
         std::wstring _str = _label;
         const std::string _result = std::string(_str.begin(), _str.end());
         return _result.c_str();
     }
-    return string::Empty();
+    return string::Empty;
 }
 
 System::String System::IO::DriveInfo::DriveName() const

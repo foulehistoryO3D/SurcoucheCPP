@@ -3,6 +3,10 @@
 #include "../PrimaryType/Integer/Integer.h"
 #include <ctime>
 
+#pragma region f/p
+System::DateTime const System::DateTime::Now = Now_Interval();
+#pragma endregion f/p
+
 System::DateTime::DateTime(const Integer& _day, const Integer& _month, const Integer& _years, const Integer& _hour,
     const Integer& _minute, const Integer& _seconds)
 {
@@ -33,7 +37,7 @@ System::DateTime::DateTime(const DateTime& _copy)
     mSecond = std::move(_copy.mSecond);
 }
 
-System::DateTime System::DateTime::Now()
+System::DateTime System::DateTime::Now_Interval()
 {
     const time_t now = time(nullptr);
     // ReSharper disable once CppDeprecatedEntity

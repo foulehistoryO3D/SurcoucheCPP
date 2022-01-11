@@ -105,7 +105,7 @@ System::Collections::Generic::List<System::String> System::IO::File::ReadAllLine
     if (!_reader.IsValid())
         throw IOException("[File] error => path is not valid !");
     Collections::Generic::List<String> _result = Collections::Generic::List<String>();
-    String _str = String::Empty();
+    String _str = String::Empty;
     while (_reader.ReadLine(_str))
         _result.Add(_str);
     return _result;

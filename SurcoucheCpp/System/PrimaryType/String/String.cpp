@@ -13,6 +13,9 @@
 
 #include "../Float/Float.h"
 
+#pragma region f/p
+System::String const System::String::Empty = "";
+#pragma endregion f/p
 
 #pragma region constructor/destructor
 System::String::String(const char* _value)
@@ -212,7 +215,7 @@ System::Collections::Generic::List<System::String> System::String::Split(const S
             _start = i + _value.mLength;
         }
     }
-    string _str = string("");
+    string _str = Empty;
 
     for (int i = _start; i < _length; ++i)
         _str.Append(mValue[i]);
@@ -222,7 +225,7 @@ System::Collections::Generic::List<System::String> System::String::Split(const S
 
 System::String System::String::SubString(const Integer& _begin, const Integer& _end) const
 {
-    String _result = Empty();
+    String _result = Empty;
     for (int i = _begin; i < _end; i++)
         _result.Append(mValue[i]);
 
@@ -231,7 +234,7 @@ System::String System::String::SubString(const Integer& _begin, const Integer& _
 
 System::String System::String::SubString(const Integer& _begin) const
 {
-    String _result = Empty();
+    String _result = Empty;
     const Int _length = mLength;
     for (int i = _begin; i < _length; i++)
         _result.Append(mValue[i]);
@@ -307,12 +310,6 @@ System::String System::String::operator+(const char& _c)
 {
     Append(_c);
     return *this;
-}
-
-
-System::String System::String::Empty()
-{
-    return "";
 }
 
 bool System::String::IsNullOrEmpty(const String& _str)

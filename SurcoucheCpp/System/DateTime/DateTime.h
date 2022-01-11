@@ -17,6 +17,8 @@ private:
     int mHour = 0;
     int mMinute = 0;
     int mSecond = 0;
+public:
+    static const DateTime Now;
 #pragma endregion f/p
 #pragma region constructor
 public:
@@ -28,8 +30,9 @@ public:
     DateTime(const DateTime& _copy);
 #pragma endregion constructor
 #pragma region custom methods
+private:
+    static DateTime Now_Interval();
 public:
-    static DateTime Now();
     static DateTime Convert(SYSTEMTIME _systemTime);
     static DateTime Convert(time_t _systemTime);
     String ToStringFormat(const String& _format =  "y-m-d h:m:s") const;

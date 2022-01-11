@@ -28,7 +28,7 @@ System::Text::RegularExpressions::Group::Group(const String& _key,  const Collec
 {
     mValue = std::move(_key);
     mIndex = std::move(_index);
-    string _str = string::Empty();
+    string _str = string::Empty;
     _str.Join(_values);
     const int& _count = _values.Count();
     int _length = 0;

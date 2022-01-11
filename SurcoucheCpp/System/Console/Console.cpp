@@ -78,7 +78,7 @@ System::String System::Console::ReadLine()
     // if (std::cin.get() == '\n') return "";
     // std::string _str = "";
     // std::getline(std::cin, _str);
-    return string::Empty();
+    return string::Empty;
 }
 
 void System::Console::Dispose()

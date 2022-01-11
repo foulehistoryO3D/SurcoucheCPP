@@ -30,15 +30,21 @@ namespace System
     class Environment : public Object
     {
         DECLARE_CLASS_INFO(Object)
+    private:
+        static String CurrentDirectory_Internal();
+        static String GetOsVersionInternal();
+        static String GetOsNameInternal();
+        static bool Is64BitProcessInternal();
     public:
-        static const constexpr int EXIT_ERROR = -1;
-        static const constexpr int EXIT_VALID = 1;
-        static String CurrentDirectory();
+        static const String CurrentDirectory;
+        static const String OsVersion;
+        static const String OsName;
+        static const Boolean Is64BitProcess;
+        static constexpr int EXIT_ERROR = -1;
+        static constexpr int EXIT_VALID = 1;
         static String SpecialFolder(const SpecialFolder& _specialFolder);
         static Collections::Generic::List<String> GetLogicalDrives();
-        static String GetOsVersion();
-        static String GetOsName();
-        static bool Is64BitProcess();
+
         static void Exit(const int& _exitStatus);
     };
 }

@@ -54,7 +54,7 @@ System::String System::IO::TextReader::ReadLine()
 
 System::String System::IO::TextReader::ReadToEnd()
 {
-    String _result = String::Empty();
+    String _result = String::Empty;
     std::string _str = "";
     while(std::getline(mStream, _str))
     {
