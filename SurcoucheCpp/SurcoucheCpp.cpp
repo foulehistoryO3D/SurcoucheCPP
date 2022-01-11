@@ -1,13 +1,17 @@
 #include "System/IncludeSystem.h"
+#include "System/PrimaryType/Enum/Enum.h"
 #include "System/Window/Window.h"
-#include "Test/ETest.h"
+
+ENUM(Test, uint8, Thomas, Jean)
 
 int main()
 {
     // Window _window = Window("Test", 500,500, false);
-    const Integer& _test = ETest::Jean;
-    const Integer& _thomas = ETest::Thomas;
-    Console::WriteLine(string("Thomas: ") + _thomas + " Jean: " + _test);
-    Console::WriteLine(ETest::Thomas);
+    Console::WriteLine(*Test::Thomas);
+    Console::WriteLine(Int((int)Test::Thomas));
+    Console::WriteLine(*Test::Jean);
+    Console::WriteLine(Int((int)Test::Jean));
+    
+    
     return 0;
 }

@@ -1,87 +1,66 @@
 ﻿#pragma once
 #include <map>
+#include <sstream>
 #include <string>
 
-#include "../../Console/Console.h"
-#include "../../Exception/OutOfRange/OutOfRange.h"
-#include "../../Object/Object.h"
-#include "../Boolean/Boolean.h"
-#include "../Integer/Integer.h"
+#include "../../TemplateUtils/TemplateUtils.h"
 
-namespace System
+#define STRING_REMOVE_CHAR(str, ch) str.erase(std::remove(str.begin(), str.end(), ch), str.end())
+
+inline std::vector<std::string> splitString(std::string str, char sep = ',')
 {
-    class Integer;
+    std::vector<std::string> vecString;
+    std::string item;
 
-    template<typename T>
-    struct EnumPair : Object
+    std::stringstream stringStream(str);
+
+    while (std::getline(stringStream, item, sep))
     {
-        Integer mValue;
-        T mItem;
-
-        EnumPair(T _item)
-        {
-            mItem = _item;
-            mValue = 0;
-        }
-
-        int Value()const { return mValue; }
-        T Item()const { return mItem; }
-
-        EnumPair& operator=(const Integer& _value)
-        {
-            mValue = _value;
-            return *this;
-        }
-    };
-
-    template<typename T>
-    class Enum : public Object
-    {
-        DECLARE_CLASS_INFO(Object)
-#pragma region f/p
-    protected:
-        Int value = 0;
-    private:
-        std::map<int, EnumPair<T>> mContainers = std::map<int, EnumPair<T>>();
-#pragma endregion f/p
-#pragma region constructor
-    public:
-        Enum()=default;
-        Enum(std::initializer_list<EnumPair<T>> _pair);
-#pragma endregion constructor
-#pragma region operator
-    public:
-        T operator[](const int32 _index);
-        virtual operator Int() const
-        {
-            return value;
-        }
-
-        virtual void operator=(const Int& _value)
-        {
-            value = _value;
-        }
-#pragma endregion operator
-    };
-
-    template <typename T>
-    Enum<T>::Enum(std::initializer_list<EnumPair<T>> _pair)
-    {
-        int32 index = 0;
-        for (const EnumPair<T>& _item : _pair)
-        {
-            EnumPair<T> _enumValue = _item;
-            _enumValue = index;
-            mContainers.insert(std::pair<int, EnumPair<T>>(index, _enumValue));
-            index++;
-        }
+        vecString.push_back(item);
     }
 
-    template <typename T>
-    T Enum<T>::operator[](const int32 _index)
+    return vecString;
+}
+
+#define ENUM(name, type, ...) \
+enum class name : type \
+{ \
+__VA_ARGS__ \
+}; \
+std::map<type, std::string> name##MapName(generateEnumMap<type>(#__VA_ARGS__));\
+const char* operator*(name _name)\
+{\
+return name##MapName[(type)_name].c_str();\
+}
+
+template <typename T>
+std::map<T, std::string> generateEnumMap(std::string strMap)
+{
+    STRING_REMOVE_CHAR(strMap, ' ');
+    STRING_REMOVE_CHAR(strMap, '(');
+
+    std::vector enumTokens(splitString(strMap));
+    std::map<T, std::string> retMap;
+    T inxMap;
+
+    inxMap = 0;
+    for (auto iter = enumTokens.begin(); iter != enumTokens.end(); ++iter)
     {
-        if (_index < 0 || _index > mContainers.size())
-            throw OutOfRange("[Enum] out of range !");
-        return mContainers[_index];
+        std::string enumName = "";
+        T enumValue;
+        if (iter->find('=') == std::string::npos)
+            enumName = *iter;
+        else
+        {
+            std::vector enumNameValue(splitString(*iter, '='));
+            enumName = enumNameValue[0];
+            if (std::is_unsigned<T>::value)
+                inxMap = static_cast<T>(std::stoull(enumNameValue[1], 0, 0));
+            else
+                inxMap = static_cast<T>(std::stoll(enumNameValue[1], 0, 0));
+        }
+        retMap[inxMap++] = enumName;
     }
+
+    return retMap;
 }

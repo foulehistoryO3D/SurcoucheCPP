@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "../../../System/Object/Object.h"
-#include "../../../System/PrimaryType/Enum/Enum.h"
+#include "../../../System/PrimaryType/Enum/SmartEnum.h"
 
 namespace System
 {

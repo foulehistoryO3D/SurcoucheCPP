@@ -52,9 +52,8 @@ System::Collections::Generic::List<System::String> System::IO::Directory::GetDir
     Collections::Generic::List<String> _result = System::Collections::Generic::List<String>();
     String _currentDirectory = _path;
     _currentDirectory.Append("/*");
-    HANDLE _hFind = HANDLE();
     WIN32_FIND_DATAA _findData;
-    _hFind = FindFirstFileA(_currentDirectory, &_findData);
+    const HANDLE _hFind = FindFirstFileA(_currentDirectory, &_findData);
     if (_hFind == INVALID_HANDLE_VALUE)return _result;
     do
     {
