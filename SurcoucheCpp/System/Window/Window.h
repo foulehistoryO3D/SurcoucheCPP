@@ -19,6 +19,7 @@ namespace System
         String mWindowName = "";
         Integer mWidth = 0;
         Integer mHeight = 0;
+        Bool mIsAsync = false;
         Collections::Generic::Dictionary<String, WindowMenu*> mMenus = Collections::Generic::Dictionary<String, WindowMenu*>();
 #pragma endregion f/p
 #pragma region constructor
@@ -34,9 +35,11 @@ namespace System
         static LRESULT __stdcall WindowProcInternal(HWND hWindow, UINT msg, WPARAM wp, LPARAM lp);
         
     public:
+        void Open();
         void Close() const;
-    protected:
         WindowMenu* CreateMenu(const String& _name = "");
+        WindowMenu* GetMenu(const string& _menuName);
+    protected:
         virtual void AddMenus(HWND _hwnd);
         virtual void OnWindowUpdate();
 #pragma endregion custom methods

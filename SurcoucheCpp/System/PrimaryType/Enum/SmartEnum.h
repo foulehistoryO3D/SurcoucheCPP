@@ -31,10 +31,14 @@ namespace System
 #pragma endregion f/p
 #pragma region constructor
     public:
-        // SmartEnum()=default;
+        // Enum()=default;
         explicit SmartEnum(System::Integer _value = mCurrentValue++);
         void Register(T* _enum);
 #pragma endregion constructor
+#pragma region override
+    public:
+        virtual string ToString()const override;
+#pragma endregion override
 #pragma region operator
     public:
         virtual operator Int() const  {  return value; }
@@ -42,7 +46,7 @@ namespace System
         virtual void operator=(const Int& _value) { value = _value; }
 #pragma endregion operator
     };
-    
+
     template <typename T>
     SmartEnum<T>::SmartEnum(System::Integer _value)
     {
@@ -54,4 +58,10 @@ namespace System
         mValues.push_back(_enum);
     }
 
+
+    template <typename T>
+    string SmartEnum<T>::ToString() const
+    {
+        return value.ToString();
+    }
 }

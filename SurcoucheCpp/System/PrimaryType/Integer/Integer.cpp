@@ -58,8 +58,7 @@ System::Bool  System::Integer::Equals(const object& _obj, const object& _other)
 
 size_t System::Integer::GetHashCode() const
 {
-    Integer _integer = *this;
-    return std::hash<Integer*>{}(&_integer);
+    return std::hash<int>{}(mValue);
 }
 
 System::Bool  System::Integer::Equals(const int& _object)
