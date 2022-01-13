@@ -18,6 +18,8 @@
 #include "PrimaryType/Float/Float.h"
 #include "PrimaryType/Double/Double.h"
 #include "PrimaryType/Byte/Byte.h"
+#include "PrimaryType/Enum/Enum.h"
+#include "PrimaryType/Enum/SmartEnum.h"
 #include "LanguageManager/LanguageManager.h"
 #include "LanguageManager/Language/Language.h"
 #include "Console/Console.h"
@@ -25,6 +27,8 @@
 #include "DateTime/DateTime.h"
 #include "Environment/Environment.h"
 #include "Version/Version.h"
+
+#include "System.Utils/Template/IsPointer/IsPointer.h"
 
 #include "../System.Collections.Generic/List/List.h"
 #include "../System.IO/Directory/Directory.h"

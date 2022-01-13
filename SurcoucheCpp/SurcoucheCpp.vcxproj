@@ -279,7 +279,6 @@
     <ClCompile Include="System\PrimaryType\Byte\Byte.cpp" />
     <ClCompile Include="System\PrimaryType\Char\Char.cpp" />
     <ClCompile Include="System\PrimaryType\Double\Double.cpp" />
-    <ClCompile Include="System\PrimaryType\Enum\Enum.cpp" />
     <ClCompile Include="System\PrimaryType\Float\Float.cpp" />
     <ClCompile Include="System\PrimaryType\Integer\Integer.cpp" />
     <ClCompile Include="System\PrimaryType\String\String.cpp" />
@@ -290,6 +289,7 @@
     <ClCompile Include="System\Version\Version.cpp" />
     <ClCompile Include="System\Window\Menu\WindowMenu.cpp" />
     <ClCompile Include="System\Window\Window.cpp" />
+    <ClCompile Include="Test\ETest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="System.Collections.Generic\Dictionary\Dictionary.h" />
@@ -337,6 +337,8 @@
     <ClInclude Include="System.Timers\ElapsedEventArgs\ElapsedEventArgs.h" />
     <ClInclude Include="System.Timers\Timer\Timer.h" />
     <ClInclude Include="System.Utils\Singleton\Singleton.h" />
+    <ClInclude Include="System.Utils\Template\IsAbstract\IsAbstract.h" />
+    <ClInclude Include="System.Utils\Template\IsPointer\IsPointer.h" />
     <ClInclude Include="System\Activator\Activator.h" />
     <ClInclude Include="System\Box\BoxFile\BoxFile.h" />
     <ClInclude Include="System\Box\ConfirmationBox\ConfirmationBox.h" />
@@ -367,7 +369,6 @@
     <ClInclude Include="System\PrimaryType\Char\Char.h" />
     <ClInclude Include="System\PrimaryType\Double\Double.h" />
     <ClInclude Include="System\PrimaryType\Enum\Enum.h" />
-    <ClInclude Include="System\PrimaryType\Enum\SmartEnum.h" />
     <ClInclude Include="System\PrimaryType\Float\Float.h" />
     <ClInclude Include="System\PrimaryType\Integer\Integer.h" />
     <ClInclude Include="System\PrimaryType\String\String.h" />
@@ -379,6 +380,7 @@
     <ClInclude Include="System\Version\Version.h" />
     <ClInclude Include="System\Window\Menu\WindowMenu.h" />
     <ClInclude Include="System\Window\Window.h" />
+    <ClInclude Include="Test\ETest.h" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="System.Collections" />

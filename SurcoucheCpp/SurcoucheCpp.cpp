@@ -1,17 +1,13 @@
 #include "System/IncludeSystem.h"
-#include "System/PrimaryType/Enum/Enum.h"
 #include "System/Window/Window.h"
-
-ENUM(Test, uint8, Thomas, Jean)
+#include "Test/ETest.h"
 
 int main()
 {
     // Window _window = Window("Test", 500,500, false);
-    Console::WriteLine(*Test::Thomas);
-    Console::WriteLine(Int((int)Test::Thomas));
-    Console::WriteLine(*Test::Jean);
-    Console::WriteLine(Int((int)Test::Jean));
-    
-    
+    for(ETest _value : ETest::Values())
+    {
+        Console::WriteLine(_value);
+    }
     return 0;
 }
