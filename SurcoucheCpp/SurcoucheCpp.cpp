@@ -7,8 +7,7 @@ int main()
 {
     Window* window = new Window("Test", 600, 800, false);
     WindowMenu* fileMenu = window->GetMenu("File");
-    WindowMenu* mainMenu = window->GetMenu("Main");
-    if (mainMenu)
+    if (WindowMenu* mainMenu = window->GetMenu("Main"))
     {
         WindowMenu* editMenu = window->CreateMenu("Edit");
         editMenu->CreateButtonMenu("Save", {});
@@ -20,6 +19,7 @@ int main()
     {
         fileMenu->CreateButtonMenu("Test", []
         {
+            
         });
         Console::WriteLine("Test");
     }
