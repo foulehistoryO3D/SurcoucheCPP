@@ -21,6 +21,9 @@ namespace System
         Integer mHeight = 0;
         Bool mIsAsync = false;
         Collections::Generic::Dictionary<String, WindowMenu*> mMenus = Collections::Generic::Dictionary<String, WindowMenu*>();
+        Collections::Generic::Dictionary<int, Action<>> mMenuAction = Collections::Generic::Dictionary<int, Action<>>();
+    public:
+        int ActionCount()const;
 #pragma endregion f/p
 #pragma region constructor
     public:
@@ -35,6 +38,7 @@ namespace System
         static LRESULT __stdcall WindowProcInternal(HWND hWindow, UINT msg, WPARAM wp, LPARAM lp);
         
     public:
+        void RegisterAction(const int _index, Action<> _callback);
         void Open();
         void Close() const;
         WindowMenu* CreateMenu(const String& _name = "");

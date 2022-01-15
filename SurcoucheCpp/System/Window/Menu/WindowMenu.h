@@ -6,15 +6,18 @@
 #include "../../Event/Action/Action.h"
 #include "../../../System.Collections.Generic/List/List.h"
 
+
 namespace System
 {
+    class Window;
+
     class WindowMenu : public Object
     {
         DECLARE_CLASS_INFO(Object)
 #pragma region f/P
     private:
-        Collections::Generic::Dictionary<int, Action<>> mMenuAction = Collections::Generic::Dictionary<int, Action<>>();
-        HMENU mMenu = nullptr;
+        Window* mWindow = null;
+        HMENU mMenu = null;
         const char* mMenuName = "";
     public:
         String Name() const;
@@ -22,15 +25,14 @@ namespace System
 #pragma region constructor
     public:
         WindowMenu() = default;
-        WindowMenu(const String& _menuName);
+        WindowMenu(Window* _window, const String& _menuName);
         WindowMenu(const WindowMenu& _copy);
 #pragma endregion constructor
 #pragma region custom methods
     public:
-        void CreateButtonMenu(const String& _name, Action<> _callback);
+        void CreateButtonMenu(const String& _name, Action<> _callback) const;
         void CreateSeparator() const;
         void CreatePopMenu(const WindowMenu* _subMenu) const;
-        void InvokeCallback(const int _key);
 #pragma endregion custom methods
 #pragma region operator
         WindowMenu& operator=(const WindowMenu& _other);

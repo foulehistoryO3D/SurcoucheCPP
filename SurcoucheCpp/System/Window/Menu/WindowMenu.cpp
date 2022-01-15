@@ -1,5 +1,6 @@
 ﻿#include "WindowMenu.h"
 #include "../../PrimaryType/String/String.h"
+#include "../Window.h"
 #pragma region f/p
 System::String System::WindowMenu::Name() const
 {
@@ -7,11 +8,12 @@ System::String System::WindowMenu::Name() const
 }
 #pragma endregion f/p
 #pragma region constructor
-System::WindowMenu::WindowMenu(const String& _menuName)
+
+System::WindowMenu::WindowMenu(Window* _window, const String& _menuName)
 {
+    mWindow = _window;
     mMenuName = _menuName;
     mMenu = CreateMenu();
-    
 }
 
 System::WindowMenu::WindowMenu(const WindowMenu& _copy)
@@ -20,11 +22,11 @@ System::WindowMenu::WindowMenu(const WindowMenu& _copy)
     mMenu = _copy.mMenu;
 }
 
-void System::WindowMenu::CreateButtonMenu(const String& _name, Action<> _callback)
+void System::WindowMenu::CreateButtonMenu(const String& _name, Action<> _callback) const
 {
-    const int _key = mMenuAction.Count();
+    const int _key = mWindow->ActionCount();
     AppendMenu(mMenu, MF_STRING, _key, _name.ToWString()->c_str());
-    mMenuAction.Add(_key, _callback);
+    mWindow->RegisterAction(_key, _callback);
 }
 
 void System::WindowMenu::CreateSeparator() const
@@ -38,11 +40,6 @@ void System::WindowMenu::CreatePopMenu(const WindowMenu* _subMenu) const
     AppendMenu(mMenu, MF_POPUP, _key, _subMenu->Name().ToWString()->c_str());
 }
 
-void System::WindowMenu::InvokeCallback(const int _key)
-{
-    if (mMenuAction.ContainsKey(_key))
-        mMenuAction[_key]();
-}
 #pragma endregion constructor
 #pragma region operator
 System::WindowMenu& System::WindowMenu::operator=(const WindowMenu& _other)

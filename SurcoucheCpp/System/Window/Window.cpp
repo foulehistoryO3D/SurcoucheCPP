@@ -16,6 +16,11 @@ void System::Window::Open()
     else Update();
 }
 
+int System::Window::ActionCount() const
+{
+    return mMenuAction.Count();
+}
+
 System::Window::Window(const String& _windowName, const Integer& _width, const Integer& _height, bool _isAsync)
 {
     mWindowName = _windowName;
@@ -52,12 +57,8 @@ LRESULT System::Window::WindowProc(HWND hWindow, UINT msg, WPARAM wp, LPARAM lp)
     switch (msg)
     {
     case WM_COMMAND:
-        while (mMenus.GetEnumerator()->MoveNext())
-        {
-            const Collections::Generic::KeyValuePair<String, WindowMenu*> element = mMenus.GetEnumerator()->Current();
-            element.Value->InvokeCallback(wp);
-        }
-        mMenus.GetEnumerator()->Reset();
+        if (!mMenuAction.ContainsKey(wp))         return DefWindowProcW(hWindow, msg, wp, lp);
+        mMenuAction[wp].Invoke();
         break;
     case WM_CREATE:
         AddMenus(hWindow);
@@ -97,10 +98,15 @@ LRESULT System::Window::WindowProcInternal(HWND hWindow, UINT msg, WPARAM wp, LP
     return reinterpret_cast<Window*>(GetWindowLongPtr(hWindow, GWLP_USERDATA))->WindowProc(hWindow, msg, wp, lp);
 }
 
+void System::Window::RegisterAction(const int _index, Action<> _callback)
+{
+    mMenuAction.Add(_index, _callback);
+}
+
 
 System::WindowMenu* System::Window::CreateMenu(const String& _name)
 {
-    WindowMenu* _menu = new WindowMenu(_name);
+    WindowMenu* _menu = new WindowMenu(this, _name);
     mMenus.Add(_name, _menu);
     return _menu;
 }
