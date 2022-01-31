@@ -61,6 +61,7 @@ namespace System
 #pragma region operator
     public:
         Mail& operator=(const Mail& other);
+        Bool operator==(const Mail& other);
 #pragma endregion operator
     };
 }

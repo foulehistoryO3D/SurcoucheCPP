@@ -129,4 +129,10 @@ System::Mail& System::Mail::operator=(const Mail& other)
     connectType = other.connectType;
     return *this;
 }
+
+System::Bool System::Mail::operator==(const Mail& other)
+{
+    return recipient == other.recipient && username == other.username && password == other.password && subject == other.subject
+    && server == other.server && bodyText == other.bodyText && serverPort == other.serverPort && connectType == other.connectType;
+}
 #pragma endregion operator
