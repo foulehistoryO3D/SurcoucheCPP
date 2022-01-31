@@ -11,7 +11,7 @@ System::Mail::Mail()
 
 System::Mail::Mail(const Mail& copy)
 {
-    Recipient = copy.Recipient;
+    recipient = copy.recipient;
     username = copy.username;
     password = copy.password;
     subject = copy.subject;
@@ -59,7 +59,12 @@ void System::Mail::SetServerPort(const Int& port)
 
 void System::Mail::AddRecipient(const string& recipient)
 {
-    this->Recipient.Add(recipient);
+    this->recipient.Add(recipient);
+}
+
+void System::Mail::AddAttachment(const string& attachment)
+{
+    this->attachment.Add(attachment);
 }
 
 void System::Mail::SetConnectType(EConnectType connectType)
@@ -74,9 +79,13 @@ System::Boolean System::Mail::Send()
     mail.CreateInstance(__uuidof(EASendMailObjLib::Mail));
     mail->LicenseCode = _T("TryIt");
     mail->FromAddr = from.ToCstr();
-    Recipient.ForEach([&mail](String recipient)
+    recipient.ForEach([&mail](String recipient)
     {
         mail->AddRecipientEx(recipient.ToCstr(), 0);
+    });
+    attachment.ForEach([&mail](string attachment)
+    {
+       mail->AddAttachment(attachment.ToCstr()); 
     });
     mail->Subject = subject.ToCstr();
     mail->BodyText = bodyText.ToString().ToCstr();
@@ -110,7 +119,7 @@ System::Integer System::Mail::GetHashCode() const
 #pragma region operator
 System::Mail& System::Mail::operator=(const Mail& other)
 {
-    Recipient = other.Recipient;
+    recipient = other.recipient;
     username = other.username;
     password = other.password;
     subject = other.subject;

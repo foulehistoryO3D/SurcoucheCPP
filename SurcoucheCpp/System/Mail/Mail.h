@@ -21,7 +21,8 @@ namespace System
         DECLARE_CLASS_INFO(Object)
 #pragma region f/p
     private:
-        Collections::Generic::List<string> Recipient = Collections::Generic::List<string>();
+        Collections::Generic::List<string> recipient = Collections::Generic::List<string>();
+        Collections::Generic::List<string> attachment = Collections::Generic::List<string>();
         string username = string::Empty;
         string password = string::Empty;
         string subject = string::Empty;
@@ -47,6 +48,7 @@ namespace System
         void AddLineBodyText(const string& line);
         void SetServerPort(const Int& port);
         void AddRecipient(const string& recipient);
+        void AddAttachment(const string& attachment);
         void SetConnectType(EConnectType connectType);
         Boolean Send();
         String GetLastError()const;
