@@ -26,7 +26,7 @@ namespace System
         string username = string::Empty;
         string password = string::Empty;
         string subject = string::Empty;
-        string lastError = string::Empty;
+        string status = string::Empty;
         string from = "gmailid@gmail.com";
         string server = "smtp.gmail.com";
         Text::StringBuilder bodyText = Text::StringBuilder::Empty;
@@ -35,7 +35,7 @@ namespace System
 #pragma endregion f/p
 #pragma region constructor
     public:
-        Mail();
+        Mail()=default;
         Mail(const Mail& copy);
 #pragma endregion constructor
 #pragma region custom methods
@@ -51,7 +51,7 @@ namespace System
         void AddAttachment(const string& attachment);
         void SetConnectType(EConnectType connectType);
         Boolean Send();
-        String GetLastError()const;
+        String Status()const;
 #pragma endregion custom methods
 #pragma region override
     public:

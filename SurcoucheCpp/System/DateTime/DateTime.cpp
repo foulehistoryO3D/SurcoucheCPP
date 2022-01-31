@@ -104,6 +104,62 @@ System::DateTime System::DateTime::FileTimeToDateTime(const FILETIME& _fileTime)
     return Convert(_time);
 }
 
+void System::DateTime::AddDay(const Integer& _value)
+{
+    mDay += _value;
+    while(mDay > 30)
+    {
+        mDay-=30;
+        AddMonth(1);
+    }
+}
+
+void System::DateTime::AddMonth(const Integer& _value)
+{
+    mMonth += _value;
+    while(mMonth > 12)
+    {
+        mMonth -= 12;
+        AddYears(1);
+    }
+}
+
+void System::DateTime::AddYears(const Integer& _value)
+{
+    mYears += _value;
+}
+
+void System::DateTime::AddSeconds(const Int& _value)
+{
+    mSecond += _value;
+    while (mSecond > 60)
+    {
+        mSecond -= 60;
+        AddMinutes(1);
+    }
+}
+
+void System::DateTime::AddMinutes(const Int& _value)
+{
+    mMinute += _value;
+    while (mMinute > 60)
+    {
+        mMinute -= 60;
+        AddHours(1);
+    }
+}
+
+void System::DateTime::AddHours(const Int& _value)
+{
+    mHour += _value;
+    while (mHour > 24)
+    {
+        mHour -= 24;
+        AddDay(1);
+    }
+}
+
+
 #pragma region override
 System::String System::DateTime::ToString() const
 {

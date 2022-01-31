@@ -39,7 +39,13 @@ public:
     static DateTime Convert(time_t _systemTime);
     String ToStringFormat(const String& _format =  "y-m-d h:m:s") const;
     Boolean Equals(const DateTime& _other);
-    static DateTime FileTimeToDateTime(const FILETIME& _fileTime); 
+    static DateTime FileTimeToDateTime(const FILETIME& _fileTime);
+    void AddDay(const Integer& _value);
+    void AddMonth(const Integer& _value);
+    void AddYears(const Integer& _value);
+    void AddSeconds(const Int& _value);
+    void AddMinutes(const Int& _value);
+    void AddHours(const Int& _value);
 #pragma endregion custom methods
 #pragma region override
 public:

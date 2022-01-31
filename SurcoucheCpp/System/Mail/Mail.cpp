@@ -2,13 +2,7 @@
 #include "../Event/Action/Action.h"
 #include <tchar.h>
 
-
-
 #pragma region constructor
-System::Mail::Mail()
-{
-}
-
 System::Mail::Mail(const Mail& copy)
 {
     recipient = copy.recipient;
@@ -74,8 +68,8 @@ void System::Mail::SetConnectType(EConnectType connectType)
 
 System::Boolean System::Mail::Send()
 {
-    ::CoInitialize(nullptr);
-    EASendMailObjLib::IMailPtr mail = EASendMailObjLib::IMailPtr();
+    ::CoInitialize(NULL);
+    EASendMailObjLib::IMailPtr mail = NULL;
     mail.CreateInstance(__uuidof(EASendMailObjLib::Mail));
     mail->LicenseCode = _T("TryIt");
     mail->FromAddr = from.ToCstr();
@@ -95,13 +89,13 @@ System::Boolean System::Mail::Send()
     mail->ServerPort = serverPort;
     mail->ConnectType = static_cast<int>(connectType);
     const int result = mail->SendMail();
-    lastError = string(mail->GetLastErrDescription());
+    status = result == 0 ? string("send success !") : string(mail->GetLastErrDescription());
     return result == 0;
 }
 
-System::String System::Mail::GetLastError() const
+System::String System::Mail::Status() const
 {
-    return lastError;
+    return status;
 }
 #pragma endregion custom methods
 #pragma region override
