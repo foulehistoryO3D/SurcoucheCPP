@@ -7,8 +7,9 @@ namespace System
     class DateTime;
     namespace IO
     {
-        class DirectoryInfo : public Object, public FileSystemInfo
+        class DirectoryInfo : public FileSystemInfo
         {
+            DECLARE_CLASS_INFO(FileSystemInfo)
 #pragma region constructor
         public:
             DirectoryInfo() : FileSystemInfo(){}
@@ -22,7 +23,7 @@ namespace System
             Boolean Exists() const override;
             void Delete()const override;
             String ToString() const override;
-            size_t GetHashCode() const override;
+            Integer GetHashCode() const override;
             DateTime GetCreationTime() const;
             DateTime GetLastAccessTime() const;
             DateTime GetLastWriteTime() const;

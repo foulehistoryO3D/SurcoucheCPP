@@ -123,10 +123,9 @@ System::Boolean System::Net::WebCallback::Equals(const object& object)
     return mPercentLast == _webcallback.mPercentLast;
 }
 
-size_t System::Net::WebCallback::GetHashCode() const
+System::Integer System::Net::WebCallback::GetHashCode() const
 {
-    WebCallback _webCallback = *this;
-    return std::hash<WebCallback*>{}(&_webCallback);
+    return Int(mPercentLast).GetHashCode();
 }
 #pragma endregion object
 #pragma endregion override

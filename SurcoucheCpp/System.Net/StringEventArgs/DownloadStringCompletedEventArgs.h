@@ -23,6 +23,11 @@ namespace System
         public:
             void SetResult(const String& _result);
 #pragma endregion custom methods
+#pragma region override
+        public:
+            String ToString() const override;
+            Integer GetHashCode() const override;
+#pragma endregion override
         };
     }
 }

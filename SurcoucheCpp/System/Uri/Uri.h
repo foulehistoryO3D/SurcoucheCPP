@@ -13,6 +13,11 @@ namespace System
     public:
         LPCWSTR GetUriWSTR()const;
 #pragma endregion f/p
+#pragma region override
+    public:
+        String ToString() const override;
+        Integer GetHashCode() const override;
+#pragma endregion override
 #pragma region constructor
     public:
         Uri()=default;

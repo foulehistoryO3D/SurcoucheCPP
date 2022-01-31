@@ -15,7 +15,7 @@ namespace System
         protected:
             bool mCancelled = false;
             DownloadNetException mException = DownloadNetException();
-            object* mUserState = null;
+            object* mUserState = nullptr;
         public:
             DownloadNetException Error() const;
             Boolean Cancelled() const;
@@ -32,6 +32,8 @@ namespace System
             void SetCancelled(const bool& _status);
             void SetUserState(object* _userState);
             void SetError(const DownloadNetException& _exception);
+            String ToString() const override;
+            Integer GetHashCode() const override;
 #pragma endregion custom methods
         };
     }

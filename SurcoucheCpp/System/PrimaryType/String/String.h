@@ -41,6 +41,8 @@ namespace System
 		String() = default;
 		String(const char* _value);
 		String(const String& _copy);
+		String(std::string::iterator _begin, std::string::iterator _end);
+		String(std::wstring::iterator _begin, std::wstring::iterator _end);
 #pragma endregion constructor/destructor
 #pragma region custom methods
 	public:
@@ -82,7 +84,7 @@ namespace System
 		String ToString()const override;
 		class Boolean Equals(const object* _obj) override;
 		Boolean Equals(const String& _object)override;
-		size_t GetHashCode() const override;
+		Integer GetHashCode() const override;
 		char Current()override;
 		bool MoveNext()override;
 		void Reset()override;

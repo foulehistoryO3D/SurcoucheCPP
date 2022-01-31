@@ -1,6 +1,7 @@
 ﻿#include "ConfirmationBox.h"
 #include "../../PrimaryType/String/String.h"
 #include "../../PrimaryType/Boolean/Boolean.h"
+#include "../../PrimaryType/Integer/Integer.h"
 
 #pragma region constructor
 System::ConfirmationBox::ConfirmationBox(const String& _title, const String& _message)
@@ -42,10 +43,9 @@ System::Boolean System::ConfirmationBox::Equals(const object& object)
     return mMessage == _box.mMessage && mTitle == _box.mTitle;
 }
 
-size_t System::ConfirmationBox::GetHashCode() const
+System::Integer System::ConfirmationBox::GetHashCode() const
 {
-    ConfirmationBox _confirmationBox = *this;
-    return std::hash<ConfirmationBox*>{}(&_confirmationBox);
+    return string(mTitle).GetHashCode() ^ (string(mMessage).GetHashCode() << 2);
 }
 
 System::ConfirmationBox& System::ConfirmationBox::operator=(const ConfirmationBox& _other)

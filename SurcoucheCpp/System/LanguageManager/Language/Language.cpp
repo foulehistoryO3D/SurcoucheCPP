@@ -77,10 +77,9 @@ System::Boolean System::Language::Equals(const object& object)
     return mName == _other.mName && mFile == _other.mFile && mFileName == _other.mFileName;
 }
 
-size_t System::Language::GetHashCode() const
+System::Integer System::Language::GetHashCode() const
 {
-    Language _this = *this;
-    return std::hash<Language*>{}(&_this);
+    return string(mName).GetHashCode() ^ string(mFileName).GetHashCode() << 2 ^ mFile.GetHashCode() >> 2;
 }
 #pragma endregion override
 

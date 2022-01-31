@@ -43,6 +43,16 @@ System::Boolean System::IO::TextWriter::Exists() const
     return _stream.good();
 }
 
+System::String System::IO::TextWriter::ToString() const
+{
+    return mPath;
+}
+
+System::Integer System::IO::TextWriter::GetHashCode() const
+{
+    return ToString().GetHashCode();
+}
+
 void System::IO::TextWriter::Close()
 {
     if (mStream.is_open())

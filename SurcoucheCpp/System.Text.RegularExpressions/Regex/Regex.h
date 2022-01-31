@@ -15,7 +15,7 @@ namespace System
             {
 #pragma region f/p
             private:
-                const char* mPattern = null;
+                const char* mPattern = nullptr;
                 std::regex mExpression = std::regex();
 #pragma endregion f/p
 #pragma region constructor
@@ -35,7 +35,7 @@ namespace System
                 String ToString() const override;
                 Boolean Equals(const object* _obj) override;
                 Boolean Equals(const object& _obj) override;
-                size_t GetHashCode() const override;
+                Integer GetHashCode() const override;
                 Boolean Equals(const Regex& _object) override;
 #pragma endregion override
             };

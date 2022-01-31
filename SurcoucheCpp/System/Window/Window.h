@@ -1,7 +1,10 @@
 ﻿#pragma once
 #include <windows.h>
+#include <thread>
+#include <gdiplus.h>
+using namespace Gdiplus;
+#pragma comment (lib,"Gdiplus.lib")
 #include "../../System.Collections.Generic/Dictionary/Dictionary.h"
-#include "../../System.Collections.Generic/List/List.h"
 #include "../Object/Object.h"
 #include "../Event/Action/Action.h"
 #include "../PrimaryType/String/String.h"
@@ -15,11 +18,19 @@ namespace System
         DECLARE_CLASS_INFO(Object)
 #pragma region f/p
     private:
+        float test = 0;
+        HDC hdc;
+        HANDLE hinstAcc;
+        float mDeltaTime = 0.0f;
+
+        GdiplusStartupInput gdiplusStartupInput;
+        ULONG_PTR           gdiplusToken;
         HWND mWindowInstance = nullptr;
         String mWindowName = "";
         Integer mWidth = 0;
         Integer mHeight = 0;
         Bool mIsAsync = false;
+        Bool mIsClose = false;
         Collections::Generic::Dictionary<String, WindowMenu*> mMenus = Collections::Generic::Dictionary<String, WindowMenu*>();
         Collections::Generic::Dictionary<int, Action<>> mMenuAction = Collections::Generic::Dictionary<int, Action<>>();
     public:
@@ -36,15 +47,15 @@ namespace System
         void Update();
         LRESULT __stdcall WindowProc(HWND hWindow, UINT msg, WPARAM wp, LPARAM lp);
         static LRESULT __stdcall WindowProcInternal(HWND hWindow, UINT msg, WPARAM wp, LPARAM lp);
-        
+
     public:
         void RegisterAction(const int _index, Action<> _callback);
         void Open();
-        void Close() const;
+        void Close();
         WindowMenu* CreateMenu(const String& _name = "");
         WindowMenu* GetMenu(const string& _menuName);
     protected:
-        virtual void AddMenus(HWND _hwnd);
+        virtual void AddMenus(HWND hwnd);
         virtual void OnWindowUpdate();
 #pragma endregion custom methods
 #pragma region operator

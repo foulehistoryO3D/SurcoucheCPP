@@ -1,9 +1,12 @@
 ﻿#pragma once
+#include "../../System/Console/Console.h"
 #include "../../System/Exception/Exception/Exception.h"
 #include "../../System/Object/Object.h"
 #include "../Interface/Dictionary/IDictionary.h"
 #include "../KeyValuePair/KeyValuePair.h"
 #include "../../System/PrimaryType/Boolean/Boolean.h"
+#include "../../System/PrimaryType/Integer/Integer.h"
+#include "../../System/PrimaryType/String/String.h"
 
 namespace System
 {
@@ -17,10 +20,11 @@ namespace System
             {
                 DECLARE_CLASS_INFO(Object)
                 REGISTER_ATTRIBUTE(Sealed)
-#pragma region f/p
+#pragma region f/p 
             private:
-                KeyValuePair<TKey, TValue>* mTab = new KeyValuePair<TKey, TValue>[0];
+                KeyValuePair<TKey, TValue>* mTab = new KeyValuePair<TKey, TValue>[50];
                 int mCount = 0;
+                int mSize = 50;
                 int mCurrentIndex = -1;
                 KeyValuePair<TKey, TValue> mCurrentItem = KeyValuePair<TKey, TValue>();
 #pragma endregion f/p
@@ -50,11 +54,13 @@ namespace System
                 KeyValuePair<TKey, TValue> Current() override;
                 bool MoveNext() override;
                 void Reset() override;
+                String ToString() const override;
+                Integer GetHashCode() const override;
 #pragma endregion override
 #pragma region operator
             public:
-                TValue& operator[](const TKey& _key);
-                TValue& operator[](const TKey& _key) const;
+                TValue& operator[](TKey _key);
+                // TValue& operator[](const TKey& _key) const;
                 Dictionary operator=(const Dictionary& _other);
 #pragma endregion operator
             };
@@ -87,7 +93,7 @@ namespace System
             template <typename TKey, typename TValue>
             int Dictionary<TKey, TValue>::IndexOfKey(TKey _key)
             {
-                for (int i = 0; i < mCount; ++i)
+                for (int i = 0; i < mSize; ++i)
                     if (mTab[i].Key == _key)
                         return i;
                 return -1;
@@ -100,7 +106,7 @@ namespace System
                 mTab = new KeyValuePair<TKey, TValue>[mCount - 1];
                 for (int i = 0; i < _index; ++i)
                     mTab[i] = _tmpTab[i];
-                for (int i = _index + 1; i < mCount; ++i)
+                for (int i = _index + 1; i < mSize; ++i)
                     mTab[i - 1] = _tmpTab[i];
                 delete[]_tmpTab;
                 mCount--;
@@ -117,13 +123,11 @@ namespace System
             void Dictionary<TKey, TValue>::Add(KeyValuePair<TKey, TValue> _item)
             {
                 if (Contains(_item))
-                    throw Exception("key is already exist !");
-                KeyValuePair<TKey, TValue>* _tmpTab = mTab;
-                mTab = new KeyValuePair<TKey, TValue>[mCount + 1];
-                for (int i = 0; i < mCount; ++i)
-                    mTab[i] = _tmpTab[i];
-                mTab[mCount] = _item;
-                delete[] _tmpTab;
+                    throw Exception("key already exist !");
+                object* key = reinterpret_cast<object*>(&_item.Key);
+                if (!key)
+                    throw Exception("Key is not object type");
+                mTab[key->GetHashCode() % mSize] = _item;
                 mCount++;
             }
 
@@ -171,10 +175,10 @@ namespace System
             template <typename TKey, typename TValue>
             void Dictionary<TKey, TValue>::RemoveItem(TKey _key)
             {
-                const int _index = IndexOfKey(_key);
-                if (_index == -1)
+                if (!ContainsKey(_key))
                     throw Exception("key doesn't exist");
-                RemoveAt(_index);
+                object* o = reinterpret_cast<object*>(&_key);
+                RemoveAt(o->GetHashCode() % mSize);
             }
 
             template <typename TKey, typename TValue>
@@ -197,25 +201,47 @@ namespace System
                 mCurrentIndex = -1;
             }
 
+            template <typename TKey, typename TValue>
+            String Dictionary<TKey, TValue>::ToString() const
+            {
+                KeyValuePair<TKey, TValue> defaultPair = KeyValuePair<TKey, TValue>();
+                string result = string::Empty;
+                for (int32 i = 0; i < mSize; ++i)
+                {
+                    KeyValuePair<TKey, TValue> pair = mTab[i];
+                    if (pair == defaultPair)continue;
+                    object* key = reinterpret_cast<object*>(&pair.Key);
+                    object* value = reinterpret_cast<object*>(&pair.Value);
+                    if (key == nullptr || value == nullptr) continue;
+                    result += string::Format("Key: {0}, Value: {1} \n", key->ToString(), value->ToString());
+                }
+                return result;
+            }
+
+            template <typename TKey, typename TValue>
+            Integer Dictionary<TKey, TValue>::GetHashCode() const
+            {
+                KeyValuePair<TKey, TValue> defaultPair = KeyValuePair<TKey, TValue>();
+                Int result = 0;
+                for (int32 i = 0; i < mSize; ++i)
+                {
+                    KeyValuePair<TKey, TValue> pair = mTab[i];
+                    if (pair == defaultPair)continue;
+                    object* o = reinterpret_cast<object*>(&pair.Value);
+                    if (o == nullptr) continue;
+                    result += o->GetHashCode() << 1;
+                }
+                return result;
+            }
+
 
 #pragma endregion override
 #pragma region operator
             template <typename TKey, typename TValue>
-            TValue& Dictionary<TKey, TValue>::operator[](const TKey& _key)
+            TValue& Dictionary<TKey, TValue>::operator[](TKey _key)
             {
-                const int _index = IndexOfKey(_key);
-                if (_index == -1)
-                    throw Exception("key doesn't exist");
-                return mTab[_index].Value;
-            }
-
-            template <typename TKey, typename TValue>
-            TValue& Dictionary<TKey, TValue>::operator[](const TKey& _key) const
-            {
-                const int _index = IndexOfKey(_key);
-                if (_index == -1)
-                    throw Exception("key doesn't exist");
-                return mTab[_index].Value;
+                object* o = reinterpret_cast<object*>(&_key);
+                return mTab[o->GetHashCode() % mSize].Value;
             }
 
             template <typename TKey, typename TValue>

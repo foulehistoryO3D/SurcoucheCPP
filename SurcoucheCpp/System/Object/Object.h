@@ -9,6 +9,7 @@
 namespace System
 {
     class Boolean;
+    
 #pragma region typedef
     typedef class Object object;
 #pragma endregion typedef
@@ -26,7 +27,7 @@ namespace System
         virtual Boolean Equals(const object& _obj);
         virtual Boolean Equals(const object* _obj, const object* _other);
         virtual Boolean Equals(const object& _obj, const object& _other);
-        virtual size_t GetHashCode() const override;
+        virtual Integer GetHashCode() const override;
 #pragma endregion custom methods
 #pragma region operator
         virtual Boolean operator==(const object* _obj);

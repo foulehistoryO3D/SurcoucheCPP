@@ -63,7 +63,7 @@ void System::Net::WebClient::DownloadFileAsyncInternal(const Uri& _address, cons
     {
         OnDownloadProgress.Invoke(_f);
     };
-    const HRESULT _result = URLDownloadToFile(null, _uri, _path, 0, _webCallback);
+    const HRESULT _result = URLDownloadToFile(nullptr, _uri, _path, 0, _webCallback);
     AsyncCompletedEventArgs* _event = new AsyncCompletedEventArgs();
     if (!_result)
     {
@@ -95,4 +95,9 @@ void System::Net::WebClient::DownloadFileAsync(const Uri& _address, const String
 void System::Net::WebClient::DownloadFile(const Uri& _address, const String& _pathFile)
 {
     DownloadFileAsyncInternal(_address, _pathFile);
+}
+
+System::Integer System::Net::WebClient::GetHashCode() const
+{
+    return Bool(mIsRunning).GetHashCode();
 }

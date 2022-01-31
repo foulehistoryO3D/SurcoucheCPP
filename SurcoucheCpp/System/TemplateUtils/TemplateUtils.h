@@ -18,8 +18,8 @@ namespace System
         static Collections::Generic::List<T> CreateListWithParameterPack(Args... _args);
         template<typename... Args>
         static size_t SizeOfPackageParameters(Args&&... _args);
-        template <typename C, typename... Args>
-        static Collections::Generic::List<Reflection::ParameterInfo> GetParametersFunction(void (C::*func)(Args ... _args));
+        template <typename Res, typename C, typename... Args>
+        static Collections::Generic::List<Reflection::ParameterInfo> GetParametersFunction(Res (C::*func)(Args ... _args));
         template<typename T>
         static Boolean IsNull();
     };
@@ -44,8 +44,8 @@ namespace System
         return sizeof...(_args);
     }
 
-    template <typename C, typename ... Args>
-    Collections::Generic::List<Reflection::ParameterInfo> TemplateUtils::GetParametersFunction(void(C::*ptr)(Args... _args))
+    template <typename Res, typename C, typename ... Args>
+    Collections::Generic::List<Reflection::ParameterInfo> TemplateUtils::GetParametersFunction(Res(C::*ptr)(Args... _args))
     {
         std::tuple<Args...> _tuple = std::tuple<Args...>();
     

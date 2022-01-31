@@ -24,6 +24,11 @@ namespace System
         public:
             void SetSignalTime(const DateTime& _dateTime);
 #pragma endregion custom methods
+#pragma region override
+        public:
+            String ToString() const override;
+            Integer GetHashCode() const override;
+#pragma endregion override
         };
     }
 }

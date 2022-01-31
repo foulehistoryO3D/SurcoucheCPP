@@ -20,9 +20,9 @@ namespace System
             DECLARE_CLASS_INFO(Object)
 #pragma region f/p
         private:
-            const char* mPath = null;
-            const char* mName = null;
-            const char* mVolumeLabel = null;
+            const char* mPath = nullptr;
+            const char* mName = nullptr;
+            const char* mVolumeLabel = nullptr;
             int64 mAvailableFreeSpace = 0;
             DriveType mDriveType = DriveType();
 #pragma endregion f/p
@@ -48,7 +48,7 @@ namespace System
             String ToString() const override;
             Boolean Equals(const object* _obj) override;
             Boolean Equals(const object& _obj) override;
-            size_t GetHashCode() const override;
+            Integer GetHashCode() const override;
 #pragma endregion override
 #pragma region operator
         public:

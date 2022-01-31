@@ -1,5 +1,6 @@
 ﻿#include "Boolean.h"
 #include "../String/String.h"
+#include "../Integer/Integer.h"
 
 #pragma region constructor
 System::Boolean::Boolean(const bool& _value)
@@ -46,10 +47,9 @@ System::Boolean System::Boolean::Equals(const object& _obj, const object& _other
     return _bool == _bool1;
 }
 
-size_t System::Boolean::GetHashCode() const
+System::Integer System::Boolean::GetHashCode() const
 {
-    Boolean _value = *this;
-    return std::hash<Boolean*>{}(&_value);
+    return ToString().GetHashCode();
 }
 
 System::Boolean System::Boolean::Equals(const bool& _object)

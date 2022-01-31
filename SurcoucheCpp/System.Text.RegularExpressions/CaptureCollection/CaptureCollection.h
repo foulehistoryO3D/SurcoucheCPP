@@ -39,6 +39,8 @@ namespace System
                 int IndexOf(Capture _item) override;
                 void Insert(const int32 _index, Capture _item) override;
                 void RemoveAt(const int32 _index) override;
+                String ToString() const override;
+                Integer GetHashCode() const override;
 #pragma endregion override
 #pragma region operator
             public:

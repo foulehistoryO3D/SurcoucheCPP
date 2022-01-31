@@ -10,8 +10,8 @@ namespace System
     private:
         byte mValue = 0;
     public:
-        static const constexpr byte MinValue = 0;
-        static const constexpr byte MaxValue = 255;
+        static constexpr byte MinValue = 0;
+        static constexpr byte MaxValue = 255;
 #pragma endregion f/p
 #pragma region constructor
     public:
@@ -30,7 +30,7 @@ namespace System
         Boolean Equals(const object* _obj) override;
         Boolean Equals(const object* _obj, const object* _other) override;
         Boolean Equals(const object& _obj, const object& _other) override;
-        size_t GetHashCode() const override;
+        Integer GetHashCode() const override;
 #pragma endregion override
 #pragma region operator
     public:

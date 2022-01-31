@@ -5,6 +5,7 @@
 #include "../../Object/Object.h"
 #include "../../TemplateUtils/TemplateUtils.h"
 #include "../Delegate/delegates.h"
+#include "../../PrimaryType/Integer/Integer.h"
 
 namespace System
 {
@@ -30,13 +31,13 @@ namespace System
 #pragma endregion custom methods
 #pragma region override
     public:
-        size_t GetHashCode() const override;
+        Integer GetHashCode() const override;
 #pragma endregion override
 #pragma region operator
         template <typename Function>
         void operator+=(Function&& _function);
         template <typename Function>
-        void operator-=(Function&& _function);
+        void operator-=(Function _function);
         void operator()(Args ... _args);
         Action<Args...>& operator=(const Action& _other);
         template<typename Function>
@@ -60,7 +61,7 @@ namespace System
     }
 
     template <typename ... Args>
-    size_t Action<Args...>::GetHashCode() const
+    System::Integer Action<Args...>::GetHashCode() const
     {
         Action _action = *this;
         return std::hash<Action*>{}(&_action);
@@ -78,17 +79,16 @@ namespace System
 
     template <typename ... Args>
     template <typename Function>
-    void Action<Args...>::operator-=(Function&& _function)
+    void Action<Args...>::operator-=(Function _function)
     {
-        const int _length = mFunctions.size();
-        for (int i = 0; i < _length; ++i)
-        {
-            if (mFunctions[i] == _function)
+        auto iter = mFunctions.begin();
+        for (; iter != mFunctions.end(); ++iter)
+            if (*iter->Function().template target<void(*)(Args...)>() == _function)
             {
-                mFunctions.erase(mFunctions.begin() + i);
-                return;
+                mFunctions.erase(iter);
+                break;
             }
-        }
+ 
     }
 
     template <typename ... Args>

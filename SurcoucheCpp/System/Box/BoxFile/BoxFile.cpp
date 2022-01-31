@@ -1,6 +1,7 @@
 ﻿#include "BoxFile.h"
 #include "../../PrimaryType/String/String.h"
 #include "../../PrimaryType/Boolean/Boolean.h"
+#include "../../PrimaryType/Integer/Integer.h"
 
 
 #pragma region constructor
@@ -67,7 +68,7 @@ void System::BoxFile::Open()
     if (!InitializeBox()) return;
     IFileOpenDialog* _fileOpen;
     if (!CreateInstanceDialog(_fileOpen)) return;
-    IShellItem* _item = null;
+    IShellItem* _item = nullptr;
     if (!OpenFile(_fileOpen, _item)) return;
     PWSTR _filePath;
     if (!GetDisplayName(_item, _filePath)) return;
@@ -104,10 +105,9 @@ System::Boolean System::BoxFile::Equals(const object& object)
     return mTitle == _box.mTitle && mPathResult == _box.mPathResult;
 }
 
-size_t System::BoxFile::GetHashCode() const
+System::Integer System::BoxFile::GetHashCode() const
 {
-    BoxFile _boxFile = *this;
-    return std::hash<BoxFile*>{}(&_boxFile);
+    return string(mTitle).GetHashCode() ^ (string(mPathResult).GetHashCode() << 2);
 }
 
 #pragma endregion override

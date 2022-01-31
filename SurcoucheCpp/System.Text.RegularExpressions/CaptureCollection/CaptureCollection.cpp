@@ -2,6 +2,8 @@
 
 #include "../../System/Exception/OutOfRange/OutOfRange.h"
 #include "../../System/PrimaryType/Boolean/Boolean.h"
+#include "../../System/PrimaryType/String/String.h"
+#include "../../System/PrimaryType/Integer/Integer.h"
 
 #pragma region override
 System::Text::RegularExpressions::CaptureCollection::CaptureCollection(std::initializer_list<Capture> _tab)
@@ -118,6 +120,19 @@ void System::Text::RegularExpressions::CaptureCollection::RemoveAt(const int32 _
         mTab[i - 1] = _tmpTab[i];
     delete[]_tmpTab;
     mCount--;
+}
+
+System::String System::Text::RegularExpressions::CaptureCollection::ToString() const
+{
+    string str = string::Empty;
+    for (int32 i = 0; i < mCount; ++i)
+        str += mTab[i].ToString();
+    return str;
+}
+
+System::Integer System::Text::RegularExpressions::CaptureCollection::GetHashCode() const
+{
+    return ToString().GetHashCode();
 }
 #pragma endregion override
 #pragma region operator

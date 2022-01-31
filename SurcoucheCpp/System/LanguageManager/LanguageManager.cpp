@@ -11,6 +11,11 @@ System::String System::LanguageManager::GetPathToSave() const
     return IO::Path::Combine(Environment::CurrentDirectory, "Language");
 }
 
+System::Integer System::LanguageManager::GetHashCode() const
+{
+    return mLanguages.GetHashCode();
+}
+
 System::LanguageManager::LanguageManager()
 {
     mLanguages = System::Collections::Generic::Dictionary<String, Language*>();

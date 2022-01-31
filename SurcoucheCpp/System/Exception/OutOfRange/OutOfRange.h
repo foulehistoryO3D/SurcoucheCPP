@@ -21,5 +21,6 @@ namespace System
         {
             return *this;
         }
+#pragma endregion operator
     };
 }

@@ -50,9 +50,8 @@ System::Boolean System::IO::DriveType::Equals(const object& object)
     return this == &object;
 }
 
-size_t System::IO::DriveType::GetHashCode() const
+System::Integer System::IO::DriveType::GetHashCode() const
 {
-    DriveType _driveType = *this;
-    return std::hash<DriveType*>{}(&_driveType);
+    return ToString().GetHashCode();
 }
 #pragma endregion override

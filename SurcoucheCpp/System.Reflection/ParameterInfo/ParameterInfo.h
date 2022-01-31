@@ -11,8 +11,8 @@ namespace System
             DECLARE_CLASS_INFO(Object)
 #pragma region f/p
         protected:
-            Type* mClassImpl = null;
-            object* mDefaultValueImpl = null;
+            Type* mClassImpl = nullptr;
+            object* mDefaultValueImpl = nullptr;
             const char* mNameImpl = "";
             int mPositionImpl = 0;
         public:

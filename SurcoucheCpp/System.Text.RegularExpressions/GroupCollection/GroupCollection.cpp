@@ -1,5 +1,6 @@
 ﻿#include "GroupCollection.h"
-
+#include "../../System/PrimaryType/String/String.h"
+#include "../../System/PrimaryType/Integer/Integer.h"
 
 #pragma region constructor
 System::Text::RegularExpressions::GroupCollection::GroupCollection(
@@ -130,6 +131,19 @@ void System::Text::RegularExpressions::GroupCollection::RemoveItem(String _key)
     if (_index == -1)
         throw Exception("key doesn't exist");
     RemoveAt(_index);
+}
+
+System::String System::Text::RegularExpressions::GroupCollection::ToString() const
+{
+    string result = string::Empty;
+    for(int32 i = 0; i < mCount; ++i)
+        result += mTab[i].Value.ToString();
+    return result;
+}
+
+System::Integer System::Text::RegularExpressions::GroupCollection::GetHashCode() const
+{
+    return ToString().GetHashCode();
 }
 #pragma endregion override
 #pragma region operator

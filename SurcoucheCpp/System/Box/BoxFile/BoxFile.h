@@ -13,7 +13,7 @@ namespace System
     private:
         const char* mTitle = "find path";
         HRESULT mHResult = HRESULT();
-        const char* mPathResult = null;
+        const char* mPathResult = "";
 #pragma endregion f/p
 #pragma region constructor
     public:
@@ -38,7 +38,7 @@ namespace System
         String ToString() const override;
         Boolean Equals(const object* _obj) override;
         Boolean Equals(const object& _obj) override;
-        size_t GetHashCode() const override;
+        Integer GetHashCode() const override;
 #pragma endregion override
 #pragma region operator
         BoxFile& operator=(const BoxFile& _other);

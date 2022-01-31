@@ -25,7 +25,7 @@ namespace System
 #pragma endregion custom methods
         };
         template<typename T>
-        T* Singleton<T>::instance = null;
+        T* Singleton<T>::instance = nullptr;
         template <typename T>
         Singleton<T>::Singleton() : Object()
         {

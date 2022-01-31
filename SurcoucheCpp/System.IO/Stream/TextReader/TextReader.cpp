@@ -1,6 +1,7 @@
 ﻿#include "TextReader.h"
 #include "../../../System/PrimaryType/String/String.h"
 #include "../../../System/PrimaryType/Boolean/Boolean.h"
+#include "../../../System/PrimaryType/Integer/Integer.h"
 
 #pragma region constructor
 System::IO::TextReader::TextReader(const String& _path)
@@ -95,10 +96,9 @@ System::Boolean System::IO::TextReader::Equals(const object& object)
     return mPath == _reader.mPath; 
 }
 
-size_t System::IO::TextReader::GetHashCode() const
+System::Integer System::IO::TextReader::GetHashCode() const
 {
-    TextReader _reader = *this;
-    return std::hash<TextReader*>{}(&_reader);
+    return ToString().GetHashCode();
 }
 
 void System::IO::TextReader::Dispose()

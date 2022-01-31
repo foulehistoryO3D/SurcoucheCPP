@@ -2,6 +2,7 @@
 #include "../../../System/DateTime/DateTime.h"
 #include "../../../System/PrimaryType/String/String.h"
 #include "../../../System/PrimaryType/Boolean/Boolean.h"
+#include "../../../System/PrimaryType/Integer/Integer.h"
 #include "../../Stream/StreamWriter/StreamWriter.h"
 #include "../../Stream/StreamReader/StreamReader.h"
 #include "../../../System.Collections.Generic/List/List.h"
@@ -124,9 +125,13 @@ System::Boolean System::IO::File::Equals(const object& object)
     return mPath == _file.mPath;
 }
 
-size_t System::IO::File::GetHashCode() const
+System::Integer System::IO::File::GetHashCode() const
 {
-    File _file = *this;
-    return std::hash<File*>{}(&_file);
+    return ToString().GetHashCode();
+}
+
+System::String System::IO::File::ToString() const
+{
+    return mPath;
 }
 #pragma endregion override

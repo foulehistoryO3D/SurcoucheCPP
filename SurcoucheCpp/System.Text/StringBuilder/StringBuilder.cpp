@@ -71,6 +71,7 @@ System::Text::StringBuilder& System::Text::StringBuilder::Append(const Object* _
 
 System::Text::StringBuilder& System::Text::StringBuilder::Append(const char* _str)
 {
+    mCapacity = mCapacityMax;
     const String& _value = _str;
     const int _otherLength = _value.Length();
     const int _newLength = mLength + _otherLength;
@@ -154,9 +155,17 @@ System::Boolean System::Text::StringBuilder::Equals(const object& object)
     return Equals(_builder);
 }
 
-size_t System::Text::StringBuilder::GetHashCode() const
+System::Integer System::Text::StringBuilder::GetHashCode() const
 {
-    StringBuilder _builder = *this;
-    return std::hash<StringBuilder*>{}(&_builder);
+    return ToString().GetHashCode();
+}
+
+System::Text::StringBuilder& System::Text::StringBuilder::operator=(const StringBuilder& other)
+{
+    mValue = other.mValue;
+    mLength = other.mLength;
+    mCapacity = other.mCapacity;
+    mCapacityMax = other.mCapacityMax;
+    return *this;
 }
 #pragma endregion override

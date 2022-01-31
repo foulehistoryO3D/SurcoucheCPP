@@ -31,6 +31,7 @@ namespace System
 #pragma region override
     public:
         String ToString() const override;
+        Integer GetHashCode() const override;
         Boolean Equals(const object* _obj) override;
         Boolean Equals(const object& _obj) override;
         Boolean Equals(const object* _obj, const object* _other) override;
@@ -40,6 +41,24 @@ namespace System
 #pragma region operator
     public:
         Float& operator=(const Float& _other);
+        Float& operator*=(const Float& _other);
+        Float& operator/=(const Float& other);
+        Float& operator+=(const Float& other);
+        Float& operator-=(const Float& other);
+        Float operator+(const Float& other)const;
+        Float operator+(const float& other)const;
+        Float operator-(const Float& other)const;
+        Float operator-(const float& other)const;
+        Float operator/(const Float& other) const;
+        Float operator/(const float& other) const;
+        Boolean operator<(const Float& other) const;
+        Boolean operator>(const Float& other) const;
+        Boolean operator<=(const Float& other) const;
+        Boolean operator>=(const Float& other) const;
+        Boolean operator<(const float& other) const;
+        Boolean operator>(const float& other) const;
+        Boolean operator<=(const float& other) const;
+        Boolean operator>=(const float& other) const;
         operator float()const { return mValue;}
         Boolean operator==(const Float& _other) const;
         Boolean operator!=(const Float& _other) const;

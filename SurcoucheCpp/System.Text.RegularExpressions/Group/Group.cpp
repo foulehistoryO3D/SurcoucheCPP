@@ -104,10 +104,9 @@ System::Boolean System::Text::RegularExpressions::Group::Equals(const object& ob
     return super::Equals(object) && mName == _group.mName && mCaptureCollection == _group.mCaptureCollection;
 }
 
-size_t System::Text::RegularExpressions::Group::GetHashCode() const
+System::Integer System::Text::RegularExpressions::Group::GetHashCode() const
 {
-    Group _group = *this;
-    return std::hash<Group*>{}(&_group);
+    return super::GetHashCode() ^ (mCaptureCollection.GetHashCode() << 2) ^ (string(mName).GetHashCode() >> 2) ^ Bool(mSuccess).GetHashCode();
 }
 #pragma endregion override
 #pragma region operator

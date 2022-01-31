@@ -4,13 +4,15 @@
 #include "../../Exception/OutOfRange/OutOfRange.h"
 #include "../Boolean/Boolean.h"
 #include "../String/String.h"
+#include "../Integer/Integer.h"
 
 #pragma region constructor
 System::Byte::Byte(const byte& _byte)
 {
     if (_byte == '\0' || _byte == 'ÿ')
-        throw OutOfRange("[Byte] error => invalid value");
-    mValue =_byte;
+        mValue = 0;
+    else
+        mValue = _byte;
 }
 
 System::Byte::Byte(const Byte& _copy)
@@ -59,10 +61,9 @@ System::Boolean System::Byte::Equals(const object& _obj, const object& _other)
     return _byte == _byte1;
 }
 
-size_t System::Byte::GetHashCode() const
+System::Integer System::Byte::GetHashCode() const
 {
-    Byte _byte = *this;
-    return std::hash<Byte*>{}(&_byte);
+    return ToString().GetHashCode();
 }
 
 #pragma endregion override

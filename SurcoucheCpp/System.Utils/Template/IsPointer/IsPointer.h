@@ -10,4 +10,4 @@ template <typename T> struct IsPointer<      volatile T> { enum { Value = IsPoin
 template <typename T> struct IsPointer<const volatile T> { enum { Value = IsPointer<T>::Value }; };
 
 
-template<typename T> static System::Boolean IsPointerValue(T) { return IsPointer<T>::Value; }
+template<typename T> static bool IsPointerValue(T) { return IsPointer<T>::Value; }

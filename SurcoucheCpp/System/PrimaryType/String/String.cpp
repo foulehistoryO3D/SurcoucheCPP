@@ -35,12 +35,24 @@ System::String::String(const char* _value)
 
 System::String::String(const String& _copy)
 {
-    if (_copy.mValue == null) return;
+    if (_copy.mValue == nullptr) return;
     const size_t _length = _copy.mLength;
     char* _new = new char[_length + 1];
     memcpy(_new, _copy.mValue, _length + 1);
     mValue = _new;
     mLength = _copy.mLength;
+}
+
+System::String::String(std::string::iterator _begin, std::string::iterator _end)
+{
+    for (; _begin != _end; ++_begin)
+        Append(*_begin);
+}
+
+System::String::String(std::wstring::iterator _begin, std::wstring::iterator _end)
+{
+    for (; _begin != _end; ++_begin)
+        Append(*_begin);
 }
 
 System::Boolean System::String::StartWith(const char& _c) const
@@ -314,7 +326,7 @@ System::String System::String::operator+(const char& _c)
 
 bool System::String::IsNullOrEmpty(const String& _str)
 {
-    return _str.mValue == null || _str.mValue == "" || _str.mLength == 0;
+    return _str.mValue == nullptr || _str.mValue == "" || _str.mLength == 0;
 }
 
 System::Integer System::String::LastIndexOf(const char _c) const
@@ -398,10 +410,9 @@ System::Boolean System::String::Equals(const String& _object)
     return mValue == _object.mValue;
 }
 
-size_t System::String::GetHashCode() const
+System::Integer System::String::GetHashCode() const
 {
-    string _object = *this;
-    return std::hash<string*>{}(&_object);
+    return HashCode(mValue);
 }
 
 char System::String::Current()
@@ -469,7 +480,7 @@ System::Boolean System::String::operator==(const String& _other) const
 
 System::Boolean System::String::operator==(const char* _other) const
 {
-    if (_other == null) return mValue == "";
+    if (_other == nullptr) return mValue == "";
     const int _length = strlen(_other);
     if (_length != mLength) return false;
     for (int i = 0; i < mLength; ++i)

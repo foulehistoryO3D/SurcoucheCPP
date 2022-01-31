@@ -160,7 +160,7 @@ namespace System
         ETimeZoneName mTimeZone = ETimeZoneName::Afghanistan;
         DWORD mResult = DWORD();
         time_t mTime = time_t();
-        const char* mTimeZoneName = null;
+        const char* mTimeZoneName = nullptr;
 #pragma endregion f/p
 #pragma region constructor
     public:
@@ -181,7 +181,7 @@ namespace System
         String ToString() const override;
         Boolean Equals(const object* _obj) override;
         Boolean Equals(const object& _obj) override;
-        size_t GetHashCode() const override;
+        Integer GetHashCode() const override;
 #pragma endregion override
     };
 }

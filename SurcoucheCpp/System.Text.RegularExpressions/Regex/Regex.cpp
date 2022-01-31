@@ -71,10 +71,9 @@ System::Boolean System::Text::RegularExpressions::Regex::Equals(const object& _o
     return Equals(_regex);
 }
 
-size_t System::Text::RegularExpressions::Regex::GetHashCode() const
+System::Integer System::Text::RegularExpressions::Regex::GetHashCode() const
 {
-    Regex _regex = *this;
-    return std::hash<Regex*>{}(&_regex);
+    return ToString().GetHashCode();
 }
 
 System::Boolean System::Text::RegularExpressions::Regex::Equals(const Regex& _object)

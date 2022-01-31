@@ -16,6 +16,7 @@ namespace System
 #pragma region custom methods
     public:
         String Message()const;
+        Integer GetHashCode() const override;
 #pragma endregion custom methods
 #pragma region Override
     public:

@@ -25,6 +25,7 @@ namespace System
         template <typename... Args>
         String Translate(const String& _messageToTranslate, Args&&... _args);
         String GetPathToSave() const;
+        Integer GetHashCode() const override;
     };
 
     template <typename ... Args>
@@ -32,9 +33,9 @@ namespace System
     {
         string _result = _messageToTranslate;
         const size_t _length = TemplateUtils::SizeOfPackageParameters(_args...);
-        Collections::Generic::List<String> _package = TemplateUtils::CreateListWithParameterPack<String>(_args...);
+        Collections::Generic::List<object*> _package = TemplateUtils::CreateListWithParameterPack<object*>(&_args...);
         for (int i = 0; i < _length; ++i)
-            _result = _result.Replace(string("@") + i, _package[i]);
+            _result = _result.Replace(string("@") + i, _package[i]->ToString());
         
         return _result;
     }

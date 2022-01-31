@@ -6,13 +6,16 @@
 
 namespace System
 {
-    template<typename... Args>
+    template <typename... Args>
     class Action;
-    template<typename out, typename... Args>
+    template <typename T>
+    class Array;
+    template <typename out, typename... Args>
     class Func;
-    template<typename Item>
+    template <typename Item>
     class Predicate;
-    
+    class String;
+
     namespace Collections
     {
         namespace Generic
@@ -41,8 +44,10 @@ namespace System
                 void ForEach(Action<Item> _action);
                 List<Item> OrderBy(Func<bool, Item, Item> _selector);
                 List<Item> Where(Func<bool, Item> _selector);
+                Array<Item> ToArray();
                 bool Any(Func<bool, Item> _selector);
                 Item Find(Predicate<Item> _pred);
+                Item FirstOrDefault();
 #pragma endregion Linq
 #pragma region override
             public:
@@ -64,9 +69,9 @@ namespace System
                 List<Item> operator=(const IEnumerable<Item>* _enumerable);
                 List<Item>& operator=(const List<Item>& _other);
                 Item& operator[](const int _index);
-                Item& operator[](const int _index)const;
+                Item& operator[](const int _index) const;
                 bool operator==(const List& list) const;
-                
+
 #pragma endregion operator
             };
 #pragma region constructor/destructor
@@ -115,16 +120,16 @@ namespace System
             List<Item> List<Item>::OrderBy(Func<bool, Item, Item> _selector)
             {
                 List<Item> _result = *this;
-                for (int gap = mCount/2; gap > 0; gap /= 2) 
-                { 
-                    for (int i = gap; i < mCount; i += 1) 
-                    { 
-                        Item temp = _result.mTab[i]; 
-                        int j; 
-                        for (j = i; j >= gap && _selector.Invoke(_result.mTab[j - gap], temp); j -= gap) 
-                            _result.mTab[j] = _result.mTab[j - gap]; 
-                        _result.mTab[j] = temp; 
-                    } 
+                for (int gap = mCount / 2; gap > 0; gap /= 2)
+                {
+                    for (int i = gap; i < mCount; i += 1)
+                    {
+                        Item temp = _result.mTab[i];
+                        int j;
+                        for (j = i; j >= gap && _selector.Invoke(_result.mTab[j - gap], temp); j -= gap)
+                            _result.mTab[j] = _result.mTab[j - gap];
+                        _result.mTab[j] = temp;
+                    }
                 }
                 return _result;
             }
@@ -135,7 +140,7 @@ namespace System
                 List<Item> _result = List<Item>();
                 while (MoveNext())
                 {
-                    const Item _item =Current();
+                    const Item _item = Current();
                     if (_selector(_item))
                         _result.Add(_item);
                 }
@@ -144,9 +149,15 @@ namespace System
             }
 
             template <typename Item>
+            Array<Item> List<Item>::ToArray()
+            {
+                return *this;
+            }
+
+            template <typename Item>
             bool List<Item>::Any(Func<bool, Item> _selector)
             {
-                while(MoveNext())
+                while (MoveNext())
                 {
                     if (_selector(Current()))
                     {
@@ -171,6 +182,13 @@ namespace System
                 }
                 Reset();
                 return Item();
+            }
+
+            template <typename Item>
+            Item List<Item>::FirstOrDefault()
+            {
+                if (mCount == 0) return Item();
+                return mTab[0];
             }
 #pragma endregion Linq
 #pragma region custom methods
@@ -277,7 +295,6 @@ namespace System
             {
                 mCurrentIndex = -1;
             }
-
 #pragma endregion custom methods
 #pragma region operator
             template <typename Item>

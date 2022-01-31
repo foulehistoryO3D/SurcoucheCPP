@@ -22,7 +22,7 @@ namespace System
             DECLARE_CLASS_INFO(Object)
 #pragma region f/p
         private:
-            const char* mPath = null;
+            const char* mPath = nullptr;
 #pragma endregion f/p
 #pragma region constructor
         public:
@@ -47,7 +47,8 @@ namespace System
         public:
             Boolean Equals(const object* _obj) override;
             Boolean Equals(const object& _obj) override;
-            size_t GetHashCode() const override;
+            Integer GetHashCode() const override;
+            String ToString() const override;
 #pragma endregion override
         };
     }

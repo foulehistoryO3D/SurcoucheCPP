@@ -15,9 +15,9 @@ namespace System
             DECLARE_CLASS_INFO(Object)
 #pragma region f/p
         private:
-            const char* mPath = null;
-            StreamWriter* mStreamWriter = null;
-            StreamReader* mStreamReader = null;
+            const char* mPath = nullptr;
+            StreamWriter* mStreamWriter = nullptr;
+            StreamReader* mStreamReader = nullptr;
 #pragma endregion f/p
 #pragma region constructor
         public:
@@ -40,7 +40,7 @@ namespace System
             String ToString() const override;
             Boolean Equals(const object* _obj) override;
             Boolean Equals(const object& _obj) override;
-            size_t GetHashCode() const override;
+            Integer GetHashCode() const override;
             void Dispose();
 #pragma endregion override
 #pragma region operator

@@ -9,8 +9,8 @@ namespace System
         DECLARE_CLASS_INFO(Object)
 #pragma region f/p
     private:
-        const char* mName = null;
-        const char* mFileName = null;
+        const char* mName = nullptr;
+        const char* mFileName = nullptr;
         IO::FileStream mFile = IO::FileStream();
 #pragma endregion f/p
 #pragma region constructor
@@ -32,7 +32,7 @@ namespace System
         String ToString() const override;
         Boolean Equals(const object* _obj) override;
         Boolean Equals(const object& _obj) override;
-        size_t GetHashCode() const override;
+        Integer GetHashCode() const override;
 #pragma endregion override
 #pragma region operator
     public:

@@ -78,10 +78,9 @@ System::Boolean System::Version::Equals(const object& object)
     return Equals(*_version);
 }
 
-size_t System::Version::GetHashCode() const
+System::Integer System::Version::GetHashCode() const
 {
-    Version _version = *this;
-    return std::hash<Version*>{}(&_version);
+    return Int(m0) ^ Int(m1) << 2 ^ Int(m2) >> 2 ^ Int(m3) ^ Int(mMinor) << 2 ^ Int(mMajor) >> 2;
 }
 
 System::Boolean System::Version::Equals(const Version& _object)

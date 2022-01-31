@@ -16,8 +16,8 @@ namespace System
         DECLARE_CLASS_INFO(Object)
 #pragma region f/P
     private:
-        Window* mWindow = null;
-        HMENU mMenu = null;
+        Window* mWindow = nullptr;
+        HMENU mMenu = nullptr;
         const char* mMenuName = "";
     public:
         String Name() const;

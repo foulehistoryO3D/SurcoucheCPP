@@ -181,6 +181,9 @@
     <ClCompile Include="System.Net\WebClient\WebClient.cpp" />
     <ClCompile Include="System.Reflection\MethodInfo\MethodInfo.cpp" />
     <ClCompile Include="System.Reflection\ParameterInfo\ParameterInfo.cpp" />
+    <ClCompile Include="System.SQL\Command\SQLCommand.cpp" />
+    <ClCompile Include="System.SQL\DataBase\DataBaseLocal\DataBaseLocal.cpp" />
+    <ClCompile Include="System.SQL\Reader\SQLReader.cpp" />
     <ClCompile Include="System.Text.RegularExpressions\CaptureCollection\CaptureCollection.cpp" />
     <ClCompile Include="System.Text.RegularExpressions\Capture\Capture.cpp" />
     <ClCompile Include="System.Text.RegularExpressions\GroupCollection\GroupCollection.cpp" />
@@ -193,12 +196,86 @@
     <ClCompile Include="System\Activator\Activator.cpp" />
     <ClCompile Include="System\Box\BoxFile\BoxFile.cpp" />
     <ClCompile Include="System\Box\ConfirmationBox\ConfirmationBox.cpp" />
+    <ClCompile Include="System\ClipBoard\ClipBoard.cpp">
+      <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <Optimization>Disabled</Optimization>
+      <SupportJustMyCode>true</SupportJustMyCode>
+      <AssemblerOutput>NoListing</AssemblerOutput>
+      <AssemblerListingLocation>x64\Debug\</AssemblerListingLocation>
+      <UndefineAllPreprocessorDefinitions>false</UndefineAllPreprocessorDefinitions>
+      <BrowseInformation>false</BrowseInformation>
+      <BrowseInformationFile>x64\Debug\</BrowseInformationFile>
+      <CompileAs>Default</CompileAs>
+      <ConformanceMode>true</ConformanceMode>
+      <DiagnosticsFormat>Column</DiagnosticsFormat>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <ErrorReporting>Prompt</ErrorReporting>
+      <ExpandAttributedSource>false</ExpandAttributedSource>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <EnableASAN>false</EnableASAN>
+      <EnableFiberSafeOptimizations>false</EnableFiberSafeOptimizations>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
+      <GenerateModuleDependencies>false</GenerateModuleDependencies>
+      <GenerateSourceDependencies>false</GenerateSourceDependencies>
+      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard_C>Default</LanguageStandard_C>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ModuleDependenciesFile>x64\Debug\</ModuleDependenciesFile>
+      <ModuleOutputFile>x64\Debug\</ModuleOutputFile>
+      <OmitDefaultLibName>false</OmitDefaultLibName>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <ObjectFileName>x64\Debug\</ObjectFileName>
+      <CallingConvention>Cdecl</CallingConvention>
+      <ProgramDataBaseFileName>x64\Debug\vc142.pdb</ProgramDataBaseFileName>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>x64\Debug\SurcoucheCpp.pch</PrecompiledHeaderOutputFile>
+      <PreprocessToFile>false</PreprocessToFile>
+      <PreprocessKeepComments>false</PreprocessKeepComments>
+      <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
+      <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+      <ShowIncludes>false</ShowIncludes>
+      <SourceDependenciesFile>x64\Debug\</SourceDependenciesFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <SpectreMitigation>false</SpectreMitigation>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <TrackerLogDirectory>x64\Debug\SurcoucheCpp.tlog\</TrackerLogDirectory>
+      <TranslateIncludes>false</TranslateIncludes>
+      <MinimalRebuildFromTracking>true</MinimalRebuildFromTracking>
+      <TreatWarningAsError>false</TreatWarningAsError>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <UseFullPaths>true</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <XMLDocumentationFileName>x64\Debug\</XMLDocumentationFileName>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <IntelJCCErratum>false</IntelJCCErratum>
+      <TreatAngleIncludeAsExternal>false</TreatAngleIncludeAsExternal>
+      <ExternalWarningLevel>InheritWarningLevel</ExternalWarningLevel>
+      <TreatExternalTemplatesAsInternal>true</TreatExternalTemplatesAsInternal>
+      <DisableAnalyzeExternal>false</DisableAnalyzeExternal>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_UNICODE;UNICODE;</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\Users\GGTco\Downloads\mysql-connector-c++-8.0.27-winx64\mysql-connector-c++-8.0.27-winx64\include</AdditionalIncludeDirectories>
+      <LinkCompiled>true</LinkCompiled>
+    </ClCompile>
     <ClCompile Include="System\Console\Console.cpp" />
     <ClCompile Include="System\DateTime\DateTime.cpp" />
     <ClCompile Include="System\Environment\Environment.cpp" />
     <ClCompile Include="System\Event\EventArgs\EventArgs.cpp" />
     <ClCompile Include="System\Event\Func\Func.cpp" />
     <ClCompile Include="System\Exception\Exception\Exception.cpp" />
+    <ClCompile Include="System\Exception\IndexOutOfRange\IndexOutOfRangeException.cpp" />
     <ClCompile Include="System\Exception\OutOfRange\OutOfRange.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -273,6 +350,7 @@
     </ClCompile>
     <ClCompile Include="System\LanguageManager\LanguageManager.cpp" />
     <ClCompile Include="System\LanguageManager\Language\Language.cpp" />
+    <ClCompile Include="System\Mail\Mail.cpp" />
     <ClCompile Include="System\Mathf\Mathf.cpp" />
     <ClCompile Include="System\Object\Object.cpp" />
     <ClCompile Include="System\PrimaryType\Boolean\Boolean.cpp" />
@@ -289,7 +367,6 @@
     <ClCompile Include="System\Version\Version.cpp" />
     <ClCompile Include="System\Window\Menu\WindowMenu.cpp" />
     <ClCompile Include="System\Window\Window.cpp" />
-    <ClCompile Include="Test\ETest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="System.Collections.Generic\Dictionary\Dictionary.h" />
@@ -327,6 +404,9 @@
     <ClInclude Include="System.Reflection\MethodInfo\MethodInfo.h" />
     <ClInclude Include="System.Reflection\ParameterInfo\ParameterInfo.h" />
     <ClInclude Include="System.Reflection\ReturnType\ReturnType.h" />
+    <ClInclude Include="System.SQL\Command\SQLCommand.h" />
+    <ClInclude Include="System.SQL\DataBase\DataBaseLocal\DataBaseLocal.h" />
+    <ClInclude Include="System.SQL\Reader\SQLReader.h" />
     <ClInclude Include="System.Text.RegularExpressions\CaptureCollection\CaptureCollection.h" />
     <ClInclude Include="System.Text.RegularExpressions\Capture\Capture.h" />
     <ClInclude Include="System.Text.RegularExpressions\GroupCollection\GroupCollection.h" />
@@ -342,6 +422,7 @@
     <ClInclude Include="System\Activator\Activator.h" />
     <ClInclude Include="System\Box\BoxFile\BoxFile.h" />
     <ClInclude Include="System\Box\ConfirmationBox\ConfirmationBox.h" />
+    <ClInclude Include="System\ClipBoard\ClipBoard.h" />
     <ClInclude Include="System\Console\Console.h" />
     <ClInclude Include="System\DateTime\DateTime.h" />
     <ClInclude Include="System\Environment\Environment.h" />
@@ -352,6 +433,7 @@
     <ClInclude Include="System\Event\Func\Func.h" />
     <ClInclude Include="System\Event\Predicate\Predicate.h" />
     <ClInclude Include="System\Exception\Exception\Exception.h" />
+    <ClInclude Include="System\Exception\IndexOutOfRange\IndexOutOfRangeException.h" />
     <ClInclude Include="System\Exception\OutOfRange\OutOfRange.h" />
     <ClInclude Include="System\IncludeSystem.h" />
     <ClInclude Include="System\Interface\AsyncResult\IAsyncResult.h" />
@@ -361,6 +443,7 @@
     <ClInclude Include="System\Interface\Equatable\IEquatable.h" />
     <ClInclude Include="System\LanguageManager\LanguageManager.h" />
     <ClInclude Include="System\LanguageManager\Language\Language.h" />
+    <ClInclude Include="System\Mail\Mail.h" />
     <ClInclude Include="System\Mathf\Mathf.h" />
     <ClInclude Include="System\Object\Object.h" />
     <ClInclude Include="System\PrimaryType\Array\Array.h" />
@@ -380,11 +463,14 @@
     <ClInclude Include="System\Version\Version.h" />
     <ClInclude Include="System\Window\Menu\WindowMenu.h" />
     <ClInclude Include="System\Window\Window.h" />
-    <ClInclude Include="Test\ETest.h" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="System.Collections" />
     <Folder Include="System.Diagnostics" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="System\Mail\easendmailobj.tlh" />
+    <Content Include="System\Mail\easendmailobj.tli" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

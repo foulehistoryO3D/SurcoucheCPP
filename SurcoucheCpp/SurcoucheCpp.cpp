@@ -1,27 +1,16 @@
-#include "System/IncludeSystem.h"
-#include "System/PrimaryType/Enum/Enum.h"
-#include "System/Window/Window.h"
-#include "Test/ETest.h"
+#include "System/Console/Console.h"
+#include "System/Mail/Mail.h"
 
 int main()
 {
-    Window* window = new Window("Test", 600, 800, false);
-    WindowMenu* fileMenu = window->GetMenu("File");
-    if (const WindowMenu* mainMenu = window->GetMenu("Main"))
-    {
-        const WindowMenu* editMenu = window->CreateMenu("Edit");
-        editMenu->CreateButtonMenu("Save", []{Console::WriteLine("Save");});
-        mainMenu->CreatePopMenu(editMenu);
-        mainMenu->CreateButtonMenu("Help", []{Console::WriteLine("Help");});
-        
-    }
-    if (fileMenu)
-    {
-        fileMenu->CreateButtonMenu("Test", []
-        {
-            Console::WriteLine("Test");
-        });
-    }
-    window->Open();
+    System::Mail mail = System::Mail();
+    mail.SetUserName("ggtcommunity338@gmail.com");
+    mail.SetPassword("rifwralsxikroojo");
+    mail.SetSubject("Test");
+    mail.AddLineBodyText("SALUT OLIVIER");
+    mail.AddLineBodyText("Hello How are u");
+    mail.AddRecipient("olivierargentieri@gmail.com");
+    const System::Bool result = mail.Send();
+    System::Console::WriteLine("mail send {0}", result ? string("success") : string("error"));
     return 0;
 }

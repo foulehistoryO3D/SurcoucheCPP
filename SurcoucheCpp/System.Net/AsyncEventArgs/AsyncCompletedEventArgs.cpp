@@ -1,5 +1,7 @@
 ﻿#include "AsyncCompletedEventArgs.h"
 #include "../../System/PrimaryType/Boolean/Boolean.h"
+#include "../../System/PrimaryType/String/String.h"
+#include "../../System/PrimaryType/Integer/Integer.h"
 
 #pragma region f/p
 System::Net::DownloadNetException System::Net::AsyncCompletedEventArgs::Error() const
@@ -47,5 +49,15 @@ void System::Net::AsyncCompletedEventArgs::SetUserState(object* _userState)
 void System::Net::AsyncCompletedEventArgs::SetError(const DownloadNetException& _exception)
 {
     mException = std::move(_exception);
+}
+
+System::String System::Net::AsyncCompletedEventArgs::ToString() const
+{
+    return EventArgs::ToString();
+}
+
+System::Integer System::Net::AsyncCompletedEventArgs::GetHashCode() const
+{
+    return mUserState->GetHashCode() ^ (Bool(mCancelled).GetHashCode() << 2) ^ (mException.GetHashCode() >> 2);
 }
 #pragma endregion custom methods

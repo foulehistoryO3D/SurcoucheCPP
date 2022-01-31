@@ -1,6 +1,7 @@
 ﻿#include "Char.h"
 #include "../String/String.h"
 #include "../Boolean/Boolean.h"
+#include "../Integer/Integer.h"
 
 #pragma region constructor
 System::Char::Char(const char _c)
@@ -84,10 +85,9 @@ System::Boolean System::Char::Equals(const object& object)
     return _char == this;
 }
 
-size_t System::Char::GetHashCode() const
+System::Integer System::Char::GetHashCode() const
 {
-    Char _char = *this;
-    return std::hash<Char*>{}(&_char);
+    return ToString().GetHashCode();
 }
 
 System::Char& System::Char::operator=(const Char& _other)

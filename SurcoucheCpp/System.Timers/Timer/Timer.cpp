@@ -1,5 +1,6 @@
 ﻿#include "Timer.h"
 #include "../ElapsedEventArgs/ElapsedEventArgs.h"
+#include "../../System/PrimaryType/Double/Double.h"
 
 #pragma region constructor
 System::Timers::Timer::Timer(const int& _interval)
@@ -41,7 +42,20 @@ void System::Timers::Timer::Stop()
     mIsRunning = false;
     mThread.join();
 }
+
 #pragma endregion constructor
+#pragma region override
+System::String System::Timers::Timer::ToString() const
+{
+    return mElapsedEvent != nullptr ? mElapsedEvent->ToString() : string::Empty;
+}
+
+System::Integer System::Timers::Timer::GetHashCode() const
+{
+    const Int& hash = mElapsedEvent != nullptr ? mElapsedEvent->GetHashCode() : Int(0);
+    return hash ^ (Double(mInterval.count()).GetHashCode() << 2);
+}
+#pragma endregion override
 #pragma region operator
 System::Timers::Timer& System::Timers::Timer::operator=(const Timer& _other)
 {

@@ -15,7 +15,7 @@ namespace System
             protected:
                 int mIndex = 0;
                 int mLength = 0;
-                const char* mValue = null;
+                const char* mValue = nullptr;
             public:
                 String Value()const;
                 Integer Index()const;
@@ -36,7 +36,7 @@ namespace System
                 String ToString() const override;
                 Boolean Equals(const object* _obj) override;
                 Boolean Equals(const object& _obj) override;
-                size_t GetHashCode() const override;
+                Integer GetHashCode() const override;
 #pragma endregion override
 #pragma region operator
                 Capture operator=(const Capture& _other)

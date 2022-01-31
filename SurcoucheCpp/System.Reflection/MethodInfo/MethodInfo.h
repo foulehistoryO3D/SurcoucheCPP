@@ -7,6 +7,7 @@
 #include "../../System/TemplateUtils/TemplateUtils.h"
 #include "../../System/PrimaryType/String/String.h"
 #include "../../System/PrimaryType/Integer/Integer.h"
+#include "../../System/Console/Console.h"
 
 #pragma region define
 #define FUNCTION_NAME(function) #function
@@ -20,7 +21,7 @@ namespace System
         {
 #pragma region f/p
         private:
-            object* mOwner = null;
+            object* mOwner = nullptr;
             String mName = "";
             Collections::Generic::List<ParameterInfo> mParameters = Collections::Generic::List<ParameterInfo>();
         public:
@@ -31,8 +32,8 @@ namespace System
 #pragma region constructor
         public:
             MethodInfo()=default;
-            template<typename C, typename... Args>
-            MethodInfo(void(C::*ptr)(Args...), object* _owner, const String& _functionName);
+            template<typename Res, typename C, typename... Args>
+            MethodInfo(Res(C::*ptr)(Args...), object* _owner, const String& _functionName);
             MethodInfo(const MethodInfo& _method);
 #pragma endregion constructor
 #pragma region custom methods
@@ -41,8 +42,8 @@ namespace System
 #pragma endregion custom methods
         };
 
-        template <typename C, typename ... Args>
-        MethodInfo::MethodInfo(void(C::*ptr)(Args...), object* _owner, const String& _functionName)
+        template <typename Res, typename C, typename ... Args>
+        MethodInfo::MethodInfo(Res(C::*ptr)(Args...), object* _owner, const String& _functionName)
         {
             mOwner = std::move(_owner);
             mParameters = std::move(TemplateUtils::GetParametersFunction(ptr));

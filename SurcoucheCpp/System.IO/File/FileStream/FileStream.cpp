@@ -1,6 +1,7 @@
 ﻿#include "FileStream.h"
 #include "../../../System/PrimaryType/String/String.h"
 #include "../../../System/PrimaryType/Boolean/Boolean.h"
+#include "../../../System/PrimaryType/Integer/Integer.h"
 #include "../../Stream/StreamReader/StreamReader.h"
 #include "../../Stream/StreamWriter/StreamWriter.h"
 
@@ -21,8 +22,8 @@ System::IO::FileStream::FileStream(const FileStream& _copy)
 
 System::IO::FileStream::~FileStream()
 {
-    mStreamWriter = null;
-    mStreamReader = null;
+    mStreamWriter = nullptr;
+    mStreamReader = nullptr;
 }
 
 System::Boolean System::IO::FileStream::Exists() const
@@ -33,7 +34,7 @@ System::Boolean System::IO::FileStream::Exists() const
 
 System::Boolean System::IO::FileStream::IsValid() const
 {
-    return mPath != null && mStreamWriter != null && mStreamReader != null && Exists();
+    return mPath != nullptr && mStreamWriter != nullptr && mStreamReader != nullptr && Exists();
 }
 
 void System::IO::FileStream::Close() const
@@ -67,19 +68,20 @@ System::String System::IO::FileStream::ToString() const
 System::Boolean System::IO::FileStream::Equals(const object* object)
 {
     const FileStream& _fileStream = *dynamic_cast<const FileStream*>(object);
-    return mPath == _fileStream.mPath && mStreamReader == _fileStream.mStreamReader && mStreamWriter == _fileStream.mStreamWriter;
+    return mPath == _fileStream.mPath && mStreamReader == _fileStream.mStreamReader && mStreamWriter == _fileStream.
+        mStreamWriter;
 }
 
 System::Boolean System::IO::FileStream::Equals(const object& object)
 {
     const FileStream& _fileStream = *dynamic_cast<const FileStream*>(&object);
-    return mPath == _fileStream.mPath && mStreamReader == _fileStream.mStreamReader && mStreamWriter == _fileStream.mStreamWriter;
+    return mPath == _fileStream.mPath && mStreamReader == _fileStream.mStreamReader && mStreamWriter == _fileStream.
+        mStreamWriter;
 }
 
-size_t System::IO::FileStream::GetHashCode() const
+System::Integer System::IO::FileStream::GetHashCode() const
 {
-    FileStream _fileStream = *this;
-    return std::hash<FileStream*>{}(&_fileStream);
+    return ToString().GetHashCode() ^ (mStreamWriter->GetHashCode() << 2) ^ (mStreamReader->GetHashCode() >> 2);
 }
 
 void System::IO::FileStream::Dispose()

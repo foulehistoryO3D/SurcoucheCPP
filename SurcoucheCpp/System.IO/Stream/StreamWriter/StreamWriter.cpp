@@ -1,5 +1,6 @@
 ﻿#include "StreamWriter.h"
 #include "../../../System/PrimaryType/String/String.h"
+#include "../../../System/PrimaryType/Integer/Integer.h"
 #include "../../../System/PrimaryType/Boolean/Boolean.h"
 #include "../../../System.Collections.Generic/List/List.h"
 
@@ -19,6 +20,16 @@ void System::IO::StreamWriter::WriteAllText(const Collections::Generic::List<Str
     const int _length = _values.Count();
     for (int i=0; i< _length; ++i)
         Write(_values[i]);
+}
+
+System::String System::IO::StreamWriter::ToString() const
+{
+    return super::ToString();
+}
+
+System::Integer System::IO::StreamWriter::GetHashCode() const
+{
+    return super::GetHashCode();
 }
 #pragma endregion constructor/destructor
 #pragma region override

@@ -14,6 +14,11 @@ namespace System
             StreamReader(const String& _path);
             StreamReader(StreamReader&& _copy) noexcept;
 #pragma endregion constructor
+#pragma region override
+        public:
+            String ToString() const override;
+            Integer GetHashCode() const override;
+#pragma endregion override
         };
     }
 }

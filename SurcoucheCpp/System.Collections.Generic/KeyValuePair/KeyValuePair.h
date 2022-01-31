@@ -1,8 +1,6 @@
 ﻿#pragma once
 #include "../../System/Object/Object.h"
-
-
-
+#include "../../System/PrimaryType/Boolean/Boolean.h"
 namespace System
 {
     namespace Collections
@@ -26,14 +24,16 @@ namespace System
 #pragma endregion constructor
 #pragma region opeator
                 KeyValuePair operator=(const KeyValuePair& _other);
+                Boolean operator==(const KeyValuePair& other);
+                Boolean operator!=(const KeyValuePair& other);
 #pragma endregion operator
             };
 #pragma region constructor
             template <typename TKey, typename TValue>
             KeyValuePair<TKey, TValue>::KeyValuePair(const TKey& _key, const TValue& _value)
             {
-                Key = _key;
-                Value = _value;
+                Key = std::move(_key);
+                Value = std::move(_value);
             }
 
             template <typename TKey, typename TValue>
@@ -47,9 +47,21 @@ namespace System
             template <typename TKey, typename TValue>
             KeyValuePair<TKey, TValue> KeyValuePair<TKey, TValue>::operator=(const KeyValuePair& _other)
             {
-                Key = std::move(_other.Key);
-                Value = std::move(_other.Value);
+                Key = _other.Key; 
+                Value = _other.Value;
                 return *this;
+            }
+
+            template <typename TKey, typename TValue>
+            Bool KeyValuePair<TKey, TValue>::operator==(const KeyValuePair& other)
+            {
+                return Key == other.Key && Value == other.Value;
+            }
+
+            template <typename TKey, typename TValue>
+            Boolean KeyValuePair<TKey, TValue>::operator!=(const KeyValuePair& other)
+            {
+                return !this->operator==(other);
             }
 #pragma endregion operator
         }

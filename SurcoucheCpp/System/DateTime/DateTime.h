@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "../Object/Object.h"
 #include "../PrimaryType/String/String.h"
+#include "../PrimaryType/Integer/Integer.h"
 #include <Windows.h>
 
 namespace System
@@ -11,12 +12,12 @@ class DateTime : public Object
     DECLARE_CLASS_INFO(Object)
 #pragma region f/p
 private:
-    int mDay = 0;
-    int mMonth = 0;
-    int mYears = 0;
-    int mHour = 0;
-    int mMinute = 0;
-    int mSecond = 0;
+    Int mDay = 0;
+    Int mMonth = 0;
+    Int mYears = 0;
+    Int mHour = 0;
+    Int mMinute = 0;
+    Int mSecond = 0;
 public:
     static const DateTime Now;
 #pragma endregion f/p
@@ -33,6 +34,7 @@ public:
 private:
     static DateTime Now_Interval();
 public:
+    static DateTime Parse(const string& date);
     static DateTime Convert(SYSTEMTIME _systemTime);
     static DateTime Convert(time_t _systemTime);
     String ToStringFormat(const String& _format =  "y-m-d h:m:s") const;
@@ -44,7 +46,7 @@ public:
     String ToString() const override;
     Boolean Equals(const object* _obj) override;
     Boolean Equals(const object& _obj) override;
-    size_t GetHashCode() const override;
+    Integer GetHashCode() const override;
 #pragma endregion override
 #pragma region operator
     DateTime& operator=(const DateTime& _other)

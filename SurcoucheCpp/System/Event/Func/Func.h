@@ -45,7 +45,7 @@ namespace System
     template <typename Out, typename ... Args>
     Func<Out, Args...>::~Func()
     {
-        mFunctions = null;
+        mFunctions = nullptr;
     }
 
     template <typename Out, typename ... Args>
@@ -61,7 +61,7 @@ namespace System
     void Func<Out, Args...>::operator-=(Function&& _function)
     {
         if (mFunctions == _function)
-            mFunctions = null;
+            mFunctions = nullptr;
     }
 
     template <typename Out, typename ... Args>

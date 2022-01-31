@@ -12,10 +12,11 @@ namespace System
     {
         namespace RegularExpressions
         {
-            class GroupCollection : public Collections::Generic::IDictionary<String, Group>,
+            class GroupCollection : public Object, public Collections::Generic::IDictionary<String, Group>,
                                     public Collections::Generic::IEnumerator<Collections::Generic::KeyValuePair<
                                         String, Group>>
             {
+                DECLARE_CLASS_INFO(Object)
 #pragma region f/p
             private:
                 int mCount = 0;
@@ -51,6 +52,8 @@ namespace System
                 void Add(String _key, Group _value) override;
                 Boolean ContainsKey(String _key) override;
                 void RemoveItem(String _key) override;
+                String ToString() const override;
+                Integer GetHashCode() const override;
 #pragma endregion override
 #pragma region operator
                 Collections::Generic::KeyValuePair<String, Group>& operator[](const int32& _index) const;

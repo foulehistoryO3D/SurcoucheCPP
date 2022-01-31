@@ -20,7 +20,7 @@ namespace System
         private:
             std::thread mThread = std::thread();
             Interval mInterval = Interval(0);
-            ElapsedEventArgs* mElapsedEvent = null;
+            ElapsedEventArgs* mElapsedEvent = nullptr;
             bool mIsRunning = false;
         public:
             Action<object*, ElapsedEventArgs*> Elapsed = Action<object*, ElapsedEventArgs*>();
@@ -39,6 +39,11 @@ namespace System
             void Update();
             void Stop();
 #pragma endregion custom methods
+#pragma region override
+        public:
+            String ToString() const override;
+            Integer GetHashCode() const override;
+#pragma endregion override
 #pragma region operator
             Timer& operator=(const Timer& _other);
 #pragma endregion operator

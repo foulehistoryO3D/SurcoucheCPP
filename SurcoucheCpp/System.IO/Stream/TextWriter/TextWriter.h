@@ -18,7 +18,7 @@ namespace System
             DECLARE_CLASS_INFO(Object)
 #pragma region f/p
         protected:
-            const char* mPath = null;
+            const char* mPath = nullptr;
             std::ofstream mStream = {};
 #pragma endregion f/p
 #pragma region constructor/destructor
@@ -33,6 +33,8 @@ namespace System
             String Path()const;
             Boolean IsValid()const;
             Boolean Exists()const;
+            String ToString() const override;
+            Integer GetHashCode() const override;
             virtual void Close();
             virtual void Write(const object& _value);
             virtual void Write(const object* _value);

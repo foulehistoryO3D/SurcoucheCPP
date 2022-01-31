@@ -47,7 +47,7 @@ std::map<T, std::string> generateEnumMap(std::string strMap)
     for (auto iter = enumTokens.begin(); iter != enumTokens.end(); ++iter)
     {
         std::string enumName = "";
-        T enumValue;
+        T enumValue = T();
         if (iter->find('=') == std::string::npos)
             enumName = *iter;
         else

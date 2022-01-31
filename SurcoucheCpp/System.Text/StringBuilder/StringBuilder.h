@@ -63,8 +63,12 @@ namespace System
             String ToString() const override;
             Boolean Equals(const object* _obj) override;
             Boolean Equals(const object& _obj) override;
-            size_t GetHashCode() const override;
+            Integer GetHashCode() const override;
 #pragma endregion override
+#pragma region operator
+        public:
+            StringBuilder& operator=(const StringBuilder& other);
+#pragma endregion operator
         };
 
         template <typename T, typename ... Args>

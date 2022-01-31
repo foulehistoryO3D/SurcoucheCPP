@@ -6,6 +6,16 @@ LPCWSTR System::Uri::GetUriWSTR() const
 {
     return String::ToWString(mUri)->c_str();
 }
+
+System::String System::Uri::ToString() const
+{
+    return mUri;
+}
+
+System::Integer System::Uri::GetHashCode() const
+{
+    return ToString().GetHashCode();
+}
 #pragma endregion f/p
 #pragma region constructor
 System::Uri::Uri(const String& _uri)

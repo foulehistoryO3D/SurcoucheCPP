@@ -59,9 +59,8 @@ System::Boolean System::Text::RegularExpressions::Capture::Equals(const object& 
     return mValue == _other.mValue && mIndex == _other.mIndex && mLength == _other.mLength;
 }
 
-size_t System::Text::RegularExpressions::Capture::GetHashCode() const
+System::Integer System::Text::RegularExpressions::Capture::GetHashCode() const
 {
-    Capture _capture = *this;
-    return std::hash<Capture*>{}(&_capture);
+    return ToString().GetHashCode() ^ (Int(mIndex) << 2) ^ (Int(mLength).GetHashCode() >> 2);
 }
 #pragma endregion override

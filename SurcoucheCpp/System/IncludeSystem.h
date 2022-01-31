@@ -10,6 +10,7 @@
 #include "Box/BoxFile/BoxFile.h"
 #include "Random/Random.h"
 
+#include "ClipBoard/ClipBoard.h"
 #include "PrimaryType/Array/Array.h"
 #include "PrimaryType/Char/Char.h"
 #include "PrimaryType/String/String.h"

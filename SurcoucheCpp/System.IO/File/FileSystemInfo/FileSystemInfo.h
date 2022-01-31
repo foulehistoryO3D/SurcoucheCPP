@@ -11,7 +11,7 @@ namespace System
             DECLARE_CLASS_INFO(Object)
 #pragma region f/p
         protected:
-            const char* mPath = null;
+            const char* mPath = nullptr;
 #pragma endregion f/p
 #pragma region constructor
         public:
@@ -30,7 +30,7 @@ namespace System
 #pragma region override
         public:
             String ToString() const override;
-            size_t GetHashCode() const override;
+            Integer GetHashCode() const override;
 #pragma endregion override
         };
     }

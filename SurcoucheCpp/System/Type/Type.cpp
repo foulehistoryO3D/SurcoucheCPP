@@ -47,7 +47,7 @@ System::Type* System::Type::GetType()
 }
 
 
-size_t System::Type::GetHashCode() const
+System::Integer System::Type::GetHashCode() const
 {
     Type _obj = *this;
     return std::hash<Type*>{}(&_obj);

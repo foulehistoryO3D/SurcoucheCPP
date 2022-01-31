@@ -1,6 +1,7 @@
 ﻿#include "DownloadNetException.h"
 #include "../../System/PrimaryType/String/String.h"
 #include "../../System/PrimaryType/Boolean/Boolean.h"
+#include "../../System/PrimaryType/Integer/Integer.h"
 
 #pragma region f/p
 System::String System::Net::DownloadNetException::Message() const
@@ -37,9 +38,8 @@ System::Boolean System::Net::DownloadNetException::Equals(const object& object)
     return mMessage = _exception.mMessage;
 }
 
-size_t System::Net::DownloadNetException::GetHashCode() const
+System::Integer System::Net::DownloadNetException::GetHashCode() const
 {
-    DownloadNetException _exception = *this;
-    return std::hash<DownloadNetException*>{}(&_exception);
+    return ToString().GetHashCode();
 }
 #pragma endregion override

@@ -15,7 +15,7 @@ namespace System
 #pragma region f/p
             protected:
                 CaptureCollection mCaptureCollection = CaptureCollection();
-                const char* mName = null;
+                const char* mName = nullptr;
                 bool mSuccess = false;
             public:
                 CaptureCollection Captures()const;
@@ -39,7 +39,7 @@ namespace System
                 String ToString() const override;
                 Boolean Equals(const object* _obj) override;
                 Boolean Equals(const object& _obj) override;
-                size_t GetHashCode() const override;
+                Integer GetHashCode() const override;
 #pragma endregion override
 #pragma region operator
             public:

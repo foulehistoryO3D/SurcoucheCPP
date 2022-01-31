@@ -36,9 +36,9 @@ System::String System::IO::DriveInfo::GetVolumeLabel() const
 {
     const LPWSTR _label = LPWSTR();
     DWORD _dword = DWORD();
-    if (GetVolumeInformation(string(mPath).ToWString()->c_str(), _label, sizeof(_label), null, &_dword, &_dword, null, 0))
+    if (GetVolumeInformation(string(mPath).ToWString()->c_str(), _label, sizeof(_label), nullptr, &_dword, &_dword, nullptr, 0))
     {
-        if (_label == null) return string::Empty;
+        if (_label == nullptr) return string::Empty;
         std::wstring _str = _label;
         const std::string _result = std::string(_str.begin(), _str.end());
         return _result.c_str();
@@ -91,9 +91,9 @@ System::Boolean System::IO::DriveInfo::Equals(const object& object)
     return &object == this;
 }
 
-size_t System::IO::DriveInfo::GetHashCode() const
+System::Integer System::IO::DriveInfo::GetHashCode() const
 {
-    DriveInfo _driveInfo = *this;
-    return std::hash<DriveInfo*>{}(&_driveInfo);
+    return string(mPath).GetHashCode() ^ (string(mName).GetHashCode() << 2) ^ (string(mVolumeLabel).GetHashCode() >> 2) ^
+        Int(mAvailableFreeSpace).GetHashCode(); 
 }
 #pragma endregion override

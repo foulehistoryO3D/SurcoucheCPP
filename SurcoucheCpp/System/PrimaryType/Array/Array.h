@@ -12,6 +12,7 @@ namespace System
     template <typename Item>
     class Array sealed : public Object, public ICloneable<Array<Item>>, public Collections::Generic::IEnumerator<Item>, public Collections::Generic::IEnumerable<Item>
     {
+        DECLARE_CLASS_INFO(Object)
 #pragma region f/p
     private:
         Item* mItems = new Item[0];
@@ -30,6 +31,8 @@ namespace System
 
         Array(Collections::Generic::List<Item> _tab);
 
+        Array(std::initializer_list<Item> tab);
+
         Array(const Array& _copy);
 #pragma endregion constructor
 #pragma region custom methods
@@ -42,7 +45,7 @@ namespace System
 #pragma region object
         Boolean Equals(const object* _obj) override;
         Boolean Equals(const object& _obj) override;
-        size_t GetHashCode() const override;
+        Integer GetHashCode() const override;
         String ToString() const override;
 #pragma endregion object
 #pragma region ICloneable
@@ -57,6 +60,7 @@ namespace System
 #pragma endregion override methods
 #pragma region operator
         Item& operator[](const int& _index) const;
+        Array operator=(const Array& other);
 #pragma endregion operator
     };
 #pragma region f/p
@@ -81,12 +85,19 @@ namespace System
         const int _count = _tab.Count();
         mItems = new Item[_count];
         mCount = _count;
-        int _index = 0;
-        _tab.ForEach([&](Item _item)
-        {
-            mItems[_index] = _item;
-           _index++; 
-        });
+        for (int i = 0; i < _count; ++i)
+            mItems[i] = _tab[i];
+    }
+
+    template <typename Item>
+    Array<Item>::Array(std::initializer_list<Item> tab)
+    {
+        const int _count = tab.size();
+        mItems = new Item[_count];
+        mCount = _count;
+        int index = 0;
+        for (const Item& item : tab)
+            mItems[index++] = item;
     }
 
     template <typename Item>
@@ -136,19 +147,26 @@ namespace System
     }
 
     template <typename Item>
-    size_t Array<Item>::GetHashCode() const
+    Integer Array<Item>::GetHashCode() const
     {
-        Array _array = *this;
-        return std::hash<Array*>{}(&_array);
+        int result = 0;
+        for (int32 i = 0; i < mCount; ++i)
+        {
+            object* o = reinterpret_cast<object*>(&mItems[i]);
+            if (!o)continue;
+            result += o->GetHashCode();
+        }
+        return result;
     }
 
     template <typename Item>
 String Array<Item>::ToString() const
     {
-        string _result = string::Empty();
+        string _result = string::Empty;
         for (int i = 0; i < mCount; ++i)
         {
-            _result += mItems[i].ToString() + " ";
+            const Type * type = reinterpret_cast<Type*>(&mItems[i]);
+            _result += type->ToString() + " ";
         }
         return _result;
     }
@@ -195,6 +213,16 @@ String Array<Item>::ToString() const
         if (_index < 0 || _index > mCount)
             throw OutOfRange("[Array] => out of range !");
         return mItems[_index];
+    }
+
+    template <typename Item>
+    Array<Item> Array<Item>::operator=(const Array& other)
+    {
+        mCount = std::move(other.mCount);
+        mItems = std::move(other.mItems);
+        mCurrentIndex = std::move(other.mCurrentIndex);
+        mCurrentItem = std::move(other.mCurrentItem);
+        return *this;
     }
 #pragma endregion operator
 }

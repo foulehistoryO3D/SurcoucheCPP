@@ -1,6 +1,7 @@
 ﻿#include "DirectoryInfo.h"
 #include "../../../System/PrimaryType/String/String.h"
 #include "../../../System/PrimaryType/Boolean/Boolean.h"
+#include "../../../System/PrimaryType/Integer/Integer.h"
 #include "../../../System/DateTime/DateTime.h"
 #include <direct.h>
 #include <iostream>
@@ -38,10 +39,9 @@ System::String System::IO::DirectoryInfo::ToString() const
     return FileSystemInfo::ToString();
 }
 
-size_t System::IO::DirectoryInfo::GetHashCode() const
+System::Integer System::IO::DirectoryInfo::GetHashCode() const
 {
-    DirectoryInfo _directoryInfo = *this;
-    return std::hash<DirectoryInfo*>{}(&_directoryInfo);
+    return super::GetHashCode();
 }
 
 System::DateTime System::IO::DirectoryInfo::GetCreationTime() const

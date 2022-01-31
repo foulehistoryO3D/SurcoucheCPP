@@ -1,4 +1,5 @@
 ﻿#include "Match.h"
+#include "../../System/PrimaryType/Integer/Integer.h"
 
 #pragma region f/p
 System::Collections::Generic::List<System::Text::RegularExpressions::Group> System::Text::RegularExpressions::Match::Groups() const
@@ -49,9 +50,9 @@ System::Boolean System::Text::RegularExpressions::Match::Equals(const object& ob
     return super::Equals(object) && mGroups == _other.mGroups;
 }
 
-size_t System::Text::RegularExpressions::Match::GetHashCode() const
+System::Integer System::Text::RegularExpressions::Match::GetHashCode() const
 {
-    return Group::GetHashCode();
+    return super::GetHashCode() ^ (mGroups.GetHashCode() << 2);
 }
 
 System::Text::RegularExpressions::Match System::Text::RegularExpressions::Match::operator=(const Match& _other)

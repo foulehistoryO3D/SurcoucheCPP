@@ -48,9 +48,8 @@ System::String System::IO::FileSystemInfo::ToString() const
     return mPath;
 }
 
-size_t System::IO::FileSystemInfo::GetHashCode() const
+System::Integer System::IO::FileSystemInfo::GetHashCode() const
 {
-    FileSystemInfo _fileSystemInfo = *this;
-    return std::hash<FileSystemInfo*>{}(&_fileSystemInfo);
+    return ToString().GetHashCode();
 }
 #pragma endregion override

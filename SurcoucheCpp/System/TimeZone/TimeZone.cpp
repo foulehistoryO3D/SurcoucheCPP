@@ -4,6 +4,7 @@
 #include "../DateTime/DateTime.h"
 #include "../PrimaryType/String/String.h"
 #include "../PrimaryType/Boolean/Boolean.h"
+#include "../PrimaryType/Integer/Integer.h"
 
 #pragma region constructor
 System::TimeZone::TimeZone(const ETimeZoneName& _timeZone)
@@ -76,9 +77,8 @@ System::Boolean System::TimeZone::Equals(const object& object)
     return &object == this;
 }
 
-size_t System::TimeZone::GetHashCode() const
+System::Integer System::TimeZone::GetHashCode() const
 {
-    TimeZone _timeZone = *this;
-    return std::hash<TimeZone*>{}(&_timeZone);
+    return string(mTimeZoneName).GetHashCode();
 }
 #pragma endregion override

@@ -1,6 +1,7 @@
 ﻿#include "Double.h"
 #include "../String/String.h"
 #include "../Boolean/Boolean.h"
+#include "../Integer/Integer.h"
 #include <string>
 
 #pragma region constructor
@@ -74,10 +75,9 @@ System::Boolean System::Double::Equals(const object& _obj, const object& _other)
     return _float == _float1;
 }
 
-size_t System::Double::GetHashCode() const
+System::Integer System::Double::GetHashCode() const
 {
-    Double _value = *this;
-    return std::hash<Double*>{}(&_value);
+    return ToString().GetHashCode();
 }
 
 System::Double& System::Double::operator=(const Double& _other)

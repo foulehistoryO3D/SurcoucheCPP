@@ -38,7 +38,7 @@ namespace System
         Boolean Equals(const object& _obj) override;
         Boolean Equals(const object* _obj, const object* _other) override;
         Boolean Equals(const object& _obj, const object& _other) override;
-        size_t GetHashCode() const override;
+        Integer GetHashCode() const override;
 #pragma endregion override
 #pragma region operator
     public:

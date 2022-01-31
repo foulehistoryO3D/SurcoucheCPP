@@ -30,6 +30,8 @@ namespace System
 #pragma endregion custom methods
 #pragma region override
         public:
+            String ToString() const override;
+            Integer GetHashCode() const override;
             Boolean Equals(const object* _obj) override;
             Boolean Equals(const object& _obj) override;
 #pragma endregion override

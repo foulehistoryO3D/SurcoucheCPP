@@ -56,9 +56,9 @@ System::Bool  System::Integer::Equals(const object& _obj, const object& _other)
     return _bool == _bool1;
 }
 
-size_t System::Integer::GetHashCode() const
+System::Integer System::Integer::GetHashCode() const
 {
-    return std::hash<int>{}(mValue);
+    return ToString().GetHashCode();
 }
 
 System::Bool  System::Integer::Equals(const int& _object)
@@ -170,6 +170,28 @@ System::Integer System::Integer::operator/=(const int& _other)
     return *this;
 }
 
+System::Integer System::Integer::operator%(const Integer& other) const
+{
+    return mValue % other;
+}
+
+System::Integer System::Integer::operator%=(const Integer& other)
+{
+    mValue %= other;
+    return *this;
+}
+
+System::Integer System::Integer::operator%(const int& other) const
+{
+    return mValue % other;
+}
+
+System::Integer System::Integer::operator%=(const int& other)
+{
+    mValue %= other;
+    return *this;
+}
+
 System::Integer System::Integer::operator++(int)
 {
     mValue++;
@@ -192,5 +214,15 @@ System::Integer System::Integer::operator--()
 {
     --mValue;
     return *this;
+}
+
+System::Boolean System::Integer::operator==(const Integer& other) const
+{
+    return mValue == other.mValue;
+}
+
+System::Boolean System::Integer::operator==(const int other) const
+{
+    return mValue == other;
 }
 #pragma endregion operator
