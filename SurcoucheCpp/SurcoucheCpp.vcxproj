@@ -185,6 +185,7 @@
     <ClCompile Include="System.Reflection\ParameterInfo\ParameterInfo.cpp" />
     <ClCompile Include="System.SQL\Command\SQLCommand.cpp" />
     <ClCompile Include="System.SQL\DataBase\DataBaseLocal\DataBaseLocal.cpp" />
+    <ClCompile Include="System.SQL\DataBase\Table\DataBaseTable.cpp" />
     <ClCompile Include="System.SQL\Reader\SQLReader.cpp" />
     <ClCompile Include="System.Text.RegularExpressions\CaptureCollection\CaptureCollection.cpp" />
     <ClCompile Include="System.Text.RegularExpressions\Capture\Capture.cpp" />
@@ -355,6 +356,7 @@
     <ClCompile Include="System\Mathf\Mathf.cpp" />
     <ClCompile Include="System\Object\Object.cpp" />
     <ClCompile Include="System\PrimaryType\Boolean\Boolean.cpp" />
+    <ClCompile Include="System\PrimaryType\Buffer\Buffer.cpp" />
     <ClCompile Include="System\PrimaryType\Byte\Byte.cpp" />
     <ClCompile Include="System\PrimaryType\Char\Char.cpp" />
     <ClCompile Include="System\PrimaryType\Double\Double.cpp" />
@@ -414,6 +416,8 @@
     <ClInclude Include="System.Reflection\ReturnType\ReturnType.h" />
     <ClInclude Include="System.SQL\Command\SQLCommand.h" />
     <ClInclude Include="System.SQL\DataBase\DataBaseLocal\DataBaseLocal.h" />
+    <ClInclude Include="System.SQL\DataBase\Table\DataBaseTable.h" />
+    <ClInclude Include="System.SQL\Exception\SQLException.h" />
     <ClInclude Include="System.SQL\Reader\SQLReader.h" />
     <ClInclude Include="System.Text.RegularExpressions\CaptureCollection\CaptureCollection.h" />
     <ClInclude Include="System.Text.RegularExpressions\Capture\Capture.h" />
@@ -441,6 +445,7 @@
     <ClInclude Include="System\Event\EventHandler\EventHandler.h" />
     <ClInclude Include="System\Event\Func\Func.h" />
     <ClInclude Include="System\Event\Predicate\Predicate.h" />
+    <ClInclude Include="System\Exception\Cast\InvalidCastException.h" />
     <ClInclude Include="System\Exception\DivideByZero\DivideByZeroException.h" />
     <ClInclude Include="System\Exception\Exception\Exception.h" />
     <ClInclude Include="System\Exception\IndexOutOfRange\IndexOutOfRangeException.h" />
@@ -449,14 +454,18 @@
     <ClInclude Include="System\Interface\AsyncResult\IAsyncResult.h" />
     <ClInclude Include="System\Interface\Cloneable\ICloneable.h" />
     <ClInclude Include="System\Interface\Comparable\IComparable.h" />
+    <ClInclude Include="System\Interface\Convertible\IConvertible.h" />
     <ClInclude Include="System\Interface\Disposable\IDisposable.h" />
     <ClInclude Include="System\Interface\Equatable\IEquatable.h" />
+    <ClInclude Include="System\Interface\Observable\IObservable.h" />
+    <ClInclude Include="System\Interface\Observer\IObserver.h" />
     <ClInclude Include="System\LanguageManager\LanguageManager.h" />
     <ClInclude Include="System\LanguageManager\Language\Language.h" />
     <ClInclude Include="System\Mathf\Mathf.h" />
     <ClInclude Include="System\Object\Object.h" />
     <ClInclude Include="System\PrimaryType\Array\Array.h" />
     <ClInclude Include="System\PrimaryType\Boolean\Boolean.h" />
+    <ClInclude Include="System\PrimaryType\Buffer\Buffer.h" />
     <ClInclude Include="System\PrimaryType\Byte\Byte.h" />
     <ClInclude Include="System\PrimaryType\Char\Char.h" />
     <ClInclude Include="System\PrimaryType\Double\Double.h" />

@@ -32,6 +32,16 @@ namespace System
 #pragma endregion constructor
 #pragma region custom methods
         public:
+            DateTime GetCreationTime() const;
+            DateTime GetLastAccessTime() const;
+            DateTime GetLastWriteTime() const;
+            void Delete() const;
+            StreamReader OpenReader() const;
+            StreamWriter OpenWriter() const;
+            String ReadAllText() const;
+            Collections::Generic::List<String> ReadAllLines() const;
+            String Path()const;
+            
             static DateTime GetCreationTime(const String& _path);
             static DateTime GetLastAccessTime(const String& _path);
             static DateTime GetLastWriteTime(const String& _path);
@@ -49,6 +59,7 @@ namespace System
             Boolean Equals(const object& _obj) override;
             Integer GetHashCode() const override;
             String ToString() const override;
+            File& operator=(const File& other);
 #pragma endregion override
         };
     }

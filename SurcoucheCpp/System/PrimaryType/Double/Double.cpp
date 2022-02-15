@@ -2,9 +2,14 @@
 #include "../String/String.h"
 #include "../Boolean/Boolean.h"
 #include "../Integer/Integer.h"
+#include "../Char/Char.h"
+#include "../Float/Float.h"
+#include "../../DateTime/DateTime.h"
 #include <string>
 
+#include "../../Exception/Cast/InvalidCastException.h"
 #include "../../Exception/DivideByZero/DivideByZeroException.h"
+#include "../Byte/Byte.h"
 
 #pragma region constructor
 System::Double::Double(const double& _value)
@@ -80,6 +85,44 @@ System::Boolean System::Double::Equals(const object& _obj, const object& _other)
 System::Integer System::Double::GetHashCode() const
 {
     return ToString().GetHashCode();
+}
+
+System::Boolean System::Double::ToBoolean()
+{
+    if (mValue != 0 && mValue != 1)
+        throw InvalidCastException("Cannot cast double value to boolean");
+    return mValue;
+}
+
+System::Byte System::Double::ToByte()
+{
+    if (mValue < 0 || mValue > Byte::MaxValue)
+        throw InvalidCastException("Cannot cast double value to byte");
+}
+
+System::Char System::Double::ToChar()
+{
+    return mValue;
+}
+
+System::DateTime System::Double::ToDateTime()
+{
+    throw InvalidCastException("Cannot cast double to byte");
+}
+
+System::Float System::Double::ToFloat()
+{
+    return mValue;
+}
+
+System::Double System::Double::ToDouble()
+{
+    return mValue;
+}
+
+System::Integer System::Double::ToInteger()
+{
+    return mValue;
 }
 #pragma endregion override
 #pragma region operator

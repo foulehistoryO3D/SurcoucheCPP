@@ -1,6 +1,13 @@
 ﻿#include "Boolean.h"
+
+#include "../../Exception/Cast/InvalidCastException.h"
 #include "../String/String.h"
 #include "../Integer/Integer.h"
+#include "../Double/Double.h"
+#include "../Float/Float.h"
+#include "../Byte/Byte.h"
+#include "../../DateTime/DateTime.h"
+#include "../Char/Char.h"
 
 #pragma region constructor
 System::Boolean::Boolean(const bool& _value)
@@ -55,6 +62,41 @@ System::Integer System::Boolean::GetHashCode() const
 System::Boolean System::Boolean::Equals(const bool& _object)
 {
     return mValue == _object;
+}
+
+System::Boolean System::Boolean::ToBoolean()
+{
+    return mValue;
+}
+
+System::Byte System::Boolean::ToByte()
+{
+    return mValue;
+}
+
+System::Char System::Boolean::ToChar()
+{
+    return mValue;
+}
+
+System::DateTime System::Boolean::ToDateTime()
+{
+    throw InvalidCastException("Cannot cast boolean to datetime");
+}
+
+System::Float System::Boolean::ToFloat()
+{
+    return mValue;
+}
+
+System::Double System::Boolean::ToDouble()
+{
+    return mValue;
+}
+
+System::Integer System::Boolean::ToInteger()
+{
+    return mValue;
 }
 
 System::Boolean& System::Boolean::operator=(const Boolean& _other)

@@ -3,10 +3,11 @@
 #include "../../../System/Object/Object.h"
 #include "../../../System/PrimaryType/Array/Array.h"
 #include "../../../System.IO/File/FileStream/FileStream.h"
+#include "../Table/DataBaseTable.h"
 
 namespace System
 {
-    namespace IO
+    namespace SQL
     {
         class DataBaseLocal : public Object, public IDisposable
         {
@@ -14,9 +15,8 @@ namespace System
                 DECLARE_CLASS_INFO(Object)
 #pragma region f/p
         private:
-                Collections::Generic::Dictionary<string, Array<string>> rows = Collections::Generic::Dictionary<string, Array<string>>();
+                Collections::Generic::Dictionary<string, DataBaseTable> tables = Collections::Generic::Dictionary<string, DataBaseTable>(); 
                 const char* path = "";
-                FileStream fileStream = FileStream(); 
 #pragma endregion f/p
 #pragma region constructor
         public:
@@ -26,8 +26,9 @@ namespace System
 #pragma endregion constructor
 #pragma region custom methods
         private:
-                // void RegisterRows(const String& str);
         public:
+                DataBaseTable& GetTable(const string& tableName);
+                Array<String> GetTables();
 #pragma endregion custom methods
 #pragma region override
         public:

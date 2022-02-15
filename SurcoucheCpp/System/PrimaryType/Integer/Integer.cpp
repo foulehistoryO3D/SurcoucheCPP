@@ -2,12 +2,19 @@
 
 #include <string>
 
+#include "../../Exception/Cast/InvalidCastException.h"
 #include "../../Exception/DivideByZero/DivideByZeroException.h"
 #include "../String/String.h"
 #include "../Boolean/Boolean.h"
 #include "../../Span/Span.h"
+#include "../Byte/Byte.h"
 #include "../Char/Char.h"
+#include "../Float/Float.h"
+#include "../Double/Double.h"
+#include "../../DateTime/DateTime.h"
 
+System::Integer const System::Integer::MaxValue = Integer(2147483647);
+System::Integer const System::Integer::MinValue = Integer(-2147483648);
 
 #pragma region constructor
 System::Integer::Integer(const int _value)
@@ -45,20 +52,20 @@ System::Bool System::Integer::Equals(const object* _obj)
     return Equals(*_bool);
 }
 
-System::Bool  System::Integer::Equals(const object& _obj)
+System::Bool System::Integer::Equals(const object& _obj)
 {
     const Integer* _bool = dynamic_cast<const Integer*>(&_obj);
     return Equals(*_bool);
 }
 
-System::Bool  System::Integer::Equals(const object* _obj, const object* _other)
+System::Bool System::Integer::Equals(const object* _obj, const object* _other)
 {
     const Integer& _bool = *dynamic_cast<const Integer*>(_obj);
     const Integer& _bool1 = *dynamic_cast<const Integer*>(_other);
     return _bool == _bool1;
 }
 
-System::Bool  System::Integer::Equals(const object& _obj, const object& _other)
+System::Bool System::Integer::Equals(const object& _obj, const object& _other)
 {
     const Integer& _bool = *dynamic_cast<const Integer*>(&_obj);
     const Integer& _bool1 = *dynamic_cast<const Integer*>(&_other);
@@ -70,9 +77,48 @@ System::Integer System::Integer::GetHashCode() const
     return ToString().GetHashCode();
 }
 
-System::Bool  System::Integer::Equals(const int& _object)
+System::Bool System::Integer::Equals(const int& _object)
 {
     return mValue == _object;
+}
+
+System::Boolean System::Integer::ToBoolean()
+{
+    if (mValue != 0 && mValue != 1)
+        throw InvalidCastException("Cannot convert int value to boolean");
+    return mValue;
+}
+
+System::Byte System::Integer::ToByte()
+{
+    if (mValue < 0 || mValue > Byte::MaxValue)
+        throw InvalidCastException("Cannot convert int value to byte");
+    return mValue;
+}
+
+System::Char System::Integer::ToChar()
+{
+    return static_cast<char>(mValue);
+}
+
+System::DateTime System::Integer::ToDateTime()
+{
+    throw InvalidCastException("Cannot convert int to DateTime");
+}
+
+System::Float System::Integer::ToFloat()
+{
+    return static_cast<float>(mValue);
+}
+
+System::Double System::Integer::ToDouble()
+{
+    return static_cast<double>(mValue);
+}
+
+System::Integer System::Integer::ToInteger()
+{
+    return mValue;
 }
 
 #pragma endregion override

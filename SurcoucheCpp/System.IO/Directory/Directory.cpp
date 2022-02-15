@@ -11,6 +11,8 @@
 #include <Windows.h>
 
 #include "../Exception/IOException/IOException.h"
+#include "../File/File/File.h"
+#include "../Path/Path.h"
 
 System::IO::DirectoryInfo System::IO::Directory::MakeDirectory(const String& _path)
 {
@@ -37,7 +39,7 @@ void System::IO::Directory::Delete(const String& _path, bool _sub)
     if (_sub)
     {
         Collections::Generic::List<String> _directories = GetDirectories(_path);
-        for (int i = 0; i < _directories.Count();i++)
+        for (int i = 0; i < _directories.Count(); i++)
         {
             const DirectoryInfo _subDirectoryInfo = DirectoryInfo(_directories[i]);
             if (_subDirectoryInfo.Exists())
@@ -61,6 +63,29 @@ System::Collections::Generic::List<System::String> System::IO::Directory::GetDir
         {
             const String& _str = _path + "\\" + _findData.cFileName;
             _result.Add(_str);
+        }
+    }
+    while (FindNextFileA(_hFind, &_findData));
+    FindClose(_hFind);
+    return _result;
+}
+
+System::Collections::Generic::List<System::IO::File> System::IO::Directory::GetFiles(
+    const String& _path, const String& ext)
+{
+    Collections::Generic::List<File> _result = System::Collections::Generic::List<File>();
+    String _currentDirectory = _path;
+    _currentDirectory.Append("/*");
+    WIN32_FIND_DATAA _findData;
+    const HANDLE _hFind = FindFirstFileA(_currentDirectory, &_findData);
+    if (_hFind == INVALID_HANDLE_VALUE)return _result;
+    do
+    {
+        if (_findData.dwFileAttributes & 32)
+        {
+            const String& _str = _path + "\\" + _findData.cFileName;
+            if (!string::IsNullOrEmpty(ext) && Path::GetExtension(_str) == ext)
+                _result.Add(File(_str));
         }
     }
     while (FindNextFileA(_hFind, &_findData));

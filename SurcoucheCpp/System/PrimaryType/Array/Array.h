@@ -13,6 +13,7 @@ namespace System
     class Array sealed : public Object, public ICloneable<Array<Item>>, public Collections::Generic::IEnumerator<Item>, public Collections::Generic::IEnumerable<Item>
     {
         DECLARE_CLASS_INFO(Object)
+        REGISTER_ATTRIBUTE(Sealed | PrimaryType)
 #pragma region f/p
     private:
         Item* mItems = new Item[0];
@@ -40,6 +41,7 @@ namespace System
         static void Clear(Array& _array, const int _count);
         static void Clear(Array& _array, int _index, int _length);
         void Clear(const int _newCount);
+        void InsertAt(const Integer& index, const Item& item);
         Collections::Generic::List<Item> ToList();
 #pragma endregion custom methods
 #pragma region override methods
@@ -60,7 +62,7 @@ namespace System
 #pragma endregion Enumerator
 #pragma endregion override methods
 #pragma region operator
-        Item& operator[](const int& _index) const;
+        Item& operator[](const int& _index)const;
         Array operator=(const Array& other);
 #pragma endregion operator
     };
@@ -132,6 +134,14 @@ namespace System
     }
 
     template <typename Item>
+    void Array<Item>::InsertAt(const Integer& index, const Item& item)
+    {
+            if (index < 0 || index > mCount)
+                throw OutOfRange("[Array] => out of range !");
+        this->mItems[index] = item;
+    }
+
+    template <typename Item>
     Collections::Generic::List<Item> Array<Item>::ToList()
     {
         Collections::Generic::List<Item> result = Collections::Generic::List<Item>();
@@ -170,7 +180,7 @@ namespace System
     }
 
     template <typename Item>
-String Array<Item>::ToString() const
+    String Array<Item>::ToString() const
     {
         string _result = string::Empty;
         for (int i = 0; i < mCount; ++i)

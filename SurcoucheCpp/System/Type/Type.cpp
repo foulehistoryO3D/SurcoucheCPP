@@ -132,11 +132,11 @@ System::Type* System::Type::operator=(const Type* _type)
 #pragma region operator
 System::Boolean System::Type::operator==(const Type* _type)
 {
-    return Equals(_type);
+    return this == _type;
 }
 
 System::Boolean System::Type::operator!=(const Type* _type)
 {
-    return !Equals(_type);
+    return !this->operator==(_type);
 }
 #pragma endregion operator

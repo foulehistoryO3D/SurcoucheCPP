@@ -28,6 +28,51 @@ System::IO::File::File(const File& _copy)
     mPath = _copy.mPath;
 }
 
+System::DateTime System::IO::File::GetCreationTime() const
+{
+    return GetCreationTime(this->mPath);
+}
+
+System::DateTime System::IO::File::GetLastAccessTime() const
+{
+    return GetLastAccessTime(this->mPath);
+}
+
+System::DateTime System::IO::File::GetLastWriteTime() const
+{
+    return GetLastWriteTime(this->mPath);
+}
+
+void System::IO::File::Delete() const
+{
+    Delete(this->mPath);
+}
+
+System::IO::StreamReader System::IO::File::OpenReader() const
+{
+    return OpenText(this->mPath);
+}
+
+System::IO::StreamWriter System::IO::File::OpenWriter() const
+{
+    return CreateText(this->mPath);
+}
+
+System::String System::IO::File::ReadAllText() const
+{
+    return ReadAllText(this->mPath);
+}
+
+System::Collections::Generic::List<System::String> System::IO::File::ReadAllLines() const
+{
+    return ReadAllLines(this->mPath);
+}
+
+System::String System::IO::File::Path() const
+{
+    return this->mPath;
+}
+
 System::DateTime System::IO::File::GetCreationTime(const String& _path)
 {
     struct stat _tStat;
@@ -135,3 +180,11 @@ System::String System::IO::File::ToString() const
     return mPath;
 }
 #pragma endregion override
+#pragma region operator
+
+System::IO::File& System::IO::File::operator=(const File& other)
+{
+    this->mPath = other.mPath;
+    return *this;
+}
+#pragma endregion operator

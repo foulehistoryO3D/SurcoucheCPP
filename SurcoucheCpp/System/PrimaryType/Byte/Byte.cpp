@@ -1,10 +1,16 @@
 ﻿#include "Byte.h"
 
 #include <string>
+
+#include "../../Exception/Cast/InvalidCastException.h"
 #include "../../Exception/OutOfRange/OutOfRange.h"
 #include "../Boolean/Boolean.h"
 #include "../String/String.h"
 #include "../Integer/Integer.h"
+#include "../Char/Char.h"
+#include "../Float/Float.h"
+#include "../Double/Double.h"
+#include "../../DateTime/DateTime.h"
 
 #pragma region constructor
 System::Byte::Byte(const byte& _byte)
@@ -64,6 +70,43 @@ System::Boolean System::Byte::Equals(const object& _obj, const object& _other)
 System::Integer System::Byte::GetHashCode() const
 {
     return ToString().GetHashCode();
+}
+
+System::Boolean System::Byte::ToBoolean()
+{
+    if (mValue != 0 && mValue != 1)
+        throw InvalidCastException("Cannot cast byte value to boolean");
+    return mValue;
+}
+
+System::Byte System::Byte::ToByte()
+{
+    return mValue;
+}
+
+System::Char System::Byte::ToChar()
+{
+    return mValue;
+}
+
+System::DateTime System::Byte::ToDateTime()
+{
+    throw InvalidCastException("Cannot cast byte to DateTime");
+}
+
+System::Float System::Byte::ToFloat()
+{
+    return mValue;
+}
+
+System::Double System::Byte::ToDouble()
+{
+    return mValue;
+}
+
+System::Integer System::Byte::ToInteger()
+{
+    return mValue;
 }
 
 #pragma endregion override

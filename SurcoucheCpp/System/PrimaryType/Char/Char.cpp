@@ -1,7 +1,13 @@
 ﻿#include "Char.h"
+
+#include "../../Exception/Cast/InvalidCastException.h"
 #include "../String/String.h"
 #include "../Boolean/Boolean.h"
+#include "../Byte/Byte.h"
 #include "../Integer/Integer.h"
+#include "../Float/Float.h"
+#include "../Double/Double.h"
+#include "../../DateTime/DateTime.h"
 
 #pragma region constructor
 System::Char::Char(const char _c)
@@ -88,6 +94,45 @@ System::Boolean System::Char::Equals(const object& object)
 System::Integer System::Char::GetHashCode() const
 {
     return ToString().GetHashCode();
+}
+
+System::Boolean System::Char::ToBoolean()
+{
+    if (mValue != '0' && mValue != '1')
+        throw InvalidCastException("Cannot cast char value to boolean");
+    return mValue;
+}
+
+System::Byte System::Char::ToByte()
+{
+    if (mValue < 0 || mValue > Byte::MaxValue)
+        throw InvalidCastException("Cannot cast char value to byte");
+    return mValue;
+}
+
+System::Char System::Char::ToChar()
+{
+    return mValue;
+}
+
+System::DateTime System::Char::ToDateTime()
+{
+    throw InvalidCastException("Cannot cast char to DateTime");
+}
+
+System::Float System::Char::ToFloat()
+{
+    return mValue;
+}
+
+System::Double System::Char::ToDouble()
+{
+    return mValue;
+}
+
+System::Integer System::Char::ToInteger()
+{
+    return mValue;
 }
 
 System::Char& System::Char::operator=(const Char& _other)

@@ -2,10 +2,24 @@
 
 #include <string>
 
+#include "../../Exception/Cast/InvalidCastException.h"
 #include "../../Exception/DivideByZero/DivideByZeroException.h"
 #include "../String/String.h"
 #include "../Boolean/Boolean.h"
+#include "../Byte/Byte.h"
 #include "../Integer/Integer.h"
+#include "../Char/Char.h"
+#include "../Double/Double.h"
+#include "../../DateTime/DateTime.h"
+
+
+System::Float const System::Float::Epsilon = Float(1.401298E-45f);
+System::Float const System::Float::MaxValue = Float(3.40282347E+38f);
+System::Float const System::Float::MinValue = Float(-3.40282347E+38f);
+System::Double const System::Float::PositiveInfinity = Double(1e+300 * 1e+300);
+System::Double const System::Float::NegativeInfinity = -PositiveInfinity;
+System::Double const System::Float::NaN = 0.0F * PositiveInfinity;
+
 
 #pragma region constructor
 System::Float::Float(const float& _value)
@@ -26,7 +40,7 @@ System::Float System::Float::Parse(const String& _str)
 
 System::String System::Float::ToString() const
 {
-    return std::to_string(mValue).c_str();;
+    return std::to_string(mValue).c_str();
 }
 
 System::Integer System::Float::GetHashCode() const
@@ -63,6 +77,45 @@ System::Boolean System::Float::Equals(const object& _obj, const object& _other)
 System::Boolean System::Float::Equals(const float& _object)
 {
     return mValue == _object;
+}
+
+System::Boolean System::Float::ToBoolean()
+{
+    if (mValue != 0 && mValue != 1)
+        throw InvalidCastException("Cannot cast float value to boolean");
+    return mValue;
+}
+
+System::Byte System::Float::ToByte()
+{
+    if (mValue < 0 || mValue > Byte::MaxValue)
+        throw InvalidCastException("Cannot cast float value to byte");
+    return mValue;
+}
+
+System::Char System::Float::ToChar()
+{
+    return mValue;
+}
+
+System::DateTime System::Float::ToDateTime()
+{
+    throw InvalidCastException("Cannot convert float to datetime");
+}
+
+System::Float System::Float::ToFloat()
+{
+    return mValue;
+}
+
+System::Double System::Float::ToDouble()
+{
+    return mValue;
+}
+
+System::Integer System::Float::ToInteger()
+{
+    return mValue;
 }
 
 System::Float& System::Float::operator=(const Float& _other)

@@ -32,7 +32,7 @@ namespace System
                           public Collections::Generic::IEnumerator<char>
     {
         DECLARE_CLASS_INFO(Object)
-        REGISTER_ATTRIBUTE(Sealed)
+        REGISTER_ATTRIBUTE(Sealed | PrimaryType)
 #pragma region f/p
     private:
         const char* mValue = "";

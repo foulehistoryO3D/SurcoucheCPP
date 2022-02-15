@@ -1,11 +1,14 @@
 ﻿#pragma once
+#include "../../Interface/Convertible/IConvertible.h"
 #include "../../Interface/Equatable/IEquatable.h"
 #include "../../Object/Object.h"
 
 namespace System
 {
-    class Char : public Object, public IEquatable<char>
+    class Char sealed : public Object, public IEquatable<char>, public IConvertible
     {
+        DECLARE_CLASS_INFO(Object)
+        REGISTER_ATTRIBUTE(Sealed | PrimaryType)
 #pragma region f/p
     private:
         char mValue = -1;
@@ -38,6 +41,13 @@ namespace System
         Boolean Equals(const object* _obj) override;
         Boolean Equals(const object& _obj) override;
         Integer GetHashCode() const override;
+        Boolean ToBoolean() override;
+        Byte ToByte() override;
+        Char ToChar() override;
+        DateTime ToDateTime() override;
+        Float ToFloat() override;
+        Double ToDouble() override;
+        Integer ToInteger() override;
 #pragma endregion override
 #pragma region operator
     public:

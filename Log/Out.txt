@@ -1,1 +1,22 @@
-Tuesday
+0
+Cannot convert int value to byte
+Cannot convert int value to boolean
+false
+true
+Jerome est beau
+340282346638528859811704183484516925440.000000
+Infinity
+C:\Users\hing1701\Desktop\Tables\user.db
+C:\Users\hing1701\Desktop\Tables\user.db
+C:\Users\hing1701\Desktop\Tables\user.db
+
+\user
+user
+id: 0, username: 'foulehistory', money: '10'
+id: 0, username: 'foulehistory', money: '10'
+id: 0, username: 'foulehistory', money: '10'
+id: 0, username: 'foulehistory', money: '10'
+
+
+
+

@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "../../Interface/Cloneable/ICloneable.h"
+#include "../../Interface/Convertible/IConvertible.h"
 #include "../../Interface/Equatable/IEquatable.h"
 #include "../../Object/Object.h"
 
@@ -10,14 +11,16 @@ namespace System
     template<typename T>
     class Span;
     class Char;
-    class Integer : public Object, public IEquatable<int>
+    class Integer sealed : public Object, public IEquatable<int>, public IConvertible
     {
+        DECLARE_CLASS_INFO(Object)
+        REGISTER_ATTRIBUTE(Sealed | PrimaryType)
 #pragma region f/p
     private:
         int mValue = -1;
     public:
-        static constexpr int MaxValue = 2147483647;
-        static constexpr int MinValue = -2147483648;
+        static const Integer MaxValue;
+        static const Integer MinValue;
 #pragma endregion f/p
 #pragma region constructor
     public:
@@ -39,6 +42,14 @@ namespace System
         Boolean Equals(const object& _obj, const object& _other) override;
         Integer GetHashCode() const override;
         Boolean Equals(const int& _object)override;
+        Boolean ToBoolean() override;
+        Byte ToByte() override;
+        Char ToChar() override;
+        DateTime ToDateTime() override;
+        Float ToFloat() override;
+        Double ToDouble() override;
+        Integer ToInteger() override;
+
 #pragma endregion override
 #pragma region operator
         operator int()const { return mValue;}

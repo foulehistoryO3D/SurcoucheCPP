@@ -10,6 +10,9 @@
 
 namespace System
 {
+    template <typename... Args>
+    class Action;
+
     namespace Collections
     {
         namespace Generic
@@ -20,7 +23,7 @@ namespace System
             {
                 DECLARE_CLASS_INFO(Object)
                 REGISTER_ATTRIBUTE(Sealed)
-#pragma region f/p 
+#pragma region f/p
             private:
                 KeyValuePair<TKey, TValue>* mTab = new KeyValuePair<TKey, TValue>[50];
                 int mCount = 0;
@@ -39,6 +42,8 @@ namespace System
             private:
                 int IndexOfKey(TKey _key);
                 void RemoveAt(const int& _index);
+            public:
+                void ForEach(Action<KeyValuePair<TKey, TValue>> _action);
 #pragma endregion custom methods
 #pragma region override
             public:
@@ -60,7 +65,6 @@ namespace System
 #pragma region operator
             public:
                 TValue& operator[](TKey _key);
-                // TValue& operator[](const TKey& _key) const;
                 Dictionary operator=(const Dictionary& _other);
 #pragma endregion operator
             };
@@ -110,6 +114,14 @@ namespace System
                     mTab[i - 1] = _tmpTab[i];
                 delete[]_tmpTab;
                 mCount--;
+            }
+
+            template <typename TKey, typename TValue>
+            void Dictionary<TKey, TValue>::ForEach(Action<KeyValuePair<TKey, TValue>> _action)
+            {
+                while(MoveNext())
+                    _action(Current());
+                Reset();
             }
 #pragma endregion constructor
 #pragma region override

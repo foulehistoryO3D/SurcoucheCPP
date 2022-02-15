@@ -1,22 +1,25 @@
 ﻿#pragma once
+#include "../../Interface/Convertible/IConvertible.h"
 #include "../../Interface/Equatable/IEquatable.h"
 #include "../../Object/Object.h"
 
 namespace System
 {
     class String;
-    class Float : public Object, public IEquatable<float>
+    class Float sealed : public Object, public IEquatable<float>, public IConvertible
     {
+        DECLARE_CLASS_INFO(Object)
+        REGISTER_ATTRIBUTE(Sealed | PrimaryType)
 #pragma region f/p
     private:
         float mValue = 0.0f;
     public:
-        static const constexpr float Epsilon = 1.401298E-45f;
-        static const constexpr float MaxValue = 3.40282347E+38f;
-        static const constexpr float MinValue = -3.40282347E+38f;
-        static const constexpr double PositiveInfinity = 1e+300 * 1e+300;
-        static const constexpr double NegativeInfinity = -PositiveInfinity;
-        static const constexpr double NaN = PositiveInfinity * 0.0F;
+        static const Float Epsilon;
+        static const Float MaxValue;
+        static const Float MinValue;
+        static const Double PositiveInfinity;
+        static const Double NegativeInfinity;
+        static const Double NaN;
 #pragma endregion f/p
 #pragma region constructor
     public:
@@ -37,6 +40,13 @@ namespace System
         Boolean Equals(const object* _obj, const object* _other) override;
         Boolean Equals(const object& _obj, const object& _other) override;
         Boolean Equals(const float& _object)override;
+        Boolean ToBoolean() override;
+        Byte ToByte() override;
+        Char ToChar() override;
+        DateTime ToDateTime() override;
+        Float ToFloat() override;
+        Double ToDouble() override;
+        Integer ToInteger() override;
 #pragma endregion override
 #pragma region operator
     public:
