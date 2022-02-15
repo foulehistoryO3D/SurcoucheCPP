@@ -26,7 +26,8 @@ namespace System
 #define FORCEINLINE __forceinline
 #define VARARGS __cdecl
 #define interface __interface
-// #define null nullptr
+#define typeof decltype
+#define null nullptr
 #define PURE_VIRTUAL() = 0;
 
 #define REGISTER_ATTRIBUTE(bitmask)\
@@ -63,6 +64,8 @@ const int mSubClassCount = RegisterSubClass(this);
         Sealed=2,
         Abstract=4,
         PrimaryType = 8,
+        Final = 16,
+        Enum = 32
     };
 #pragma endregion enum
     inline size_t HashCode(const char* s)
@@ -110,6 +113,8 @@ const int mSubClassCount = RegisterSubClass(this);
         Boolean IsAbstract() const;
         Boolean IsClass() const;
         Boolean IsType() const;
+        Boolean IsFinal()const;
+        Boolean IsEnum()const;
         static Type* Clone(const void* _type);
 #pragma endregion custom methods
 #pragma region operator
@@ -117,6 +122,10 @@ const int mSubClassCount = RegisterSubClass(this);
         Type* operator=(const Type* _type);
         virtual Boolean operator==(const Type* _type);
         virtual Boolean operator!=(const Type* _type);
+        virtual Type* Clone()
+        {
+            return new Type(*this);
+        }
 #pragma endregion operator
     };
 }

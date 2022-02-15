@@ -7,14 +7,14 @@ System::Text::RegularExpressions::GroupCollection::GroupCollection(
     std::initializer_list<Collections::Generic::KeyValuePair<String, Group>> _tab)
 {
     for (const Collections::Generic::KeyValuePair<String, Group> _pair : _tab)
-        Add(_pair);
+        GroupCollection::Add(_pair);
 }
 
 System::Text::RegularExpressions::GroupCollection::GroupCollection(
     IEnumerator<Collections::Generic::KeyValuePair<String, Group>>* _enumerator)
 {
     while(_enumerator->MoveNext())
-        Add(_enumerator->Current());
+        GroupCollection::Add(_enumerator->Current());
     _enumerator->Reset();
 }
 
@@ -22,7 +22,7 @@ System::Text::RegularExpressions::GroupCollection::GroupCollection(const GroupCo
 {
     const int _count = _copy.Count();
     for (int i = 0; i < _count; ++i)
-        Add(_copy.mTab[i]);
+        GroupCollection::Add(_copy.mTab[i]);
     mCurrentIndex = std::move(_copy.mCurrentIndex);
     mCurrentItem = std::move(_copy.mCurrentItem);
 }
@@ -49,7 +49,7 @@ void System::Text::RegularExpressions::GroupCollection::RemoveAt(const int& _ind
 }
 #pragma endregion custom methods
 #pragma region override
-int System::Text::RegularExpressions::GroupCollection::Count() const
+System::Integer System::Text::RegularExpressions::GroupCollection::Count() const
 {
     return mCount;
 }

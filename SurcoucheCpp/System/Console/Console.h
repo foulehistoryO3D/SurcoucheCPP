@@ -19,17 +19,18 @@ namespace System
     {
         DECLARE_CLASS_INFO(Object)
 #pragma region f/p
-    private:
-        static IO::TextWriter mOut;
-        static IO::TextReader mIn;
-        static IO::TextWriter mError;
+    public:
+        static IO::TextWriter Out;
+        static IO::TextReader In;
+        static IO::TextWriter Error;
 #pragma endregion f/p
 #pragma region custom methods
+    private:
+        static String DirectoryPath();
+        static IO::TextWriter OutInternal();
+        static IO::TextReader InInternal();
+        static IO::TextWriter ErrorInternal();
      public:
-        static IO::TextWriter& Error();
-        static IO::TextReader& In();
-        static IO::TextWriter& Out();
-        
         static void WriteLine(const object* _object);
         static void WriteLine(const object& _object);
         template<typename... Args>
@@ -53,6 +54,6 @@ namespace System
             _result = _result.Replace(string("{") + i + "}", _package[i]->ToString());
         
         std::cout << _result << std::endl;
-        Out().Write(_result);
+        Out.Write(_result);
     }
 }

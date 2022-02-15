@@ -62,6 +62,8 @@ namespace System
         operator float()const { return mValue;}
         Boolean operator==(const Float& _other) const;
         Boolean operator!=(const Float& _other) const;
+        Boolean operator==(const float _other) const;
+        Boolean operator!=(const float _other) const;
 #pragma endregion operator
     };
 }

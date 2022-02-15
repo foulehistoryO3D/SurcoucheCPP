@@ -3,8 +3,6 @@
 #include "../../System/PrimaryType/String/String.h"
 #include "../../System/PrimaryType/Boolean/Boolean.h"
 #include "../Group/Group.h"
-#include "../../System/PrimaryType/String/String.h"
-#include "../../System/PrimaryType/Boolean/Boolean.h"
 
 namespace System
 {
@@ -40,7 +38,7 @@ namespace System
 #pragma endregion custom methods
 #pragma region override
             public:
-                int Count() const override;
+                Integer Count() const override;
                 void Add(Collections::Generic::KeyValuePair<String, Group> _item) override;
                 void Clear() override;
                 bool Contains(Collections::Generic::KeyValuePair<String, Group> _item) override;

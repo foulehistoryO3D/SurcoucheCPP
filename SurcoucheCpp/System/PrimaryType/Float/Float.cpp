@@ -2,6 +2,7 @@
 
 #include <string>
 
+#include "../../Exception/DivideByZero/DivideByZeroException.h"
 #include "../String/String.h"
 #include "../Boolean/Boolean.h"
 #include "../Integer/Integer.h"
@@ -78,6 +79,8 @@ System::Float& System::Float::operator*=(const Float& _other)
 
 System::Float& System::Float::operator/=(const Float& other)
 {
+    if (other == 0.0f)
+        throw DivideByZeroException(string::Format("Division of {0} by zero.", *this));
     mValue /= other;
     return *this;
 }
@@ -156,12 +159,16 @@ System::Boolean System::Float::operator>=(const float& other) const
 
 System::Float System::Float::operator/(const Float& other) const
 {
+    if (other == 0.0f)
+        throw DivideByZeroException(string::Format("Division of {0} by zero.", *this));
     const Float& result = mValue / other;
     return result;
 }
 
 System::Float System::Float::operator/(const float& other) const
 {
+    if (other == 0.0f)
+        throw DivideByZeroException(string::Format("Division of {0} by zero.", *this));
     const Float& result = mValue / other;
     return result;
 }
@@ -172,6 +179,16 @@ System::Boolean System::Float::operator==(const Float& _other) const
 }
 
 System::Boolean System::Float::operator!=(const Float& _other) const
+{
+    return !this->operator==(_other);
+}
+
+System::Boolean System::Float::operator==(const float _other) const
+{
+    return mValue == _other;
+}
+
+System::Boolean System::Float::operator!=(const float _other) const
 {
     return !this->operator==(_other);
 }

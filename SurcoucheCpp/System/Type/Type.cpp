@@ -49,8 +49,7 @@ System::Type* System::Type::GetType()
 
 System::Integer System::Type::GetHashCode() const
 {
-    Type _obj = *this;
-    return std::hash<Type*>{}(&_obj);
+    return ToString().GetHashCode();
 }
 
 System::String System::Type::ToString() const
@@ -105,6 +104,16 @@ System::Boolean System::Type::IsClass() const
 System::Boolean System::Type::IsType() const
 {
     return mBitMask & PrimaryType;
+}
+
+System::Boolean System::Type::IsFinal() const
+{
+    return mBitMask & Final;
+}
+
+System::Boolean System::Type::IsEnum() const
+{
+    return mBitMask & Enum;
 }
 
 System::Type* System::Type::Clone(const void* _type)

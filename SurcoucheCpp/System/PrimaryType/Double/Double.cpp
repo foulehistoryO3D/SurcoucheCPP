@@ -4,6 +4,8 @@
 #include "../Integer/Integer.h"
 #include <string>
 
+#include "../../Exception/DivideByZero/DivideByZeroException.h"
+
 #pragma region constructor
 System::Double::Double(const double& _value)
 {
@@ -79,14 +81,67 @@ System::Integer System::Double::GetHashCode() const
 {
     return ToString().GetHashCode();
 }
+#pragma endregion override
+#pragma region operator
 
 System::Double& System::Double::operator=(const Double& _other)
 {
     mValue = std::move(_other.mValue);
     return *this;
 }
-#pragma endregion override
-#pragma region operator
+
+System::Double& System::Double::operator/(const Double& other) const
+{
+    if (other == 0.0)
+        throw DivideByZeroException(string::Format("Division of {0} by zero.", *this));
+    Double result = mValue / other;
+    return result;
+}
+
+System::Double System::Double::operator/=(const Double& other)
+{
+    if (other == 0.0)
+        throw DivideByZeroException(string::Format("Division of {0} by zero.", *this));
+    mValue /= other;
+    return *this;
+}
+
+System::Double& System::Double::operator*(const Double& other) const
+{
+    Double result = mValue * other;
+    return result;
+}
+
+System::Double System::Double::operator*=(const Double& other)
+{
+    mValue *= other;
+    return *this;
+}
+
+System::Double& System::Double::operator+(const Double& other) const
+{
+    Double result = mValue + other;
+    return result;
+}
+
+System::Double System::Double::operator+=(const Double& other)
+{
+    mValue += other;
+    return *this;
+}
+
+System::Double& System::Double::operator-(const Double& other) const
+{
+    Double result = mValue - other;
+    return result;
+}
+
+System::Double System::Double::operator-=(const Double& other)
+{
+    mValue -= other;
+    return *this;
+}
+
 System::Boolean System::Double::operator==(const Double& _other) const
 {
     return mValue == _other.mValue;

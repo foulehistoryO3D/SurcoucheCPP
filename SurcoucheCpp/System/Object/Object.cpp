@@ -1,6 +1,7 @@
 ﻿#include "Object.h"
 #include "../PrimaryType/Boolean/Boolean.h"
 #include "../PrimaryType/Integer/Integer.h"
+#include "../PrimaryType/String/String.h"
 
 #pragma region constructor
 #pragma endregion constructor
@@ -26,8 +27,7 @@ System::Bool System::Object::Equals(const object& _obj, const object& _other)
 }
 System::Integer System::Object::GetHashCode() const
 {
-    object _obj = *this;
-    return std::hash<object*>{}(&_obj);
+    return ToString().GetHashCode();
 }
 #pragma endregion custom methods
 #pragma region operator

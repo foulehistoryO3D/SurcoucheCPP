@@ -5,11 +5,16 @@
 #include <ctime>
 
 #pragma region f/p
-System::DateTime const System::DateTime::Now = Now_Interval();
+// System::DateTime const System::DateTime::Now = Now_Interval();
 #pragma endregion f/p
 
+DayOfWeek System::DateTime::DayOfWeek() const
+{
+    return dayOfWeek;
+}
+
 System::DateTime::DateTime(const Integer& _day, const Integer& _month, const Integer& _years, const Integer& _hour,
-    const Integer& _minute, const Integer& _seconds)
+                           const Integer& _minute, const Integer& _seconds)
 {
     mDay = _day;
     mMonth = _month;
@@ -17,6 +22,8 @@ System::DateTime::DateTime(const Integer& _day, const Integer& _month, const Int
     mHour = _hour;
     mMinute = _minute;
     mSecond = _seconds;
+    int result =CalculateDayOfWeek();
+    dayOfWeek = DayOfWeek::Values()[ result];
 }
 
 System::DateTime::DateTime(const Integer& _day, const Integer& _month, const Integer& _years, const Integer& _hour,
@@ -36,6 +43,18 @@ System::DateTime::DateTime(const DateTime& _copy)
     mHour = std::move(_copy.mHour);
     mMinute = std::move(_copy.mMinute);
     mSecond = std::move(_copy.mSecond);
+    dayOfWeek = std::move(_copy.dayOfWeek);
+}
+
+int System::DateTime::CalculateDayOfWeek() const
+{
+    int y = mYears;
+    int m = mMonth;
+    int d = mDay;
+    static int t[] = { 0, 3, 2, 5, 0, 3,
+                       5, 1, 4, 6, 2, 4 };
+    y -= m < 3;
+    return (y + y / 4 - y / 100 + y / 400 + t[m-1] + d) % 7;
 }
 
 System::DateTime System::DateTime::Now_Interval()
@@ -44,6 +63,11 @@ System::DateTime System::DateTime::Now_Interval()
     // ReSharper disable once CppDeprecatedEntity
     const std::tm _tm = *localtime(&now);
     return DateTime(_tm.tm_mday, _tm.tm_mon+1, _tm.tm_year + 1900, _tm.tm_hour, _tm.tm_min, _tm.tm_sec);
+}
+
+System::DateTime System::DateTime::Now()
+{
+    return Now_Interval();
 }
 
 System::DateTime System::DateTime::Parse(const string& date)

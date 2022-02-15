@@ -8,7 +8,7 @@
 
 System::String System::LanguageManager::GetPathToSave() const
 {
-    return IO::Path::Combine(Environment::CurrentDirectory, "Language");
+    return IO::Path::Combine(Environment::CurrentDirectory(), "Language");
 }
 
 System::Integer System::LanguageManager::GetHashCode() const

@@ -14,6 +14,7 @@ namespace System
     class SmartEnum : public Object
     {
         DECLARE_CLASS_INFO(Object)
+        REGISTER_ATTRIBUTE(Enum)
 #pragma region f/p
     private:
         inline static int mCurrentValue = 0;
@@ -42,8 +43,16 @@ namespace System
 #pragma region operator
     public:
         virtual operator Int() const  {  return value; }
-
         virtual void operator=(const Int& _value) { value = _value; }
+        virtual Boolean operator==(T other)
+        {
+            return value == other.value;
+        }
+        virtual Boolean operator!=(T other)
+        {
+            return !this->operator==(other);
+        }
+        virtual Int operator*()const { return value; }
 #pragma endregion operator
     };
 
@@ -57,7 +66,6 @@ namespace System
     {
         mValues.push_back(_enum);
     }
-
 
     template <typename T>
     string SmartEnum<T>::ToString() const

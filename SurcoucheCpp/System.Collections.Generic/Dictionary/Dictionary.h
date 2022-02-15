@@ -42,7 +42,7 @@ namespace System
 #pragma endregion custom methods
 #pragma region override
             public:
-                int Count() const override;
+                Integer Count() const override;
                 void Add(KeyValuePair<TKey, TValue> _item) override;
                 void Clear() override;
                 bool Contains(KeyValuePair<TKey, TValue> _item) override;
@@ -114,7 +114,7 @@ namespace System
 #pragma endregion constructor
 #pragma region override
             template <typename TKey, typename TValue>
-            int Dictionary<TKey, TValue>::Count() const
+            Integer Dictionary<TKey, TValue>::Count() const
             {
                 return mCount;
             }

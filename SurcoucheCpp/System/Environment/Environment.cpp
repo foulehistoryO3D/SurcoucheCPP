@@ -7,12 +7,11 @@
 
 #pragma warning(disable: 4996)
 
-System::String const System::Environment::CurrentDirectory  = CurrentDirectory_Internal();
 System::String const System::Environment::OsVersion         = GetOsVersionInternal();
 System::String const System::Environment::OsName            = GetOsNameInternal();
 System::Boolean const System::Environment::Is64BitProcess   = Is64BitProcessInternal();
 
-System::String System::Environment::CurrentDirectory_Internal()
+System::String System::Environment::CurrentDirectory()
 {
     TCHAR buffer[MAX_PATH];
     GetCurrentDirectory(MAX_PATH, buffer);

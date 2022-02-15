@@ -38,6 +38,8 @@ namespace System
             virtual void Close();
             virtual void Write(const object& _value);
             virtual void Write(const object* _value);
+            virtual void Write(const String& _value);
+            void Clear();
 #pragma endregion custom methods
 #pragma region override
             public:

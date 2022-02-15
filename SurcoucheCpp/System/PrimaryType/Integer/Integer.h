@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "../../Interface/Cloneable/ICloneable.h"
 #include "../../Interface/Equatable/IEquatable.h"
 #include "../../Object/Object.h"
 
@@ -6,6 +7,9 @@
 namespace System
 {
     class String;
+    template<typename T>
+    class Span;
+    class Char;
     class Integer : public Object, public IEquatable<int>
     {
 #pragma region f/p
@@ -24,6 +28,7 @@ namespace System
 #pragma region custom methods
     public:
         static Integer Parse(const String& _str);
+        static Integer Parse(const Span<Char>& _arrayChar);
 #pragma endregion custom methods
 #pragma region override
     public:
@@ -64,6 +69,7 @@ namespace System
         Integer operator--();
         Boolean operator==(const Integer& other) const;
         Boolean operator==(const int other) const;
+        
 #pragma endregion operator
     };
     typedef Integer Int;

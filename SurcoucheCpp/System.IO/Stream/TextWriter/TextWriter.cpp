@@ -74,6 +74,22 @@ void System::IO::TextWriter::Write(const object* _value)
     mStream << std::endl;
 }
 
+void System::IO::TextWriter::Write(const String& _value)
+{
+    if (!IsOpen())return;
+    mStream << _value;
+    mStream << std::endl;
+}
+
+void System::IO::TextWriter::Clear()
+{
+    Dispose();
+    std::ofstream ofs;
+    ofs.open(mPath, std::ofstream::out | std::ofstream::trunc);
+    ofs.close();
+    mStream = std::ofstream(mPath, std::ios_base::app | std::ios_base::out);
+}
+
 System::Boolean System::IO::TextWriter::Equals(const object* object)
 {
     const TextWriter& _writer = *dynamic_cast<const TextWriter*>(object);

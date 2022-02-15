@@ -31,12 +31,11 @@ namespace System
     {
         DECLARE_CLASS_INFO(Object)
     private:
-        static String CurrentDirectory_Internal();
         static String GetOsVersionInternal();
         static String GetOsNameInternal();
         static bool Is64BitProcessInternal();
     public:
-        static const String CurrentDirectory;
+        static String CurrentDirectory();
         static const String OsVersion;
         static const String OsName;
         static const Boolean Is64BitProcess;

@@ -49,7 +49,7 @@ CaptureCollection::GetEnumerator()
     return this;
 }
 
-int System::Text::RegularExpressions::CaptureCollection::Count() const
+System::Integer System::Text::RegularExpressions::CaptureCollection::Count() const
 {
     return mCount;
 }

@@ -3,9 +3,9 @@
 #include "../../Exception/OutOfRange/OutOfRange.h"
 #include "../../Interface/Cloneable/ICloneable.h"
 #include "../../Object/Object.h"
-#include "../Integer/Integer.h"
 #include "../Boolean/Boolean.h"
 #include "../String/String.h"
+#include "../Integer/Integer.h"
 
 namespace System
 {
@@ -40,6 +40,7 @@ namespace System
         static void Clear(Array& _array, const int _count);
         static void Clear(Array& _array, int _index, int _length);
         void Clear(const int _newCount);
+        Collections::Generic::List<Item> ToList();
 #pragma endregion custom methods
 #pragma region override methods
 #pragma region object
@@ -49,7 +50,7 @@ namespace System
         String ToString() const override;
 #pragma endregion object
 #pragma region ICloneable
-        Array<Item> Clone() override;
+        Array<Item>* Clone() override;
 #pragma endregion ICloneable
 #pragma region Enumerator
         Item Current() override;
@@ -65,7 +66,7 @@ namespace System
     };
 #pragma region f/p
     template <typename Item>
-    Integer Array<Item>::Count() const
+    System::Integer Array<Item>::Count() const
     {
         return mCount;
     }
@@ -129,6 +130,15 @@ namespace System
         mItems = new Item[_newCount];
         mCount = _newCount;
     }
+
+    template <typename Item>
+    Collections::Generic::List<Item> Array<Item>::ToList()
+    {
+        Collections::Generic::List<Item> result = Collections::Generic::List<Item>();
+        for (int32 i = 0; i < mCount; i++)
+            result.Add(mItems[i]);
+        return result;
+    }
 #pragma endregion custom methods
 #pragma region override
 #pragma region object
@@ -147,7 +157,7 @@ namespace System
     }
 
     template <typename Item>
-    Integer Array<Item>::GetHashCode() const
+    System::Integer Array<Item>::GetHashCode() const
     {
         int result = 0;
         for (int32 i = 0; i < mCount; ++i)
@@ -200,9 +210,9 @@ String Array<Item>::ToString() const
 #pragma endregion Enumerator
 #pragma region ICloneable
     template <typename Item>
-    Array<Item> Array<Item>::Clone()
+    Array<Item>* Array<Item>::Clone()
     {
-        return Array(*this);
+        return new Array(*this);
     }
 #pragma endregion ICloneable
 #pragma endregion override

@@ -1,10 +1,12 @@
 ﻿#include "Integer.h"
 
-#include <sstream>
 #include <string>
 
+#include "../../Exception/DivideByZero/DivideByZeroException.h"
 #include "../String/String.h"
 #include "../Boolean/Boolean.h"
+#include "../../Span/Span.h"
+#include "../Char/Char.h"
 
 
 #pragma region constructor
@@ -22,6 +24,13 @@ System::Integer::Integer(const Integer& _copy)
 System::Integer System::Integer::Parse(const String& _str)
 {
     return std::atoi(_str.ToCstr());
+}
+
+System::Integer System::Integer::Parse(const Span<Char>& _arrayChar)
+{
+    string result = _arrayChar.ToString();
+    result = result.Trim();
+    return Parse(result);
 }
 #pragma endregion custom methods
 #pragma region override
@@ -148,24 +157,32 @@ System::Integer System::Integer::operator*=(const int& _other)
 
 System::Integer System::Integer::operator/(const Integer& _other) const
 {
+    if (_other == 0)
+        throw DivideByZeroException(string::Format("Division of {0} by zero.", *this));
     Integer _result = mValue / _other;
     return _result;
 }
 
 System::Integer System::Integer::operator/(const int& _other) const
 {
+    if (_other == 0)
+        throw DivideByZeroException(string::Format("Division of {0} by zero.", *this));
     Integer _result = mValue / _other;
     return _result;
 }
 
 System::Integer System::Integer::operator/=(const Integer& _other)
 {
+    if (_other == 0)
+        throw DivideByZeroException(string::Format("Division of {0} by zero.", *this));
     mValue /= _other;
     return *this;
 }
 
 System::Integer System::Integer::operator/=(const int& _other)
 {
+    if (_other == 0)
+        throw DivideByZeroException(string::Format("Division of {0} by zero.", *this));
     mValue /= _other;
     return *this;
 }

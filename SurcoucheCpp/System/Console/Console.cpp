@@ -6,41 +6,52 @@
 #include "../../System.IO/Stream/TextWriter/TextWriter.h"
 #include "../../System.IO/File/FileStream/FileStream.h"
 #include "../../System/PrimaryType/Boolean/Boolean.h"
-#include "../../System/PrimaryType/Double/Double.h"
-#include "../../System/PrimaryType/Byte/Byte.h"
-#include "../../System/PrimaryType/Float/Float.h"
-#include "../../System/PrimaryType/Integer/Integer.h"
-#include "../../System/PrimaryType/Char/Char.h"
+#include "../../System.IO/Path/Path.h"
+#include "../Environment/Environment.h"
 
-System::IO::TextWriter System::Console::mOut = IO::TextWriter();
-System::IO::TextReader System::Console::mIn = IO::TextReader();
-System::IO::TextWriter System::Console::mError = IO::TextWriter();
+System::IO::TextWriter System::Console::Out = OutInternal();
+System::IO::TextReader System::Console::In = InInternal();
+System::IO::TextWriter System::Console::Error = ErrorInternal();
 
-System::IO::TextWriter& System::Console::Error()
+System::String System::Console::DirectoryPath()
 {
-    return mError;
+    return IO::Path::Combine(Environment::CurrentDirectory(), "Log");
 }
 
-System::IO::TextReader& System::Console::In()
+System::IO::TextWriter System::Console::OutInternal()
 {
-    return mIn;
+    const string& path = IO::Path::Combine(DirectoryPath(), "Out.txt");
+    if (!IO::File::Exists(path))
+        IO::File::Create(path);
+    return path;
 }
 
-System::IO::TextWriter& System::Console::Out()
+System::IO::TextReader System::Console::InInternal()
 {
-    return mOut;
+    const string& path = IO::Path::Combine(DirectoryPath(), "In.txt");
+    if (!IO::File::Exists(path))
+        IO::File::Create(path);
+    return path;
+}
+
+System::IO::TextWriter System::Console::ErrorInternal()
+{
+    const string& path = IO::Path::Combine(DirectoryPath(), "Error.txt");
+    if (!IO::File::Exists(path))
+        IO::File::Create(path);
+    return path;
 }
 
 void System::Console::WriteLine(const object* _object)
 {
     std::cout << _object->ToString() << std::endl;
-    Out().Write(_object);
+    Out.Write(_object);
 }
 
 void System::Console::WriteLine(const object& _object)
 {
     std::cout << _object.ToString() << std::endl;
-    Out().Write(_object);
+    Out.Write(_object);
 }
 
 void System::Console::SetIn(IO::TextReader _in)
@@ -50,7 +61,7 @@ void System::Console::SetIn(IO::TextReader _in)
         if (!IO::File::Create(_in.Path()).Exists())
             throw IO::IOException("error on created file");
     }
-    mIn = std::move(_in);
+    In = std::move(_in);
 }
 
 void System::Console::SetOut(IO::TextWriter _out)
@@ -60,7 +71,7 @@ void System::Console::SetOut(IO::TextWriter _out)
         if (!IO::File::Create(_out.Path()).Exists())
             throw IO::IOException("error on created file");
     }
-    mOut = std::move(_out);
+    Out = std::move(_out);
 }
 
 void System::Console::SetError(IO::TextWriter _error)
@@ -70,7 +81,7 @@ void System::Console::SetError(IO::TextWriter _error)
         if (!IO::File::Create(_error.Path()).Exists())
             throw IO::IOException("error on created file");
     }
-    mError = std::move(_error);
+    Error = std::move(_error);
 }
 
 System::String System::Console::ReadLine()
@@ -83,6 +94,7 @@ System::String System::Console::ReadLine()
 
 void System::Console::Dispose()
 {
-    Out().Dispose();
-    In().Dispose();
+    Out.Dispose();
+    In.Dispose();
+    Error.Dispose();
 }

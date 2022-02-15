@@ -20,7 +20,7 @@ void System::Timers::Timer::SleepThenTimeout()
 {
     std::this_thread::sleep_for(mInterval);
     if (!mIsRunning)return;
-    mElapsedEvent->SetSignalTime(DateTime::Now);
+    mElapsedEvent->SetSignalTime(DateTime::Now());
     Elapsed.Invoke(this, mElapsedEvent);
 }
 

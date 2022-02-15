@@ -3,6 +3,8 @@
 #include "../Interface/Enumerable/IEnumerable.h"
 #include "../Interface/List/IList.h"
 #include "../../System/Exception/OutOfRange/OutOfRange.h"
+#include "../../System/Interface/Cloneable/ICloneable.h"
+#include "../../System/PrimaryType/Integer/Integer.h"
 
 namespace System
 {
@@ -21,9 +23,9 @@ namespace System
         namespace Generic
         {
             template <typename Item>
-            class List sealed : public Object, public IList<Item>, public IEnumerator<Item>
+            class List final : public Object, public IList<Item>, public IEnumerator<Item>, ICloneable<List<Item>>
             {
-                REGISTER_ATTRIBUTE(Sealed)
+                REGISTER_ATTRIBUTE(Final)
                 DECLARE_CLASS_INFO(Object)
 #pragma region f/p
             private:
@@ -51,7 +53,7 @@ namespace System
 #pragma endregion Linq
 #pragma region override
             public:
-                int Count() const override;
+                Integer Count() const override;
                 void Add(Item _item) override;
                 void Clear() override;
                 bool Contains(Item _item) override;
@@ -71,6 +73,7 @@ namespace System
                 Item& operator[](const int _index);
                 Item& operator[](const int _index) const;
                 bool operator==(const List& list) const;
+                List<Item>* Clone() override;
 
 #pragma endregion operator
             };
@@ -193,7 +196,7 @@ namespace System
 #pragma endregion Linq
 #pragma region custom methods
             template <typename Item>
-            int List<Item>::Count() const { return mCount; }
+            Integer List<Item>::Count() const { return mCount; }
 
             template <typename Item>
             void List<Item>::Add(Item _item)
@@ -339,6 +342,12 @@ namespace System
                     if (mTab[i] != list[i])
                         return false;
                 return true;
+            }
+
+            template <typename Item>
+            List<Item>* List<Item>::Clone()
+            {
+                return new List<Item>(*this);
             }
 #pragma endregion operator
         }

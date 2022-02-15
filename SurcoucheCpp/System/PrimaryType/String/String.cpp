@@ -5,6 +5,8 @@
 #include "../../../System.Collections.Generic/List/List.h"
 #include "../../PrimaryType/Boolean/Boolean.h"
 #include "../../PrimaryType/Integer/Integer.h"
+#include "../../PrimaryType/Array/Array.h"
+#include "../../PrimaryType/Char/Char.h"
 
 #include <cstring>
 #include <sstream>
@@ -14,6 +16,11 @@
 #include "../Float/Float.h"
 
 #pragma region f/p
+namespace System
+{
+    class Char;
+}
+
 System::String const System::String::Empty = "";
 #pragma endregion f/p
 
@@ -253,6 +260,11 @@ System::String System::String::SubString(const Integer& _begin) const
     return _result;
 }
 
+System::String System::String::Trim() const
+{
+    return Replace(" ", "");
+}
+
 const char* System::String::ToCstr() const
 {
     return mValue;
@@ -391,6 +403,15 @@ System::String System::String::Join(const Collections::Generic::List<String>& _v
         Append(_add);
     }
     return *this;
+}
+
+System::Array<System::Char> System::String::ToCharArray() const
+{
+    Array<Char> result = Array<Char>(mLength);
+    for (int i = 0; i < mLength; ++i)
+        result[i] = Char(mValue[i]);
+    result[mLength] = '\0';
+    return result;
 }
 
 System::String System::String::ToString() const

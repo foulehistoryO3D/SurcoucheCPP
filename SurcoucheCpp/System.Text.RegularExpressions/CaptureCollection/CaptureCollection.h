@@ -31,7 +31,7 @@ namespace System
                 bool MoveNext() override;
                 void Reset();
                 IEnumerator<Capture>* GetEnumerator() override;
-                int Count() const override;
+                Integer Count() const override;
                 void Add(Capture _item) override;
                 void Clear() override;
                 bool Contains(Capture _item) override;

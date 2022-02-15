@@ -6,5 +6,5 @@ class ICloneable
 {
 public:
     virtual ~ICloneable() = default;
-    virtual T Clone() PURE_VIRTUAL()
+    virtual T* Clone() PURE_VIRTUAL()
 };

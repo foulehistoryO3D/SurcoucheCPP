@@ -44,6 +44,14 @@ namespace System
     public:
         Double& operator=(const Double& _other);
         operator double() const { return mValue; }
+        Double& operator/(const Double& other)const;
+        Double operator/=(const Double& other);
+        Double& operator*(const Double& other)const;
+        Double operator*=(const Double& other);
+        Double& operator+(const Double& other)const;
+        Double operator+=(const Double& other);
+        Double& operator-(const Double& other)const;
+        Double operator-=(const Double& other);
         Boolean operator==(const Double& _other) const;
         Boolean operator==(const double& _other) const;
         Boolean operator!=(const Double& _other) const;

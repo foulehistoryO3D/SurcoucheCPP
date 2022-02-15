@@ -2,6 +2,7 @@
 
 namespace System
 {
+    class Integer;
     namespace Collections
     {
         namespace Generic
@@ -11,7 +12,7 @@ namespace System
             {
             public:
                 virtual ~ICollection() = default;
-                virtual int Count()const PURE_VIRTUAL()
+                virtual Integer Count()const PURE_VIRTUAL()
                 virtual void Add(Item _item) PURE_VIRTUAL()
                 virtual void Clear() PURE_VIRTUAL()
                 virtual bool Contains(Item _item) PURE_VIRTUAL()

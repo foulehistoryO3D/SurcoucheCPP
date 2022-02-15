@@ -4,12 +4,15 @@
 #include "../PrimaryType/Integer/Integer.h"
 #include <Windows.h>
 
+#include "../Enum/DayOfWeek/DayOfWeek.h"
+
 namespace System
 {
     
-class DateTime : public Object
+class DateTime sealed : public Object
 {
     DECLARE_CLASS_INFO(Object)
+    REGISTER_ATTRIBUTE(Sealed)
 #pragma region f/p
 private:
     Int mDay = 0;
@@ -18,8 +21,10 @@ private:
     Int mHour = 0;
     Int mMinute = 0;
     Int mSecond = 0;
+    DayOfWeek dayOfWeek = DayOfWeek::Monday;
 public:
-    static const DateTime Now;
+    // static const DateTime Now;
+    DayOfWeek DayOfWeek()const;
 #pragma endregion f/p
 #pragma region constructor
 public:
@@ -32,8 +37,10 @@ public:
 #pragma endregion constructor
 #pragma region custom methods
 private:
+    int CalculateDayOfWeek() const;
     static DateTime Now_Interval();
 public:
+    static DateTime Now();
     static DateTime Parse(const string& date);
     static DateTime Convert(SYSTEMTIME _systemTime);
     static DateTime Convert(time_t _systemTime);
