@@ -42,6 +42,7 @@ namespace System
             string GetID() const;
             Collections::Generic::List<string> GetValues() const;
             void UpdateValues();
+            string ConstructNewLine(const string& id);
             SQLReader ExecuteUpdateReader_Internal(Collections::Generic::List<string> _commandParsed);
             SQLReader ExecuteDeleteReader_Internal(Collections::Generic::List<string> _commandParsed);
         public:

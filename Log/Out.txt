@@ -161,3 +161,6 @@ id: 1, username: 'Test', money: '20'
 Key: username, Value: 'Test'
 Key: money, Value: '20'
 
+Key: username, Value: 'Jean'
+Key: money, Value: '1000'
+

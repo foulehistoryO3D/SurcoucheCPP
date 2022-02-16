@@ -11,7 +11,7 @@ int main()
     SetConsoleOutputCP(CP_UTF8);
     string path = Path::Combine(Environment::SpecialFolder(SpecialFolder::Dekstop), "Tables");
     SQL::DataBaseLocal* dbl = new SQL::DataBaseLocal(path);
-    SQL::SQLCommand command = SQL::SQLCommand(dbl, "UPDATE 'user' SET money = 20, username = 'Test' WHERE id = '1'");
+    SQL::SQLCommand command = SQL::SQLCommand(dbl, "UPDATE 'user' SET money = 1000, username = 'Jean' WHERE id = '1'");
     Console::WriteLine(command.ExecuteReader());
     delete dbl;
     return 0;

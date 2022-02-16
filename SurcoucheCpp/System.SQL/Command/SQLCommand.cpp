@@ -126,6 +126,18 @@ void System::SQL::SQLCommand::UpdateValues()
     });
 }
 
+string System::SQL::SQLCommand::ConstructNewLine(const string& id)
+{
+    string newLine = string::Format("id: {0}, ", id);
+    const int count = valuesData.Count();
+    for (int i = 0; i < count; ++i)
+    {
+        newLine += valuesData[i].GetData();
+        if (i < count - 1) newLine += ", ";
+    }
+    return newLine;
+}
+
 System::SQL::SQLReader System::SQL::SQLCommand::ExecuteUpdateReader_Internal(Collections::Generic::List<string> commandParsed)
 {
     const string tableName = commandParsed[1].Replace("'", "");
@@ -137,14 +149,7 @@ System::SQL::SQLReader System::SQL::SQLCommand::ExecuteUpdateReader_Internal(Col
     const string dataValue = table->GetValueFromIndex(id);
     valuesData = GetDataValues(dataValue);
     UpdateValues();
-    string newLine = string::Format("id: {0}, ", id);
-    const int count = valuesData.Count();
-    for (int i = 0; i < count; ++i)
-    {
-        newLine += valuesData[i].GetData();
-        if (i < count - 1)
-            newLine += ", ";
-    }
+    string newLine = ConstructNewLine(id);
     table->ReplaceLine(id, newLine);
     
     return SQLReader();
