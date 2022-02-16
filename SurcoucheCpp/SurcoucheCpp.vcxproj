@@ -187,6 +187,7 @@
     <ClCompile Include="System.SQL\DataBase\DataBaseLocal\DataBaseLocal.cpp" />
     <ClCompile Include="System.SQL\DataBase\Table\DataBaseTable.cpp" />
     <ClCompile Include="System.SQL\Reader\SQLReader.cpp" />
+    <ClCompile Include="System.SQL\SqlData.cpp" />
     <ClCompile Include="System.Text.RegularExpressions\CaptureCollection\CaptureCollection.cpp" />
     <ClCompile Include="System.Text.RegularExpressions\Capture\Capture.cpp" />
     <ClCompile Include="System.Text.RegularExpressions\GroupCollection\GroupCollection.cpp" />
@@ -419,6 +420,7 @@
     <ClInclude Include="System.SQL\DataBase\Table\DataBaseTable.h" />
     <ClInclude Include="System.SQL\Exception\SQLException.h" />
     <ClInclude Include="System.SQL\Reader\SQLReader.h" />
+    <ClInclude Include="System.SQL\SqlData.h" />
     <ClInclude Include="System.Text.RegularExpressions\CaptureCollection\CaptureCollection.h" />
     <ClInclude Include="System.Text.RegularExpressions\Capture\Capture.h" />
     <ClInclude Include="System.Text.RegularExpressions\GroupCollection\GroupCollection.h" />

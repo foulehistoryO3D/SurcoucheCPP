@@ -2,7 +2,7 @@
 
 #include "../../../System/Console/Console.h"
 #include "../../../System/Event/Action/Action.h"
-#include "../../../System/Exception/IndexOutOfRange/IndexOutOfRangeException.h"
+#include "../../../System.IO/Stream/StreamWriter/StreamWriter.h"
 
 #pragma region constructor
 System::SQL::DataBaseTable::DataBaseTable(const IO::File& file)
@@ -17,12 +17,37 @@ System::SQL::DataBaseTable::DataBaseTable(const DataBaseTable& copy)
 
 #pragma endregion constructor
 #pragma region custom methods
-System::String System::SQL::DataBaseTable::GetValueFromIndex(const Integer& index) const
+System::String System::SQL::DataBaseTable::GetValueFromIndex(const string& index) const
 {
     Collections::Generic::List<string> splited = this->file.ReadAllLines();
-    if (index < 0 || index > splited.Count())
-        throw IndexOutOfRangeException("Invalid index DataBaseTable");
-    return splited[index];
+    const int count = splited.Count();
+    for (int i = 0; i < count; ++i)
+    {
+        if (splited[i].StartWith(string::Format("id: {0}", index)))
+            return splited[i];
+    }
+    return string::Empty;
+}
+
+void System::SQL::DataBaseTable::ReplaceLine(const string& id, const string& newLine) const
+{
+    Collections::Generic::List<string> lines = this->file.ReadAllLines();
+    IO::StreamWriter writer = this->file.OpenWriter();
+    writer.Clear();
+
+    const int count = lines.Count();
+    for (int i = 0; i < count; i++)
+    {
+        if (lines[i].StartWith(string("id: ") + id))
+            lines[i] = newLine;
+    }
+    
+    writer.WriteAllText(lines);
+}
+
+System::String System::SQL::DataBaseTable::ToString() const
+{
+    return this->file.Path();
 }
 #pragma endregion custom methods
 #pragma region override

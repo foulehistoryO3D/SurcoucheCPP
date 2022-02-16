@@ -10,7 +10,7 @@
 System::Text::RegularExpressions::Regex::Regex(const String& _pattern)
 {
     mPattern = _pattern;
-    mExpression = _pattern;
+    mExpression = std::regex(std::string(_pattern));
 }
 
 System::Text::RegularExpressions::Regex::Regex(const Regex& _copy)
@@ -51,6 +51,21 @@ System::Text::RegularExpressions::Match System::Text::RegularExpressions::Regex:
         _result.AddGroup(_match.str(i).c_str(), _splitedString, _match.position(i));
     }
     return _result;
+}
+
+System::Array<System::String> System::Text::RegularExpressions::Regex::Find(const String& input) const
+{
+    std::string str = input.ToCstr();
+    std::smatch match = std::smatch();
+    std::regex_search(str, match, this->mExpression);
+    Array<string> result = Array<string>(match.size());
+    int index = 0;
+    for (auto item : match)
+    {
+        result.InsertAt(index, item.str().c_str());
+        index++;
+    }
+    return result;
 }
 #pragma endregion custom methods
 #pragma region override

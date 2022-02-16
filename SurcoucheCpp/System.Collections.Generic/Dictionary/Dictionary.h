@@ -2,6 +2,7 @@
 #include "../../System/Console/Console.h"
 #include "../../System/Exception/Exception/Exception.h"
 #include "../../System/Object/Object.h"
+#include "../../System.Utils/Template/IsPointer/IsPointer.h"
 #include "../Interface/Dictionary/IDictionary.h"
 #include "../KeyValuePair/KeyValuePair.h"
 #include "../../System/PrimaryType/Boolean/Boolean.h"
@@ -119,7 +120,7 @@ namespace System
             template <typename TKey, typename TValue>
             void Dictionary<TKey, TValue>::ForEach(Action<KeyValuePair<TKey, TValue>> _action)
             {
-                while(MoveNext())
+                while (MoveNext())
                     _action(Current());
                 Reset();
             }
@@ -136,7 +137,8 @@ namespace System
             {
                 if (Contains(_item))
                     throw Exception("key already exist !");
-                object* key = reinterpret_cast<object*>(&_item.Key);
+                object* key = null;
+                    key = reinterpret_cast<object*>(&_item.Key);
                 if (!key)
                     throw Exception("Key is not object type");
                 mTab[key->GetHashCode() % mSize] = _item;

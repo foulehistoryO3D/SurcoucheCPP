@@ -208,37 +208,50 @@ System::Collections::Generic::List<System::String> System::String::Split(const c
 System::Collections::Generic::List<System::String> System::String::Split(const String& _value) const
 {
     Collections::Generic::List<String> _result = Collections::Generic::List<String>();
-    int _start = 0;
-    const int& _length = mLength;
-    const int& _otherLength = _value.mLength;
-    for (int i = 0; i < _length; ++i)
-    {
-        bool _split = true;
-        int _index = 0;
-        for (int j = i; j < i + _otherLength; j++)
-        {
-            if (mValue[j] != _value.mValue[_index])
-                _split = false;
-            _index++;
-        }
-        if (_split)
-        {
-            string _str = "";
-            for (int x = _start; x < i; ++x)
-                _str.Append(mValue[x]);
-            _result.Add(_str);
-            string _other = "";
-            for (int x = i; x < i + _value.mLength; x++)
-                _other += mValue[x];
-            _result.Add(_other);
-            _start = i + _value.mLength;
-        }
-    }
-    string _str = Empty;
+    // int _start = 0;
+    // const int& _length = mLength;
+    // const int& _otherLength = _value.mLength;
+    // for (int i = 0; i < _length; ++i)
+    // {
+    //     bool _split = true;
+    //     int _index = 0;
+    //     for (int j = i; j < i + _otherLength; j++)
+    //     {
+    //         if (mValue[j] != _value.mValue[_index])
+    //             _split = false;
+    //         _index++;
+    //     }
+    //     if (_split)
+    //     {
+    //         string _str = "";
+    //         for (int x = _start; x < i; ++x)
+    //             _str.Append(mValue[x]);
+    //         _result.Add(_str);
+    //         string _other = "";
+    //         for (int x = i; x < i + _value.mLength; x++)
+    //             _other += mValue[x];
+    //         _result.Add(_other);
+    //         _start = i + _value.mLength;
+    //     }
+    // }
+    // string _str = Empty;
+    //
+    // for (int i = _start; i < _length; ++i)
+    //     _str.Append(mValue[i]);
+    // _result.Add(_str);
 
-    for (int i = _start; i < _length; ++i)
-        _str.Append(mValue[i]);
-    _result.Add(_str);
+    std::string str = mValue;
+    std::string::size_type prevPos = 0, pos = 0;
+    while ((pos = str.find(_value, pos)) != std::string::npos)
+    {
+        std::string substring(str.substr(prevPos, pos - prevPos));
+        if (substring != "")
+            _result.Add(substring.c_str());
+        prevPos = ++pos;
+    }
+    std::string endStr = str.substr(prevPos, pos - prevPos);
+    if (endStr != "")
+        _result.Add(endStr.c_str());
     return _result;
 }
 
@@ -287,16 +300,26 @@ System::String System::String::Replace(const char _oldChar, const char _newChar)
 
 System::String System::String::Replace(const String& _old, const String& _new) const
 {
-    const std::string subStr = _new.ToCstr();
-    std::string _str = "";
-    Collections::Generic::List<String> _splitedString = Split(_old);
-    const int _length = _splitedString.Count();
-    for (int i = 0; i < _length; ++i)
-        if (_splitedString[i] == _old)
-            _splitedString[i] = _new;
-    for (int i = 0; i < _length; ++i)
-        _str += _splitedString[i];
-    return _str.c_str();
+    // const std::string subStr = _new.ToCstr();
+    // std::string _str = "";
+    // Collections::Generic::List<String> _splitedString = Split(_old);
+    // const int _length = _splitedString.Count();
+    // for (int i = 0; i < _length; ++i)
+    //     if (_splitedString[i] == _old)
+    //         _splitedString[i] = _new;
+    // for (int i = 0; i < _length; ++i)
+    //     _str += _splitedString[i];
+    // return _str.c_str();
+    std::string str = mValue;
+    size_t startPos = 0;
+    std::string from = _old.ToCstr();
+    std::string to = _new.ToCstr();
+    while ((startPos = str.find(from, startPos)) != std::string::npos)
+    {
+        str.replace(startPos, from.length(), to);
+        startPos += to.length();
+    }
+    return str.c_str();
 }
 
 System::String System::String::operator+(const CHAR* _str) const

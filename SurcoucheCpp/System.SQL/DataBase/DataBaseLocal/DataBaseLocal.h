@@ -1,4 +1,6 @@
 ﻿#pragma once
+#include <map>
+
 #include "../../../System.Collections.Generic/Dictionary/Dictionary.h"
 #include "../../../System/Object/Object.h"
 #include "../../../System/PrimaryType/Array/Array.h"
@@ -9,13 +11,13 @@ namespace System
 {
     namespace SQL
     {
-        class DataBaseLocal : public Object, public IDisposable
+        class DataBaseLocal sealed : public Object, public IDisposable
         {
-        private:
                 DECLARE_CLASS_INFO(Object)
+                REGISTER_ATTRIBUTE(Sealed)
 #pragma region f/p
         private:
-                Collections::Generic::Dictionary<string, DataBaseTable> tables = Collections::Generic::Dictionary<string, DataBaseTable>(); 
+                std::map<string, DataBaseTable*> tables = std::map<string, DataBaseTable*>(); 
                 const char* path = "";
 #pragma endregion f/p
 #pragma region constructor
@@ -27,8 +29,8 @@ namespace System
 #pragma region custom methods
         private:
         public:
-                DataBaseTable& GetTable(const string& tableName);
-                Array<String> GetTables();
+                DataBaseTable* GetTable(const string& tableName);
+                Array<DataBaseTable*> GetTables() const;
 #pragma endregion custom methods
 #pragma region override
         public:

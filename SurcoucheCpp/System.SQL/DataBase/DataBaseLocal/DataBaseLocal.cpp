@@ -19,7 +19,7 @@ System::SQL::DataBaseLocal::DataBaseLocal(const String& path)
     {
         string filePath = IO::Path::GetFileNameWithoutExtension(file.Path());
         filePath = filePath.SubString(filePath.LastIndexOf('\\') + 1);
-        tables.Add(filePath, DataBaseTable(file));
+        tables.insert(std::pair(filePath, new DataBaseTable(file)));
     });
 }
 
@@ -27,23 +27,24 @@ System::SQL::DataBaseLocal::~DataBaseLocal()
 {
 }
 
-System::SQL::DataBaseTable& System::SQL::DataBaseLocal::GetTable(const string& tableName)
+System::SQL::DataBaseTable* System::SQL::DataBaseLocal::GetTable(const string& tableName)
 {
-    DataBaseTable result = DataBaseTable();
-    if (!this->tables.ContainsKey(tableName)) return result;
-    return this->tables[tableName];
+    std::pmr::map<string, DataBaseTable*>::const_iterator begin = this->tables.begin();
+    for (; begin != this->tables.end(); ++begin)
+        if (begin->first == tableName)
+            return begin->second;
+    return null;
 }
 
-System::Array<System::String> System::SQL::DataBaseLocal::GetTables()
+System::Array<System::SQL::DataBaseTable*> System::SQL::DataBaseLocal::GetTables() const
 {
-    Array<string> result = Array<string>(this->tables.Count());
+    Array<DataBaseTable*> result = Array<DataBaseTable*>(this->tables.size());
     int index = 0;
-    while (this->tables.GetEnumerator()->MoveNext())
+    for (std::pair<string, DataBaseTable*> pair : this->tables)
     {
-        result.InsertAt(index, this->tables.GetEnumerator()->Current().Key);
+        result.InsertAt(index, pair.second);
         index++;
     }
-    this->tables.Reset();
     return result;
 }
 #pragma endregion constructor
