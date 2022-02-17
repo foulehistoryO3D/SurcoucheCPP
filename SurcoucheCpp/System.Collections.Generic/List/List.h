@@ -51,6 +51,10 @@ namespace System
                 Item Find(Predicate<Item> _pred);
                 Item FirstOrDefault();
 #pragma endregion Linq
+#pragma region custom methods
+            public:
+                void RemoveAll(Item item);
+#pragma endregion custom methods
 #pragma region override
             public:
                 Integer Count() const override;
@@ -192,6 +196,16 @@ namespace System
             {
                 if (mCount == 0) return Item();
                 return mTab[0];
+            }
+
+            template <typename Item>
+            void List<Item>::RemoveAll(Item item)
+            {
+                for (int i = 0; i < mCount; ++i)
+                {
+                    if (mTab[i] == item)
+                        RemoveAt(i);
+                }
             }
 #pragma endregion Linq
 #pragma region custom methods

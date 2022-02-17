@@ -84,8 +84,11 @@ System::Collections::Generic::List<System::IO::File> System::IO::Directory::GetF
         if (_findData.dwFileAttributes & 32)
         {
             const String& _str = _path + "\\" + _findData.cFileName;
-            if (!string::IsNullOrEmpty(ext) && Path::GetExtension(_str) == ext)
-                _result.Add(File(_str));
+            if (!string::IsNullOrEmpty(ext))
+                if (Path::GetExtension(_str) == ext)
+                    _result.Add(File(_str));
+            else _result.Add(File(_str));
+
         }
     }
     while (FindNextFileA(_hFind, &_findData));

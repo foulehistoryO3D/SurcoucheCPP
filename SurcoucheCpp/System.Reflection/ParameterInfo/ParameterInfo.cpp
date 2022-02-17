@@ -32,6 +32,7 @@ System::Reflection::ParameterInfo::ParameterInfo(Type* _parameterType, const Int
     mClassImpl = _parameterType;
     mNameImpl = "Default Name";
     mPositionImpl = _position;
+    mDefaultValueImpl = static_cast<object*>(*Activator::CreateInstance<decltype(_parameterType)>());
 }
 
 System::Reflection::ParameterInfo::ParameterInfo(const ParameterInfo& _copy)

@@ -5,9 +5,13 @@
 #include "../../../System.Collections.Generic/List/List.h"
 
 #pragma region constructor/destructor
-System::IO::StreamWriter::StreamWriter() : TextWriter() {}
+System::IO::StreamWriter::StreamWriter() : TextWriter()
+{
+}
 
-System::IO::StreamWriter::StreamWriter(const String& _path) : TextWriter(_path) {}
+System::IO::StreamWriter::StreamWriter(const String& _path) : TextWriter(_path)
+{
+}
 
 System::IO::StreamWriter::StreamWriter(StreamWriter&& _copy) noexcept
 {
@@ -18,7 +22,7 @@ void System::IO::StreamWriter::WriteAllText(const Collections::Generic::List<Str
 {
     if (!IsOpen())return;
     const int _length = _values.Count();
-    for (int i=0; i< _length; ++i)
+    for (int i = 0; i < _length; ++i)
         Write(_values[i]);
 }
 
@@ -45,4 +49,3 @@ System::Boolean System::IO::StreamWriter::Equals(const object& object)
 }
 
 #pragma endregion override
-

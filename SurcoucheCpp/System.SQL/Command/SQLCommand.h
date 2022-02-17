@@ -43,8 +43,9 @@ namespace System
             Collections::Generic::List<string> GetValues() const;
             void UpdateValues();
             string ConstructNewLine(const string& id);
+            DataBaseTable*  GetTable(string tableName) const;
             SQLReader ExecuteUpdateReader_Internal(Collections::Generic::List<string> _commandParsed);
-            SQLReader ExecuteDeleteReader_Internal(Collections::Generic::List<string> _commandParsed);
+            SQLReader ExecuteDeleteReader_Internal(Collections::Generic::List<string> _commandParsed) const;
         public:
             void ExecuteNoQuery();
             SQLReader ExecuteReader();

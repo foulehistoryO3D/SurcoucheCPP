@@ -164,3 +164,88 @@ Key: money, Value: '20'
 Key: username, Value: 'Jean'
 Key: money, Value: '1000'
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+id not found
+
+
+
+
+
+
+id: 2
+ username: 'Foulehistory'
+ money: '100000'
+ grade: 'GOD'
+
+GOD
+Foulehistory
+GOD
+Foulehistory
+Foulehistory
+GOD
+
+Foulehistory
+GOD
+100000
+Foulehistory
+GOD
+100000
+Foulehistory
+GOD
+GOD
+100000
+Foulehistory
+GOD
+GOD
+100000
+Foulehistory
+GOD
+
+
+
+
+2
+100000
+Foulehistory
+GOD
+2
+100000
+Thomas
+GOD
+2
+100000
+Thomas
+GOD
+Thomas
+100000
+GOD
+GOD
+1
+1000
+Alexandre
+GOD
+Table: WHERE doesn't exist
+id not found
+2
+1000
+Thomas
+GOD

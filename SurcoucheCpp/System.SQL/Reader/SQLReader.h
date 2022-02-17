@@ -1,4 +1,6 @@
 ﻿#pragma once
+#include <map>
+
 #include "../../System.Collections.Generic/Dictionary/Dictionary.h"
 #include "../../System/Object/Object.h"
 
@@ -11,7 +13,7 @@ namespace System
             DECLARE_CLASS_INFO(Object)
 #pragma region f/p
         private:
-            Collections::Generic::Dictionary<Int, string> readerObject = Collections::Generic::Dictionary<Int, string>();
+            std::map<string, string> readerObject = std::map<string, string>();
 #pragma endregion f/p
 #pragma region constructor
         public:
@@ -27,6 +29,8 @@ namespace System
 #pragma region operator
         public:
             SQLReader& operator=(const SQLReader& other);
+            string operator[](const string& key) const;
+            string operator[](const int& key) const;
 #pragma endregion operator
         };
     }

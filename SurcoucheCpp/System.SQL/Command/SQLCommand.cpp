@@ -41,7 +41,9 @@ System::SQL::SQLCommand::SQLCommand(const SQLCommand& copy)
     this->command = std::move(copy.command);
     this->timeout = std::move(copy.timeout);
 }
+#pragma endregion constructor
 
+#pragma region custom methods
 System::Collections::Generic::List<System::SQL::SqlData> System::SQL::SQLCommand::RegisterValues(Collections::Generic::List<string> values)
 {
     Collections::Generic::List<SqlData> data = Collections::Generic::List<SqlData>();
@@ -92,7 +94,6 @@ string System::SQL::SQLCommand::GetID() const
 System::Collections::Generic::List<string> System::SQL::SQLCommand::GetValues() const
 {
     Collections::Generic::List<string> result = Collections::Generic::List<string>();
-    std::string t = "(?<=SET)(.*)(?=WHERE)";
     const Text::RegularExpressions::Regex regex = Text::RegularExpressions::Regex("(SET)(.*)(?=WHERE)");
     string value = regex.Find(this->command)[0];
     value = value.Replace("SET", "");
@@ -119,11 +120,6 @@ void System::SQL::SQLCommand::UpdateValues()
         const SqlData& data = sqlData[i];
         GetData(data.Key())->SetValue(data.Value());
     }
-
-    valuesData.ForEach([](SqlData d)
-    {
-        Console::WriteLine(d); 
-    });
 }
 
 string System::SQL::SQLCommand::ConstructNewLine(const string& id)
@@ -138,12 +134,17 @@ string System::SQL::SQLCommand::ConstructNewLine(const string& id)
     return newLine;
 }
 
+System::SQL::DataBaseTable* System::SQL::SQLCommand::GetTable(const string tableName) const
+{
+    DataBaseTable* table = this->databaseLocal->GetTable(tableName);
+    if (table == null) throw SQLException(string::Format("Table: {0} doesn't exist", tableName));
+    return table;
+}
+
 System::SQL::SQLReader System::SQL::SQLCommand::ExecuteUpdateReader_Internal(Collections::Generic::List<string> commandParsed)
 {
     const string tableName = commandParsed[1].Replace("'", "");
-    DataBaseTable* table = this->databaseLocal->GetTable(tableName);
-    if (table == null) throw SQLException(string::Format("Table: {0} doesn't exist", tableName));
-
+    DataBaseTable* table = GetTable(tableName);
     const string id = GetID();
     sqlData = RegisterValues(GetValues());
     const string dataValue = table->GetValueFromIndex(id);
@@ -152,11 +153,15 @@ System::SQL::SQLReader System::SQL::SQLCommand::ExecuteUpdateReader_Internal(Col
     string newLine = ConstructNewLine(id);
     table->ReplaceLine(id, newLine);
     
-    return SQLReader();
+    return SQLReader(table->GetValueFromIndex(id));
 }
 
-System::SQL::SQLReader System::SQL::SQLCommand::ExecuteDeleteReader_Internal(Collections::Generic::List<string> commandParsed)
+System::SQL::SQLReader System::SQL::SQLCommand::ExecuteDeleteReader_Internal(Collections::Generic::List<string> commandParsed) const
 {
+    const string tableName = commandParsed[1].Replace("'", "");
+    const DataBaseTable* table = GetTable(tableName);
+    const string id = GetID();
+    table->ReplaceLine(id, string::Empty);
     return SQLReader();
 }
 #pragma endregion constructor
