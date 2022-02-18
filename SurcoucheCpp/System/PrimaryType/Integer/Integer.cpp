@@ -33,6 +33,20 @@ System::Integer System::Integer::Parse(const String& _str)
     return std::atoi(_str.ToCstr());
 }
 
+System::Boolean System::Integer::TryParse(const String& str, Integer& out)
+{
+    try
+    {
+        out = std::atoi(str.ToCstr());
+        return true;
+    }
+    catch (std::exception&)
+    {
+        out = Integer();
+        return false;
+    }
+}
+
 System::Integer System::Integer::Parse(const Span<Char>& _arrayChar)
 {
     string result = _arrayChar.ToString();

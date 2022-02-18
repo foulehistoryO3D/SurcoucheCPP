@@ -26,6 +26,8 @@ namespace System
         public:
             String GetValueFromIndex(const string& index) const;
             void ReplaceLine(const string& id, const string& newLine) const;
+            void AddLine(const string& newLine)const;
+            Array<string> GetLines() const;
 #pragma endregion custom methods
 #pragma region override
         public:

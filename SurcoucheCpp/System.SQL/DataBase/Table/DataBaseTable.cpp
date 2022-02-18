@@ -2,6 +2,7 @@
 
 #include "../../../System/Console/Console.h"
 #include "../../../System/Event/Action/Action.h"
+#include "../../../System/PrimaryType/Array/Array.h"
 #include "../../../System.IO/Stream/StreamWriter/StreamWriter.h"
 #include "../../Exception/SQLException.h"
 
@@ -46,6 +47,21 @@ void System::SQL::DataBaseTable::ReplaceLine(const string& id, const string& new
     lines.RemoveAll(string::Empty);
     writer.WriteAllText(lines);
     writer.Dispose();
+}
+
+void System::SQL::DataBaseTable::AddLine(const string& newLine) const
+{
+    Collections::Generic::List<string> lines = this->file.ReadAllLines();
+    lines.Add(newLine);
+    IO::StreamWriter writer = this->file.OpenWriter();
+    writer.Clear();
+    writer.WriteAllText(lines);
+    writer.Dispose();
+}
+
+System::Array<System::String> System::SQL::DataBaseTable::GetLines() const
+{
+    return this->file.ReadAllLines();
 }
 
 System::String System::SQL::DataBaseTable::ToString() const

@@ -1,10 +1,14 @@
 ﻿#include "SQLCommand.h"
+
+#include "UpdateCommand/SQLUpdateCommand.h"
 #include "../Reader/SQLReader.h"
 #include "../../System/PrimaryType/String/String.h"
 #include "../../System/PrimaryType/Integer/Integer.h"
 #include "../../System.Text.RegularExpressions/Regex/Regex.h"
 #include "../Exception/SQLException.h"
 #include "../../System/Event/Action/Action.h"
+#include "DeleteCommand/SQLDeleteCommand.h"
+#include "InsertCommand/SQLInsertCommand.h"
 
 #pragma region f/p
 System::String System::SQL::SQLCommand::Command() const
@@ -44,94 +48,12 @@ System::SQL::SQLCommand::SQLCommand(const SQLCommand& copy)
 #pragma endregion constructor
 
 #pragma region custom methods
-System::Collections::Generic::List<System::SQL::SqlData> System::SQL::SQLCommand::RegisterValues(Collections::Generic::List<string> values)
-{
-    Collections::Generic::List<SqlData> data = Collections::Generic::List<SqlData>();
-    const int count = values.Count();
-    for (int i = 0; i < count; ++i)
-    {
-        string str = values[i];
-        Array valuesSplited = str.Split(" ");
-        data.Add({valuesSplited[0].Trim(), valuesSplited[1].Trim()});
-    }
-    return data;
-}
-
-System::Collections::Generic::List<System::SQL::SqlData> System::SQL::SQLCommand::GetDataValues(const string& str)
-{
-    Collections::Generic::List<SqlData> data = Collections::Generic::List<SqlData>();
-    Array strValue = str.Split(",");
-    const int count = strValue.Count();
-    for (int i = 1; i < count; ++i)
-    {
-        string value = strValue[i];
-        if (value[0] == ' ') value = value.SubString(1);
-
-        Array splitedValues = value.Split(":");
-        data.Add({splitedValues[0].Trim(), splitedValues[1].Trim()});
-    }    
-    return data;
-}
-
-System::SQL::SqlData* System::SQL::SQLCommand::GetData(const string& key)
-{
-    const int count = valuesData.Count();
-    for (int i = 0; i < count; ++i)
-    {
-        if (valuesData[i].Key() == key)
-            return &valuesData[i];
-    }
-    return null;
-}
 
 string System::SQL::SQLCommand::GetID() const
 {
     const Text::RegularExpressions::Regex regex = Text::RegularExpressions::Regex("WHERE [\\w]+(=| =) ([\\d]|'[\\d]')");
     string where = regex.Find(this->command)[0];
     return where.SubString(where.LastIndexOf('=')+1).Replace("'", "").Trim();
-}
-
-System::Collections::Generic::List<string> System::SQL::SQLCommand::GetValues() const
-{
-    Collections::Generic::List<string> result = Collections::Generic::List<string>();
-    const Text::RegularExpressions::Regex regex = Text::RegularExpressions::Regex("(SET)(.*)(?=WHERE)");
-    string value = regex.Find(this->command)[0];
-    value = value.Replace("SET", "");
-    if (value[0] == ' ') value = value.SubString(1);
-    Collections::Generic::List<string> splitedValues = value.Split(',');
-    const int count = splitedValues.Count();
-    for (int i = 0; i < count; ++i)
-    {
-        string str = splitedValues[i];
-        if (str.StartWith(' '))
-            str = str.SubString(1);
-        str = str.Replace("=", "");
-        str = str.Replace("'", "");
-        result.Add(str);
-    }
-    return result;
-}
-
-void System::SQL::SQLCommand::UpdateValues()
-{
-    const int count = sqlData.Count();
-    for (int i = 0; i < count; ++i)
-    {
-        const SqlData& data = sqlData[i];
-        GetData(data.Key())->SetValue(data.Value());
-    }
-}
-
-string System::SQL::SQLCommand::ConstructNewLine(const string& id)
-{
-    string newLine = string::Format("id: {0}, ", id);
-    const int count = valuesData.Count();
-    for (int i = 0; i < count; ++i)
-    {
-        newLine += valuesData[i].GetData();
-        if (i < count - 1) newLine += ", ";
-    }
-    return newLine;
 }
 
 System::SQL::DataBaseTable* System::SQL::SQLCommand::GetTable(const string tableName) const
@@ -141,44 +63,70 @@ System::SQL::DataBaseTable* System::SQL::SQLCommand::GetTable(const string table
     return table;
 }
 
-System::SQL::SQLReader System::SQL::SQLCommand::ExecuteUpdateReader_Internal(Collections::Generic::List<string> commandParsed)
+System::SQL::SQLReader System::SQL::SQLCommand::ExecuteUpdateReader_Internal(Collections::Generic::List<string> commandParsed) const
+{
+    DataBaseTable* table;
+    string id;
+    GetValuesCommand(commandParsed, table, id);
+    return SQLUpdateCommand(this->command, id, table).ExecuteReader();
+}
+
+void System::SQL::SQLCommand::ExecuteUpdate_Internal(Collections::Generic::List<string> commandParsed) const
+{
+    DataBaseTable* table;
+    string id;
+    GetValuesCommand(commandParsed, table, id);
+    SQLUpdateCommand(this->command, id, table).Execute();
+}
+
+void System::SQL::SQLCommand::ExecuteDelete_Internal(Collections::Generic::List<string> commandParsed) const
+{
+    DataBaseTable* table;
+    string id;
+    GetValuesCommand(commandParsed, table, id);
+    SQLDeleteCommand(command, id, table).Execute();
+}
+
+void System::SQL::SQLCommand::GetValuesCommand(System::Collections::Generic::List<System::String> commandParsed, System::SQL::DataBaseTable*& table, string& id) const
 {
     const string tableName = commandParsed[1].Replace("'", "");
-    DataBaseTable* table = GetTable(tableName);
-    const string id = GetID();
-    sqlData = RegisterValues(GetValues());
-    const string dataValue = table->GetValueFromIndex(id);
-    valuesData = GetDataValues(dataValue);
-    UpdateValues();
-    string newLine = ConstructNewLine(id);
-    table->ReplaceLine(id, newLine);
-    
-    return SQLReader(table->GetValueFromIndex(id));
+    table = GetTable(tableName);
+    id = GetID();
 }
 
 System::SQL::SQLReader System::SQL::SQLCommand::ExecuteDeleteReader_Internal(Collections::Generic::List<string> commandParsed) const
 {
-    const string tableName = commandParsed[1].Replace("'", "");
-    const DataBaseTable* table = GetTable(tableName);
-    const string id = GetID();
-    table->ReplaceLine(id, string::Empty);
-    return SQLReader();
+    DataBaseTable* table;
+    string id;
+    GetValuesCommand(commandParsed, table, id);
+    return SQLDeleteCommand(command, id, table).ExecuteReader();
 }
 #pragma endregion constructor
 #pragma region custom methods
-void System::SQL::SQLCommand::ExecuteNoQuery() 
-{
-}
-
-System::SQL::SQLReader System::SQL::SQLCommand::ExecuteReader()
+void System::SQL::SQLCommand::ExecuteNoQuery() const
 {
     if (!IsValid()) throw SQLException("DataBase is not open");
     Collections::Generic::List<string> commandParsed = this->command.Split(' ');
-    string item = commandParsed[0];
+    const string item = commandParsed[0];
+    if (item == "UPDATE")
+        ExecuteUpdate_Internal(commandParsed);
+    else if (item == "DELETE")
+        ExecuteDelete_Internal(commandParsed);
+    else if (item == "INSERT")
+        SQLInsertCommand(this->command, GetTable("user")).Execute();
+}
+
+System::SQL::SQLReader System::SQL::SQLCommand::ExecuteReader() const
+{
+    if (!IsValid()) throw SQLException("DataBase is not open");
+    Collections::Generic::List<string> commandParsed = this->command.Split(' ');
+    const string item = commandParsed[0];
     if (item == "UPDATE")
         return ExecuteUpdateReader_Internal(commandParsed);
     if (item == "DELETE")
         return ExecuteDeleteReader_Internal(commandParsed);
+    if (item == "INSERT")
+        return SQLInsertCommand(this->command, GetTable("user")).ExecuteReader();
     return SQLReader();
 }
 #pragma endregion custom methods

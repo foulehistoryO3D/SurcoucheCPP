@@ -19,8 +19,6 @@ namespace System
         private:
             String command = "";
             Integer timeout = 0;
-            Collections::Generic::List<SqlData> sqlData;
-            Collections::Generic::List<SqlData> valuesData;
             DataBaseLocal* databaseLocal = null;
         public:
             String Command() const;
@@ -36,19 +34,16 @@ namespace System
 #pragma endregion constructor
 #pragma region custom methods
         private:
-            Collections::Generic::List<SqlData> RegisterValues(Collections::Generic::List<string> values);
-            Collections::Generic::List<SqlData> GetDataValues(const string& str);
-            SqlData* GetData(const string& key);
             string GetID() const;
-            Collections::Generic::List<string> GetValues() const;
-            void UpdateValues();
-            string ConstructNewLine(const string& id);
             DataBaseTable*  GetTable(string tableName) const;
-            SQLReader ExecuteUpdateReader_Internal(Collections::Generic::List<string> _commandParsed);
-            SQLReader ExecuteDeleteReader_Internal(Collections::Generic::List<string> _commandParsed) const;
+            SQLReader ExecuteUpdateReader_Internal(Collections::Generic::List<string> commandParsed) const;
+            void ExecuteUpdate_Internal(Collections::Generic::List<string> commandParsed) const;
+            void ExecuteDelete_Internal(Collections::Generic::List<string> commandParsed) const;
+            void GetValuesCommand(Collections::Generic::List<String> commandParsed, DataBaseTable*& table, string& id) const;
+            SQLReader ExecuteDeleteReader_Internal(Collections::Generic::List<string> commandParsed) const;
         public:
-            void ExecuteNoQuery();
-            SQLReader ExecuteReader();
+            void ExecuteNoQuery() const;
+            SQLReader ExecuteReader() const;
 #pragma endregion custom methods
 #pragma region override
         public:

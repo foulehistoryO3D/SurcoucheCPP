@@ -31,6 +31,7 @@ namespace System
 #pragma region custom methods
     public:
         static Integer Parse(const String& _str);
+        static Boolean TryParse(const String& str, Integer& out);
         static Integer Parse(const Span<Char>& _arrayChar);
 #pragma endregion custom methods
 #pragma region override

@@ -23,7 +23,10 @@ System::IO::TextWriter System::Console::OutInternal()
     const string& path = IO::Path::Combine(DirectoryPath(), "Out.txt");
     if (!IO::File::Exists(path))
         IO::File::Create(path);
-    return path;
+
+    IO::TextWriter writer = IO::TextWriter(path);
+    writer.Clear();
+    return writer;
 }
 
 System::IO::TextReader System::Console::InInternal()
@@ -39,7 +42,10 @@ System::IO::TextWriter System::Console::ErrorInternal()
     const string& path = IO::Path::Combine(DirectoryPath(), "Error.txt");
     if (!IO::File::Exists(path))
         IO::File::Create(path);
-    return path;
+    
+    IO::TextWriter writer = IO::TextWriter(path);
+    writer.Clear();
+    return writer;
 }
 
 void System::Console::WriteLine(const object* _object)
