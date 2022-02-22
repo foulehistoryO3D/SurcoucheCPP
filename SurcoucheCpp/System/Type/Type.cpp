@@ -116,6 +116,11 @@ System::Boolean System::Type::IsEnum() const
     return mBitMask & Enum;
 }
 
+System::Boolean System::Type::IsArray() const
+{
+    return mBitMask & ArrayType;
+}
+
 System::Type* System::Type::Clone(const void* _type)
 {
     Type* _result = new Type();

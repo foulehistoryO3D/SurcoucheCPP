@@ -13,7 +13,7 @@ namespace System
     class Array sealed : public Object, public ICloneable<Array<Item>>, public Collections::Generic::IEnumerator<Item>, public Collections::Generic::IEnumerable<Item>
     {
         DECLARE_CLASS_INFO(Object)
-        REGISTER_ATTRIBUTE(Sealed | PrimaryType)
+        REGISTER_ATTRIBUTE(Sealed | PrimaryType | ArrayType)
 #pragma region f/p
     private:
         Item* mItems = new Item[0];

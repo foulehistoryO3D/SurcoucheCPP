@@ -65,7 +65,8 @@ const int mSubClassCount = RegisterSubClass(this);
         Abstract=4,
         PrimaryType = 8,
         Final = 16,
-        Enum = 32
+        Enum = 32,
+        ArrayType = 64
     };
 #pragma endregion enum
     inline size_t HashCode(const char* s)
@@ -115,6 +116,7 @@ const int mSubClassCount = RegisterSubClass(this);
         Boolean IsType() const;
         Boolean IsFinal()const;
         Boolean IsEnum()const;
+        Boolean IsArray()const;
         static Type* Clone(const void* _type);
 #pragma endregion custom methods
 #pragma region operator
