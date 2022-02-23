@@ -140,4 +140,24 @@ System::Char& System::Char::operator=(const Char& _other)
     mValue = std::move(_other.mValue);
     return *this;
 }
+
+System::Boolean System::Char::operator==(const Char& other) const
+{
+    return this->mValue == other.mValue;
+}
+
+System::Boolean System::Char::operator==(const char& other) const
+{
+    return this->mValue == other;
+}
+
+System::Boolean System::Char::operator!=(const Char& other) const
+{
+    return !this->operator==(other);
+}
+
+System::Boolean System::Char::operator!=(const char& other) const
+{
+    return !this->operator==(other);
+}
 #pragma endregion override

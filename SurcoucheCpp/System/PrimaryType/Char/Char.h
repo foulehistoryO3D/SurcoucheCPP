@@ -53,6 +53,10 @@ namespace System
     public:
         Char& operator=(const Char& _other);
         operator char()const { return mValue; }
+        Boolean operator==(const Char& other)const;
+        Boolean operator==(const char& other)const;
+        Boolean operator!=(const Char& other)const;
+        Boolean operator!=(const char& other)const;
 #pragma endregion operator
     };
 }

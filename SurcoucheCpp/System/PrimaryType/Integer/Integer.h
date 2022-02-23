@@ -43,6 +43,7 @@ namespace System
         Boolean Equals(const object& _obj, const object& _other) override;
         Integer GetHashCode() const override;
         Boolean Equals(const int& _object)override;
+        Boolean Equals(const Integer& _object);
         Boolean ToBoolean() override;
         Byte ToByte() override;
         Char ToChar() override;
@@ -81,6 +82,8 @@ namespace System
         Integer operator--();
         Boolean operator==(const Integer& other) const;
         Boolean operator==(const int other) const;
+        Boolean operator!=(const Integer& other) const;
+        Boolean operator!=(const int other) const;
         
 #pragma endregion operator
     };

@@ -160,6 +160,11 @@ System::Integer System::Text::StringBuilder::GetHashCode() const
     return ToString().GetHashCode();
 }
 
+System::Text::StringBuilder::operator const char*() const
+{
+    return ToString();
+}
+
 System::Text::StringBuilder& System::Text::StringBuilder::operator=(const StringBuilder& other)
 {
     mValue = other.mValue;

@@ -15,7 +15,7 @@ string System::Net::NetMessageTypes::Name() const
 }
 #pragma endregion f/p
 #pragma region constructor
-System::Net::NetMessageTypes::NetMessageTypes(const string& name) : SmartEnum<System::Net::NetMessageTypes>()
+System::Net::NetMessageTypes::NetMessageTypes(const string& name) : SmartEnum<NetMessageTypes>()
 {
     this->name = name;
     Register(this);

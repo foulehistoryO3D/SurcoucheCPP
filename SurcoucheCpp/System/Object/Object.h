@@ -1,4 +1,6 @@
 ﻿#pragma once
+#include <map>
+
 #include "../Type/Type.h"
 
 #pragma warning(disable: 4584)
@@ -16,6 +18,8 @@ namespace System
     class Object : public Type
     {
         DECLARE_CLASS_INFO(Type)
+#pragma region f/p
+#pragma endregion f/p
 #pragma region constructor/destructor
     public:
         Object() = default;

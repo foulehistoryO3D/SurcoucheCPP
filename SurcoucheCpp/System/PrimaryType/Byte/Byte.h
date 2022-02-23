@@ -44,6 +44,7 @@ namespace System
 #pragma endregion override
 #pragma region operator
     public:
+        operator byte();
         Byte& operator=(const Byte& _other);
         operator byte()const { return mValue;}
         Boolean operator==(const Byte& _other) const;

@@ -26,6 +26,11 @@ System::Boolean System::Boolean::Parse(const String& _str)
         throw Exception("[Boolean] => error parsing value is invalid !");
     return _str.ToLower() == "true";
 }
+
+System::Boolean System::Boolean::Equals(const Boolean& other)
+{
+    return mValue == other.mValue;
+}
 #pragma endregion constructor
 #pragma region override
 System::String System::Boolean::ToString() const

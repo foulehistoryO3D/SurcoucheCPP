@@ -67,6 +67,7 @@ namespace System
 #pragma endregion override
 #pragma region operator
         public:
+            operator const char*() const;
             StringBuilder& operator=(const StringBuilder& other);
 #pragma endregion operator
         };

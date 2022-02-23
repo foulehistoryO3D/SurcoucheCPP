@@ -121,6 +121,11 @@ System::Boolean System::Type::IsArray() const
     return mBitMask & ArrayType;
 }
 
+System::Boolean System::Type::IsPrimaryType() const
+{
+    return mBitMask & PrimaryType;
+}
+
 System::Type* System::Type::Clone(const void* _type)
 {
     Type* _result = new Type();

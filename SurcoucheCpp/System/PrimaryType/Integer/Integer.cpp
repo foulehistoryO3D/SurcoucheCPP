@@ -96,6 +96,11 @@ System::Bool System::Integer::Equals(const int& _object)
     return mValue == _object;
 }
 
+System::Boolean System::Integer::Equals(const Integer& _object)
+{
+    return mValue == _object.mValue;
+}
+
 System::Boolean System::Integer::ToBoolean()
 {
     if (mValue != 0 && mValue != 1)
@@ -301,5 +306,15 @@ System::Boolean System::Integer::operator==(const Integer& other) const
 System::Boolean System::Integer::operator==(const int other) const
 {
     return mValue == other;
+}
+
+System::Boolean System::Integer::operator!=(const Integer& other) const
+{
+    return !this->operator==(other);
+}
+
+System::Boolean System::Integer::operator!=(const int other) const
+{
+    return !this->operator==(other);
 }
 #pragma endregion operator

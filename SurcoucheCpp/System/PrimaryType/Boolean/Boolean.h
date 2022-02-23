@@ -24,6 +24,7 @@ namespace System
 #pragma region custom methods
     public:
         static Boolean Parse(const String& _str);
+        Boolean Equals(const Boolean& other);
 #pragma endregion custom methods
 #pragma region override
     public:

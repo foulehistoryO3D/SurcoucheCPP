@@ -109,6 +109,11 @@ System::Integer System::Byte::ToInteger()
     return mValue;
 }
 
+System::Byte::operator unsigned char()
+{
+    return mValue;
+}
+
 #pragma endregion override
 #pragma region operator
 

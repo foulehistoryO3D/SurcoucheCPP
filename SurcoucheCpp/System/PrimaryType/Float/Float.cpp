@@ -38,6 +38,11 @@ System::Float System::Float::Parse(const String& _str)
     return _value;
 }
 
+System::Boolean System::Float::Equals(const Float& other)
+{
+    return mValue == other.mValue;
+}
+
 System::String System::Float::ToString() const
 {
     return std::to_string(mValue).c_str();

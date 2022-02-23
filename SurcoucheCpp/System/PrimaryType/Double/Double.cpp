@@ -41,6 +41,11 @@ System::Boolean System::Double::IsNegativeInfinity(const Double& _double)
 {
     return _double == NegativeInfinity;
 }
+
+System::Boolean System::Double::Equals(const Double& other)
+{
+    return mValue == other.mValue;
+}
 #pragma endregion constructor
 #pragma region override
 System::Boolean System::Double::Equals(const double& _object)
@@ -98,6 +103,7 @@ System::Byte System::Double::ToByte()
 {
     if (mValue < 0 || mValue > Byte::MaxValue)
         throw InvalidCastException("Cannot cast double value to byte");
+    return mValue;
 }
 
 System::Char System::Double::ToChar()
@@ -133,12 +139,11 @@ System::Double& System::Double::operator=(const Double& _other)
     return *this;
 }
 
-System::Double& System::Double::operator/(const Double& other) const
+System::Double System::Double::operator/(const Double& other) const
 {
     if (other == 0.0)
         throw DivideByZeroException(string::Format("Division of {0} by zero.", *this));
-    Double result = mValue / other;
-    return result;
+    return mValue / other;
 }
 
 System::Double System::Double::operator/=(const Double& other)
@@ -149,10 +154,9 @@ System::Double System::Double::operator/=(const Double& other)
     return *this;
 }
 
-System::Double& System::Double::operator*(const Double& other) const
+System::Double System::Double::operator*(const Double& other) const
 {
-    Double result = mValue * other;
-    return result;
+    return mValue * other;
 }
 
 System::Double System::Double::operator*=(const Double& other)
@@ -161,10 +165,9 @@ System::Double System::Double::operator*=(const Double& other)
     return *this;
 }
 
-System::Double& System::Double::operator+(const Double& other) const
+System::Double System::Double::operator+(const Double& other) const
 {
-    Double result = mValue + other;
-    return result;
+    return mValue + other;
 }
 
 System::Double System::Double::operator+=(const Double& other)
@@ -173,10 +176,9 @@ System::Double System::Double::operator+=(const Double& other)
     return *this;
 }
 
-System::Double& System::Double::operator-(const Double& other) const
+System::Double System::Double::operator-(const Double& other) const
 {
-    Double result = mValue - other;
-    return result;
+    return mValue - other;
 }
 
 System::Double System::Double::operator-=(const Double& other)

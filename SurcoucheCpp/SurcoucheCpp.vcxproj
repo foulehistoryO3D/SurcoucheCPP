@@ -264,6 +264,7 @@
     <ClCompile Include="System.SQL\Reader\SQLReader.cpp" />
     <ClCompile Include="System.SQL\SqlData.cpp" />
     <ClCompile Include="System.Text.Json\Element\JsonElement.cpp" />
+    <ClCompile Include="System.Text.Json\Property\JsonProperty.cpp" />
     <ClCompile Include="System.Text.Json\Serializer\JsonSerializer.cpp" />
     <ClCompile Include="System.Text.RegularExpressions\CaptureCollection\CaptureCollection.cpp" />
     <ClCompile Include="System.Text.RegularExpressions\Capture\Capture.cpp" />
@@ -504,6 +505,7 @@
     <ClInclude Include="System.SQL\SqlData.h" />
     <ClInclude Include="System.Text.Json\Element\JsonElement.h" />
     <ClInclude Include="System.Text.Json\Exception\JsonException\JsonException.h" />
+    <ClInclude Include="System.Text.Json\Property\JsonProperty.h" />
     <ClInclude Include="System.Text.Json\Serializer\JsonSerializer.h" />
     <ClInclude Include="System.Text.Json\ValueKind\JsonValueKind.h" />
     <ClInclude Include="System.Text.RegularExpressions\CaptureCollection\CaptureCollection.h" />

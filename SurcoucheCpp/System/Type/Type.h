@@ -117,6 +117,7 @@ const int mSubClassCount = RegisterSubClass(this);
         Boolean IsFinal()const;
         Boolean IsEnum()const;
         Boolean IsArray()const;
+        Boolean IsPrimaryType()const;
         static Type* Clone(const void* _type);
 #pragma endregion custom methods
 #pragma region operator
