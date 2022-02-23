@@ -5,7 +5,15 @@
 
 System::String System::Text::Json::JsonSerializer::SerializeClass(std::pair<string, object*> value)
 {
-    return string::Empty;
+    StringBuilder builder = StringBuilder();
+    std::map<string, object*> map = std::map<string, object*>();
+    std::map<string, object*>::iterator begin = map.begin();
+    const std::map<string, object*>::iterator end = map.end();
+    for (; begin != end; ++begin)
+    {
+        
+    }
+    return builder.ToString();
 }
 
 System::String System::Text::Json::JsonSerializer::SerializePrimaryType(std::pair<string, object*> value)
