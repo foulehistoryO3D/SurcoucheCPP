@@ -7,6 +7,7 @@
 #include "../TemplateUtils/TemplateUtils.h"
 #include "../../System.IO/Stream/TextWriter/TextWriter.h"
 #include "../../System.IO/Stream/TextReader/TextReader.h"
+#include "Enum/ConsoleColor.h"
 
 namespace System
 {
@@ -19,6 +20,8 @@ namespace System
     {
         DECLARE_CLASS_INFO(Object)
 #pragma region f/p
+    private:
+        inline static HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     public:
         static IO::TextWriter Out;
         static IO::TextReader In;
@@ -33,6 +36,8 @@ namespace System
      public:
         static void WriteLine(const object* _object);
         static void WriteLine(const object& _object);
+        static void WriteLine(const string& str);
+        static void WriteLineColor(const object& obj, const ConsoleColor& color);
         template<typename... Args>
         static void WriteLine(const String& _str, Args... _args);
         // static void WriteLine(Char _char);
@@ -47,6 +52,7 @@ namespace System
     template <typename ... Args>
     void Console::WriteLine(const String& _str, Args... _args)
     {
+        SetConsoleTextAttribute(hConsole, static_cast<int>(ConsoleColor::Gray));
         Collections::Generic::List<object*> _package = TemplateUtils::CreateListWithParameterPack<object*>(&_args...);
         const int _count = _package.Count();
         String _result = _str;

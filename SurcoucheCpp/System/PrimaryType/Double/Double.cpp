@@ -46,6 +46,13 @@ System::Boolean System::Double::Equals(const Double& other)
 {
     return mValue == other.mValue;
 }
+
+System::String System::Double::ToString(const Integer& precision) const
+{
+    std::ostringstream ostringstream = std::ostringstream();
+    ostringstream << std::fixed << std::setprecision(precision) << mValue;
+    return ostringstream.str().c_str();
+}
 #pragma endregion constructor
 #pragma region override
 System::Boolean System::Double::Equals(const double& _object)

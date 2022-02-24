@@ -28,6 +28,8 @@ namespace System
 #define interface __interface
 #define typeof decltype
 #define null nullptr
+#define VARARGS     __cdecl
+#define IS_ENUM(x) __is_enum(x)
 #define PURE_VIRTUAL() = 0;
 
 #define REGISTER_ATTRIBUTE(bitmask)\

@@ -31,6 +31,7 @@ namespace System
     public:
         static Float Parse(const String& _str);
         Boolean Equals(const Float& other);
+        String ToString(const Integer& precision) const;
 #pragma endregion custom methods
 #pragma region override
     public:

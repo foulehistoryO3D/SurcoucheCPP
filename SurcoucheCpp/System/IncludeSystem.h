@@ -54,12 +54,6 @@ using namespace System;
 using namespace IO;
 using namespace Collections::Generic;
 
-
-#define newArray(type, count) Array<type>(count)
-
-#define newArrayWithValues(type, ...)\
-    Array<type>(TemplateUtils::CreateListWithParameterPack<type>(__VA_ARGS__))
-
 template<typename T>
 void foreach(IEnumerator<T>* _enumerator, Action<T> _callback)
 {

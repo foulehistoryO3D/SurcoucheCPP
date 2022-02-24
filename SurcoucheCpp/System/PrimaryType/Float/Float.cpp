@@ -43,6 +43,13 @@ System::Boolean System::Float::Equals(const Float& other)
     return mValue == other.mValue;
 }
 
+System::String System::Float::ToString(const Integer& precision) const
+{
+    std::ostringstream strs = std::ostringstream();
+    strs << std::fixed << std::setprecision(precision) << mValue;
+    return strs.str().c_str();
+}
+
 System::String System::Float::ToString() const
 {
     return std::to_string(mValue).c_str();

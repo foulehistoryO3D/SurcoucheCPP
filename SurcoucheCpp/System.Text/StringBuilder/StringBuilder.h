@@ -31,7 +31,6 @@ namespace System
             int mCapacity = 0;
             int mCapacityMax = 255;
         public:
-            static const StringBuilder Empty;
 #pragma endregion f/p
 #pragma region constructor
         public:

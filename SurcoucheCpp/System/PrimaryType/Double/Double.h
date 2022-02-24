@@ -33,6 +33,7 @@ namespace System
         static Boolean IsInfinity(const Double& _double);
         static Boolean IsNegativeInfinity(const Double& _double);
         Boolean Equals(const Double& other);
+        String ToString(const Integer& precision) const;
 #pragma endregion custom methods
 #pragma region override
     public:

@@ -42,7 +42,7 @@ System::IO::TextWriter System::Console::ErrorInternal()
     const string& path = IO::Path::Combine(DirectoryPath(), "Error.txt");
     if (!IO::File::Exists(path))
         IO::File::Create(path);
-    
+
     IO::TextWriter writer = IO::TextWriter(path);
     writer.Clear();
     return writer;
@@ -50,14 +50,30 @@ System::IO::TextWriter System::Console::ErrorInternal()
 
 void System::Console::WriteLine(const object* _object)
 {
+    SetConsoleTextAttribute(hConsole, static_cast<int>(ConsoleColor::Gray));
     std::cout << _object->ToString() << std::endl;
     Out.Write(_object);
 }
 
 void System::Console::WriteLine(const object& _object)
 {
+    SetConsoleTextAttribute(hConsole, static_cast<int>(ConsoleColor::Gray));
     std::cout << _object.ToString() << std::endl;
     Out.Write(_object);
+}
+
+void System::Console::WriteLine(const string& str)
+{
+    SetConsoleTextAttribute(hConsole, static_cast<int>(ConsoleColor::Gray));
+    std::cout << str << std::endl;
+    Out.Write(str);
+}
+
+void System::Console::WriteLineColor(const object& obj, const ConsoleColor& color)
+{
+    SetConsoleTextAttribute(hConsole, static_cast<int>(color));
+    std::cout << obj.ToString() << std::endl;
+    Out.Write(obj);
 }
 
 void System::Console::SetIn(IO::TextReader _in)
@@ -92,10 +108,8 @@ void System::Console::SetError(IO::TextWriter _error)
 
 System::String System::Console::ReadLine()
 {
-    // if (std::cin.get() == '\n') return "";
-    // std::string _str = "";
-    // std::getline(std::cin, _str);
-    return string::Empty;
+    Collections::Generic::List<string> list = IO::File::ReadAllLines(Out.Path());
+    return list[list.Count()-1];
 }
 
 void System::Console::Dispose()
