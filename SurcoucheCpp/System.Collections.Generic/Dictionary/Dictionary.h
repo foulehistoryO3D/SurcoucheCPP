@@ -223,11 +223,8 @@ namespace System
                 for (int32 i = 0; i < mSize; ++i)
                 {
                     KeyValuePair<TKey, TValue> pair = mTab[i];
-                    if (pair == defaultPair)continue;
-                    object* key = reinterpret_cast<object*>(&pair.Key);
-                    object* value = reinterpret_cast<object*>(&pair.Value);
-                    if (key == nullptr || value == nullptr) continue;
-                    result += string::Format("Key: {0}, Value: {1} \n", key->ToString(), value->ToString());
+                    if (pair == defaultPair) continue;
+                    result += string::Format("{0} \n", pair.ToString());
                 }
                 return result;
             }

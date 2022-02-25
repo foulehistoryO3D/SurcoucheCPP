@@ -1,19 +1,12 @@
 #include "System/IncludeSystem.h"
-#include "System/Utils/AssertSystem/AssertMacro.h"
+#include "System.Collections.Generic/LinkedList/LinkedList.h"
 
-class A
-{
-public:
-    void Test()
-    {
-        Deprecated_Function(1.0, "Test1")
-    }
-};
 
 int main()
 {
     SetConsoleOutputCP(CP_UTF8);
-    A a;
-    a.Test();
+    Int tabInt[5] = {0,1,2,3,4};
+    LinkedList<Int> tab = LinkedList<Int>({0,1,2,3,4,5});
+    Console::WriteLine(tab);
     return 0;
 }

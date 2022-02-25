@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "../../System/Object/Object.h"
 #include "../../System/PrimaryType/Boolean/Boolean.h"
+#include "../../System/PrimaryType/String/String.h"
 namespace System
 {
     namespace Collections
@@ -22,6 +23,10 @@ namespace System
                 KeyValuePair(const TKey& _key, const TValue& _value);
                 KeyValuePair(const KeyValuePair& _pair);
 #pragma endregion constructor
+#pragma region override
+            public:
+                String ToString() const override;
+#pragma endregion override
 #pragma region opeator
                 KeyValuePair operator=(const KeyValuePair& _other);
                 Boolean operator==(const KeyValuePair& other);
@@ -41,6 +46,17 @@ namespace System
             {
                 Key = std::move(_pair.Key);
                 Value = std::move(_pair.Value);
+            }
+
+            template <typename TKey, typename TValue>
+            String KeyValuePair<TKey, TValue>::ToString() const
+            {
+                TKey tKey = Key;
+                TValue tValue = Value;
+                const object* key = reinterpret_cast<object*>(&tKey);
+                const object* value = reinterpret_cast<object*>(&tValue);
+                if (key == null || value == null) return string::Empty;
+                return string::Format("{0} => {1}", key->ToString(), value->ToString());
             }
 #pragma endregion constructor
 #pragma region operator

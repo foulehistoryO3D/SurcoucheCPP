@@ -459,6 +459,9 @@
     <ClInclude Include="System.Collections.Generic\Interface\Enumerator\IEnumerator.h" />
     <ClInclude Include="System.Collections.Generic\Interface\List\IList.h" />
     <ClInclude Include="System.Collections.Generic\KeyValuePair\KeyValuePair.h" />
+    <ClInclude Include="System.Collections.Generic\LinkedList\Iterator\LinkedListIterator.h" />
+    <ClInclude Include="System.Collections.Generic\LinkedList\LinkedList.h" />
+    <ClInclude Include="System.Collections.Generic\LinkedList\LinkedListNode\LinkedListNode.h" />
     <ClInclude Include="System.Collections.Generic\List\List.h" />
     <ClInclude Include="System.Collections\Interface\Collection\ICollection.h" />
     <ClInclude Include="System.Collections\Interface\Enumerable\Enumerable.h" />

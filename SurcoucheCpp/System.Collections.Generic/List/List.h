@@ -16,14 +16,14 @@ namespace System
     class Func;
     template <typename Item>
     class Predicate;
-    class String;
 
     namespace Collections
     {
         namespace Generic
         {
             template <typename Item>
-            class List final : public Object, public IList<Item>, public IEnumerator<Item>, ICloneable<List<Item>>
+            class List final : public Object, public IList<Item>, public IEnumerator<Item>,
+                               public ICloneable<List<Item>>
             {
                 REGISTER_ATTRIBUTE(Final)
                 DECLARE_CLASS_INFO(Object)
@@ -69,6 +69,7 @@ namespace System
                 Item Current() override;
                 bool MoveNext() override;
                 void Reset() override;
+                Integer GetHashCode() const override;
 #pragma endregion override
 #pragma region operator
             public:
@@ -78,7 +79,6 @@ namespace System
                 Item& operator[](const int _index) const;
                 bool operator==(const List& list) const;
                 List<Item>* Clone() override;
-
 #pragma endregion operator
             };
 #pragma region constructor/destructor
@@ -302,7 +302,11 @@ namespace System
             template <typename Item>
             bool List<Item>::MoveNext()
             {
-                if (++mCurrentIndex >= mCount) return false;
+                if (++mCurrentIndex >= mCount)
+                {
+                    Reset();
+                    return false;
+                }
                 mCurrentItem = mTab[mCurrentIndex];
                 return true;
             }
@@ -311,6 +315,19 @@ namespace System
             void List<Item>::Reset()
             {
                 mCurrentIndex = -1;
+            }
+
+            template <typename Item>
+            Integer List<Item>::GetHashCode() const
+            {
+                int result = 0;
+                for (int i = 0; i < mCount; ++i)
+                {
+                    object* o = reinterpret_cast<object*>(&mTab[i]);
+                    if (!o) continue;
+                    result += o->GetHashCode();
+                }
+                return result;
             }
 #pragma endregion custom methods
 #pragma region operator

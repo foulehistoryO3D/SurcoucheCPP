@@ -2,6 +2,7 @@
 #include "../../Object/Object.h"
 #include "../../PrimaryType/Integer/Integer.h"
 #include "../../PrimaryType/Char/Char.h"
+#include "../Array/Array.h"
 
 namespace System
 {
@@ -11,7 +12,7 @@ namespace System
         REGISTER_ATTRIBUTE(Sealed | PrimaryType)
 #pragma region f/p
     private:
-        std::vector<Char> buffer    = std::vector<Char>();
+        std::vector<Byte> buffer    = std::vector<Byte>();
     public:
         Integer Size()const;
 #pragma endregion f/p
@@ -19,13 +20,14 @@ namespace System
     public:
         Buffer() = default;
         Buffer(const Integer& size);
-        Buffer(std::initializer_list<Char> items);
+        Buffer(std::initializer_list<Byte> items);
         Buffer(const Buffer& copy);
         ~Buffer()override;
 #pragma endregion constructor
 #pragma region custom methods
     public:
-        void Insert(Char c);
+        void Insert(Byte c);
+        void CopyTo(Array<Byte>& out);
 #pragma endregion custom methods
 #pragma region override
     public:
@@ -33,12 +35,12 @@ namespace System
         Integer GetHashCode() const override;
         Boolean operator==(const object& _obj) override;
         Boolean operator==(const object* _obj) override;
-        
+        Boolean operator==(const Buffer& other);
 #pragma endregion override
 #pragma region operator
     public:
         Buffer& operator=(const Buffer& other);
-        Char& operator[](const Integer& index);
+        Byte& operator[](const Integer& index);
 #pragma endregion operator
     };
 }
