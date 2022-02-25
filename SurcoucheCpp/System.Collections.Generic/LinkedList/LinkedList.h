@@ -115,6 +115,17 @@ namespace System
                         currentTree = currentTree->next;
                     }
                 }
+
+                LinkedListNode<Item>* Find(Item item)
+                {
+                    LinkedListNode<Item>* currentTree = this->tree;
+                    while (currentTree->next)
+                    {
+                        if (currentTree->value == item) return currentTree;
+                        currentTree = currentTree->next;
+                    }
+                    return null;
+                }
 #pragma endregion custom methods
 #pragma region override
             public:
@@ -141,8 +152,14 @@ namespace System
                     this->lastNode = null;
                 }
 
-                bool Contains(Item _item) override { return false; }
-
+                bool Contains(Item _item) override
+                {
+                    for (Item item : *this)
+                        if (item == _item)
+                            return true;
+                    return false;
+                }
+        
                 void Remove(Item _item) override
                 {
                     LinkedListNode<Item>* currentTree = this->tree;
