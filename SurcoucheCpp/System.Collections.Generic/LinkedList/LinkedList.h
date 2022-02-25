@@ -1,4 +1,5 @@
 #pragma once
+#include "../../System/Exception/IndexOutOfRange/IndexOutOfRangeException.h"
 #include "../../System/Utils/Template/TemplateMacro.h"
 #include "../Interface/List/IList.h"
 #include "LinkedListNode/LinkedListNode.h"
@@ -182,7 +183,21 @@ namespace System
                     return ToString().GetHashCode();
                 }
 #pragma endregion override
-#pragma endregion override
+#pragma region operator
+            public:
+                Item& operator[](const Integer& index)
+                {
+                    if (index < 0 || index >= this->count)
+                        throw IndexOutOfRangeException("Linkedlist invalid index !");
+
+                    LinkedListNode<Item>* currentTree = this->tree;
+                    for (int i = 0; i < index; ++i)
+                        currentTree = currentTree->next;
+                    if (currentTree == null)
+                        throw OutOfRange("Index out of range");
+                    return currentTree->value;
+                }
+#pragma endregion operator
                 class LinkedListIterator sealed
                 {
                     friend class LinkedList;
