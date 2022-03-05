@@ -8,7 +8,7 @@ namespace System
         class ICollection : public IEnumerable
         {
         public:
-            virtual int Count()const PURE_VIRTUAL()
+            virtual Integer Count()const PURE_VIRTUAL()
         };
     }
 }

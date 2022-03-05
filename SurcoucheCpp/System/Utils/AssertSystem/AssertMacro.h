@@ -40,3 +40,4 @@ namespace System
 
 #define Deprecated_Macro(version, message) Emit_Custom_Warning_At_Line_With_Version(__LINE__, version, message ", please update your code");
 #define Deprecated_Function(version, newFunction) Emit_Custom_Warning_At_Line_With_Version(__LINE__, version, __FUNCTION__ " is deprecated please update your code, please use " newFunction);
+#define TEST(str) [[deprecated(str)]]

@@ -161,6 +161,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="SurcoucheCpp.cpp" />
+    <ClCompile Include="System.Collections.Generic\Stack\Stack.cpp" />
     <ClCompile Include="System.Diagnostics\Process\Process.cpp" />
     <ClCompile Include="System.IO\Directory\Directory.cpp" />
     <ClCompile Include="System.IO\Directory\DirectoryInfo\DirectoryInfo.cpp" />
@@ -463,6 +464,8 @@
     <ClInclude Include="System.Collections.Generic\LinkedList\LinkedList.h" />
     <ClInclude Include="System.Collections.Generic\LinkedList\LinkedListNode\LinkedListNode.h" />
     <ClInclude Include="System.Collections.Generic\List\List.h" />
+    <ClInclude Include="System.Collections.Generic\Queue\Queue.h" />
+    <ClInclude Include="System.Collections.Generic\Stack\Stack.h" />
     <ClInclude Include="System.Collections\Interface\Collection\ICollection.h" />
     <ClInclude Include="System.Collections\Interface\Enumerable\Enumerable.h" />
     <ClInclude Include="System.Collections\Interface\Enumerator\IEnumerator.h" />

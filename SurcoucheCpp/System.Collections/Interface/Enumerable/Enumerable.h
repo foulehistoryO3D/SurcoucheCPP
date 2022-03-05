@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include "../../../System/Object/Object.h"
 
 class IEnumerator;
 
@@ -12,7 +11,7 @@ namespace System
         public:
             virtual ~IEnumerable() = default;
         private:
-            virtual IEnumerator* GetEnumerator() PURE_VIRTUAL()
+            virtual IEnumerator* GetEnumerator() = 0;
         };
     }
 }

@@ -14,7 +14,7 @@ namespace System
             class LinkedList sealed : public Object, public ICollection<Item>, public IEnumerable<Item>,
                                       public IEnumerator<Item>
             {
-                static_assert(!AreTypesEqual<Object, Item>::Value, "LinkedList Item must be an object");
+                static_assert(std::is_base_of_v<Object, Item>, "LinkedList T must be an Object");
                 DECLARE_CLASS_INFO(Object)
                 REGISTER_ATTRIBUTE(Sealed)
 #pragma region f/p
@@ -83,6 +83,27 @@ namespace System
                     currentTree->next = newNode;
                     if (newNode->next == null)
                         this->lastNode = newNode;
+                    count++;
+                }
+
+                void AddBefore(LinkedListNode<Item>* node, Item value)
+                {
+                    if (node == this->firstNode)
+                    {
+                        AddFirst(value);
+                        return;
+                    }
+                    LinkedListNode<Item>* currentTree = this->tree;
+                    while (currentTree->next != null)
+                    {
+                        if (currentTree == node) break;
+                        currentTree = currentTree->next;
+                    }
+                    LinkedListNode<Item>* newNode = new LinkedListNode<Item>(this, value);
+                    newNode->next = currentTree;
+                    newNode->previous = currentTree->previous;
+                    currentTree->previous->next = newNode;
+                    currentTree->previous = newNode;
                     count++;
                 }
 
@@ -215,6 +236,7 @@ namespace System
                     return currentTree->value;
                 }
 #pragma endregion operator
+#pragma region iterator
                 class LinkedListIterator sealed
                 {
                     friend class LinkedList;
@@ -226,8 +248,9 @@ namespace System
                 public:
                     LinkedListIterator() = default;
 
-                    LinkedListIterator(LinkedListNode<Item>* newPtr) : nodePtr(newPtr)
+                    LinkedListIterator(LinkedListNode<Item>* newPtr)
                     {
+                        this->nodePtr = newPtr;
                     }
 #pragma endregion constructor
 #pragma region operator
@@ -259,6 +282,7 @@ namespace System
 
                 LinkedListIterator begin() const { return LinkedListIterator(this->firstNode); }
                 LinkedListIterator end() const { return LinkedListIterator(nullptr); }
+#pragma endregion iterator
             };
         }
     }
