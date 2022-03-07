@@ -24,6 +24,13 @@ namespace System
                 int front       = 0;
                 int rear        = -1;
             public:
+                typedef T* iterator;
+                typedef const T* const_iterator;
+
+            iterator begin() { return &array[0];}
+            const_iterator begin()const { return &array[0];}
+            iterator end() { return &array[count];}
+            const_iterator end()const { return &array[count];}
 #pragma endregion f/p
 #pragma region constructor
             public:

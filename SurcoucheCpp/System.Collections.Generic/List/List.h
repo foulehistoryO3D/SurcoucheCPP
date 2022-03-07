@@ -33,6 +33,13 @@ namespace System
                 Item mCurrentItem = Item();
                 int mCount = 0;
                 int mCurrentIndex = -1;
+            public:
+                typedef Item* iterator;
+                typedef const Item* const_iterator;
+                iterator begin() { return &mTab[0];}
+                const_iterator begin()const { return &mTab[0];}
+                iterator end() { return &mTab[mCount];}
+                const_iterator end()const { return &mTab[mCount];}
 #pragma endregion f/p
 #pragma region constructor/destructor
             public:

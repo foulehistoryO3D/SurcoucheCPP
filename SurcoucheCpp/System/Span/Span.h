@@ -39,7 +39,9 @@ namespace System
 #pragma endregion override
 #pragma region operator
     public:
-        Item operator[](const Integer& index);
+        Span<Item>& operator=(const Span<Item>& other);
+        Item operator[](const Integer& index)const;
+        Item& operator[](const Integer& index);
 #pragma endregion operator
     };
 #pragma region f/p
@@ -115,10 +117,25 @@ namespace System
     {
         return tab.GetHashCode();
     }
+
+    template <typename Item>
+    Span<Item>& Span<Item>::operator=(const Span<Item>& other)
+    {
+        this->tab = other.tab;
+        return *this;
+    }
 #pragma endregion override
 #pragma region operator
     template <typename Item>
-    Item Span<Item>::operator[](const Integer& index)
+    Item Span<Item>::operator[](const Integer& index) const
+    {
+        if (index < 0 || index > tab.Count())
+            throw IndexOutOfRangeException("invalid index Span !");
+        return tab[index];
+    }
+
+    template <typename Item>
+    Item& Span<Item>::operator[](const Integer& index)
     {
         if (index < 0 || index > tab.Count())
             throw IndexOutOfRangeException("invalid index Span !");

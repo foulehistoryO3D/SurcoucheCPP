@@ -21,6 +21,13 @@ namespace System
                 int top = -1;
                 inline static constexpr int arrayMax = 1000;
                 T array[arrayMax];
+            public:
+                typedef T* iterator;
+                typedef const T* const_iterator;
+                iterator begin() { return &array[0];}
+                const_iterator begin() const { return &array[0];}
+                iterator end() { return &array[top+1];}
+                const_iterator end()const { return &array[top+1];}
 #pragma endregion f/p
 #pragma region constructor
             public:

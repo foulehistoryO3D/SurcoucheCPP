@@ -16,9 +16,10 @@ namespace System
     class Byte;
     class Integer;
     class Char;
-    class Console : public Object
+    class Console sealed : public Object
     {
         DECLARE_CLASS_INFO(Object)
+        REGISTER_ATTRIBUTE(Sealed)
 #pragma region f/p
     private:
         inline static HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);

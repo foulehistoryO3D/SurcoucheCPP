@@ -32,7 +32,7 @@ namespace System
         Bool mIsAsync = false;
         Bool mIsClose = false;
         Collections::Generic::Dictionary<String, WindowMenu*> mMenus = Collections::Generic::Dictionary<String, WindowMenu*>();
-        Collections::Generic::Dictionary<int, Action<>> mMenuAction = Collections::Generic::Dictionary<int, Action<>>();
+        Collections::Generic::Dictionary<Int, Action<>> mMenuAction = Collections::Generic::Dictionary<Int, Action<>>();
     public:
         int ActionCount()const;
 #pragma endregion f/p

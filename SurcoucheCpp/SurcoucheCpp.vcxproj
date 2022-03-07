@@ -182,6 +182,7 @@
     <ClCompile Include="System.Net\StringEventArgs\DownloadStringCompletedEventArgs.cpp" />
     <ClCompile Include="System.Net\WebCallback\WebCallback.cpp" />
     <ClCompile Include="System.Net\WebClient\WebClient.cpp" />
+    <ClCompile Include="System.Numerics\Vector\Vector2\Vector2.cpp" />
     <ClCompile Include="System.Reflection\MethodInfo\MethodInfo.cpp" />
     <ClCompile Include="System.Reflection\ParameterInfo\ParameterInfo.cpp" />
     <ClCompile Include="System.SQL\Command\DeleteCommand\SQLDeleteCommand.cpp" />
@@ -274,6 +275,7 @@
     <ClCompile Include="System.Text.RegularExpressions\Match\Match.cpp" />
     <ClCompile Include="System.Text.RegularExpressions\Regex\Regex.cpp" />
     <ClCompile Include="System.Text\StringBuilder\StringBuilder.cpp" />
+    <ClCompile Include="System.Threading\Thread\Thread.cpp" />
     <ClCompile Include="System.Timers\ElapsedEventArgs\ElapsedEventArgs.cpp" />
     <ClCompile Include="System.Timers\Timer\Timer.cpp" />
     <ClCompile Include="System\Activator\Activator.cpp" />
@@ -496,6 +498,7 @@
     <ClInclude Include="System.Net\StringEventArgs\DownloadStringCompletedEventArgs.h" />
     <ClInclude Include="System.Net\WebCallback\WebCallback.h" />
     <ClInclude Include="System.Net\WebClient\WebClient.h" />
+    <ClInclude Include="System.Numerics\Vector\Vector2\Vector2.h" />
     <ClInclude Include="System.Reflection\Enum\MemberTypes\MemberTypes.h" />
     <ClInclude Include="System.Reflection\MethodInfo\MethodInfo.h" />
     <ClInclude Include="System.Reflection\ParameterInfo\ParameterInfo.h" />
@@ -522,6 +525,7 @@
     <ClInclude Include="System.Text.RegularExpressions\Match\Match.h" />
     <ClInclude Include="System.Text.RegularExpressions\Regex\Regex.h" />
     <ClInclude Include="System.Text\StringBuilder\StringBuilder.h" />
+    <ClInclude Include="System.Threading\Thread\Thread.h" />
     <ClInclude Include="System.Timers\ElapsedEventArgs\ElapsedEventArgs.h" />
     <ClInclude Include="System.Timers\Timer\Timer.h" />
     <ClInclude Include="System.Utils\Singleton\Singleton.h" />

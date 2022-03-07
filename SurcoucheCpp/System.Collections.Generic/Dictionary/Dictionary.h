@@ -31,6 +31,14 @@ namespace System
                 int mSize = 50;
                 int mCurrentIndex = -1;
                 KeyValuePair<TKey, TValue> mCurrentItem = KeyValuePair<TKey, TValue>();
+            public:
+                typedef KeyValuePair<TKey, TValue>* iterator;
+                typedef const KeyValuePair<TKey, TValue>* const_iterator;
+
+                iterator begin() { return &mTab[0];}
+                const_iterator begin()const { return &mTab[0];}
+                iterator end() { return &mTab[mCount];}
+                const_iterator end() const { return &mTab[mCount];}
 #pragma endregion f/p
 #pragma region constructor
             public:
