@@ -126,6 +126,11 @@ System::Boolean System::Type::IsPrimaryType() const
     return mBitMask & PrimaryType;
 }
 
+System::Boolean System::Type::IsStruct() const
+{
+    return mBitMask & Struct;
+}
+
 System::Type* System::Type::Clone(const void* _type)
 {
     Type* _result = new Type();

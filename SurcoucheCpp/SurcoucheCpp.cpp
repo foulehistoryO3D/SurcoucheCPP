@@ -1,14 +1,10 @@
 #include "System/IncludeSystem.h"
-#include "System.Numerics/Vector/Vector2/Vector2.h"
+#include "System.Numerics/Matrix/Matrix4x4/Matrix4x4.h"
+#include "System.Numerics/Quaternion/Quaternion.h"
 
 int main()
 {
     SetConsoleOutputCP(CP_UTF8);
-    Numerics::Vector2 vec = Numerics::Vector2(10, 100);
-    Numerics::Vector2 vec1 = Numerics::Vector2(200 , 50);
-
-    Console::WriteLine(Numerics::Vector2::Max(vec, vec1));
-
-    
+    Console::WriteLine(Numerics::Matrix4x4::CreateTranslation(Numerics::Vector3(1,10,6)));
     return 0;
 }

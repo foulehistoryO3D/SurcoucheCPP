@@ -182,7 +182,11 @@
     <ClCompile Include="System.Net\StringEventArgs\DownloadStringCompletedEventArgs.cpp" />
     <ClCompile Include="System.Net\WebCallback\WebCallback.cpp" />
     <ClCompile Include="System.Net\WebClient\WebClient.cpp" />
+    <ClCompile Include="System.Numerics\Matrix\Matrix4x4\Matrix4x4.cpp" />
+    <ClCompile Include="System.Numerics\Quaternion\Quaternion.cpp" />
     <ClCompile Include="System.Numerics\Vector\Vector2\Vector2.cpp" />
+    <ClCompile Include="System.Numerics\Vector\Vector3\Vector3.cpp" />
+    <ClCompile Include="System.Numerics\Vector\Vector4\Vector4.cpp" />
     <ClCompile Include="System.Reflection\MethodInfo\MethodInfo.cpp" />
     <ClCompile Include="System.Reflection\ParameterInfo\ParameterInfo.cpp" />
     <ClCompile Include="System.SQL\Command\DeleteCommand\SQLDeleteCommand.cpp" />
@@ -498,7 +502,11 @@
     <ClInclude Include="System.Net\StringEventArgs\DownloadStringCompletedEventArgs.h" />
     <ClInclude Include="System.Net\WebCallback\WebCallback.h" />
     <ClInclude Include="System.Net\WebClient\WebClient.h" />
+    <ClInclude Include="System.Numerics\Matrix\Matrix4x4\Matrix4x4.h" />
+    <ClInclude Include="System.Numerics\Quaternion\Quaternion.h" />
     <ClInclude Include="System.Numerics\Vector\Vector2\Vector2.h" />
+    <ClInclude Include="System.Numerics\Vector\Vector3\Vector3.h" />
+    <ClInclude Include="System.Numerics\Vector\Vector4\Vector4.h" />
     <ClInclude Include="System.Reflection\Enum\MemberTypes\MemberTypes.h" />
     <ClInclude Include="System.Reflection\MethodInfo\MethodInfo.h" />
     <ClInclude Include="System.Reflection\ParameterInfo\ParameterInfo.h" />

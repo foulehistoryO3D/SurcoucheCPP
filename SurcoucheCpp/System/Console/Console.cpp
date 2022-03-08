@@ -58,7 +58,7 @@ void System::Console::WriteLine(const object* _object)
 void System::Console::WriteLine(const object& _object)
 {
     SetConsoleTextAttribute(hConsole, static_cast<int>(ConsoleColor::Gray));
-    std::cout << _object.ToString() << std::endl;
+    std::cout << std::setprecision(1)<< _object.ToString() << std::fixed << std::endl;
     Out.Write(_object);
 }
 
