@@ -146,6 +146,11 @@ System::Double& System::Double::operator=(const Double& _other)
     return *this;
 }
 
+double System::Double::operator*() const
+{
+    return mValue;
+}
+
 System::Double System::Double::operator/(const Double& other) const
 {
     if (other == 0.0)

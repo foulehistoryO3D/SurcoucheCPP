@@ -2,6 +2,7 @@
 #include "../../System/PrimaryType/String/String.h"
 #include "../../System/PrimaryType/Boolean/Boolean.h"
 #include "../../System/PrimaryType/Integer/Integer.h"
+#include "../../System/PrimaryType/Array/Array.h"
 #include "../../System.Collections.Generic/List/List.h"
 #include "../../System/Console/Console.h"
 #include "../Match/Match.h"
@@ -10,7 +11,7 @@
 System::Text::RegularExpressions::Regex::Regex(const String& _pattern)
 {
     mPattern = _pattern;
-    mExpression = std::regex(std::string(_pattern));
+    mExpression = std::regex(std::string(_pattern), static_cast<std::regex::flag_type>(std::regex_constants::ECMAScript ));
 }
 
 System::Text::RegularExpressions::Regex::Regex(const Regex& _copy)
@@ -66,6 +67,11 @@ System::Array<System::String> System::Text::RegularExpressions::Regex::Find(cons
         index++;
     }
     return result;
+}
+
+string System::Text::RegularExpressions::Regex::FindFirst(const String& input) const
+{
+    return Find(input)[0];
 }
 #pragma endregion custom methods
 #pragma region override

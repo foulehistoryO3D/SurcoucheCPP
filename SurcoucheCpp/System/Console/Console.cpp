@@ -52,28 +52,28 @@ void System::Console::WriteLine(const object* _object)
 {
     SetConsoleTextAttribute(hConsole, static_cast<int>(ConsoleColor::Gray));
     std::cout << _object->ToString() << std::endl;
-    Out.Write(_object);
+    Out.Write(string("[Log] => ") + _object->ToString());
 }
 
 void System::Console::WriteLine(const object& _object)
 {
     SetConsoleTextAttribute(hConsole, static_cast<int>(ConsoleColor::Gray));
     std::cout << std::setprecision(1)<< _object.ToString() << std::fixed << std::endl;
-    Out.Write(_object);
+    Out.Write(string("[Log] => ") + _object.ToString());
 }
 
 void System::Console::WriteLine(const string& str)
 {
     SetConsoleTextAttribute(hConsole, static_cast<int>(ConsoleColor::Gray));
     std::cout << str << std::endl;
-    Out.Write(str);
+    Out.Write(string("[Log] => ") + str);
 }
 
 void System::Console::WriteLineColor(const object& obj, const ConsoleColor& color)
 {
     SetConsoleTextAttribute(hConsole, static_cast<int>(color));
     std::cout << obj.ToString() << std::endl;
-    Out.Write(obj);
+    Out.Write(string("[Log] => ") + obj.ToString());
 }
 
 void System::Console::SetIn(IO::TextReader _in)

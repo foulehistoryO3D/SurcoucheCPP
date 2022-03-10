@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include <chrono>
+#include <regex>
 #include <string>
 #include <windows.h>
 
@@ -9,6 +10,8 @@
 #include "../../Interface/Equatable/IEquatable.h"
 #include "../../TemplateUtils/TemplateUtils.h"
 #include "../Boolean/Boolean.h"
+#include "../Float/Float.h"
+#include "../Double/Double.h"
 
 namespace System
 {
@@ -51,6 +54,10 @@ namespace System
         String(std::wstring::iterator _begin, std::wstring::iterator _end);
 #pragma endregion constructor/destructor
 #pragma region custom methods
+    private:
+        static FORCEINLINE void FormatDecimalValue(Collections::Generic::List<object*> _package, String& result, int i,
+                                 std::regex regex);
+        static FORCEINLINE String FindFirst(const String& input, std::regex regex);
     public:
         Boolean StartWith(const char& _c) const;
         Boolean StartWith(const String& _str) const;
@@ -131,18 +138,60 @@ namespace System
 #pragma endregion operator
     };
 
+    String String::FindFirst(const String& input, std::regex regex)
+    {
+        std::string str = input.ToCstr();
+        std::smatch match = std::smatch();
+        std::regex_search(str, match, regex);
+        for (const auto item : match)
+            return item.str().c_str();
+        return Empty;
+    }
 
+void String::FormatDecimalValue(Collections::Generic::List<object*> _package, String& result, int i,
+                                 std::regex regex)
+    {
+        std::ostringstream ostringstream = std::ostringstream();
+        String findedStr = FindFirst(result, regex);
+        const int index = findedStr.FirstIndexOf(':') + 1;
+        Int precision = Int::Parse(findedStr.SubString(index, index + 1));
+        if (Float* f = dynamic_cast<Float*>(_package[i]))
+            ostringstream << std::fixed << std::setprecision(precision) << f->operator*();
+        else if (Double* d = dynamic_cast<Double*>(_package[i]))
+            ostringstream << std::fixed << std::setprecision(precision) << d->operator*();
+        result = std::regex_replace(result.ToCstr(), regex, ostringstream.str()).c_str();
+    }
+    
     template <typename ... Args>
     String String::Format(const String& _str, Args ... _args)
     {
-        String _result = _str;
+        String result = _str;
         Collections::Generic::List<object*> _package = TemplateUtils::CreateListWithParameterPack<object*>(&_args...);
         const int _count = _package.Count();
         for (int i = 0; i < _count; ++i)
         {
-            _result = _result.Replace(String("{") + i + "}", _package[i]->ToString());
+            // Text::RegularExpressions::Regex regex = Text::RegularExpressions::Regex(String("\\{") + i + ":\\d\\w\\}");
+            // if (regex.IsMatch(result))
+            //     FormatDecimalValue<Args...>(_package, result, i, regex);
+            // else
+            // {
+            //     regex = Text::RegularExpressions::Regex(String("{") + i + "}");
+            //     if (regex.IsMatch(result))
+            //         result = regex.Replace(result, _package[i]->ToString());
+            // }
+            std::regex regex = std::regex(std::string("\\{") + std::to_string(i) + ":\\d\\w\\}");
+            if (std::regex_search(result.ToCstr(), regex))
+            {
+                FormatDecimalValue(_package, result, i, regex);
+            }
+            else
+            {
+                regex = std::regex(std::string("\\{") + std::to_string(i) + "\\}");
+                if (std::regex_search(result.ToCstr(), regex))
+                    result = std::regex_replace(result.ToCstr(), regex, _package[i]->ToString().ToCstr()).c_str();
+            }
         }
-        return _result;
+        return result;
     }
 }
 

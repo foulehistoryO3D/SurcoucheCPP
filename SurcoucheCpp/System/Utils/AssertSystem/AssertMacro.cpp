@@ -6,8 +6,6 @@
 
 #include <cstdarg>
 
-#include "../Template/TemplateMacro.h"
-
 void System::AssertMacro::CheckVerifyFailed(const char* expr, const char* functionName, const int line,  const wchar_t* format, ...)
 {
     va_list args;

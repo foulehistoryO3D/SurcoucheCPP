@@ -554,6 +554,7 @@
     <ClInclude Include="System\Event\EventHandler\EventHandler.h" />
     <ClInclude Include="System\Event\Func\Func.h" />
     <ClInclude Include="System\Event\Predicate\Predicate.h" />
+    <ClInclude Include="System\Exception\ArgumentOutOfRange\ArgumentOutOfRangeException.h" />
     <ClInclude Include="System\Exception\Cast\InvalidCastException.h" />
     <ClInclude Include="System\Exception\DivideByZero\DivideByZeroException.h" />
     <ClInclude Include="System\Exception\Exception\Exception.h" />

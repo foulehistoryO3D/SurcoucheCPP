@@ -72,6 +72,7 @@ namespace System
         Boolean operator<=(const float& other) const;
         Boolean operator>=(const float& other) const;
         operator float()const { return mValue;}
+        float operator*() const;
         Boolean operator==(const Float& _other) const;
         Boolean operator!=(const Float& _other) const;
         Boolean operator==(const float _other) const;

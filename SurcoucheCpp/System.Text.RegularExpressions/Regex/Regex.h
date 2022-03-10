@@ -3,10 +3,11 @@
 
 #include "../../System/Interface/Equatable/IEquatable.h"
 #include "../../System/Object/Object.h"
-#include "../../System/PrimaryType/Array/Array.h"
 
 namespace System
 {
+    template<typename T>
+    class Array;
     namespace Text
     {
         namespace RegularExpressions
@@ -30,7 +31,8 @@ namespace System
                 Boolean IsMatch(const String& _input)const;
                 String Replace(const String& _input, const String& _replacement)const;
                 Match Match(const String& _input) const;
-                Array<string> Find(const String& input) const;
+                Array<String> Find(const String& input) const;
+                String FindFirst(const String& input) const;
 #pragma endregion custom methods
 #pragma region override
             public:

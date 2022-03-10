@@ -56,6 +56,7 @@ namespace System
     public:
         Double& operator=(const Double& _other);
         operator double() const { return mValue; }
+        double operator*()const;
         Double operator/(const Double& other)const;
         Double operator/=(const Double& other);
         Double operator*(const Double& other)const;

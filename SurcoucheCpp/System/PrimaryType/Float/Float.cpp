@@ -238,6 +238,11 @@ System::Float System::Float::operator/(const float& other) const
     return result;
 }
 
+float System::Float::operator*() const
+{
+    return mValue;
+}
+
 System::Boolean System::Float::operator==(const Float& _other) const
 {
     return mValue == _other.mValue;

@@ -46,6 +46,7 @@ namespace System
             static Vector3 Min(const Vector3& a, const Vector3& b);
             static Vector3 Max(const Vector3& a, const Vector3& b);
             static Vector3 ClampMagnitude(const Vector3& vector, const Float& maxLength);
+            static Vector3 Normalize(const Vector3& value);
             static Float Distance(const Vector3& a, const Vector3& b);
             static Float Magnitude(const Vector3& vector);
             static Float SqrMagnitude(const Vector3& vector);
@@ -89,6 +90,7 @@ namespace System
             Vector3& operator-=(const Vector3& b);
             Vector3& operator-=(const Float& value);
             Vector3& operator-();
+            Vector3 operator-()const;
             Float& operator[](const Int& index);
             Float operator[](const Int& index) const;
             Bool operator==(const Vector3& other)const;

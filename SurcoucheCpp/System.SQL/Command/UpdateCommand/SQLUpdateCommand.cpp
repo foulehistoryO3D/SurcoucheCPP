@@ -1,5 +1,6 @@
 #include "SQLUpdateCommand.h"
 #include "../../../System.Text.RegularExpressions/Regex/Regex.h"
+#include "../../../System/PrimaryType/Array/Array.h"
 
 #pragma region constructor/destructor
 System::SQL::SQLUpdateCommand::SQLUpdateCommand(const string& command, const string& id, DataBaseTable* table)

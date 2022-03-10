@@ -43,6 +43,11 @@ System::Numerics::Vector3::Vector3(const Vector3& other)
 }
 #pragma endregion constructor
 #pragma region custom methods
+System::Numerics::Vector3 System::Numerics::Vector3::Normalize(const Vector3& value)
+{
+    return value / value.Length();
+}
+
 System::Numerics::Vector3 System::Numerics::Vector3::Abs(const Vector3& a)
 {
     return Vector3(Mathf::Abs(a.x), Mathf::Abs(a.y), Mathf::Abs(a.z));
@@ -337,6 +342,11 @@ System::Numerics::Vector3& System::Numerics::Vector3::operator-()
     this->y = -this->y;
     this->z = -this->z;
     return *this;
+}
+
+System::Numerics::Vector3 System::Numerics::Vector3::operator-() const
+{
+    return Vector3(-this->x, -this->y, -this->z);
 }
 
 System::Float& System::Numerics::Vector3::operator[](const Int& index)
