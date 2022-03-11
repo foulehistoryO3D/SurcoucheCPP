@@ -18,42 +18,54 @@ namespace System
                 REGISTER_ATTRIBUTE(Sealed)
 #pragma region f/p
             private:
-                T* array        = null;
-                int capacity    = 0;
-                int count       = 0;
-                int front       = 0;
-                int rear        = -1;
+                T* array = null;
+                int capacity = 0;
+                int count = 0;
+                int front = 0;
+                int rear = -1;
             public:
                 typedef T* iterator;
                 typedef const T* const_iterator;
 
-            iterator begin() { return &array[0];}
-            const_iterator begin()const { return &array[0];}
-            iterator end() { return &array[count];}
-            const_iterator end()const { return &array[count];}
+                iterator begin() { return &array[0]; }
+                const_iterator begin() const { return &array[0]; }
+                iterator end() { return &array[count]; }
+                const_iterator end() const { return &array[count]; }
 #pragma endregion f/p
 #pragma region constructor
             public:
                 Queue() = default;
+
                 Queue(unsigned capacity)
                 {
-                    this->capacity  = capacity;
-                    this->front     = 0;
-                    this->rear      = -1;
-                    this->count     = 0;
-                    this->array     = new T[this->capacity];
+                    this->capacity = capacity;
+                    this->front = 0;
+                    this->rear = -1;
+                    this->count = 0;
+                    this->array = new T[this->capacity];
+                }
+
+                Queue(const Queue& copy) : Object(copy)
+                {
+                    this->capacity = copy.capacity;
+                    this->front = copy.front;
+                    this->rear = copy.rear;
+                    this->count = copy.count;
+                    this->array = copy.array;
                 }
 #pragma endregion constructor
 #pragma region custom methods
             public:
-                Boolean IsFull()const { return this->count == this->capacity; }
-                Boolean IsEmpty()const { return this->count == 0; }
+                Boolean IsFull() const { return this->count == this->capacity; }
+                Boolean IsEmpty() const { return this->count == 0; }
+
                 void Dequeue()
                 {
                     if (IsEmpty()) return;
                     front = (this->front + 1) % this->capacity;
-                    this->count -1;
+                    this->count - 1;
                 }
+
                 void EnQueue(T item)
                 {
                     if (IsFull()) return;
@@ -61,6 +73,7 @@ namespace System
                     this->array[this->rear] = item;
                     ++this->count;
                 }
+
                 T Peek()
                 {
                     if (IsEmpty()) return T();
@@ -70,6 +83,7 @@ namespace System
 #pragma region override
             public:
                 Integer Count() const { return this->count; }
+
                 String ToString() const override
                 {
                     string result = string::Empty;
@@ -77,6 +91,7 @@ namespace System
                         result += this->array[i].ToString() + " ";
                     return result;
                 }
+
                 Integer GetHashCode() const override
                 {
                     int result = 0;

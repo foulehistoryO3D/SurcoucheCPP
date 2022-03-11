@@ -8,9 +8,9 @@ System::IO::DriveType::DriveType(const int& _value)
     mTypeName = GetTypeName((EDriveType)_value);
 }
 
-System::IO::DriveType::DriveType(const DriveType& _copy)
+System::IO::DriveType::DriveType(const DriveType& copy) : Object(copy)
 {
-    mTypeName = _copy.mTypeName;
+    mTypeName = copy.mTypeName;
 }
 #pragma endregion constructor
 #pragma region custom methods

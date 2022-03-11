@@ -24,7 +24,7 @@ namespace System
         Version() = default;
         Version(int32 _args0, int32 _args1, int32 _args2 = 0, int32 _args3 = 0);
         Version(const String& _str);
-        Version(const Version& _copy);
+        Version(const Version& copy);
 #pragma endregion constructor
 #pragma region override
     public:

@@ -46,7 +46,7 @@ namespace System
                 List();
                 List(IEnumerable<Item>* _enumerable);
                 List(std::initializer_list<Item> _tab);
-                List(const List<Item>& _copy);
+                List(const List<Item>& copy);
 #pragma endregion constructor/destructor
 #pragma region Linq
             public:
@@ -115,10 +115,10 @@ namespace System
             }
 
             template <typename Item>
-            List<Item>::List(const List<Item>& _copy)
+            List<Item>::List(const List<Item>& copy) : Object(copy)
             {
-                for (int i = 0; i < _copy.mCount; ++i)
-                    Add(_copy.mTab[i]);
+                for (int i = 0; i < copy.mCount; ++i)
+                    Add(copy.mTab[i]);
             }
 #pragma endregion constructor/destructor
 #pragma region Linq

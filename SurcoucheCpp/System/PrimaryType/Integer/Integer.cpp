@@ -22,9 +22,9 @@ System::Integer::Integer(const int _value)
     mValue = _value;
 }
 
-System::Integer::Integer(const Integer& _copy)
+System::Integer::Integer(const Integer& copy) : Object(copy)
 {
-    mValue = _copy.mValue;
+    mValue = copy.mValue;
 }
 #pragma endregion constructor
 #pragma region custom methods

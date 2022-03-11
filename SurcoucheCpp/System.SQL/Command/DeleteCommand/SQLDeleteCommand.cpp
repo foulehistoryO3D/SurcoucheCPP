@@ -8,7 +8,7 @@ System::SQL::SQLDeleteCommand::SQLDeleteCommand(const string& command, const str
     this->table     = table;
 }
 
-System::SQL::SQLDeleteCommand::SQLDeleteCommand(const SQLDeleteCommand& copy)
+System::SQL::SQLDeleteCommand::SQLDeleteCommand(const SQLDeleteCommand& copy) : Object(copy)
 {
     this->command   = copy.command;
     this->id        = copy.id;

@@ -40,7 +40,7 @@ namespace System
             StringBuilder(const String& _str);
             StringBuilder(const String& _str, const Integer& _capacity);
             StringBuilder(const char* _str);
-            StringBuilder(const StringBuilder& _copy);
+            StringBuilder(const StringBuilder& copy);
 #pragma endregion constructor
 #pragma region custom methods
             StringBuilder& Append(const Object& _object);

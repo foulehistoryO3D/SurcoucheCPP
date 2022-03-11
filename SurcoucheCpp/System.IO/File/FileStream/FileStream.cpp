@@ -13,11 +13,11 @@ System::IO::FileStream::FileStream(const String& _path)
     mStreamWriter = new StreamWriter(_path);
 }
 
-System::IO::FileStream::FileStream(const FileStream& _copy)
+System::IO::FileStream::FileStream(const FileStream& copy) : Object(copy)
 {
-    mPath = std::move(_copy.mPath);
-    mStreamReader = std::move(_copy.mStreamReader);
-    mStreamWriter = std::move(_copy.mStreamWriter);
+    mPath = std::move(copy.mPath);
+    mStreamReader = std::move(copy.mStreamReader);
+    mStreamWriter = std::move(copy.mStreamWriter);
 }
 
 System::IO::FileStream::~FileStream()

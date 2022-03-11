@@ -18,7 +18,7 @@ namespace System
 #pragma region constructor
         public:
             ElapsedEventArgs()=default;
-            ElapsedEventArgs(const ElapsedEventArgs& _copy);
+            ElapsedEventArgs(const ElapsedEventArgs& copy);
 #pragma endregion constructor
 #pragma region custom methods
         public:

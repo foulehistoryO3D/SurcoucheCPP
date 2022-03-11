@@ -29,7 +29,7 @@ namespace System
                 GroupCollection() = default;
                 GroupCollection(std::initializer_list<Collections::Generic::KeyValuePair<String, Group>> _tab);
                 GroupCollection(IEnumerator<Collections::Generic::KeyValuePair<String, Group>>* _enumerator);
-                GroupCollection(const GroupCollection& _copy);
+                GroupCollection(const GroupCollection& copy);
 #pragma endregion constructor
 #pragma region custom methods
             private:

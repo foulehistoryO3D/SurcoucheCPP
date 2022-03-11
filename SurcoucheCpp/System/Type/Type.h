@@ -46,6 +46,7 @@ typedef parentClass super;\
 const int mSubClassCount = RegisterSubClass(this);
 
 #define nameof(x) #x
+
 #pragma endregion define
 #pragma region static methods
     template <typename Base, typename Derived>

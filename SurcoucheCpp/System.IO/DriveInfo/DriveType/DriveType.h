@@ -22,7 +22,7 @@ namespace System
         public:
             DriveType()=default;
             DriveType(const int& _value);
-            DriveType(const DriveType& _copy);
+            DriveType(const DriveType& copy);
 #pragma endregion constructor
 #pragma region custom methods
         public:

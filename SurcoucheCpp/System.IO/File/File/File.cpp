@@ -23,9 +23,9 @@ System::IO::File::File(const String& _path)
     mPath = _path;
 }
 
-System::IO::File::File(const File& _copy)
+System::IO::File::File(const File& copy) : Object(copy)
 {
-    mPath = _copy.mPath;
+    mPath = copy.mPath;
 }
 
 System::DateTime System::IO::File::GetCreationTime() const

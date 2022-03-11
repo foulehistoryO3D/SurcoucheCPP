@@ -28,7 +28,7 @@ namespace System
         public:
             File()=default;
             File(const String& _path);
-            File(const File& _copy);
+            File(const File& copy);
 #pragma endregion constructor
 #pragma region custom methods
         public:

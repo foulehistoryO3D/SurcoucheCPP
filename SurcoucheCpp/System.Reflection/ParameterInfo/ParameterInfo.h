@@ -25,7 +25,7 @@ namespace System
         public:
             ParameterInfo()=default;
             ParameterInfo(Type* _parameterType, const Integer& _position);
-            ParameterInfo(const ParameterInfo& _copy);
+            ParameterInfo(const ParameterInfo& copy);
 #pragma region constructor
 #pragma region operator
         public:

@@ -26,7 +26,7 @@ System::Buffer::Buffer(std::initializer_list<Byte> items)
         Insert(item);
 }
 
-System::Buffer::Buffer(const Buffer& copy)
+System::Buffer::Buffer(const Buffer& copy) : Object(copy)
 {
     this->buffer = std::move(copy.buffer);
 }

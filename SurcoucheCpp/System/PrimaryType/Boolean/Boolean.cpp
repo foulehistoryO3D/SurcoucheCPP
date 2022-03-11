@@ -15,9 +15,9 @@ System::Boolean::Boolean(const bool& _value)
     mValue = _value;
 }
 
-System::Boolean::Boolean(const Boolean& _copy)
+System::Boolean::Boolean(const Boolean& copy) : Object(copy)
 {
-    mValue = _copy.mValue;
+    mValue = copy.mValue;
 }
 
 System::Boolean System::Boolean::Parse(const String& _str)

@@ -22,7 +22,7 @@ namespace System
     public:
         Uri()=default;
         Uri(const String& _uri);
-        Uri(const Uri& _copy);
+        Uri(const Uri& copy);
 #pragma endregion constructor
     };
 }

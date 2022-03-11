@@ -10,10 +10,10 @@ System::IO::TextReader::TextReader(const String& _path)
     mPath = _path;
 }
 
-System::IO::TextReader::TextReader(const TextReader& _copy) noexcept
+System::IO::TextReader::TextReader(const TextReader& copy) noexcept : Object(copy)
 {
-    mStream = std::ifstream(_copy.mPath);
-    mPath = std::move(_copy.mPath);
+    mStream = std::ifstream(copy.mPath);
+    mPath = std::move(copy.mPath);
 }
 
 

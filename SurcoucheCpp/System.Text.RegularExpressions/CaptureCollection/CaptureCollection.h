@@ -23,7 +23,7 @@ namespace System
                 CaptureCollection()=default;
                 CaptureCollection(std::initializer_list<Capture> _tab);
                 CaptureCollection(IEnumerator<Capture>* _enumerator);
-                CaptureCollection(const CaptureCollection& _copy);
+                CaptureCollection(const CaptureCollection& copy);
 #pragma endregion constructor
 #pragma region override
             public:

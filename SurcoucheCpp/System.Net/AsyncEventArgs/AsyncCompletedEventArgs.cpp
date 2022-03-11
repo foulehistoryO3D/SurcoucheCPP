@@ -28,11 +28,11 @@ System::Net::AsyncCompletedEventArgs::AsyncCompletedEventArgs(const DownloadNetE
     mUserState = _userState;
 }
 
-System::Net::AsyncCompletedEventArgs::AsyncCompletedEventArgs(const AsyncCompletedEventArgs& _copy)
+System::Net::AsyncCompletedEventArgs::AsyncCompletedEventArgs(const AsyncCompletedEventArgs& copy) : EventArgs(copy)
 {
-    mException = std::move(_copy.mException);
-    mCancelled = std::move(_copy.mCancelled);
-    mUserState = std::move(_copy.mUserState);
+    mException = std::move(copy.mException);
+    mCancelled = std::move(copy.mCancelled);
+    mUserState = std::move(copy.mUserState);
 }
 #pragma endregion constructor
 #pragma region custom methods

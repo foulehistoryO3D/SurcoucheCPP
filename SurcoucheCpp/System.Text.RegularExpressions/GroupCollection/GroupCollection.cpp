@@ -18,13 +18,13 @@ System::Text::RegularExpressions::GroupCollection::GroupCollection(
     _enumerator->Reset();
 }
 
-System::Text::RegularExpressions::GroupCollection::GroupCollection(const GroupCollection& _copy)
+System::Text::RegularExpressions::GroupCollection::GroupCollection(const GroupCollection& copy) : Object(copy)
 {
-    const int _count = _copy.Count();
+    const int _count = copy.Count();
     for (int i = 0; i < _count; ++i)
-        GroupCollection::Add(_copy.mTab[i]);
-    mCurrentIndex = std::move(_copy.mCurrentIndex);
-    mCurrentItem = std::move(_copy.mCurrentItem);
+        GroupCollection::Add(copy.mTab[i]);
+    mCurrentIndex = std::move(copy.mCurrentIndex);
+    mCurrentItem = std::move(copy.mCurrentItem);
 }
 #pragma endregion constructor
 #pragma region custom methods

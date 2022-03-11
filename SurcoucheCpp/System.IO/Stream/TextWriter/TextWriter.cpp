@@ -12,10 +12,10 @@ System::IO::TextWriter::TextWriter(const String& _path)
     mPath = _path;
 }
 
-System::IO::TextWriter::TextWriter(TextWriter&& _copy) noexcept
+System::IO::TextWriter::TextWriter(TextWriter&& copy) noexcept : Object(copy)
 {
-    mStream = std::move(_copy.mStream);
-    mPath = std::move(_copy.mPath);
+    mStream = std::move(copy.mStream);
+    mPath = std::move(copy.mPath);
 }
 
 

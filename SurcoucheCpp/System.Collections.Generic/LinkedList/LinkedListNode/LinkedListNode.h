@@ -39,6 +39,13 @@ namespace System
                     this->next = null;
                     this->previous = null;
                 }
+                LinkedListNode(const LinkedListNode& copy)  : Object(copy)
+                {
+                    this->list = copy.list;
+                    this->value = copy.value;
+                    this->next = copy.next;
+                    this->previous = copy.previous;
+                }
                 ~LinkedListNode() override = default;
 #pragma endregion constructor
 #pragma region override

@@ -10,11 +10,11 @@ System::BoxFile::BoxFile(const String& _title)
     mTitle = _title;
 }
 
-System::BoxFile::BoxFile(const BoxFile& _copy)
+System::BoxFile::BoxFile(const BoxFile& copy) : Object(copy)
 {
-    mTitle = std::move(_copy.mTitle);
-    mHResult = std::move(_copy.mHResult);
-    mPathResult = std::move(_copy.mPathResult);
+    mTitle = std::move(copy.mTitle);
+    mHResult = std::move(copy.mHResult);
+    mPathResult = std::move(copy.mPathResult);
 }
 #pragma endregion constructor
 #pragma region custom methods

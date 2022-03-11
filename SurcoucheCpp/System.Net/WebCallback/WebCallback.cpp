@@ -5,9 +5,9 @@
 
 #pragma region override
 #pragma region IBindStatusCallback
-System::Net::WebCallback::WebCallback(const WebCallback& _copy)
+System::Net::WebCallback::WebCallback(const WebCallback& copy) : Object(copy)
 {
-    mPercentLast = std::move(_copy.mPercentLast);
+    mPercentLast = std::move(copy.mPercentLast);
 }
 
 HRESULT System::Net::WebCallback::QueryInterface(const IID& riid, void** ppvObject)

@@ -21,11 +21,11 @@ System::Byte::Byte(const byte& _byte)
         mValue = _byte;
 }
 
-System::Byte::Byte(const Byte& _copy)
+System::Byte::Byte(const Byte& copy) : Object(copy)
 {
-    if (_copy.mValue < MinValue || _copy.mValue > MaxValue)
+    if (copy.mValue < MinValue || copy.mValue > MaxValue)
         throw OutOfRange("[Byte] error => invalid value");
-    mValue = _copy.mValue;
+    mValue = copy.mValue;
 }
 
 System::Byte System::Byte::Parse(const String& _str)

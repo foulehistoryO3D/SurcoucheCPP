@@ -18,7 +18,7 @@ System::SQL::SqlData::SqlData(const string& key, const string& value)
     this->value = value;
 }
 
-System::SQL::SqlData::SqlData(const SqlData& copy)
+System::SQL::SqlData::SqlData(const SqlData& copy) : Object(copy)
 {
     this->key   = copy.key;
     this->value = copy.value;

@@ -23,7 +23,7 @@ System::Text::Json::JsonProperty::JsonProperty(const string& name, JsonElement* 
     this->value = value;
 }
 
-System::Text::Json::JsonProperty::JsonProperty(const JsonProperty& copy)
+System::Text::Json::JsonProperty::JsonProperty(const JsonProperty& copy) : Object(copy)
 {
     this->name = copy.name;
     this->value = copy.value;

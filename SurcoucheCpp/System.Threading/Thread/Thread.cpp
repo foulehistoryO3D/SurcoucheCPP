@@ -20,7 +20,7 @@ System::Int System::Threading::Thread::ID() const
 #pragma endregion f/p
 
 #pragma region constructor/destructor
-System::Threading::Thread::Thread(const Thread& copy)
+System::Threading::Thread::Thread(const Thread& copy) : Object(copy)
 {
     this->threadName = std::move(copy.threadName);
     this->isAlive = std::move(copy.isAlive);

@@ -12,7 +12,7 @@ System::SQL::SQLInsertCommand::SQLInsertCommand(const string& command, DataBaseT
     this->table = table;
 }
 
-System::SQL::SQLInsertCommand::SQLInsertCommand(const SQLInsertCommand& copy)
+System::SQL::SQLInsertCommand::SQLInsertCommand(const SQLInsertCommand& copy) : Object(copy)
 {
     this->command = copy.command;
     this->table = copy.table;

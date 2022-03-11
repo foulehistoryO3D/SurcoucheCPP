@@ -166,7 +166,7 @@ namespace System
     public:
         TimeZone() = default;
         TimeZone(const ETimeZoneName& _timeZone);
-        TimeZone(const TimeZone& _copy);
+        TimeZone(const TimeZone& copy);
 #pragma endregion constructor
 #pragma region custom methods
     private:

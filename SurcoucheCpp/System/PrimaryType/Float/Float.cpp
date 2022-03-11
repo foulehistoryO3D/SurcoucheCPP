@@ -27,9 +27,9 @@ System::Float::Float(const float& _value)
     mValue = _value;
 }
 
-System::Float::Float(const Float& _other)
+System::Float::Float(const Float& copy) : Object(copy)
 {
-    mValue = _other.mValue;
+    mValue = copy.mValue;
 }
 
 System::Float System::Float::Parse(const String& _str)

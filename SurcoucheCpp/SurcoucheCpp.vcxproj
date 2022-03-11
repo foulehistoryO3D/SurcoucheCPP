@@ -31,26 +31,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -161,7 +161,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="SurcoucheCpp.cpp" />
-    <ClCompile Include="System.Collections.Generic\Stack\Stack.cpp" />
     <ClCompile Include="System.Diagnostics\Process\Process.cpp" />
     <ClCompile Include="System.IO\Directory\Directory.cpp" />
     <ClCompile Include="System.IO\Directory\DirectoryInfo\DirectoryInfo.cpp" />
@@ -538,6 +537,7 @@
     <ClInclude Include="System.Timers\Timer\Timer.h" />
     <ClInclude Include="System.Utils\Singleton\Singleton.h" />
     <ClInclude Include="System.Utils\Template\IsAbstract\IsAbstract.h" />
+    <ClInclude Include="System.Utils\Template\IsBaseOf\IsBaseOf.h" />
     <ClInclude Include="System.Utils\Template\IsPointer\IsPointer.h" />
     <ClInclude Include="System\Activator\Activator.h" />
     <ClInclude Include="System\Box\BoxFile\BoxFile.h" />

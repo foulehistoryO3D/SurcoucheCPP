@@ -21,11 +21,11 @@ System::Integer System::Text::RegularExpressions::Capture::Length() const
 #pragma endregion f/p
 #pragma region constructor
 
-System::Text::RegularExpressions::Capture::Capture(const Capture& _copy)
+System::Text::RegularExpressions::Capture::Capture(const Capture& copy) : Object(copy)
 {
-    mIndex = std::move(_copy.mIndex);
-    mValue = std::move(_copy.mValue);
-    mLength = std::move(_copy.mLength);
+    mIndex = std::move(copy.mIndex);
+    mValue = std::move(copy.mValue);
+    mLength = std::move(copy.mLength);
 }
 #pragma endregion constructor
 #pragma region custom methods

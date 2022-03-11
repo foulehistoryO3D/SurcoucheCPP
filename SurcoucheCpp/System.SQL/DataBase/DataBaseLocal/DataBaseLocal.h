@@ -24,6 +24,7 @@ namespace System
         public:
                 DataBaseLocal()=default;
                 DataBaseLocal(const String& path);
+                DataBaseLocal(const DataBaseLocal& copy);
                 ~DataBaseLocal()override;
 #pragma endregion constructor
 #pragma region custom methods

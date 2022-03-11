@@ -20,7 +20,7 @@ namespace System
         public:
             TextReader() = default;
             TextReader(const String& _path);
-            TextReader(const TextReader& _copy) noexcept;
+            TextReader(const TextReader& copy) noexcept;
 #pragma endregion constructor
 #pragma region custom methods
         public:

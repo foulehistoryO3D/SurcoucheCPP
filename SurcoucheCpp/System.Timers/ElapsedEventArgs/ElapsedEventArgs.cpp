@@ -7,9 +7,9 @@ System::DateTime System::Timers::ElapsedEventArgs::SignalTime() const
 }
 #pragma endregion f/p
 #pragma region constructor
-System::Timers::ElapsedEventArgs::ElapsedEventArgs(const ElapsedEventArgs& _copy)
+System::Timers::ElapsedEventArgs::ElapsedEventArgs(const ElapsedEventArgs& copy) : EventArgs(copy)
 {
-    mSignalTime = std::move(_copy.mSignalTime);
+    mSignalTime = std::move(copy.mSignalTime);
 }
 #pragma endregion constructor
 #pragma region custom methods

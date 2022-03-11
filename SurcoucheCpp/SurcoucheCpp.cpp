@@ -1,32 +1,21 @@
 #include "System/IncludeSystem.h"
+#include "System/Utils/AssertSystem/AssertMacro.h"
 
-class A
+class Attribute : public Object
 {
-public:
-    void Test(Int a, String str, Float test)
-    {
-        Console::WriteLine(__PARAMETER__);
-    }
+private:
+    
 };
-
-template <typename Res, typename C, typename ... Args>
-void Get(Res(C::*ptr)(Args...))
-{
-    Console::WriteLine(typeid(ptr).name());
-}
-
-
-template <typename ... Args>
-void T(std::function<void(Args...)> func)
-{
-    Console::WriteLine(typeid(func).name());
-}
 
 int main()
 {
     SetConsoleOutputCP(CP_UTF8);
-    // Get(&A::Test);
-    A a = A();
-    a.Test(0, "", 5.0f);
+    Int t;
+    List<Int> a;
+    Dictionary<Int, String> b;
+    Console::WriteLine(t.Namespace());
+    Console::WriteLine(a.Namespace());
+    Console::WriteLine(b.Namespace());
+    // Console::WriteLine(t.Namespace());
     return 0;
 }

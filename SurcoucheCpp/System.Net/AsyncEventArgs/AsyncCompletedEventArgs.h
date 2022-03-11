@@ -25,7 +25,7 @@ namespace System
         public:
             AsyncCompletedEventArgs() = default;
             AsyncCompletedEventArgs(const DownloadNetException& _exception, const Boolean& _cancelled, object* _userState);
-            AsyncCompletedEventArgs(const AsyncCompletedEventArgs& _copy);
+            AsyncCompletedEventArgs(const AsyncCompletedEventArgs& copy);
 #pragma endregion constructor
 #pragma region custom methods
         public:

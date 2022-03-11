@@ -21,7 +21,7 @@ namespace System
             public:
                 Match()=default;
                 Match(const bool _success);
-                Match(const Match& _copy);
+                Match(const Match& copy);
 #pragma endregion constructor
 #pragma region custom methods
             public:

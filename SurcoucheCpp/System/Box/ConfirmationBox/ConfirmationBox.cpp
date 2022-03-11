@@ -10,10 +10,10 @@ System::ConfirmationBox::ConfirmationBox(const String& _title, const String& _me
     mMessage = _message;
 }
 
-System::ConfirmationBox::ConfirmationBox(const ConfirmationBox& _copy)
+System::ConfirmationBox::ConfirmationBox(const ConfirmationBox& copy) : Object(copy)
 {
-    mTitle = std::move(_copy.mTitle);
-    mMessage = std::move(_copy.mMessage);
+    mTitle = std::move(copy.mTitle);
+    mMessage = std::move(copy.mMessage);
 }
 #pragma endregion constructor
 #pragma region custom methods

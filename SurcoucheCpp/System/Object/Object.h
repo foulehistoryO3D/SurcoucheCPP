@@ -23,6 +23,7 @@ namespace System
 #pragma region constructor/destructor
     public:
         Object() = default;
+        Object(const Object& copy) : Type(copy){}
         virtual ~Object() override = default;
 #pragma endregion constructor/destructor
 #pragma region custom methods

@@ -15,9 +15,9 @@ System::Char::Char(const char _c)
     mValue = _c;
 }
 
-System::Char::Char(const Char& _copy)
+System::Char::Char(const Char& copy) : Object(copy)
 {
-    mValue = std::move(_copy.mValue);
+    mValue = std::move(copy.mValue);
 }
 #pragma endregion constructor
 #pragma region custom methods

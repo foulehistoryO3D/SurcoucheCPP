@@ -23,8 +23,8 @@ System::Uri::Uri(const String& _uri)
     mUri = _uri;
 }
 
-System::Uri::Uri(const Uri& _copy)
+System::Uri::Uri(const Uri& copy) : Object(copy)
 {
-    mUri = std::move(_copy.mUri);
+    mUri = std::move(copy.mUri);
 }
 #pragma endregion constructor

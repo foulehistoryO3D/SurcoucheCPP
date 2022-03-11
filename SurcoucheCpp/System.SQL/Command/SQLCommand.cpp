@@ -39,7 +39,7 @@ System::SQL::SQLCommand::SQLCommand(DataBaseLocal* databaseLocal, const String& 
     this->timeout = timeout;
 }
 
-System::SQL::SQLCommand::SQLCommand(const SQLCommand& copy)
+System::SQL::SQLCommand::SQLCommand(const SQLCommand& copy) : Object(copy)
 {
     this->databaseLocal = std::move(copy.databaseLocal);
     this->command = std::move(copy.command);

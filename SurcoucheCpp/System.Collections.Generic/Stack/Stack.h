@@ -24,14 +24,19 @@ namespace System
             public:
                 typedef T* iterator;
                 typedef const T* const_iterator;
-                iterator begin() { return &array[0];}
-                const_iterator begin() const { return &array[0];}
-                iterator end() { return &array[top+1];}
-                const_iterator end()const { return &array[top+1];}
+                iterator begin() { return &array[0]; }
+                const_iterator begin() const { return &array[0]; }
+                iterator end() { return &array[top + 1]; }
+                const_iterator end() const { return &array[top + 1]; }
 #pragma endregion f/p
 #pragma region constructor
             public:
                 Stack() = default;
+                Stack(const Stack& copy) : Object(copy)
+                {
+                    this->top = copy.top;
+                    this->array = copy.array;
+                }
 #pragma endregion constructor
 #pragma region custom methods
             public:
@@ -54,7 +59,7 @@ namespace System
                     return this->array[this->top];
                 }
 
-                Boolean IsEmpty()const { return this->top < 0; }
+                Boolean IsEmpty() const { return this->top < 0; }
 #pragma endregion custom methods
 #pragma region override
             public:
@@ -65,6 +70,7 @@ namespace System
                         result += this->array[i].ToString() + " ";
                     return result;
                 }
+
                 Integer GetHashCode() const override
                 {
                     int result = 0;

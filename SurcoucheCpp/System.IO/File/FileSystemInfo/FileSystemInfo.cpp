@@ -12,9 +12,9 @@ System::IO::FileSystemInfo::FileSystemInfo(const String& _path)
     mPath = _path;
 }
 
-System::IO::FileSystemInfo::FileSystemInfo(const FileSystemInfo& _fileSystemInfo)
+System::IO::FileSystemInfo::FileSystemInfo(const FileSystemInfo& copy) : Object(copy)
 {
-    mPath = _fileSystemInfo.mPath;
+    mPath = copy.mPath;
 }
 
 System::String System::IO::FileSystemInfo::FullPath() const

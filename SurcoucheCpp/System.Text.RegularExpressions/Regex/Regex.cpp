@@ -14,10 +14,10 @@ System::Text::RegularExpressions::Regex::Regex(const String& _pattern)
     mExpression = std::regex(std::string(_pattern), static_cast<std::regex::flag_type>(std::regex_constants::ECMAScript ));
 }
 
-System::Text::RegularExpressions::Regex::Regex(const Regex& _copy)
+System::Text::RegularExpressions::Regex::Regex(const Regex& copy) : Object(copy)
 {
-    mPattern = std::move(_copy.mPattern);
-    mExpression = std::move(_copy.mExpression);
+    mPattern = std::move(copy.mPattern);
+    mExpression = std::move(copy.mExpression);
 }
 #pragma endregion constructor
 #pragma region custom methods

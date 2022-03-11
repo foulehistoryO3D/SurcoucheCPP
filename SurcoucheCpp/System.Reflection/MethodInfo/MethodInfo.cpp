@@ -17,9 +17,9 @@ System::Object* System::Reflection::MethodInfo::Owner() const
 }
 #pragma endregion f/p
 #pragma region constructor
-System::Reflection::MethodInfo::MethodInfo(const MethodInfo& _method)
+System::Reflection::MethodInfo::MethodInfo(const MethodInfo& copy) : Object(copy)
 {
-    mName = std::move(_method.mName);
-    mParameters = std::move(_method.mParameters);
+    mName = std::move(copy.mName);
+    mParameters = std::move(copy.mParameters);
 }
 #pragma endregion constructor

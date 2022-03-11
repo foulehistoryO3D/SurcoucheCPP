@@ -23,7 +23,7 @@ namespace System
 #pragma region constructor
         public:
             WebCallback()=default;
-            WebCallback(const WebCallback& _copy);
+            WebCallback(const WebCallback& copy);
 #pragma endregion constructor
 #pragma region override
 #pragma region IBindStatusCallback

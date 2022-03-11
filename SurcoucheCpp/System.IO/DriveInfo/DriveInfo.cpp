@@ -14,13 +14,13 @@ System::IO::DriveInfo::DriveInfo(const String& _path)
     mVolumeLabel = GetVolumeLabel();
 }
 
-System::IO::DriveInfo::DriveInfo(const DriveInfo& _copy)
+System::IO::DriveInfo::DriveInfo(const DriveInfo& copy) : Object(copy)
 {
-    mPath = _copy.mPath;
-    mName = _copy.mName;
-    mDriveType = _copy.mDriveType;
-    mAvailableFreeSpace = _copy.mAvailableFreeSpace;
-    mVolumeLabel = _copy.mVolumeLabel;
+    mPath = copy.mPath;
+    mName = copy.mName;
+    mDriveType = copy.mDriveType;
+    mAvailableFreeSpace = copy.mAvailableFreeSpace;
+    mVolumeLabel = copy.mVolumeLabel;
 }
 #pragma endregion constructor
 #pragma region custom methods

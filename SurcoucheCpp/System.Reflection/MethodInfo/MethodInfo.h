@@ -34,7 +34,7 @@ namespace System
             MethodInfo()=default;
             template<typename Res, typename C, typename... Args>
             MethodInfo(Res(C::*ptr)(Args...), object* _owner, const String& _functionName);
-            MethodInfo(const MethodInfo& _method);
+            MethodInfo(const MethodInfo& copy);
 #pragma endregion constructor
 #pragma region custom methods
             // template<typename... Args>

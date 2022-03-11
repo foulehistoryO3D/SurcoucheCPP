@@ -12,15 +12,15 @@ System::Text::RegularExpressions::Match::Match(const bool _success)
     mSuccess = _success;
 }
 
-System::Text::RegularExpressions::Match::Match(const Match& _copy)
+System::Text::RegularExpressions::Match::Match(const Match& copy) : Group(copy)
 {
-    mCaptureCollection = std::move(_copy.mCaptureCollection);
-    mName = std::move(_copy.mName);
-    mSuccess = std::move(_copy.mSuccess);
-    mValue = std::move(_copy.mValue);
-    mIndex = std::move(_copy.mIndex);
-    mLength = std::move(_copy.mLength);
-    mGroups = std::move(_copy.mGroups);
+    mCaptureCollection = std::move(copy.mCaptureCollection);
+    mName = std::move(copy.mName);
+    mSuccess = std::move(copy.mSuccess);
+    mValue = std::move(copy.mValue);
+    mIndex = std::move(copy.mIndex);
+    mLength = std::move(copy.mLength);
+    mGroups = std::move(copy.mGroups);
 }
 
 void System::Text::RegularExpressions::Match::AddGroup(const String& _key, const Collections::Generic::List<String>& _value, const Integer& _index)

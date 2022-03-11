@@ -19,11 +19,11 @@ System::Text::RegularExpressions::CaptureCollection::CaptureCollection(IEnumerat
     _enumerator->Reset();
 }
 
-System::Text::RegularExpressions::CaptureCollection::CaptureCollection(const CaptureCollection& _copy)
+System::Text::RegularExpressions::CaptureCollection::CaptureCollection(const CaptureCollection& copy) : Object(copy)
 {
-    const int& _length = _copy.Count();
+    const int& _length = copy.Count();
     for (int i = 0; i < _length; ++i)
-        Add(_copy[i]);
+        Add(copy[i]);
 }
 
 System::Text::RegularExpressions::Capture System::Text::RegularExpressions::CaptureCollection::Current()

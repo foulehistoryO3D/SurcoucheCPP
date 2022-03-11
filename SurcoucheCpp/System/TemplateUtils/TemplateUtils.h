@@ -21,7 +21,7 @@ namespace System
         template <typename Res, typename C, typename... Args>
         static Collections::Generic::List<Reflection::ParameterInfo> GetParametersFunction(Res (C::*func)(Args ... _args));
         template<typename T>
-        static Boolean IsNull();
+        static Boolean IsNull(T* object);
     };
 
     template <size_t Index, typename ... Args>
@@ -59,5 +59,5 @@ namespace System
     }
 
     template <typename T>
-    Boolean TemplateUtils::IsNull() { return std::is_null_pointer_v<T>; }
+    Boolean TemplateUtils::IsNull(T* object) { return object == null; }
 }

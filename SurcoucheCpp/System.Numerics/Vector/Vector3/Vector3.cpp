@@ -35,11 +35,11 @@ System::Numerics::Vector3::Vector3(const Float& x, const Float& y, const Float& 
     this->z = z;
 }
 
-System::Numerics::Vector3::Vector3(const Vector3& other)
+System::Numerics::Vector3::Vector3(const Vector3& other) : Object(other)
 {
-    this->x = std::move(other.x);
-    this->y = std::move(other.y);
-    this->z = std::move(other.z);
+    this->x = other.x;
+    this->y = other.y;
+    this->z = other.z;
 }
 #pragma endregion constructor
 #pragma region custom methods

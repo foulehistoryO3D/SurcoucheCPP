@@ -17,11 +17,11 @@ System::Language::Language(const System::String& _name, const System::String& _f
         mFile = System::IO::File::Create(_path);
 }
 
-System::Language::Language(const Language& _copy)
+System::Language::Language(const Language& copy) : Object(copy)
 {
-    mFile = std::move(_copy.mFile);
-    mFileName = std::move(_copy.mFileName);
-    mName = std::move(_copy.mName);
+    mFile = std::move(copy.mFile);
+    mFileName = std::move(copy.mFileName);
+    mName = std::move(copy.mName);
 }
 
 System::String System::Language::GetMessages(const System::String& _key) const

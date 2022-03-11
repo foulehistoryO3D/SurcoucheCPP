@@ -35,11 +35,11 @@ System::Reflection::ParameterInfo::ParameterInfo(Type* _parameterType, const Int
     mDefaultValueImpl = static_cast<object*>(*Activator::CreateInstance<decltype(_parameterType)>());
 }
 
-System::Reflection::ParameterInfo::ParameterInfo(const ParameterInfo& _copy)
+System::Reflection::ParameterInfo::ParameterInfo(const ParameterInfo& copy) : Object(copy)
 {
-    mClassImpl = std::move(_copy.mClassImpl);
-    mNameImpl = std::move(_copy.mNameImpl);
-    mPositionImpl = std::move(_copy.mPositionImpl);
+    mClassImpl = std::move(copy.mClassImpl);
+    mNameImpl = std::move(copy.mNameImpl);
+    mPositionImpl = std::move(copy.mPositionImpl);
 }
 #pragma endregion constructor
 #pragma region operator

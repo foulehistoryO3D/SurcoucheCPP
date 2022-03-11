@@ -45,6 +45,14 @@ System::Numerics::Vector4::Vector4(const Span<Float>& values)
     this->z = values[2];
     this->w = values[3];
 }
+
+System::Numerics::Vector4::Vector4(const Vector4& copy) : Object(copy)
+{
+    this->x = copy.x;
+    this->y = copy.y;
+    this->z = copy.z;
+    this->w = copy.w;
+}
 #pragma endregion constructor
 #pragma region custom methods
 

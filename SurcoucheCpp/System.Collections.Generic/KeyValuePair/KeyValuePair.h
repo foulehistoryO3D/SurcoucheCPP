@@ -21,7 +21,7 @@ namespace System
             public:
                 KeyValuePair()=default;
                 KeyValuePair(const TKey& _key, const TValue& _value);
-                KeyValuePair(const KeyValuePair& _pair);
+                KeyValuePair(const KeyValuePair& copy);
 #pragma endregion constructor
 #pragma region override
             public:
@@ -42,10 +42,10 @@ namespace System
             }
 
             template <typename TKey, typename TValue>
-            KeyValuePair<TKey, TValue>::KeyValuePair(const KeyValuePair& _pair)
+            KeyValuePair<TKey, TValue>::KeyValuePair(const KeyValuePair& copy) : Object(copy)
             {
-                Key = std::move(_pair.Key);
-                Value = std::move(_pair.Value);
+                Key = std::move(copy.Key);
+                Value = std::move(copy.Value);
             }
 
             template <typename TKey, typename TValue>

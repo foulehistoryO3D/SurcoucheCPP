@@ -13,9 +13,10 @@ namespace System
 #pragma region Typedef
         typedef std::chrono::milliseconds Interval;
 #pragma endregion Typedef
-        class Timer : public Object
+        class Timer sealed : public Object
         {
             DECLARE_CLASS_INFO(Object)
+            REGISTER_ATTRIBUTE(Sealed)
 #pragma region f/p
         private:
             std::thread mThread = std::thread();
@@ -29,7 +30,7 @@ namespace System
         public:
             Timer()=default;
             Timer(const int& _interval);
-            Timer(const Timer& _timer);
+            Timer(const Timer& copy);
 #pragma endregion constructor/destructor
 #pragma region custom methods
         private:

@@ -30,7 +30,7 @@ System::Numerics::Vector2::Vector2(const Float& x, const Float& y)
     this->y = y;
 }
 
-System::Numerics::Vector2::Vector2(const Vector2& copy)
+System::Numerics::Vector2::Vector2(const Vector2& copy) : Object(copy)
 {
     this->x = copy.x;
     this->y = copy.y;

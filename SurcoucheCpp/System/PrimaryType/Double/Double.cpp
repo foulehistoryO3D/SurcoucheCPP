@@ -17,9 +17,9 @@ System::Double::Double(const double& _value)
     mValue = _value;
 }
 
-System::Double::Double(const Double& _copy)
+System::Double::Double(const Double& copy) : Object(copy)
 {
-    mValue = std::move(_copy.mValue);
+    mValue = std::move(copy.mValue);
 }
 
 System::Double System::Double::Parse(const String& _str)

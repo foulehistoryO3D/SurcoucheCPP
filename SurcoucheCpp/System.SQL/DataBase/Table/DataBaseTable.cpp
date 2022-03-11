@@ -12,7 +12,7 @@ System::SQL::DataBaseTable::DataBaseTable(const IO::File& file)
     this->file = file;
 }
 
-System::SQL::DataBaseTable::DataBaseTable(const DataBaseTable& copy)
+System::SQL::DataBaseTable::DataBaseTable(const DataBaseTable& copy) : Object(copy)
 {
     this->file = copy.file;
 }

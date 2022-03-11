@@ -45,7 +45,7 @@ namespace System
                 Dictionary() = default;
                 Dictionary(IEnumerable<KeyValuePair<TKey, TValue>>* _enumerable);
                 Dictionary(std::initializer_list<KeyValuePair<TKey, TValue>> _tab);
-                Dictionary(const Dictionary& _other);
+                Dictionary(const Dictionary& copy);
 #pragma endregion constructor
 #pragma region custom methods
             private:
@@ -95,12 +95,12 @@ namespace System
             }
 
             template <typename TKey, typename TValue>
-            Dictionary<TKey, TValue>::Dictionary(const Dictionary& _other)
+            Dictionary<TKey, TValue>::Dictionary(const Dictionary& copy) : Object(copy)
             {
-                mCount = std::move(_other.mCount);
-                mTab = std::move(_other.mTab);
-                mCurrentIndex = std::move(_other.mCurrentIndex);
-                mCurrentItem = std::move(_other.mCurrentItem);
+                mCount = std::move(copy.mCount);
+                mTab = std::move(copy.mTab);
+                mCurrentIndex = std::move(copy.mCurrentIndex);
+                mCurrentItem = std::move(copy.mCurrentItem);
             }
 
             template <typename TKey, typename TValue>

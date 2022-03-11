@@ -9,11 +9,11 @@ System::Timers::Timer::Timer(const int& _interval)
     mInterval = Interval(_interval);
 }
 
-System::Timers::Timer::Timer(const Timer& _timer)
+System::Timers::Timer::Timer(const Timer& copy) : Object(copy)
 {
-    mElapsedEvent = std::move(_timer.mElapsedEvent);
-    Elapsed = std::move(_timer.Elapsed);
-    mInterval = std::move(_timer.mInterval);
+    mElapsedEvent = std::move(copy.mElapsedEvent);
+    Elapsed = std::move(copy.Elapsed);
+    mInterval = std::move(copy.mInterval);
 }
 
 void System::Timers::Timer::SleepThenTimeout()

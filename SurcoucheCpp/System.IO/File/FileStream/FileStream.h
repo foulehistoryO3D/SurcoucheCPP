@@ -23,7 +23,7 @@ namespace System
         public:
             FileStream() = default;
             FileStream(const String& _path);
-            FileStream(const FileStream& _copy);
+            FileStream(const FileStream& copy);
             ~FileStream() override;
 #pragma endregion constructor
 #pragma region custom methods

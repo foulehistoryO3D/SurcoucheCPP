@@ -40,7 +40,7 @@ namespace System
     public:
         Window()=default;
         Window(const String& _windowName, const Integer& _width, const Integer& _height, bool _isAsync = true);
-        Window(const Window& _copy);
+        Window(const Window& copy);
 #pragma endregion constructor
 #pragma region custom methods
     private:

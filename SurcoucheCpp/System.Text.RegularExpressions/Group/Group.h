@@ -27,7 +27,7 @@ namespace System
                 Group()=default;
                 Group(const String& _key, const Collections::Generic::List<String>& _values, const Integer& _index);
                 Group(const String& _key, const String& _value, const Integer& _index);
-                Group(const Group& _copy);
+                Group(const Group& copy);
 #pragma endregion constructor
 #pragma region custom methods
             public:

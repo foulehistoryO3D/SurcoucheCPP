@@ -49,7 +49,7 @@ namespace System
     public:
         String() = default;
         String(const char* _value);
-        String(const String& _copy);
+        String(const String& copy);
         String(std::string::iterator _begin, std::string::iterator _end);
         String(std::wstring::iterator _begin, std::wstring::iterator _end);
 #pragma endregion constructor/destructor
@@ -170,15 +170,6 @@ void String::FormatDecimalValue(Collections::Generic::List<object*> _package, St
         const int _count = _package.Count();
         for (int i = 0; i < _count; ++i)
         {
-            // Text::RegularExpressions::Regex regex = Text::RegularExpressions::Regex(String("\\{") + i + ":\\d\\w\\}");
-            // if (regex.IsMatch(result))
-            //     FormatDecimalValue<Args...>(_package, result, i, regex);
-            // else
-            // {
-            //     regex = Text::RegularExpressions::Regex(String("{") + i + "}");
-            //     if (regex.IsMatch(result))
-            //         result = regex.Replace(result, _package[i]->ToString());
-            // }
             std::regex regex = std::regex(std::string("\\{") + std::to_string(i) + ":\\d\\w\\}");
             if (std::regex_search(result.ToCstr(), regex))
             {

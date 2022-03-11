@@ -17,7 +17,7 @@ namespace System
         public:
             FileSystemInfo()=default;
             FileSystemInfo(const String& _path);
-            FileSystemInfo(const FileSystemInfo& _fileSystemInfo);
+            FileSystemInfo(const FileSystemInfo& copy);
 #pragma endregion constructor
 #pragma region custom methods
         public:

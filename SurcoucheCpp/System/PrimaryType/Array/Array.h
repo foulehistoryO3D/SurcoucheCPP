@@ -104,10 +104,10 @@ namespace System
     }
 
     template <typename Item>
-    Array<Item>::Array(const Array& _copy)
+    Array<Item>::Array(const Array& copy) : Object(copy)
     {
-        mItems = std::move(_copy.mItems);
-        mCount = std::move(_copy.mCount);
+        mItems = std::move(copy.mItems);
+        mCount = std::move(copy.mCount);
     }
 #pragma endregion constructor
 #pragma region custom methods

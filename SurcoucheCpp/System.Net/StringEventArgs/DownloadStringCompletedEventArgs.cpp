@@ -10,9 +10,9 @@ System::String System::Net::DownloadStringCompletedEventArgs::Result() const
 #pragma endregion f/p
 #pragma region constructor
 System::Net::DownloadStringCompletedEventArgs::DownloadStringCompletedEventArgs(
-    const DownloadStringCompletedEventArgs& _copy)
+    const DownloadStringCompletedEventArgs& copy) : AsyncCompletedEventArgs(copy)
 {
-    mResult = std::move(_copy.mResult);
+    mResult = std::move(copy.mResult);
 }
 #pragma endregion constructor
 #pragma region custom methods

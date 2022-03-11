@@ -19,7 +19,7 @@ System::SQL::SQLReader::SQLReader(const String& read)
     }
 }
 
-System::SQL::SQLReader::SQLReader(const SQLReader& copy)
+System::SQL::SQLReader::SQLReader(const SQLReader& copy) : Object(copy)
 {
     this->readerObject = copy.readerObject;
 }

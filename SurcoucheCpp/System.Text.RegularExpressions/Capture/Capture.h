@@ -24,7 +24,7 @@ namespace System
 #pragma region constructor
             public:
                 Capture() = default;
-                Capture(const Capture& _copy);
+                Capture(const Capture& copy);
 #pragma endregion constructor
 #pragma region custom methods
             public:

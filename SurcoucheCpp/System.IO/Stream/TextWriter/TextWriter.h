@@ -25,7 +25,7 @@ namespace System
         public:
             TextWriter()=default;
             TextWriter(const String& _path);
-            TextWriter(TextWriter&& _copy) noexcept;
+            TextWriter(TextWriter&& copy) noexcept;
 #pragma endregion constructor/destructor
 #pragma region custom methods
         public:

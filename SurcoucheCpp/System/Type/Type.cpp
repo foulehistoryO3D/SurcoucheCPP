@@ -64,21 +64,42 @@ System::String System::Type::FullName() const
 
 System::String System::Type::ClassName() const
 {
-    String _fullName = FullName();
-    const Integer& _index = _fullName.LastIndexOf(':');
-    if (_index > -1)
-        _fullName = _fullName.SubString(_index+1, _fullName.Length());
-    return _fullName;
+    std::string _fullName = FullName().ToCstr();
+    std::regex regex = std::regex("(::)(.*)(?=(<||))");
+    std::smatch match = std::smatch();
+    std::regex_search(_fullName, match, regex);
+    _fullName = match[0];
+    string result = _fullName.c_str();
+    if (result.Contains("<"))
+    {
+        regex = std::regex("(<)(.*)(?=>)");
+        std::regex_search(_fullName, match, regex);
+        _fullName = match[0];
+        result = result.Replace(_fullName.c_str(), "");
+        result = result.Replace(">", "");
+        return result.SubString(result.LastIndexOf(':') + 1);
+    }
+    return result.SubString(result.LastIndexOf(':') + 1);
 }
 
 System::String System::Type::Namespace() const
 {
-    // String _str = FullName();
-    // return _str.SubString(_str.FirstIndexOf(' ')+1, _str.LastIndexOf(':')-1);
-    std::string _s = FullName().ToCstr();
-    String _str = ClassName();
-    int _index = _s.find(ClassName());
-    return FullName().SubString(_s.find(' ') + 1,_index-2);
+    std::string _str = FullName().ToCstr();
+    String className = ClassName();
+    std::regex regex = std::regex("(class)(.*)(?=(<||))");
+    std::smatch match = std::smatch();
+    std::regex_search(_str, match, regex);
+    string test = match[0].str().c_str();
+    if (test.Contains("<"))
+    {
+        regex = std::regex("(<)(.*)(?=>)");
+        std::regex_search(_str, match, regex);
+        _str = match[0];
+        test = test.Replace(_str.c_str(), "");
+        test = test.Replace(">", "");
+        return test.SubString(test.FirstIndexOf(" ") + 1, test.LastIndexOf(':') - 1);
+    }
+    return test.SubString(test.FirstIndexOf(" ") + 1, test.FirstIndexOf(":"));
 }
 
 System::Boolean System::Type::IsInterface() const

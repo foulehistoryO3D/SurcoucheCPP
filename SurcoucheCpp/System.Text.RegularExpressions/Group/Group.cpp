@@ -60,14 +60,14 @@ System::Text::RegularExpressions::Group::Group(const String& _key, const String&
     mCaptureCollection.Add(_capture);
 }
 
-System::Text::RegularExpressions::Group::Group(const Group& _copy)
+System::Text::RegularExpressions::Group::Group(const Group& copy) : Capture(copy)
 {
-    mCaptureCollection = std::move(_copy.mCaptureCollection);
-    mName = std::move(_copy.mName);
-    mSuccess = std::move(_copy.mSuccess);
-    mValue = std::move(_copy.mValue);
-    mIndex = std::move(_copy.mIndex);
-    mLength = std::move(_copy.mLength);
+    mCaptureCollection = std::move(copy.mCaptureCollection);
+    mName = std::move(copy.mName);
+    mSuccess = std::move(copy.mSuccess);
+    mValue = std::move(copy.mValue);
+    mIndex = std::move(copy.mIndex);
+    mLength = std::move(copy.mLength);
 }
 #pragma endregion constructor
 #pragma region custom methods

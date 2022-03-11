@@ -40,6 +40,16 @@ namespace System
                         LinkedList::Add(item);
                 }
 
+                LinkedList(const LinkedList& copy)  : Object(copy)
+                {
+                    this->tree = copy.tree;
+                    this->firstNode = copy.firstNode;
+                    this->lastNode = copy.lastNode;
+                    this->currentItem = copy.currentItem;
+                    this->count = copy.count;
+                    this->currentIndex = copy.currentIndex;
+                }
+
                 ~LinkedList() override = default;
 #pragma endregion constructor
 #pragma region custom methods

@@ -17,7 +17,7 @@ namespace System
 #pragma region constructor
         public:
             DownloadStringCompletedEventArgs()=default;
-            DownloadStringCompletedEventArgs(const DownloadStringCompletedEventArgs& _copy);
+            DownloadStringCompletedEventArgs(const DownloadStringCompletedEventArgs& copy);
 #pragma endregion constructor
 #pragma region custom methods
         public:

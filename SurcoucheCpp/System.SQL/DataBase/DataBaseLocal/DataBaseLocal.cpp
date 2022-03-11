@@ -23,6 +23,12 @@ System::SQL::DataBaseLocal::DataBaseLocal(const String& path)
     });
 }
 
+System::SQL::DataBaseLocal::DataBaseLocal(const DataBaseLocal& copy) : Object(copy)
+{
+    this->tables = copy.tables;
+    this->path = copy.path;
+}
+
 System::SQL::DataBaseLocal::~DataBaseLocal()
 {
 }

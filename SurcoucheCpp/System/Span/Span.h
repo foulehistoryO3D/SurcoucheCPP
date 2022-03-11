@@ -22,6 +22,7 @@ namespace System
     public:
         Span()=default;
         Span(Array<Item> items);
+        Span(const Span<Item>& copy);
 #pragma endregion constructor
 #pragma region custom methods
     private:
@@ -65,6 +66,12 @@ namespace System
     Span<Item>::Span(Array<Item> items)
     {
         tab = items;
+    }
+
+    template <typename Item>
+    Span<Item>::Span(const Span<Item>& copy) : Object(copy)
+    {
+        this->tab = copy.tab;
     }
 
     template <typename Item>

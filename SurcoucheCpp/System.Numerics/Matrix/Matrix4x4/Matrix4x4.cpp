@@ -65,7 +65,7 @@ System::Numerics::Matrix4x4::Matrix4x4(const float m11, const float m12, const f
     this->m44 = m44;
 }
 
-System::Numerics::Matrix4x4::Matrix4x4(const Matrix4x4& copy)
+System::Numerics::Matrix4x4::Matrix4x4(const Matrix4x4& copy) : Object(copy)
 {
     this->m11 = copy.m11;
     this->m21 = copy.m21;

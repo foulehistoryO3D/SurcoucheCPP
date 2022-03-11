@@ -40,12 +40,12 @@ System::Text::StringBuilder::StringBuilder(const char* _str)
     Append(_str);
 }
 
-System::Text::StringBuilder::StringBuilder(const StringBuilder& _copy)
+System::Text::StringBuilder::StringBuilder(const StringBuilder& copy) : Object(copy)
 {
-    mValue = std::move(_copy.mValue);
-    mLength = std::move(_copy.mLength);
-    mCapacity = std::move(_copy.mCapacity);
-    mCapacityMax = std::move(_copy.mCapacityMax);
+    mValue = std::move(copy.mValue);
+    mLength = std::move(copy.mLength);
+    mCapacity = std::move(copy.mCapacity);
+    mCapacityMax = std::move(copy.mCapacityMax);
 }
 #pragma endregion constructor
 #pragma region custom methods

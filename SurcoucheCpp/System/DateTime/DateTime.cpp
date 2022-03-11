@@ -35,15 +35,15 @@ System::DateTime::DateTime(const Integer& _day, const Integer& _month, const Int
 System::DateTime::DateTime(const Integer& _day, const Integer& _month, const Integer& _years)
     : DateTime(_day, _month, _years, 0, 0, 0){}
 
-System::DateTime::DateTime(const DateTime& _copy)
+System::DateTime::DateTime(const DateTime& copy)  : Object(copy)
 {
-    mDay = std::move(_copy.mDay);
-    mMonth = std::move(_copy.mMonth);
-    mYears = std::move(_copy.mYears);
-    mHour = std::move(_copy.mHour);
-    mMinute = std::move(_copy.mMinute);
-    mSecond = std::move(_copy.mSecond);
-    dayOfWeek = std::move(_copy.dayOfWeek);
+    mDay = std::move(copy.mDay);
+    mMonth = std::move(copy.mMonth);
+    mYears = std::move(copy.mYears);
+    mHour = std::move(copy.mHour);
+    mMinute = std::move(copy.mMinute);
+    mSecond = std::move(copy.mSecond);
+    dayOfWeek = std::move(copy.dayOfWeek);
 }
 
 int System::DateTime::CalculateDayOfWeek() const

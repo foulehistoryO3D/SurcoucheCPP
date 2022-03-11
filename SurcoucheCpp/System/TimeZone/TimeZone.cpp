@@ -13,12 +13,12 @@ System::TimeZone::TimeZone(const ETimeZoneName& _timeZone)
     Init();
 }
 
-System::TimeZone::TimeZone(const TimeZone& _copy)
+System::TimeZone::TimeZone(const TimeZone& copy) : Object(copy)
 {
-    mResult = std::move(_copy.mResult);
-    mTime = std::move(_copy.mTime);
-    mTimeZone = std::move(_copy.mTimeZone);
-    mTimeZoneName = std::move(_copy.mTimeZoneName);
+    mResult = std::move(copy.mResult);
+    mTime = std::move(copy.mTime);
+    mTimeZone = std::move(copy.mTimeZone);
+    mTimeZoneName = std::move(copy.mTimeZoneName);
 }
 #pragma endregion constructor
 #pragma region custom methods

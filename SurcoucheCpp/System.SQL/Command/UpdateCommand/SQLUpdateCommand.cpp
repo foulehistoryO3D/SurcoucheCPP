@@ -10,7 +10,7 @@ System::SQL::SQLUpdateCommand::SQLUpdateCommand(const string& command, const str
     this->table     = table;
 }
 
-System::SQL::SQLUpdateCommand::SQLUpdateCommand(const SQLUpdateCommand& copy)
+System::SQL::SQLUpdateCommand::SQLUpdateCommand(const SQLUpdateCommand& copy) : Object(copy)
 {
     this->id        = copy.id;
     this->command   = copy.command;

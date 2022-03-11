@@ -113,16 +113,16 @@ void System::Window::OnWindowUpdate()
 {
 }
 
-System::Window::Window(const Window& _copy)
+System::Window::Window(const Window& copy) : Object(copy)
 {
-    hdc = _copy.hdc;
-    hinstAcc = _copy.hinstAcc;
-    gdiplusToken = _copy.gdiplusToken;
-    mWindowInstance = _copy.mWindowInstance;
-    mWindowName = _copy.mWindowName;
-    mWidth = _copy.mWidth;
-    mHeight = _copy.mHeight;
-    mMenus = _copy.mMenus;
+    hdc = copy.hdc;
+    hinstAcc = copy.hinstAcc;
+    gdiplusToken = copy.gdiplusToken;
+    mWindowInstance = copy.mWindowInstance;
+    mWindowName = copy.mWindowName;
+    mWidth = copy.mWidth;
+    mHeight = copy.mHeight;
+    mMenus = copy.mMenus;
 }
 #pragma endregion constructor
 #pragma region custom methods

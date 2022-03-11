@@ -40,14 +40,14 @@ System::String::String(const char* _value)
     mLength = _newLength;
 }
 
-System::String::String(const String& _copy)
+System::String::String(const String& copy) : Object(copy)
 {
-    if (_copy.mValue == nullptr) return;
-    const size_t _length = _copy.mLength;
+    if (copy.mValue == nullptr) return;
+    const size_t _length = copy.mLength;
     char* _new = new char[_length + 1];
-    memcpy(_new, _copy.mValue, _length + 1);
+    memcpy(_new, copy.mValue, _length + 1);
     mValue = _new;
-    mLength = _copy.mLength;
+    mLength = copy.mLength;
 }
 
 System::String::String(std::string::iterator _begin, std::string::iterator _end)

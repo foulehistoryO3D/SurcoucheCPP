@@ -24,7 +24,7 @@ namespace System
             public:
                 Regex() = default;
                 Regex(const String& _pattern);
-                Regex(const Regex& _copy);
+                Regex(const Regex& copy);
 #pragma endregion constructor
 #pragma region custom methods
             public:

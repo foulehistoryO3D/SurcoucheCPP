@@ -28,7 +28,7 @@ System::Numerics::Quaternion::Quaternion(const Vector3& vector, const Float& w)
     this->w = w;
 }
 
-System::Numerics::Quaternion::Quaternion(const Quaternion& copy)
+System::Numerics::Quaternion::Quaternion(const Quaternion& copy) : Object(copy)
 {
     this->x = copy.x;
     this->y = copy.y;

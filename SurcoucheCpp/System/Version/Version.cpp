@@ -42,14 +42,14 @@ System::Version::Version(const String& _str)
     mMinor = m3 != -1 ? m3 : m2 != -1 ? m2 : m1;
 }
 
-System::Version::Version(const Version& _copy)
+System::Version::Version(const Version& copy) : Object(copy)
 {
-    m0 = std::move(_copy.m0);
-    m1 = std::move(_copy.m1);
-    m2 = std::move(_copy.m2);
-    m3 = std::move(_copy.m3);
-    mMinor = std::move(_copy.mMinor);
-    mMajor = std::move(_copy.mMajor);
+    m0 = std::move(copy.m0);
+    m1 = std::move(copy.m1);
+    m2 = std::move(copy.m2);
+    m3 = std::move(copy.m3);
+    mMinor = std::move(copy.mMinor);
+    mMajor = std::move(copy.mMajor);
 }
 #pragma endregion constructor
 #pragma region override

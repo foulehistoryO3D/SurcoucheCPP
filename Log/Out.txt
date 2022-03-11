@@ -1,1 +1,3 @@
-[Log] => A::Test
+[Log] => System
+[Log] => System::Collections::Generic
+[Log] => System::Collections::Generic

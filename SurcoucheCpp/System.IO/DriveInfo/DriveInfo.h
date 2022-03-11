@@ -30,7 +30,7 @@ namespace System
         public:
             DriveInfo()=default;
             DriveInfo(const String& _path);
-            DriveInfo(const DriveInfo& _copy);
+            DriveInfo(const DriveInfo& copy);
 #pragma endregion constructor
 #pragma region custom methods
         private:

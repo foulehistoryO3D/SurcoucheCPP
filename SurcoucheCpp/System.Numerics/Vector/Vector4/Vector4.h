@@ -9,6 +9,7 @@ namespace System
     {
         class Vector3;
         class Vector2;
+
         class Vector4 sealed : public Object, public IEquatable<Vector4>
         {
             DECLARE_CLASS_INFO(Object);
@@ -35,6 +36,7 @@ namespace System
             Vector4(const Float& x, const Float& y, const Float& z);
             Vector4(const Float& x, const Float& y);
             Vector4(const Span<Float>& values);
+            Vector4(const Vector4& copy);
 #pragma endregion constructor
 #pragma region custom methods
         public:
@@ -48,14 +50,14 @@ namespace System
             static Float Dot(const Vector4& a, const Vector4& b);
             static Float Magnitude(const Vector4& a);
             static Float Distance(const Vector4& a, const Vector4& b);
-            void CopyTo(Array<Float>& out)const;
-            void CopyTo(Span<Float>& out)const;
+            void CopyTo(Array<Float>& out) const;
+            void CopyTo(Span<Float>& out) const;
             void Normalize();
             void Set(const Float& x, const Float& y, const Float& z, const Float& w);
-            Float Length()const;
-            Float LengthSquared()const;
-            Vector3 ToVector3()const;
-            Vector2 ToVector2()const;
+            Float Length() const;
+            Float LengthSquared() const;
+            Vector3 ToVector3() const;
+            Vector2 ToVector2() const;
 #pragma endregion custom methods
 #pragma region override
         public:
@@ -86,7 +88,7 @@ namespace System
             Vector4& operator/=(const Float& value);
             Vector4& operator-();
             Float& operator[](const Int& index);
-            Float operator[](const Int& index)const;
+            Float operator[](const Int& index) const;
             Bool operator==(const Vector4& other) const;
             Bool operator!=(const Vector4& other) const;
             Bool operator<(const Vector4& other) const;
