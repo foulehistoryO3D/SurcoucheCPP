@@ -135,8 +135,8 @@ void System::Numerics::Vector2::Scale(const Float& scale)
 
 System::Float System::Numerics::Vector2::Distance(const Vector2& a, const Vector2& b)
 {
-    const float diff_x = a.x - b.x;
-    const float diff_y = a.y - b.y;
+    const Float& diff_x = a.x - b.x;
+    const Float& diff_y = a.y - b.y;
     return Mathf::Sqrt(diff_x * diff_x + diff_y * diff_y);
 }
 

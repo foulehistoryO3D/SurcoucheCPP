@@ -59,10 +59,13 @@ namespace System
         Float& operator-=(const Float& other);
         Float operator+(const Float& other)const;
         Float operator+(const float& other)const;
+        Float operator*(const Float& other)const;
+        Float operator*(const float& other)const;
         Float operator-(const Float& other)const;
         Float operator-(const float& other)const;
         Float operator/(const Float& other) const;
         Float operator/(const float& other) const;
+        Float operator-()const;
         Boolean operator<(const Float& other) const;
         Boolean operator>(const Float& other) const;
         Boolean operator<=(const Float& other) const;

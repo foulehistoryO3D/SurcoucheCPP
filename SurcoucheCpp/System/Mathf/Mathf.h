@@ -11,14 +11,14 @@ namespace System
     {
 #pragma region const
     public:
-        static const constexpr float FloatMinNormal = 1.17549435E-38F;
-        static const constexpr float FloatMinDenormal = 1.401298E-45F;
-        static const constexpr bool IsFlushToZeroEnabled = FloatMinDenormal == 0.0f;
-        static const constexpr double Pi = 3.1415926535897932384;
-        static const constexpr Double E = 2.71828182845905;
-        static const constexpr float Deg2Rad = Pi * 2.0f / 360.0f;
-        static const constexpr float Rad2Deg = 1.0f / Deg2Rad;
-        static const constexpr float Epsilon = IsFlushToZeroEnabled ? FloatMinNormal : FloatMinDenormal;
+        static const Float FloatMinNormal;
+        static const Float FloatMinDenormal;
+        static const Boolean IsFlushToZeroEnabled;
+        static const Double Pi;
+        static const Double E;
+        static const Float Deg2Rad;
+        static const Float Rad2Deg;
+        static const Float Epsilon;
 #pragma endregion const
 #pragma region custom methods
     public:

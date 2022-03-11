@@ -258,6 +258,9 @@
     <ClCompile Include="System\Window\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="System.Numerics\Complex\Complex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="System.Collections.Generic\Dictionary\Dictionary.h">
@@ -690,6 +693,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="System.Utils\Template\IsBaseOf\IsBaseOf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="System.Numerics\Complex\Complex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

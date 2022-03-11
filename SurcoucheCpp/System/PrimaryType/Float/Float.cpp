@@ -172,6 +172,16 @@ System::Float System::Float::operator+(const float& other) const
     return mValue + other;
 }
 
+System::Float System::Float::operator*(const Float& other) const
+{
+    return mValue * other;
+}
+
+System::Float System::Float::operator*(const float& other) const
+{
+    return mValue * other;
+}
+
 System::Float System::Float::operator-(const Float& other) const
 {
     return mValue - other;
@@ -236,6 +246,11 @@ System::Float System::Float::operator/(const float& other) const
         throw DivideByZeroException(string::Format("Division of {0} by zero.", *this));
     const Float& result = mValue / other;
     return result;
+}
+
+System::Float System::Float::operator-() const
+{
+    return -mValue;
 }
 
 float System::Float::operator*() const

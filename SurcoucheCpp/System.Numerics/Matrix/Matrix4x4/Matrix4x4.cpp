@@ -276,8 +276,8 @@ System::Numerics::Matrix4x4 System::Numerics::Matrix4x4::CreateRotationX(const F
 {
     const float cos = Mathf::Cos(radians);
     const float sin = Mathf::Sin(radians);
-    const float num1 = (center.y * (1.0 - cos) + center.z * sin);
-    const float num2 = (center.z * (1.0 - cos) - center.y * sin);
+    const float num1 = (center.y * (1.0f - cos) + center.z * sin);
+    const float num2 = (center.z * (1.0f - cos) - center.y * sin);
     Matrix4x4 rotationX = Matrix4x4();
     rotationX.m11 = 1.0f;
     rotationX.m12 = 0.0f;
@@ -434,7 +434,7 @@ System::Numerics::Matrix4x4 System::Numerics::Matrix4x4::CreateFromAxisAngle(con
 System::Numerics::Matrix4x4 System::Numerics::Matrix4x4::CreatePerspectiveFieldOfView(const Float& fieldOfView,
     const Float& aspectRatio, const Float& nearPlaneDistance, const Float& farPlaneDistance)
 {
-    if (fieldOfView <= 0.0f || fieldOfView >= Mathf::Pi)
+    if (fieldOfView <= 0.0f || fieldOfView >= (float)Mathf::Pi)
         throw ArgumentOutOfRangeException(nameof(fieldOfView));
     if (nearPlaneDistance <= 0.0f)
         throw ArgumentOutOfRangeException(nameof(nearPlaneDistance));

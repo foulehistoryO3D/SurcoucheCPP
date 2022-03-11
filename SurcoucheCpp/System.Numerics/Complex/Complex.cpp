@@ -217,7 +217,7 @@ System::Numerics::Complex System::Numerics::Complex::Scale(const Complex& value,
 #pragma region override
 System::String System::Numerics::Complex::ToString() const
 {
-    return Object::ToString();
+    return string::Format("({0}, {1})", this->real, this->imaginary);
 }
 
 System::Integer System::Numerics::Complex::GetHashCode() const

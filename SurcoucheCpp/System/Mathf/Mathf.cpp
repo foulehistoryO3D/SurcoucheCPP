@@ -4,6 +4,15 @@
 #include "../PrimaryType/Boolean/Boolean.h"
 #include <complex>
 
+System::Double const System::Mathf::E = 2.71828182845905;
+System::Float const System::Mathf::FloatMinNormal = 1.17549435E-38F;
+System::Float const System::Mathf::FloatMinDenormal = 1.401298E-45F;
+System::Boolean const System::Mathf::IsFlushToZeroEnabled = FloatMinDenormal == 0.0f;
+System::Double const System::Mathf::Pi = 3.1415926535897932384;
+System::Float const System::Mathf::Deg2Rad = ((float)Pi) * 2.0f / 360.0f;
+System::Float const System::Mathf::Rad2Deg = Float(1.0f) / Deg2Rad;
+System::Float const System::Mathf::Epsilon = IsFlushToZeroEnabled ? FloatMinNormal : FloatMinDenormal;
+
 System::Float System::Mathf::Clamp01(const Float& _value)
 {
     if (_value < 0.0f) return 0.0f;
