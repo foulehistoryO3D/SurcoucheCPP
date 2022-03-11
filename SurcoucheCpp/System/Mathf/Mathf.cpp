@@ -23,6 +23,11 @@ System::Float System::Mathf::Sqrt(const Float& _value)
     return std::sqrt(_value);
 }
 
+System::Double System::Mathf::Sqrt(const Double& _value)
+{
+    return std::sqrt(_value);
+}
+
 System::Float System::Mathf::Min(const Float& _a, const Float& _b)
 {
     return _a < _b ? _a : _b;
@@ -66,12 +71,27 @@ System::Float System::Mathf::Repeat(const Float& _t, const Float& _length)
 System::Float System::Mathf::PingPong(const Float& _t, const Float& _length)
 {
     const float _t1 = Repeat(_t, _length*2.0f);
-    return _length - Abs(_t1 - _length);
+    return _length - Abs(Float(_t1 - _length));
 }
 
 System::Float System::Mathf::Abs(const Float& _f)
 {
     return std::abs(_f);
+}
+
+System::Double System::Mathf::Abs(const Double& _f)
+{
+    return std::abs(_f);
+}
+
+System::Float System::Mathf::Log(const Float& _f)
+{
+    return std::log(_f);
+}
+
+System::Double System::Mathf::Log(const Double& _f)
+{
+    return std::log(_f);
 }
 
 System::Float System::Mathf::InverseLerp(const Float& _a, const Float& _b, const Float& _value)
@@ -103,6 +123,11 @@ System::Float System::Mathf::Pow(const Float& _a, const Float& _p)
     return std::pow(_a, _p);
 }
 
+System::Double System::Mathf::Pow(const Double& _a, const Double& _p)
+{
+    return std::pow(_a, _p);
+}
+
 System::Float System::Mathf::Round(const Float& _f)
 {
     return std::round(_f);
@@ -118,6 +143,21 @@ System::Float System::Mathf::Exp(const Float& _pow)
     return std::exp(_pow);
 }
 
+System::Double System::Mathf::Exp(const Double& _pow)
+{
+    return std::exp(_pow);
+}
+
+System::Float System::Mathf::Sinh(const Float& _f)
+{
+    return std::sinh(_f);
+}
+
+System::Double System::Mathf::Sinh(const Double& _f)
+{
+    return std::sinh(_f);
+}
+
 System::Float System::Mathf::Sin(const Float& _f)
 {
     return std::sin(_f);
@@ -126,6 +166,26 @@ System::Float System::Mathf::Sin(const Float& _f)
 System::Float System::Mathf::Cos(const Float& _f)
 {
     return std::cos(_f);
+}
+
+System::Double System::Mathf::Sin(const Double& _f)
+{
+    return std::sin(_f);
+}
+
+System::Double System::Mathf::Cos(const Double& _f)
+{
+    return std::cos(_f);
+}
+
+System::Double System::Mathf::Cosh(const Double& _f)
+{
+    return std::cosh(_f);
+}
+
+System::Float System::Mathf::Cosh(const Float& _f)
+{
+    return std::cosh(_f);
 }
 
 System::Float System::Mathf::Tan(const Float& _f)
@@ -149,6 +209,11 @@ System::Float System::Mathf::Atan(const Float& _f)
 }
 
 System::Float System::Mathf::Atan2(const Float& _y, const Float& _x)
+{
+    return std::atan2(_y, _x);
+}
+
+System::Double System::Mathf::Atan2(const Double& _y, const Double& _x)
 {
     return std::atan2(_y, _x);
 }

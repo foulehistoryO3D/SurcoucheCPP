@@ -23,6 +23,7 @@
     <ProjectGuid>{5CA26573-561F-4C10-93D9-132F23681EF6}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>SurcoucheCpp</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup>
@@ -31,8 +32,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -44,13 +45,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -181,6 +182,7 @@
     <ClCompile Include="System.Net\StringEventArgs\DownloadStringCompletedEventArgs.cpp" />
     <ClCompile Include="System.Net\WebCallback\WebCallback.cpp" />
     <ClCompile Include="System.Net\WebClient\WebClient.cpp" />
+    <ClCompile Include="System.Numerics\Complex\Complex.cpp" />
     <ClCompile Include="System.Numerics\Matrix\Matrix4x4\Matrix4x4.cpp" />
     <ClCompile Include="System.Numerics\Quaternion\Quaternion.cpp" />
     <ClCompile Include="System.Numerics\Vector\Vector2\Vector2.cpp" />
@@ -501,6 +503,7 @@
     <ClInclude Include="System.Net\StringEventArgs\DownloadStringCompletedEventArgs.h" />
     <ClInclude Include="System.Net\WebCallback\WebCallback.h" />
     <ClInclude Include="System.Net\WebClient\WebClient.h" />
+    <ClInclude Include="System.Numerics\Complex\Complex.h" />
     <ClInclude Include="System.Numerics\Matrix\Matrix4x4\Matrix4x4.h" />
     <ClInclude Include="System.Numerics\Quaternion\Quaternion.h" />
     <ClInclude Include="System.Numerics\Vector\Vector2\Vector2.h" />

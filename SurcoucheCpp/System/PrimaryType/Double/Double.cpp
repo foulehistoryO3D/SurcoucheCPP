@@ -158,6 +158,13 @@ System::Double System::Double::operator/(const Double& other) const
     return mValue / other;
 }
 
+System::Double System::Double::operator/(const double& other) const
+{
+    if (other == 0.0)
+        throw DivideByZeroException(string::Format("Division of {0} by zero.", *this));
+    return mValue / other;
+}
+
 System::Double System::Double::operator/=(const Double& other)
 {
     if (other == 0.0)

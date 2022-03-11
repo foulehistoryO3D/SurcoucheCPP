@@ -186,9 +186,6 @@
     <ClCompile Include="System.Text.RegularExpressions\Match\Match.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="System.Collections.Generic\Stack\Stack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="System.Net\Networking\Utils\Enum\NetMessageTypes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -690,6 +687,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="System\Window\Window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="System.Utils\Template\IsBaseOf\IsBaseOf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

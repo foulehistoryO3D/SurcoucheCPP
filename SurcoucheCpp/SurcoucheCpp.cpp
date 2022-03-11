@@ -1,13 +1,10 @@
 #include "System/IncludeSystem.h"
 
-class Attribute : public Object
-{
-private:
-    
-};
-
 int main()
 {
     SetConsoleOutputCP(CP_UTF8);
+    Double d = Double::PositiveInfinity;
+
+    Console::WriteLine(Double::IsInfinity(d));
     return 0;
 }

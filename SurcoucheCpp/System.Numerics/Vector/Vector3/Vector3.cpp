@@ -101,7 +101,7 @@ System::Numerics::Vector3 System::Numerics::Vector3::Max(const Vector3& a, const
 
 System::Numerics::Vector3 System::Numerics::Vector3::ClampMagnitude(const Vector3& vector, const Float& maxLength)
 {
-    const float sqrmag = vector.SqrMagnitude();
+    const Float& sqrmag = vector.SqrMagnitude();
     if (sqrmag > maxLength * maxLength)
     {
         const float mag = Mathf::Sqrt(sqrmag);
@@ -115,9 +115,9 @@ System::Numerics::Vector3 System::Numerics::Vector3::ClampMagnitude(const Vector
 
 System::Float System::Numerics::Vector3::Distance(const Vector3& a, const Vector3& b)
 {
-    const float diffX = a.x - b.x;
-    const float diffY = a.y - b.y;
-    const float diffZ = a.z - b.z;
+    const Float& diffX = a.x - b.x;
+    const Float& diffY = a.y - b.y;
+    const Float& diffZ = a.z - b.z;
     return Mathf::Sqrt(diffX * diffX + diffY * diffY + diffZ * diffZ);
 }
 

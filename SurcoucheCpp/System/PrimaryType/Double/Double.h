@@ -58,6 +58,7 @@ namespace System
         operator double() const { return mValue; }
         double operator*()const;
         Double operator/(const Double& other)const;
+        Double operator/(const double& other)const;
         Double operator/=(const Double& other);
         Double operator*(const Double& other)const;
         Double operator*=(const Double& other);

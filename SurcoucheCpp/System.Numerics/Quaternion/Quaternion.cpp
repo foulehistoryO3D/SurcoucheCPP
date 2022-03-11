@@ -60,7 +60,7 @@ System::Numerics::Quaternion System::Numerics::Quaternion::Inverse(const Quatern
 
 System::Numerics::Quaternion System::Numerics::Quaternion::CreateFromAxisAngle(const Vector3& axis, const Float& angle)
 {
-    const float num1 = angle * 0.5f;
+    const Double& num1 = angle * 0.5f;
     const float num2 = Mathf::Sin(num1);
     const float num3 = Mathf::Cos(num1);
     return Quaternion(axis.x * num2, axis.y * num2, axis.z * num2, num3);
@@ -68,13 +68,13 @@ System::Numerics::Quaternion System::Numerics::Quaternion::CreateFromAxisAngle(c
 
 System::Numerics::Quaternion System::Numerics::Quaternion::CreateFromYawPitchRoll(const Float& yaw, const Float& pitch, const Float& roll)
 {
-    const float num1 = roll * 0.5f;
+    const Double& num1 = roll * 0.5f;
     const float num2 = Mathf::Sin(num1);
     const float num3 = Mathf::Cos(num1);
-    const float num4 = pitch * 0.5f;
+    const Double& num4 = pitch * 0.5f;
     const float num5 = Mathf::Sin(num4);
     const float num6 = Mathf::Cos(num4);
-    const float num7 = yaw * 0.5f;
+    const Double& num7 = yaw * 0.5f;
     const float num8 = Mathf::Sin(num7);
     const float num9 = Mathf::Cos(num7);
     Quaternion fromYawPitchRoll = Identity;
@@ -203,7 +203,7 @@ System::Numerics::Quaternion System::Numerics::Quaternion::Lerp(const Quaternion
 System::Numerics::Quaternion System::Numerics::Quaternion::Slerp(const Quaternion& a, const Quaternion& b,
     const Float& t)
 {
-    const float num1 = t;
+    const Float& num1 = t;
     float d = a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w;
     bool flag = false;
     if (d < 0.0f)
@@ -219,10 +219,10 @@ System::Numerics::Quaternion System::Numerics::Quaternion::Slerp(const Quaternio
     }
     else
     {
-        const float a1 = Mathf::Acos(d);
-        const float num4 = 1.0f / Mathf::Sin(a1);
-        num2 = Mathf::Sin((1.0 - num1) * a1) * num4;
-        num3 = flag ? -Mathf::Sin(num1 * a1) * num4 : Mathf::Sin(num1 * a1) * num4;
+        const Float& a1 = Mathf::Acos(d);
+        const Float& num4 = 1.0f / Mathf::Sin(a1);
+        num2 = Mathf::Sin(Float((1.0 - num1) * a1)) * num4;
+        num3 = flag ? -Mathf::Sin(Float(num1 * a1)) * num4 : Mathf::Sin(Float(num1 * a1)) * num4;
     }
     Quaternion quaternion = Quaternion();
     quaternion.x = num2 * a.x + num3 * b.x;
