@@ -99,7 +99,7 @@ System::String System::Type::Namespace() const
         test = test.Replace(">", "");
         return test.SubString(test.FirstIndexOf(" ") + 1, test.LastIndexOf(':') - 1);
     }
-    return test.SubString(test.FirstIndexOf(" ") + 1, test.FirstIndexOf(":"));
+    return test.SubString(test.FirstIndexOf(" ") + 1, test.LastIndexOf(':')-1);
 }
 
 System::Boolean System::Type::IsInterface() const
